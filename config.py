@@ -71,6 +71,10 @@ class RewardConfig:
 @dataclass
 class EnvConfig:
     window: int = 32                  # number of past log-returns in the observation
+    # Enhancement 1: position-awareness state block (past-only, behind this flag).
+    # When False the observation is byte-for-byte identical to the Phase-A control.
+    use_position_features: bool = False
+    atr_period: int = 14              # Wilder ATR period used to normalize distances
 
 
 @dataclass

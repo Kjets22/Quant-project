@@ -33,8 +33,10 @@ LOG_DIR = RUNS_DIR / "logs"
 
 
 def launch(tickers: list[str], folds: int, timesteps: int,
-           threads_per_proc: int = 4) -> None:
-    RUNS_DIR.mkdir(parents=True, exist_ok=True)
+           threads_per_proc: int = 4, outdir: Path = RUNS_DIR, tag: str = "control",
+           position_features: bool = False, phase: str = "A") -> None:
+    outdir = Path(outdir)
+    outdir.mkdir(parents=True, exist_ok=True)
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     here = Path(__file__).parent
 
@@ -45,11 +47,14 @@ def launch(tickers: list[str], folds: int, timesteps: int,
         env["OMP_NUM_THREADS"] = str(threads_per_proc)
         env["MKL_NUM_THREADS"] = str(threads_per_proc)
         env["CT_TORCH_THREADS"] = str(threads_per_proc)
-        out_csv = RUNS_DIR / f"control_{t}.csv"
-        log_path = LOG_DIR / f"control_{t}.log"
-        cmd = [sys.executable, "control.py",
+        out_csv = outdir / f"{tag}_{t}.csv"
+        log_path = LOG_DIR / f"{tag}_{t}.log"
+        cmd = [sys.executable, "-u", "control.py",
                "--tickers", t, "--folds", str(folds),
-               "--timesteps", str(timesteps), "--out", str(out_csv)]
+               "--timesteps", str(timesteps), "--out", str(out_csv),
+               "--phase", phase]
+        if position_features:
+            cmd.append("--position-features")
         log_f = open(log_path, "w", encoding="utf-8")
         p = subprocess.Popen(cmd, cwd=here, env=env, stdout=log_f,
                              stderr=subprocess.STDOUT)
@@ -65,28 +70,31 @@ def launch(tickers: list[str], folds: int, timesteps: int,
         results[t] = rc
         print(f"  {t}: exit {rc}  ({(time.time()-t0)/60:.1f} min elapsed)")
 
+    merged_path = outdir / f"{tag}_baseline.csv"
     # Merge per-ticker CSVs.
     frames = []
     for t, _p, _f, out_csv in procs:
         if out_csv.exists():
             frames.append(pd.read_csv(out_csv))
         else:
-            print(f"  WARNING: no output for {t} (check {LOG_DIR / f'control_{t}.log'})")
+            print(f"  WARNING: no output for {t} (check {LOG_DIR / f'{tag}_{t}.log'})")
     if not frames:
         print("No results produced. See logs in", LOG_DIR)
         return
     merged = pd.concat(frames, ignore_index=True)
-    merged.to_csv(CONTROL_CSV, index=False)
-    _summary(merged, CONTROL_CSV)
+    merged.to_csv(merged_path, index=False)
+    _summary(merged, merged_path)
     print(f"\ntotal wall time: {(time.time()-t0)/60:.1f} min")
 
 
-def merge_only(tickers: list[str]) -> None:
+def merge_only(tickers: list[str], outdir: Path = RUNS_DIR, tag: str = "control") -> None:
     """Merge already-written per-ticker CSVs into the baseline + print summary."""
+    outdir = Path(outdir)
+    merged_path = outdir / f"{tag}_baseline.csv"
     frames = []
     missing = []
     for t in tickers:
-        out_csv = RUNS_DIR / f"control_{t}.csv"
+        out_csv = outdir / f"{tag}_{t}.csv"
         if out_csv.exists():
             frames.append(pd.read_csv(out_csv))
         else:
@@ -97,8 +105,8 @@ def merge_only(tickers: list[str]) -> None:
         print("no per-ticker CSVs yet.")
         return
     merged = pd.concat(frames, ignore_index=True)
-    merged.to_csv(CONTROL_CSV, index=False)
-    _summary(merged, CONTROL_CSV)
+    merged.to_csv(merged_path, index=False)
+    _summary(merged, merged_path)
 
 
 if __name__ == "__main__":
@@ -109,10 +117,17 @@ if __name__ == "__main__":
     p.add_argument("--threads-per-proc", type=int, default=4)
     p.add_argument("--merge-only", action="store_true",
                    help="skip launching; just merge existing per-ticker CSVs")
+    p.add_argument("--outdir", type=str, default=str(RUNS_DIR))
+    p.add_argument("--tag", type=str, default="control")
+    p.add_argument("--position-features", action="store_true")
+    p.add_argument("--phase", type=str, default="A")
     args = p.parse_args()
     tickers = ([s.strip().upper() for s in args.tickers.split(",")]
                if args.tickers else BASKET_TICKERS)
+    outdir = Path(args.outdir)
     if args.merge_only:
-        merge_only(tickers)
+        merge_only(tickers, outdir=outdir, tag=args.tag)
     else:
-        launch(tickers, args.folds, args.timesteps, args.threads_per_proc)
+        launch(tickers, args.folds, args.timesteps, args.threads_per_proc,
+               outdir=outdir, tag=args.tag, position_features=args.position_features,
+               phase=args.phase)

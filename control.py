@@ -47,11 +47,14 @@ CONTROL_CSV = RUNS_DIR / "control_baseline.csv"
 
 def run_control(tickers: list[str], k_folds: int, timesteps: int,
                 out_csv: Path = CONTROL_CSV, phase: str = "A",
-                device: str = "cpu") -> pd.DataFrame:
+                device: str = "cpu", use_position_features: bool = False) -> pd.DataFrame:
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
+    out_csv = Path(out_csv)
+    out_csv.parent.mkdir(parents=True, exist_ok=True)
     lockbox = Lockbox.load_or_build(tickers)
     print(f"lockbox cutoff = {lockbox.cutoff}  (dev = everything before this)")
     print(f"device = {device}  (benchmark: CPU single-env is ~3.7x faster than GPU here)")
+    print(f"use_position_features = {use_position_features}")
 
     rows: list[dict] = []
     for t in tickers:
@@ -59,6 +62,7 @@ def run_control(tickers: list[str], k_folds: int, timesteps: int,
         cfg = ticker_cfg(t)
         cfg.train.total_timesteps = timesteps
         cfg.train.device = device
+        cfg.env.use_position_features = use_position_features
         print(f"\n##### {t}: dev rows={len(dev)}  folds={k_folds}  "
               f"timesteps={timesteps} #####")
         folds = walk_forward(dev, cfg, k=k_folds)
@@ -84,7 +88,8 @@ def run_control(tickers: list[str], k_folds: int, timesteps: int,
             log_trial(
                 phase=phase,
                 params={"model": "control_ppo", "ticker": t, "fold": fr.fold,
-                        "timesteps": timesteps, "k_folds": k_folds},
+                        "timesteps": timesteps, "k_folds": k_folds,
+                        "use_position_features": use_position_features},
                 metrics={"oos_sharpe": round(fr.test.sharpe, 4),
                          "oos_capture": round(fr.test.capture_reward, 4),
                          "oos_raw_pnl": round(fr.test.raw_pnl, 4),
@@ -138,9 +143,13 @@ if __name__ == "__main__":
     p.add_argument("--timesteps", type=int, default=500_000)
     p.add_argument("--out", type=str, default=str(CONTROL_CSV))
     p.add_argument("--device", type=str, default="cpu", choices=["cpu", "cuda", "auto"])
+    p.add_argument("--position-features", action="store_true",
+                   help="enable the Enhancement-1 position-awareness block")
+    p.add_argument("--phase", type=str, default="A")
     args = p.parse_args()
 
     tickers = ([s.strip().upper() for s in args.tickers.split(",")]
                if args.tickers else BASKET_TICKERS)
     run_control(tickers, k_folds=args.folds, timesteps=args.timesteps,
-                out_csv=Path(args.out), device=args.device)
+                out_csv=Path(args.out), device=args.device, phase=args.phase,
+                use_position_features=args.position_features)

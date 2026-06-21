@@ -1,0 +1,22 @@
+# Secrets — never commit the API key
+.env
+
+# Cached market data and trained models
+data_cache/
+*.zip
+
+# Run artifacts (baselines, trial logs) — keep lockbox.json if you want the
+# boundary version-controlled; everything else is reproducible output.
+runs/*.csv
+runs/paper/
+runs/logs/
+runs/phase3/
+runs/*.log
+
+# Trained models
+models/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/

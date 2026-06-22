@@ -34,9 +34,9 @@ JOBS_DIR = PHASE3 / "jobs"
 LOG = PHASE3 / "pool.log"
 PY = sys.executable
 K = 6
-TIMESTEPS = 500_000
+TIMESTEPS = 250_000         # exploratory speed: ~2x faster than 500k per fold
 MAX_PARALLEL = 16           # push more of the 28 logical cores (single-core rollouts)
-THREADS_PER_PROC = 2
+THREADS_PER_PROC = 3        # a few extra threads for the update step (cores are idle)
 
 RISK_JSON = ('{"use_diff_sharpe": true, "diff_sharpe_w": 0.3, '
              '"dd_penalty_w": 0.05, "vol_penalty_w": 0.02}')

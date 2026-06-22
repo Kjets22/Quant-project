@@ -115,6 +115,11 @@ class TrainConfig:
     learning_rate: float = 3e-4
     gamma: float = 0.99
     seed: int = 42
+    # Extra PPO hyperparameters (defaults reproduce prior behavior).
+    ent_coef: float = 0.0
+    n_epochs: int = 10
+    batch_size: int = 64
+    net_arch: str = "64,64"          # comma-separated hidden layer sizes
     train_frac: float = 0.7
     model_path: str = "capture_ppo.zip"
     # Throughput controls (Phase A scaling):

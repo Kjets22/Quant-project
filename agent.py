@@ -61,12 +61,17 @@ def train(df_train: pd.DataFrame, cfg: Config, verbose: int = 0) -> PPO:
     # Keep the total rollout (n_steps * n_envs) near the configured n_steps so the
     # update batch size is comparable regardless of how many envs we parallelize.
     per_env_steps = max(256, tc.n_steps // n_envs)
+    net_arch = [int(x) for x in str(tc.net_arch).split(",") if x.strip()]
     model = PPO(
         "MlpPolicy",
         venv,
         n_steps=per_env_steps,
         learning_rate=tc.learning_rate,
         gamma=tc.gamma,
+        ent_coef=tc.ent_coef,
+        n_epochs=tc.n_epochs,
+        batch_size=tc.batch_size,
+        policy_kwargs={"net_arch": net_arch},
         seed=tc.seed,
         device=tc.device,
         verbose=verbose,

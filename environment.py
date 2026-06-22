@@ -18,13 +18,17 @@ import numpy as np
 import pandas as pd
 from gymnasium import spaces
 
+from alphatrend import alphatrend, crossover, crossunder
 from config import Config, default_config
 from indicators import atr_wilder
+from regime import realized_volatility, regime_label, trend_slope, vol_percentile
 from reward import CaptureReward
 from swings import build_leg_ranges
 
-# Number of features in the position-awareness block (Enhancement 1).
-N_POSITION_FEATURES = 9
+# Sizes of the optional, flag-gated observation blocks (all past-only).
+N_POSITION_FEATURES = 9   # Enhancement 1
+N_ALPHATREND_FEATURES = 5  # AlphaTrend
+N_REGIME_FEATURES = 4      # Phase C
 
 
 class CaptureTradingEnv(gym.Env):
@@ -42,6 +46,8 @@ class CaptureTradingEnv(gym.Env):
         self.close_px = self.df["close"].to_numpy(dtype=np.float64)
         self.high = self.df["high"].to_numpy(dtype=np.float64)
         self.low = self.df["low"].to_numpy(dtype=np.float64)
+        self.volume = (self.df["volume"].to_numpy(dtype=np.float64)
+                       if "volume" in self.df else np.ones(self.n))
 
         # --- PAST-ONLY observation features (lookahead-safe) -----------------
         # log returns
@@ -64,6 +70,32 @@ class CaptureTradingEnv(gym.Env):
         self.atr = atr_wilder(self.high, self.low, self.close_px,
                               period=cfg.env.atr_period)
 
+        # --- Optional past-only feature blocks (precompute only when enabled) -
+        self.use_position_features = bool(cfg.env.use_position_features)
+        self.use_alphatrend_features = bool(cfg.env.use_alphatrend_features)
+        self.use_regime_features = bool(cfg.env.use_regime_features)
+
+        if self.use_alphatrend_features:
+            at, at_atr, mfi = alphatrend(
+                self.high, self.low, self.close_px, self.volume,
+                period=cfg.env.at_period, coeff=cfg.env.at_coeff,
+                novolume=cfg.env.at_novolume)
+            self.at_line = at
+            self.at_atr = np.maximum(at_atr, 1e-9)
+            self.at_mfi = mfi
+            # signals: AlphaTrend vs AlphaTrend[2] (past-only)
+            at_lag2 = np.concatenate([at[:2], at[:-2]])
+            self.at_buy = crossover(at, at_lag2).astype(np.float64)
+            self.at_sell = crossunder(at, at_lag2).astype(np.float64)
+            self.at_lag2 = at_lag2
+
+        if self.use_regime_features:
+            rv = realized_volatility(self.close_px, cfg.env.regime_vol_window)
+            self.reg_vol = rv
+            self.reg_slope = trend_slope(self.close_px, cfg.env.regime_slope_window)
+            self.reg_volpct = vol_percentile(rv, cfg.env.regime_vol_lookback)
+            self.reg_label = regime_label(self.reg_volpct, cfg.env.regime_hi_pct)
+
         # --- ORACLE (reward only — behind the lookahead wall) ----------------
         self.leg_range = build_leg_ranges(self.df, cfg)
         self.reward_fn = CaptureReward(self.close_px, self.leg_range, cfg)
@@ -71,8 +103,10 @@ class CaptureTradingEnv(gym.Env):
         # --- Spaces ----------------------------------------------------------
         # Action: 0 -> short(-1) (or flat if shorting disabled), 1 -> flat, 2 -> long(+1)
         self.action_space = spaces.Discrete(3)
-        self.use_position_features = bool(cfg.env.use_position_features)
-        obs_dim = self.window + 4 + (N_POSITION_FEATURES if self.use_position_features else 0)
+        obs_dim = (self.window + 4
+                   + (N_POSITION_FEATURES if self.use_position_features else 0)
+                   + (N_ALPHATREND_FEATURES if self.use_alphatrend_features else 0)
+                   + (N_REGIME_FEATURES if self.use_regime_features else 0))
         self.observation_space = spaces.Box(
             low=-np.inf, high=np.inf, shape=(obs_dim,), dtype=np.float32
         )
@@ -121,6 +155,10 @@ class CaptureTradingEnv(gym.Env):
         parts = [scaled, feats]
         if self.use_position_features:
             parts.append(self._position_features())
+        if self.use_alphatrend_features:
+            parts.append(self._alphatrend_features())
+        if self.use_regime_features:
+            parts.append(self._regime_features())
         obs = np.concatenate(parts).astype(np.float32)
         # Numerical safety: no NaN/Inf may ever reach the agent.
         obs = np.nan_to_num(obs, nan=0.0, posinf=0.0, neginf=0.0)
@@ -165,6 +203,35 @@ class CaptureTradingEnv(gym.Env):
             entry_dist / atr,
         ], dtype=np.float64)
         return block
+
+    def _alphatrend_features(self) -> np.ndarray:
+        """
+        AlphaTrend block (PAST-ONLY): distance of price from the trailing line,
+        the line's recent direction, the MFI/volume momentum, and the buy/sell
+        signal flags. All causal (precomputed from bars <= t).
+        """
+        t = self.t
+        atr = self.at_atr[t]
+        dist = (self.close_px[t] - self.at_line[t]) / atr        # +above / -below line
+        direction = float(np.sign(self.at_line[t] - self.at_lag2[t]))
+        mfi_c = (self.at_mfi[t] - 50.0) / 50.0                   # [-1, 1] volume momentum
+        return np.array([
+            np.tanh(dist),                # bounded distance from the trailing line
+            direction,                    # trend direction of the line
+            mfi_c,                        # MFI (volume) momentum, centered
+            self.at_buy[t],               # buy signal (AT crossed above AT[2])
+            self.at_sell[t],              # sell signal (AT crossed below AT[2])
+        ], dtype=np.float64)
+
+    def _regime_features(self) -> np.ndarray:
+        """Phase-C regime block (PAST-ONLY): vol, trend slope, vol-percentile, label."""
+        t = self.t
+        return np.array([
+            self.reg_vol[t] * 100.0,          # realized volatility (scaled O(1))
+            self.reg_slope[t] * 1000.0,       # OLS log-price slope/bar (scaled)
+            self.reg_volpct[t],               # volatility percentile rank [0,1]
+            self.reg_label[t],                # high-risk regime flag {0,1}
+        ], dtype=np.float64)
 
     def _update_trade_state_on_action(self, new_position: int) -> None:
         """Update entry/excursion bookkeeping when the target position changes."""

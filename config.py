@@ -85,6 +85,19 @@ class EnvConfig:
     use_position_features: bool = False
     atr_period: int = 14              # Wilder ATR period used to normalize distances
 
+    # AlphaTrend feature block (past-only): trailing line distance + MFI/volume.
+    use_alphatrend_features: bool = False
+    at_period: int = 14
+    at_coeff: float = 1.0
+    at_novolume: bool = False
+
+    # Phase C: regime-awareness block (past-only).
+    use_regime_features: bool = False
+    regime_vol_window: int = 32
+    regime_slope_window: int = 32
+    regime_vol_lookback: int = 256
+    regime_hi_pct: float = 0.7
+
 
 @dataclass
 class TrainConfig:

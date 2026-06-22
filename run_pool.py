@@ -42,10 +42,10 @@ RISK_JSON = ('{"use_diff_sharpe": true, "diff_sharpe_w": 0.3, '
              '"dd_penalty_w": 0.05, "vol_penalty_w": 0.02}')
 
 CONFIGS = [
-    {"tag": "posfeat", "extra": ["--position-features"], "phase": "Enh1",
-     "label": "position_features"},
-    {"tag": "riskB", "extra": ["--reward-json", RISK_JSON], "phase": "B",
-     "label": "risk_reward"},
+    {"tag": "alpha", "extra": ["--alphatrend"], "phase": "AlphaTrend",
+     "label": "alphatrend"},
+    {"tag": "regimeC", "extra": ["--regime"], "phase": "C",
+     "label": "regime"},
 ]
 
 
@@ -128,7 +128,7 @@ def merge_and_verdict() -> None:
         base = PHASE3 / f"{tag}_baseline.csv"
         merged.to_csv(base, index=False)
         log(f"merged {len(files)} job files -> {base.name}")
-        vtxt = PHASE3 / ("enh1_verdict.txt" if tag == "posfeat" else "phaseB_verdict.txt")
+        vtxt = PHASE3 / f"{tag}_verdict.txt"
         with open(vtxt, "w", encoding="utf-8") as f:
             subprocess.run([PY, "-u", "ab_compare.py", "--variant",
                             str(base.relative_to(HERE)), "--label", cfg["label"]],

@@ -40,6 +40,8 @@ def main() -> None:
     ap.add_argument("--k", type=int, default=6)
     ap.add_argument("--timesteps", type=int, default=500_000)
     ap.add_argument("--position-features", action="store_true")
+    ap.add_argument("--alphatrend", action="store_true")
+    ap.add_argument("--regime", action="store_true")
     ap.add_argument("--reward-json", default=None)
     ap.add_argument("--phase", default="X")
     a = ap.parse_args()
@@ -56,6 +58,8 @@ def main() -> None:
     cfg.train.total_timesteps = a.timesteps
     cfg.train.device = "cpu"
     cfg.env.use_position_features = a.position_features
+    cfg.env.use_alphatrend_features = a.alphatrend
+    cfg.env.use_regime_features = a.regime
     overrides = json.loads(a.reward_json) if a.reward_json else {}
     for k, v in overrides.items():
         if not hasattr(cfg.reward, k):
@@ -88,6 +92,7 @@ def main() -> None:
         phase=a.phase,
         params={"model": "job", "tag": a.tag, "ticker": a.ticker, "fold": fr.fold,
                 "timesteps": a.timesteps, "use_position_features": a.position_features,
+                "use_alphatrend": a.alphatrend, "use_regime": a.regime,
                 **{f"rw_{k}": v for k, v in overrides.items()}},
         metrics={"oos_sharpe": round(fr.test.sharpe, 4),
                  "oos_capture": round(fr.test.capture_reward, 4),

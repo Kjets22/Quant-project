@@ -75,6 +75,10 @@ class RewardConfig:
     profit_scale: float = 100.0       # scales per-bar return to a usable magnitude
     money_scale: float = 1.0          # scales raw dollar P&L (money mode)
 
+    # Mixture-of-experts: when >= 0, this reward only "counts" on bars whose causal
+    # regime == active_regime (zero elsewhere), so the expert specializes. -1 = off.
+    active_regime: int = -1
+
     # Phase B: risk-aware reward terms (reward side only — lookahead wall intact).
     # ALL default to off/zero, so the pure capture reward is recovered exactly and
     # existing tests stay green. Each term is added to the per-step reward.

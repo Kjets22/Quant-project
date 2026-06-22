@@ -83,6 +83,30 @@ def regime_label(vol_pct: np.ndarray, hi: float = 0.7) -> np.ndarray:
     return (np.asarray(vol_pct, float) >= hi).astype(float)
 
 
+N_REGIMES = 3  # 0 = up-trend, 1 = down-trend, 2 = chop
+
+
+def regime_id(close: np.ndarray, slope_window: int = 32,
+              thresh_window: int = 512) -> np.ndarray:
+    """
+    Causal 3-regime classifier from the trend slope:
+      0 = up-trend   (slope >  +eps)
+      1 = down-trend (slope <  -eps)
+      2 = chop       (|slope| <= eps)
+    where eps is a PAST-ONLY rolling median of |slope| (adapts per asset). Uses
+    only bars <= t, so it is lookahead-safe and usable in both reward and
+    observation.
+    """
+    slope = trend_slope(close, slope_window)
+    abs_slope = np.abs(slope)
+    eps = (pd.Series(abs_slope).rolling(thresh_window, min_periods=8)
+           .median().bfill().to_numpy())
+    out = np.full(len(close), 2, dtype=np.int64)   # default chop
+    out[slope > eps] = 0
+    out[slope < -eps] = 1
+    return out
+
+
 if __name__ == "__main__":
     rng = np.random.default_rng(0)
     n = 1000

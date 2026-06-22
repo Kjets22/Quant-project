@@ -28,10 +28,14 @@ from config import Config
 
 
 class CaptureReward:
-    def __init__(self, prices: np.ndarray, leg_range: np.ndarray, cfg: Config):
+    def __init__(self, prices: np.ndarray, leg_range: np.ndarray, cfg: Config,
+                 regime_ids: np.ndarray | None = None):
         self.prices = np.asarray(prices, dtype=np.float64)
         self.leg_range = np.asarray(leg_range, dtype=np.float64)
         self.cfg = cfg
+        # Mixture-of-experts regime mask (optional).
+        self.regime_ids = None if regime_ids is None else np.asarray(regime_ids)
+        self.active_regime = int(getattr(cfg.reward, "active_regime", -1))
         if self.prices.shape != self.leg_range.shape:
             raise ValueError("prices and leg_range must have the same shape")
         # Defensive floor in case a caller passes an unfloored range.
@@ -94,6 +98,12 @@ class CaptureReward:
         the cost of changing exposure (turnover) at this bar.
         """
         if t + 1 >= len(self.prices):
+            return 0.0
+
+        # Mixture-of-experts: off-regime bars give zero reward so the expert only
+        # learns to act within its own regime.
+        if (self.active_regime >= 0 and self.regime_ids is not None
+                and self.regime_ids[t] != self.active_regime):
             return 0.0
 
         rc = self.cfg.reward

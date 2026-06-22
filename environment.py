@@ -98,7 +98,13 @@ class CaptureTradingEnv(gym.Env):
 
         # --- ORACLE (reward only — behind the lookahead wall) ----------------
         self.leg_range = build_leg_ranges(self.df, cfg)
-        self.reward_fn = CaptureReward(self.close_px, self.leg_range, cfg)
+        # Mixture-of-experts: pass the causal regime id to the reward when masking.
+        regime_ids = None
+        if int(getattr(cfg.reward, "active_regime", -1)) >= 0:
+            from regime import regime_id
+            regime_ids = regime_id(self.close_px)
+        self.reward_fn = CaptureReward(self.close_px, self.leg_range, cfg,
+                                       regime_ids=regime_ids)
 
         # --- Spaces ----------------------------------------------------------
         # Action: 0 -> short(-1) (or flat if shorting disabled), 1 -> flat, 2 -> long(+1)

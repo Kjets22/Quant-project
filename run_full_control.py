@@ -43,12 +43,23 @@ def launch(tickers: list[str], folds: int, timesteps: int,
 
     procs = []
     for t in tickers:
+        out_csv = outdir / f"{tag}_{t}.csv"
+        # Skip tickers already fully complete (resume-friendly).
+        if out_csv.exists():
+            try:
+                ndone = int((pd.read_csv(out_csv)["fold"]).nunique())
+            except Exception:  # noqa: BLE001
+                ndone = 0
+            if ndone >= folds:
+                print(f"skip {t}: already complete ({ndone}/{folds} folds)")
+                continue
+            elif ndone > 0:
+                print(f"resume {t}: {ndone}/{folds} folds done, continuing")
         env = os.environ.copy()
         # Limit intra-op threads so N parallel processes don't oversubscribe.
         env["OMP_NUM_THREADS"] = str(threads_per_proc)
         env["MKL_NUM_THREADS"] = str(threads_per_proc)
         env["CT_TORCH_THREADS"] = str(threads_per_proc)
-        out_csv = outdir / f"{tag}_{t}.csv"
         log_path = LOG_DIR / f"{tag}_{t}.log"
         cmd = [sys.executable, "-u", "control.py",
                "--tickers", t, "--folds", str(folds),

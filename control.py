@@ -39,7 +39,7 @@ if _ct_threads:
 from basket import BASKET_TICKERS, ticker_cfg
 from lockbox import Lockbox, load_dev_ticker
 from trials import log_trial
-from validate import walk_forward
+from validate import run_one_fold
 
 RUNS_DIR = Path(__file__).with_name("runs")
 CONTROL_CSV = RUNS_DIR / "control_baseline.csv"
@@ -60,7 +60,15 @@ def run_control(tickers: list[str], k_folds: int, timesteps: int,
     if reward_overrides:
         print(f"reward_overrides = {reward_overrides}")
 
+    # ---- Resume: load any checkpointed (ticker, fold) rows already on disk ----
     rows: list[dict] = []
+    done: set[tuple[str, int]] = set()
+    if out_csv.exists():
+        prev = pd.read_csv(out_csv)
+        rows = prev.to_dict("records")
+        done = {(str(r["ticker"]), int(r["fold"])) for r in rows}
+        print(f"[resume] {len(done)} (ticker,fold) already checkpointed in {out_csv.name}")
+
     for t in tickers:
         dev = load_dev_ticker(t, lockbox)
         cfg = ticker_cfg(t)
@@ -73,13 +81,18 @@ def run_control(tickers: list[str], k_folds: int, timesteps: int,
             setattr(cfg.reward, k, v)
         print(f"\n##### {t}: dev rows={len(dev)}  folds={k_folds}  "
               f"timesteps={timesteps} #####")
-        folds = walk_forward(dev, cfg, k=k_folds)
-        for fr in folds:
+        for i in range(k_folds):
+            fold_no = i + 1
+            if (t, fold_no) in done:
+                print(f"[resume] skip {t} fold {fold_no} (checkpointed)")
+                continue
+            fr = run_one_fold(dev, cfg, k_folds, i)
+            if fr is None:
+                continue
             beats_bh = fr.test.raw_pnl > fr.test.buy_hold_pnl
             beats_rnd = fr.test.capture_reward > fr.random.capture_reward
-            row = {
-                "ticker": t,
-                "fold": fr.fold,
+            rows.append({
+                "ticker": t, "fold": fr.fold,
                 "oos_capture": fr.test.capture_reward,
                 "oos_raw_pnl": fr.test.raw_pnl,
                 "buy_hold_pnl": fr.test.buy_hold_pnl,
@@ -91,8 +104,7 @@ def run_control(tickers: list[str], k_folds: int, timesteps: int,
                 "pct_in_market": fr.test.pct_in_market,
                 "beats_buy_hold": int(beats_bh),
                 "beats_random": int(beats_rnd),
-            }
-            rows.append(row)
+            })
             log_trial(
                 phase=phase,
                 params={"model": "control_ppo", "ticker": t, "fold": fr.fold,
@@ -105,6 +117,8 @@ def run_control(tickers: list[str], k_folds: int, timesteps: int,
                          "buy_hold_pnl": round(fr.test.buy_hold_pnl, 4),
                          "beats_buy_hold": int(beats_bh)},
             )
+            # Checkpoint after EVERY fold so a crash costs one fold, not hours.
+            pd.DataFrame(rows).to_csv(out_csv, index=False)
 
     df = pd.DataFrame(rows)
     df.to_csv(out_csv, index=False)

@@ -42,31 +42,45 @@ class FoldResult:
         return self.test.sharpe / self.train.sharpe
 
 
+def fold_bounds(n: int, k: int, window: int, i: int) -> tuple[int, int]:
+    """Train/test end indices for expanding-window fold i (0-based)."""
+    block = n // (k + 1)
+    if block <= window + 5:
+        raise ValueError("Series too short for the requested number of folds.")
+    train_end = block * (i + 1)
+    test_end = block * (i + 2) if i < k - 1 else n
+    return train_end, test_end
+
+
+def run_one_fold(df: pd.DataFrame, cfg: Config, k: int, i: int) -> FoldResult | None:
+    """
+    Run a single expanding-window fold i (0-based). Returns None if the test
+    block is too short. Factored out so callers can checkpoint per fold.
+    """
+    n = len(df)
+    train_end, test_end = fold_bounds(n, k, cfg.env.window, i)
+    df_tr = df.iloc[:train_end].reset_index(drop=True)
+    df_te = df.iloc[train_end:test_end].reset_index(drop=True)
+    if len(df_te) <= cfg.env.window + 2:
+        return None
+    print(f"[fold {i+1}/{k}] train={len(df_tr)} test={len(df_te)} — training ...")
+    model = train(df_tr, cfg, verbose=0)
+    res_tr = evaluate(model, df_tr, cfg, f"fold{i+1}-TRAIN")
+    res_te = evaluate(model, df_te, cfg, f"fold{i+1}-TEST")
+    res_rnd = random_baseline(df_te, cfg, f"fold{i+1}-RANDOM")
+    return FoldResult(i + 1, res_tr, res_te, res_rnd)
+
+
 def walk_forward(df: pd.DataFrame, cfg: Config, k: int = 4) -> list[FoldResult]:
     """
     Expanding-window walk-forward: fold i trains on blocks [0..i] and tests on
     block i+1. Chronological throughout — earlier data only ever trains.
     """
-    n = len(df)
-    block = n // (k + 1)
-    if block <= cfg.env.window + 5:
-        raise ValueError("Series too short for the requested number of folds.")
-
     results: list[FoldResult] = []
     for i in range(k):
-        train_end = block * (i + 1)
-        test_end = block * (i + 2) if i < k - 1 else n
-        df_tr = df.iloc[:train_end].reset_index(drop=True)
-        df_te = df.iloc[train_end:test_end].reset_index(drop=True)
-        if len(df_te) <= cfg.env.window + 2:
-            continue
-
-        print(f"[fold {i+1}/{k}] train={len(df_tr)} test={len(df_te)} — training ...")
-        model = train(df_tr, cfg, verbose=0)
-        res_tr = evaluate(model, df_tr, cfg, f"fold{i+1}-TRAIN")
-        res_te = evaluate(model, df_te, cfg, f"fold{i+1}-TEST")
-        res_rnd = random_baseline(df_te, cfg, f"fold{i+1}-RANDOM")
-        results.append(FoldResult(i + 1, res_tr, res_te, res_rnd))
+        fr = run_one_fold(df, cfg, k, i)
+        if fr is not None:
+            results.append(fr)
     return results
 
 

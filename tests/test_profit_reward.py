@@ -37,6 +37,22 @@ def test_profit_mode_ignores_leg_range():
         assert abs(a.step_reward(t, 1, 0) - b.step_reward(t, 1, 0)) < 1e-12
 
 
+def test_money_reward_is_raw_dollars():
+    cfg, prices, _ = _setup("money")
+    rw = CaptureReward(prices, np.full(len(prices), 5.0), cfg)
+    rc = cfg.reward
+    for t in range(len(prices) - 1):
+        for pos in (-1, 0, 1):
+            r = rw.step_reward(t, pos, 0)
+            pnl = pos * (prices[t + 1] - prices[t])
+            cost = abs(pos) * rc.txn_cost_frac * prices[t]
+            exp = (pnl - cost) * rc.money_scale
+            if pos == 0:
+                exp += rc.flat_bonus
+            exp = float(np.clip(exp, -rc.reward_clip, rc.reward_clip))
+            assert abs(r - exp) < 1e-9
+
+
 def test_capture_mode_still_default_and_uses_oracle():
     cfg, prices, _ = _setup("capture")
     assert cfg.reward.reward_mode == "capture"

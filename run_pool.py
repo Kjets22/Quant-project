@@ -42,9 +42,9 @@ RISK_JSON = ('{"use_diff_sharpe": true, "diff_sharpe_w": 0.3, '
              '"dd_penalty_w": 0.05, "vol_penalty_w": 0.02}')
 
 CONFIGS = [
-    # Profit-reward control: raw realized return reward, no oracle, no extra features.
-    {"tag": "profit", "extra": ["--reward-json", '{"reward_mode": "profit"}'],
-     "phase": "profit", "label": "profit_reward"},
+    # Money-reward control (SPY + QQQ): reward = total dollars of P&L, no oracle.
+    {"tag": "money", "extra": ["--reward-json", '{"reward_mode": "money"}'],
+     "phase": "money", "label": "money_reward"},
 ]
 
 

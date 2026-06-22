@@ -11,8 +11,9 @@ import copy
 
 from config import Config, default_config
 
-# Sector-diversified basket so we are not just fitting tech.
-BASKET_TICKERS: list[str] = ["SPY", "AAPL", "MSFT", "NVDA", "JPM", "XLE"]
+# Active training universe. Currently SPY + QQQ only (per request).
+# (Full sector basket available: SPY, AAPL, MSFT, NVDA, JPM, XLE.)
+BASKET_TICKERS: list[str] = ["SPY", "QQQ"]
 
 # Full available range. The most recent LOCKBOX_MONTHS are reserved as lockbox;
 # everything before that is the dev set used for all training/tuning.

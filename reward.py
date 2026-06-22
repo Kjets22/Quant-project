@@ -104,7 +104,10 @@ class CaptureReward:
         cost = traded * rc.txn_cost_frac * price_now
         raw_pnl = pnl - cost
 
-        if rc.reward_mode == "profit":
+        if rc.reward_mode == "money":
+            # Total money earned: raw dollars of P&L per bar (no oracle).
+            R = raw_pnl * rc.money_scale
+        elif rc.reward_mode == "profit":
             # Raw realized return (no oracle): dollars of P&L as a fraction of price.
             R = (raw_pnl / price_now) * rc.profit_scale
         else:

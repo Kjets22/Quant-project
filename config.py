@@ -70,8 +70,10 @@ class RewardConfig:
     # Reward mode:
     #   "capture" -> oracle-normalized capture ratio (the original defining reward)
     #   "profit"  -> raw realized return: position*(ret) - cost, scaled. No oracle.
+    #   "money"   -> raw dollars of P&L per bar (cumulative = total money earned).
     reward_mode: str = "capture"
     profit_scale: float = 100.0       # scales per-bar return to a usable magnitude
+    money_scale: float = 1.0          # scales raw dollar P&L (money mode)
 
     # Phase B: risk-aware reward terms (reward side only — lookahead wall intact).
     # ALL default to off/zero, so the pure capture reward is recovered exactly and

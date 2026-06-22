@@ -47,14 +47,18 @@ CONTROL_CSV = RUNS_DIR / "control_baseline.csv"
 
 def run_control(tickers: list[str], k_folds: int, timesteps: int,
                 out_csv: Path = CONTROL_CSV, phase: str = "A",
-                device: str = "cpu", use_position_features: bool = False) -> pd.DataFrame:
+                device: str = "cpu", use_position_features: bool = False,
+                reward_overrides: dict | None = None) -> pd.DataFrame:
     RUNS_DIR.mkdir(parents=True, exist_ok=True)
     out_csv = Path(out_csv)
     out_csv.parent.mkdir(parents=True, exist_ok=True)
+    reward_overrides = reward_overrides or {}
     lockbox = Lockbox.load_or_build(tickers)
     print(f"lockbox cutoff = {lockbox.cutoff}  (dev = everything before this)")
     print(f"device = {device}  (benchmark: CPU single-env is ~3.7x faster than GPU here)")
     print(f"use_position_features = {use_position_features}")
+    if reward_overrides:
+        print(f"reward_overrides = {reward_overrides}")
 
     rows: list[dict] = []
     for t in tickers:
@@ -63,6 +67,10 @@ def run_control(tickers: list[str], k_folds: int, timesteps: int,
         cfg.train.total_timesteps = timesteps
         cfg.train.device = device
         cfg.env.use_position_features = use_position_features
+        for k, v in reward_overrides.items():
+            if not hasattr(cfg.reward, k):
+                raise ValueError(f"unknown RewardConfig field: {k}")
+            setattr(cfg.reward, k, v)
         print(f"\n##### {t}: dev rows={len(dev)}  folds={k_folds}  "
               f"timesteps={timesteps} #####")
         folds = walk_forward(dev, cfg, k=k_folds)
@@ -89,7 +97,8 @@ def run_control(tickers: list[str], k_folds: int, timesteps: int,
                 phase=phase,
                 params={"model": "control_ppo", "ticker": t, "fold": fr.fold,
                         "timesteps": timesteps, "k_folds": k_folds,
-                        "use_position_features": use_position_features},
+                        "use_position_features": use_position_features,
+                        **{f"rw_{k}": v for k, v in reward_overrides.items()}},
                 metrics={"oos_sharpe": round(fr.test.sharpe, 4),
                          "oos_capture": round(fr.test.capture_reward, 4),
                          "oos_raw_pnl": round(fr.test.raw_pnl, 4),
@@ -145,11 +154,17 @@ if __name__ == "__main__":
     p.add_argument("--device", type=str, default="cpu", choices=["cpu", "cuda", "auto"])
     p.add_argument("--position-features", action="store_true",
                    help="enable the Enhancement-1 position-awareness block")
+    p.add_argument("--reward-json", type=str, default=None,
+                   help='JSON dict of RewardConfig overrides, e.g. '
+                        '\'{"use_diff_sharpe": true, "diff_sharpe_w": 0.3}\'')
     p.add_argument("--phase", type=str, default="A")
     args = p.parse_args()
 
+    import json
+    overrides = json.loads(args.reward_json) if args.reward_json else None
     tickers = ([s.strip().upper() for s in args.tickers.split(",")]
                if args.tickers else BASKET_TICKERS)
     run_control(tickers, k_folds=args.folds, timesteps=args.timesteps,
                 out_csv=Path(args.out), device=args.device, phase=args.phase,
-                use_position_features=args.position_features)
+                use_position_features=args.position_features,
+                reward_overrides=overrides)

@@ -37,6 +37,54 @@ class CaptureReward:
         # Defensive floor in case a caller passes an unfloored range.
         self._eps = 1e-12
         self.leg_range = np.maximum(self.leg_range, self._eps)
+        self.reset()
+
+    def reset(self) -> None:
+        """Zero the per-episode risk-term state (online Sharpe moments, equity)."""
+        self._A = 0.0      # EWMA of returns
+        self._B = 0.0      # EWMA of squared returns
+        self._cum = 0.0    # cumulative normalized return (equity in capture units)
+        self._peak = 0.0   # running max of _cum (for drawdown)
+
+    def _risk_terms(self, R: float, rc) -> float:
+        """
+        Phase-B risk-aware add-ons. Returns 0.0 (and touches no state) when every
+        weight is off, so the pure capture reward is recovered exactly.
+
+        Lookahead-safe: every term is a function only of the agent's own realized
+        return stream up to the current bar — never of the observation or future.
+        """
+        active = rc.use_diff_sharpe or rc.dd_penalty_w != 0.0 or rc.vol_penalty_w != 0.0
+        if not active:
+            return 0.0
+
+        extra = 0.0
+        dA = R - self._A
+        dB = R * R - self._B
+        denom = self._B - self._A * self._A
+
+        # Differential Sharpe ratio (Moody & Saffell): uses the PREVIOUS moments.
+        if rc.use_diff_sharpe and denom > 1e-12:
+            D = (self._B * dA - 0.5 * self._A * dB) / (denom ** 1.5)
+            if np.isfinite(D):
+                extra += rc.diff_sharpe_w * D
+
+        # Advance the online EWMA moments.
+        eta = rc.diff_sharpe_eta
+        self._A += eta * dA
+        self._B += eta * dB
+
+        # Equity & drawdown (capture units).
+        self._cum += R
+        self._peak = max(self._peak, self._cum)
+        if rc.dd_penalty_w != 0.0:
+            extra -= rc.dd_penalty_w * (self._peak - self._cum)   # drawdown >= 0
+
+        # Volatility penalty on the running return variance.
+        if rc.vol_penalty_w != 0.0:
+            extra -= rc.vol_penalty_w * max(self._B - self._A * self._A, 0.0)
+
+        return extra
 
     def step_reward(self, t: int, position: int, prev_position: int) -> float:
         """
@@ -56,14 +104,18 @@ class CaptureReward:
         cost = traded * rc.txn_cost_frac * price_now
         raw_pnl = pnl - cost
 
-        normalized = raw_pnl / self.leg_range[t]   # leg_range already floored > 0
+        R = raw_pnl / self.leg_range[t]            # normalized return (leg_range floored)
+        reward = R
         if position == 0:
-            normalized += rc.flat_bonus
+            reward += rc.flat_bonus
+
+        # Phase-B risk-aware terms (no-op unless a weight is enabled).
+        reward += self._risk_terms(R, rc)
 
         # Final safety: no NaN/Inf may ever reach the agent.
-        if not np.isfinite(normalized):
-            normalized = 0.0
-        return float(np.clip(normalized, -rc.reward_clip, rc.reward_clip))
+        if not np.isfinite(reward):
+            reward = 0.0
+        return float(np.clip(reward, -rc.reward_clip, rc.reward_clip))
 
 
 if __name__ == "__main__":

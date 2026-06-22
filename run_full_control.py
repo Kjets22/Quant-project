@@ -34,7 +34,8 @@ LOG_DIR = RUNS_DIR / "logs"
 
 def launch(tickers: list[str], folds: int, timesteps: int,
            threads_per_proc: int = 4, outdir: Path = RUNS_DIR, tag: str = "control",
-           position_features: bool = False, phase: str = "A") -> None:
+           position_features: bool = False, phase: str = "A",
+           reward_json: str | None = None) -> None:
     outdir = Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
     LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -55,6 +56,8 @@ def launch(tickers: list[str], folds: int, timesteps: int,
                "--phase", phase]
         if position_features:
             cmd.append("--position-features")
+        if reward_json:
+            cmd += ["--reward-json", reward_json]
         log_f = open(log_path, "w", encoding="utf-8")
         p = subprocess.Popen(cmd, cwd=here, env=env, stdout=log_f,
                              stderr=subprocess.STDOUT)
@@ -120,6 +123,8 @@ if __name__ == "__main__":
     p.add_argument("--outdir", type=str, default=str(RUNS_DIR))
     p.add_argument("--tag", type=str, default="control")
     p.add_argument("--position-features", action="store_true")
+    p.add_argument("--reward-json", type=str, default=None,
+                   help="JSON dict of RewardConfig overrides for the variant run")
     p.add_argument("--phase", type=str, default="A")
     args = p.parse_args()
     tickers = ([s.strip().upper() for s in args.tickers.split(",")]
@@ -130,4 +135,4 @@ if __name__ == "__main__":
     else:
         launch(tickers, args.folds, args.timesteps, args.threads_per_proc,
                outdir=outdir, tag=args.tag, position_features=args.position_features,
-               phase=args.phase)
+               phase=args.phase, reward_json=args.reward_json)

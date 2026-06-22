@@ -67,6 +67,15 @@ class RewardConfig:
     reward_clip: float = 3.0          # final reward clipped to [-clip, +clip]
     allow_short: bool = True
 
+    # Phase B: risk-aware reward terms (reward side only — lookahead wall intact).
+    # ALL default to off/zero, so the pure capture reward is recovered exactly and
+    # existing tests stay green. Each term is added to the per-step reward.
+    use_diff_sharpe: bool = False     # add a differential Sharpe ratio increment
+    diff_sharpe_w: float = 0.0        # weight on the differential Sharpe term
+    diff_sharpe_eta: float = 0.01     # EWMA decay for the online Sharpe moments
+    dd_penalty_w: float = 0.0         # penalty proportional to current equity drawdown
+    vol_penalty_w: float = 0.0        # penalty proportional to per-step return variance
+
 
 @dataclass
 class EnvConfig:

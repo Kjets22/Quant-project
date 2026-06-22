@@ -208,6 +208,7 @@ class CaptureTradingEnv(gym.Env):
         self.bars_in_trade = 0
         self.mfe = 0.0
         self.mae = 0.0
+        self.reward_fn.reset()   # zero Phase-B risk-term state per episode
         info = {"t": self.t, "position": self.position, "equity": self.equity}
         return self._get_obs(), info
 

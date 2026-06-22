@@ -35,7 +35,7 @@ LOG = PHASE3 / "pool.log"
 PY = sys.executable
 K = 6
 TIMESTEPS = 500_000
-MAX_PARALLEL = 12           # ~fills 28 logical cores with single-core rollouts
+MAX_PARALLEL = 16           # push more of the 28 logical cores (single-core rollouts)
 THREADS_PER_PROC = 2
 
 RISK_JSON = ('{"use_diff_sharpe": true, "diff_sharpe_w": 0.3, '

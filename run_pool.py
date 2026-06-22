@@ -42,10 +42,9 @@ RISK_JSON = ('{"use_diff_sharpe": true, "diff_sharpe_w": 0.3, '
              '"dd_penalty_w": 0.05, "vol_penalty_w": 0.02}')
 
 CONFIGS = [
-    {"tag": "alpha", "extra": ["--alphatrend"], "phase": "AlphaTrend",
-     "label": "alphatrend"},
-    {"tag": "regimeC", "extra": ["--regime"], "phase": "C",
-     "label": "regime"},
+    # Profit-reward control: raw realized return reward, no oracle, no extra features.
+    {"tag": "profit", "extra": ["--reward-json", '{"reward_mode": "profit"}'],
+     "phase": "profit", "label": "profit_reward"},
 ]
 
 

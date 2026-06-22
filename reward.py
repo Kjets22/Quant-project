@@ -104,7 +104,11 @@ class CaptureReward:
         cost = traded * rc.txn_cost_frac * price_now
         raw_pnl = pnl - cost
 
-        R = raw_pnl / self.leg_range[t]            # normalized return (leg_range floored)
+        if rc.reward_mode == "profit":
+            # Raw realized return (no oracle): dollars of P&L as a fraction of price.
+            R = (raw_pnl / price_now) * rc.profit_scale
+        else:
+            R = raw_pnl / self.leg_range[t]        # capture ratio (leg_range floored)
         reward = R
         if position == 0:
             reward += rc.flat_bonus

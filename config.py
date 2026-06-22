@@ -67,6 +67,12 @@ class RewardConfig:
     reward_clip: float = 3.0          # final reward clipped to [-clip, +clip]
     allow_short: bool = True
 
+    # Reward mode:
+    #   "capture" -> oracle-normalized capture ratio (the original defining reward)
+    #   "profit"  -> raw realized return: position*(ret) - cost, scaled. No oracle.
+    reward_mode: str = "capture"
+    profit_scale: float = 100.0       # scales per-bar return to a usable magnitude
+
     # Phase B: risk-aware reward terms (reward side only — lookahead wall intact).
     # ALL default to off/zero, so the pure capture reward is recovered exactly and
     # existing tests stay green. Each term is added to the per-step reward.

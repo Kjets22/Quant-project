@@ -11,9 +11,9 @@ import copy
 
 from config import Config, default_config
 
-# Active training universe. Currently SPY + QQQ only (per request).
-# (Full sector basket available: SPY, AAPL, MSFT, NVDA, JPM, XLE.)
-BASKET_TICKERS: list[str] = ["SPY", "QQQ"]
+# Active universe: QQQ (option 2) + TLT (the non-bull / range-bound pivot — TLT
+# fell and chopped over 2021-2026, so buy-and-hold is a beatable bar there).
+BASKET_TICKERS: list[str] = ["QQQ", "TLT"]
 
 # Full available range. The most recent LOCKBOX_MONTHS are reserved as lockbox;
 # everything before that is the dev set used for all training/tuning.

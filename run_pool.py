@@ -42,9 +42,10 @@ RISK_JSON = ('{"use_diff_sharpe": true, "diff_sharpe_w": 0.3, '
              '"dd_penalty_w": 0.05, "vol_penalty_w": 0.02}')
 
 CONFIGS = [
-    # Money-reward control (SPY + QQQ): reward = total dollars of P&L, no oracle.
-    {"tag": "money", "extra": ["--reward-json", '{"reward_mode": "money"}'],
-     "phase": "money", "label": "money_reward"},
+    # Option 2 + pivot: money reward + AlphaTrend datapoints, run on QQQ and TLT.
+    {"tag": "alphamoney",
+     "extra": ["--reward-json", '{"reward_mode": "money"}', "--alphatrend"],
+     "phase": "alphamoney", "label": "alphatrend_money"},
 ]
 
 

@@ -91,7 +91,7 @@ class RewardConfig:
 
 @dataclass
 class EnvConfig:
-    window: int = 32                  # number of past log-returns in the observation
+    window: int = 96                  # number of past candles (log-returns) the agent sees (~8h on 5m bars)
     # Enhancement 1: position-awareness state block (past-only, behind this flag).
     # When False the observation is byte-for-byte identical to the Phase-A control.
     use_position_features: bool = False

@@ -47,6 +47,7 @@ def base_cfg():
     cfg.reward.reward_mode = "money"
     cfg.reward.flat_bonus = 0.005
     cfg.env.regime_min_run = 24       # sticky regime (~2h) to avoid whipsaw switching
+    cfg.env.use_alphatrend_features = os.environ.get("MOE_ALPHA", "0") == "1"
     return cfg
 
 

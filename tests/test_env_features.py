@@ -28,9 +28,9 @@ def test_obs_dim_growth():
     both = CaptureTradingEnv(
         df, _cfg(use_alphatrend_features=True, use_regime_features=True)
     ).observation_space.shape[0]
-    assert a - base == N_ALPHATREND_FEATURES == 5
+    assert a - base == N_ALPHATREND_FEATURES == 3
     assert r - base == N_REGIME_FEATURES == 4
-    assert both - base == 9
+    assert both - base == 7
 
 
 def test_backward_compatible_base_obs():

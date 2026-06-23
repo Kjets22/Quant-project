@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 from gymnasium import spaces
 
-from alphatrend import alphatrend, crossover, crossunder
+from alphatrend import alphatrend
 from config import Config, default_config
 from indicators import atr_wilder
 from regime import realized_volatility, regime_label, trend_slope, vol_percentile
@@ -27,7 +27,7 @@ from swings import build_leg_ranges
 
 # Sizes of the optional, flag-gated observation blocks (all past-only).
 N_POSITION_FEATURES = 9   # Enhancement 1
-N_ALPHATREND_FEATURES = 5  # AlphaTrend
+N_ALPHATREND_FEATURES = 3  # AlphaTrend: line distance, direction, MFI (no buy/sell signals)
 N_REGIME_FEATURES = 4      # Phase C
 
 
@@ -83,11 +83,8 @@ class CaptureTradingEnv(gym.Env):
             self.at_line = at
             self.at_atr = np.maximum(at_atr, 1e-9)
             self.at_mfi = mfi
-            # signals: AlphaTrend vs AlphaTrend[2] (past-only)
-            at_lag2 = np.concatenate([at[:2], at[:-2]])
-            self.at_buy = crossover(at, at_lag2).astype(np.float64)
-            self.at_sell = crossunder(at, at_lag2).astype(np.float64)
-            self.at_lag2 = at_lag2
+            # AlphaTrend[2], used only for the line-direction datapoint (past-only).
+            self.at_lag2 = np.concatenate([at[:2], at[:-2]])
 
         if self.use_regime_features:
             rv = realized_volatility(self.close_px, cfg.env.regime_vol_window)
@@ -213,9 +210,10 @@ class CaptureTradingEnv(gym.Env):
 
     def _alphatrend_features(self) -> np.ndarray:
         """
-        AlphaTrend block (PAST-ONLY): distance of price from the trailing line,
-        the line's recent direction, the MFI/volume momentum, and the buy/sell
-        signal flags. All causal (precomputed from bars <= t).
+        AlphaTrend block (PAST-ONLY) — raw INFORMATIONAL datapoints only, NOT the
+        indicator's buy/sell crossover signals (the model decides, not the
+        indicator): distance of price from the trailing line, the line's recent
+        direction, and the MFI/volume momentum. All causal (bars <= t).
         """
         t = self.t
         atr = self.at_atr[t]
@@ -226,8 +224,6 @@ class CaptureTradingEnv(gym.Env):
             np.tanh(dist),                # bounded distance from the trailing line
             direction,                    # trend direction of the line
             mfi_c,                        # MFI (volume) momentum, centered
-            self.at_buy[t],               # buy signal (AT crossed above AT[2])
-            self.at_sell[t],              # sell signal (AT crossed below AT[2])
         ], dtype=np.float64)
 
     def _regime_features(self) -> np.ndarray:

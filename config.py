@@ -109,6 +109,7 @@ class EnvConfig:
     regime_slope_window: int = 32
     regime_vol_lookback: int = 256
     regime_hi_pct: float = 0.7
+    regime_min_run: int = 1          # MoE: bars a regime must persist before switching
 
 
 @dataclass

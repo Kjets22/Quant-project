@@ -46,6 +46,7 @@ def base_cfg():
     cfg.train.net_arch = "128,128"
     cfg.reward.reward_mode = "money"
     cfg.reward.flat_bonus = 0.005
+    cfg.env.regime_min_run = 24       # sticky regime (~2h) to avoid whipsaw switching
     return cfg
 
 
@@ -56,7 +57,7 @@ def route_eval(experts, df_te, cfg_base) -> dict:
     cfg = copy.deepcopy(cfg_base)
     cfg.reward.active_regime = -1                      # real reward/equity at eval
     env = CaptureTradingEnv(df_te, cfg)
-    reg = regime_id(env.close_px)
+    reg = regime_id(env.close_px, min_run=int(cfg.env.regime_min_run))
     obs, _ = env.reset(seed=0)
     step_pnls, equity_curve = [], []
     prev_eq = 0.0

@@ -102,7 +102,8 @@ class CaptureTradingEnv(gym.Env):
         regime_ids = None
         if int(getattr(cfg.reward, "active_regime", -1)) >= 0:
             from regime import regime_id
-            regime_ids = regime_id(self.close_px)
+            regime_ids = regime_id(self.close_px,
+                                   min_run=int(getattr(cfg.env, "regime_min_run", 1)))
         self.reward_fn = CaptureReward(self.close_px, self.leg_range, cfg,
                                        regime_ids=regime_ids)
 

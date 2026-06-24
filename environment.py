@@ -137,6 +137,14 @@ class CaptureTradingEnv(gym.Env):
             self.up_mask = (regime_id(
                 self.close_px, min_run=int(getattr(cfg.env, "up_gate_min_run", 12))
             ) == 0)   # regime 0 = up-trend
+        # Error-regime policy: force FLAT in a confirmed chop regime.
+        self.flat_in_chop = bool(getattr(cfg.env, "flat_in_chop", False))
+        self.chop_mask = None
+        if self.flat_in_chop:
+            from regime import regime_id
+            self.chop_mask = (regime_id(
+                self.close_px, min_run=int(getattr(cfg.env, "chop_gate_min_run", 12))
+            ) == 2)   # regime 2 = chop
 
         # Cross-asset (intermarket) features — past-only, only if a partner column
         # is present and the flag is on.
@@ -189,6 +197,9 @@ class CaptureTradingEnv(gym.Env):
         # Symmetric long gate: in a confirmed up-trend, always hold long.
         if self.force_long_in_up and self.up_mask[self.t]:
             return 1
+        # Error-regime policy: in a confirmed chop regime, force flat (do nothing).
+        if self.flat_in_chop and self.chop_mask[self.t]:
+            return 0
         if action == 0:
             if not self.cfg.reward.allow_short:
                 return 0

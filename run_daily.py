@@ -27,7 +27,10 @@ import numpy as np
 import pandas as pd
 
 HERE = Path(__file__).parent
-OUT = HERE / "runs" / "phase3" / "daily"
+# DAILY_SR=1 -> add causal support/resistance features, into a separate folder so
+# it's a clean A/B against the base daily run.
+_SR = os.environ.get("DAILY_SR", "0") == "1"
+OUT = HERE / "runs" / "phase3" / ("daily_sr" if _SR else "daily")
 OUT.mkdir(parents=True, exist_ok=True)
 TICKERS = ["QQQ", "SPY", "TLT"]
 K = 4
@@ -57,6 +60,8 @@ def cfg_for(ticker: str):
     cfg.env.use_regime_features = True
     cfg.env.short_only_in_down = True
     cfg.env.force_long_in_up = True
+    cfg.env.use_sr_features = _SR          # support/resistance A/B knob (daily)
+    cfg.env.sr_lookback = 60               # ~3 months of daily S/R levels
     return cfg
 
 

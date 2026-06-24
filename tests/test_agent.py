@@ -18,6 +18,7 @@ def test_split_is_chronological():
 
 def test_trained_agent_beats_random_short():
     cfg = default_config()
+    cfg.env.window = 16              # small obs so a short train can learn (prod window is larger)
     cfg.train.total_timesteps = 8000  # keep the test fast
     cfg.train.n_steps = 1024
     df = make_synthetic(2500, seed=7)

@@ -126,6 +126,10 @@ class EnvConfig:
     # in the df, append the partner's return / momentum / trend / self-spread so a
     # tightly-coupled pair (e.g. QQQ<->SPY) informs each other. Causal (past-only).
     use_cross_features: bool = False
+    # Support/resistance features (causal): distance to the recent N-bar high
+    # (resistance) and low (support), ATR-normalized, plus where price sits between.
+    use_sr_features: bool = False
+    sr_lookback: int = 200
 
 
 @dataclass

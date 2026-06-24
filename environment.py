@@ -30,6 +30,7 @@ N_POSITION_FEATURES = 9   # Enhancement 1
 N_ALPHATREND_FEATURES = 3  # AlphaTrend: line distance, direction, MFI (no buy/sell signals)
 N_REGIME_FEATURES = 4      # Phase C
 N_CROSS_FEATURES = 4       # cross-asset: partner ret, momentum, trend slope, self-spread
+N_SR_FEATURES = 3          # support/resistance: dist-to-resistance, dist-to-support, sr-position
 
 
 def align_partner(self_df: pd.DataFrame, partner_df: pd.DataFrame) -> pd.DataFrame:
@@ -150,6 +151,16 @@ class CaptureTradingEnv(gym.Env):
             self.p_slope = trend_slope(pclose, cfg.env.regime_slope_window)
             self.spread = self.logret - self.p_ret      # self-vs-partner relative move
 
+        # Support/resistance (causal): recent N-bar high/low using only PAST bars
+        # (shift(1) excludes the current bar). Distances normalized by ATR.
+        self.use_sr_features = bool(getattr(cfg.env, "use_sr_features", False))
+        if self.use_sr_features:
+            N = int(getattr(cfg.env, "sr_lookback", 200))
+            self.sr_res = (self.df["high"].rolling(N, min_periods=1).max()
+                           .shift(1).bfill().to_numpy())
+            self.sr_sup = (self.df["low"].rolling(N, min_periods=1).min()
+                           .shift(1).bfill().to_numpy())
+
         # --- Spaces ----------------------------------------------------------
         # Action: 0 -> short(-1) (or flat if shorting disabled), 1 -> flat, 2 -> long(+1)
         self.action_space = spaces.Discrete(3)
@@ -157,7 +168,8 @@ class CaptureTradingEnv(gym.Env):
                    + (N_POSITION_FEATURES if self.use_position_features else 0)
                    + (N_ALPHATREND_FEATURES if self.use_alphatrend_features else 0)
                    + (N_REGIME_FEATURES if self.use_regime_features else 0)
-                   + (N_CROSS_FEATURES if self.use_cross_features else 0))
+                   + (N_CROSS_FEATURES if self.use_cross_features else 0)
+                   + (N_SR_FEATURES if self.use_sr_features else 0))
         self.observation_space = spaces.Box(
             low=-np.inf, high=np.inf, shape=(obs_dim,), dtype=np.float32
         )
@@ -220,6 +232,8 @@ class CaptureTradingEnv(gym.Env):
             parts.append(self._regime_features())
         if self.use_cross_features:
             parts.append(self._cross_features())
+        if self.use_sr_features:
+            parts.append(self._sr_features())
         obs = np.concatenate(parts).astype(np.float32)
         # Numerical safety: no NaN/Inf may ever reach the agent.
         obs = np.nan_to_num(obs, nan=0.0, posinf=0.0, neginf=0.0)
@@ -296,6 +310,22 @@ class CaptureTradingEnv(gym.Env):
             self.p_mom[t] * 100.0,      # partner momentum (rolling mean)
             self.p_slope[t] * 1000.0,   # partner trend slope
             self.spread[t] * 100.0,     # self minus partner (relative strength)
+        ], dtype=np.float64)
+
+    def _sr_features(self) -> np.ndarray:
+        """
+        Support/resistance block (PAST-ONLY): how far price is below the recent
+        N-bar high (resistance) and above the recent N-bar low (support), in ATR
+        units, plus where it sits between them (0=at support, 1=at resistance).
+        """
+        t = self.t
+        atr = self.atr[t]
+        res, sup = self.sr_res[t], self.sr_sup[t]
+        rng = max(res - sup, 1e-9)
+        return np.array([
+            np.tanh((res - self.close_px[t]) / atr),   # distance below resistance
+            np.tanh((self.close_px[t] - sup) / atr),    # distance above support
+            (self.close_px[t] - sup) / rng,             # position within S/R band
         ], dtype=np.float64)
 
     def _regime_features(self) -> np.ndarray:

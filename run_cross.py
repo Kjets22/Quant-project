@@ -38,7 +38,8 @@ PARTNER = {"QQQ": "SPY", "SPY": "QQQ"}
 K = 6
 TF = "60min"
 TIMESTEPS = int(os.environ.get("CROSS_TIMESTEPS", "150000"))
-VARIANTS = {"allweather": True, "bear": False}   # force_long_in_up
+# A/B: all-weather + cross-asset, WITHOUT vs WITH support/resistance features.
+VARIANTS = {"base": False, "sr": True}            # use_sr_features
 
 
 def hourly(dev: pd.DataFrame) -> pd.DataFrame:
@@ -73,7 +74,8 @@ def cfg_for(ticker: str, variant: str):
     cfg.env.use_regime_features = True
     cfg.env.use_cross_features = True
     cfg.env.short_only_in_down = True
-    cfg.env.force_long_in_up = VARIANTS[variant]
+    cfg.env.force_long_in_up = True               # keep the proven all-weather gate
+    cfg.env.use_sr_features = VARIANTS[variant]    # the A/B knob: support/resistance
     return cfg
 
 

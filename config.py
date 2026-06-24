@@ -122,6 +122,10 @@ class EnvConfig:
     # in the uptrend instead of under-allocating). Completes the regime policy.
     force_long_in_up: bool = False
     up_gate_min_run: int = 12
+    # Cross-asset (intermarket) features: when a "partner_close" column is present
+    # in the df, append the partner's return / momentum / trend / self-spread so a
+    # tightly-coupled pair (e.g. QQQ<->SPY) informs each other. Causal (past-only).
+    use_cross_features: bool = False
 
 
 @dataclass

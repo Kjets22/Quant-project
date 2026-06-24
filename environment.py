@@ -29,6 +29,21 @@ from swings import build_leg_ranges
 N_POSITION_FEATURES = 9   # Enhancement 1
 N_ALPHATREND_FEATURES = 3  # AlphaTrend: line distance, direction, MFI (no buy/sell signals)
 N_REGIME_FEATURES = 4      # Phase C
+N_CROSS_FEATURES = 4       # cross-asset: partner ret, momentum, trend slope, self-spread
+
+
+def align_partner(self_df: pd.DataFrame, partner_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Return a copy of self_df with a causal 'partner_close' column: the partner's
+    most recent close as of each self bar (merge_asof backward = past-only, then
+    back-fill the head). Both frames must have a 'timestamp' column.
+    """
+    a = self_df.sort_values("timestamp").reset_index(drop=True)
+    p = partner_df[["timestamp", "close"]].rename(columns={"close": "partner_close"})
+    p = p.sort_values("timestamp").reset_index(drop=True)
+    merged = pd.merge_asof(a, p, on="timestamp", direction="backward")
+    merged["partner_close"] = merged["partner_close"].ffill().bfill()
+    return merged
 
 
 class CaptureTradingEnv(gym.Env):
@@ -122,13 +137,27 @@ class CaptureTradingEnv(gym.Env):
                 self.close_px, min_run=int(getattr(cfg.env, "up_gate_min_run", 12))
             ) == 0)   # regime 0 = up-trend
 
+        # Cross-asset (intermarket) features — past-only, only if a partner column
+        # is present and the flag is on.
+        self.use_cross_features = (bool(getattr(cfg.env, "use_cross_features", False))
+                                   and "partner_close" in self.df.columns)
+        if self.use_cross_features:
+            pclose = self.df["partner_close"].to_numpy(dtype=np.float64)
+            pret = np.zeros(self.n)
+            pret[1:] = np.log(pclose[1:] / pclose[:-1])
+            self.p_ret = np.nan_to_num(pret, nan=0.0, posinf=0.0, neginf=0.0)
+            self.p_mom = pd.Series(self.p_ret).rolling(self.window, min_periods=1).mean().to_numpy()
+            self.p_slope = trend_slope(pclose, cfg.env.regime_slope_window)
+            self.spread = self.logret - self.p_ret      # self-vs-partner relative move
+
         # --- Spaces ----------------------------------------------------------
         # Action: 0 -> short(-1) (or flat if shorting disabled), 1 -> flat, 2 -> long(+1)
         self.action_space = spaces.Discrete(3)
         obs_dim = (self.window + 4
                    + (N_POSITION_FEATURES if self.use_position_features else 0)
                    + (N_ALPHATREND_FEATURES if self.use_alphatrend_features else 0)
-                   + (N_REGIME_FEATURES if self.use_regime_features else 0))
+                   + (N_REGIME_FEATURES if self.use_regime_features else 0)
+                   + (N_CROSS_FEATURES if self.use_cross_features else 0))
         self.observation_space = spaces.Box(
             low=-np.inf, high=np.inf, shape=(obs_dim,), dtype=np.float32
         )
@@ -189,6 +218,8 @@ class CaptureTradingEnv(gym.Env):
             parts.append(self._alphatrend_features())
         if self.use_regime_features:
             parts.append(self._regime_features())
+        if self.use_cross_features:
+            parts.append(self._cross_features())
         obs = np.concatenate(parts).astype(np.float32)
         # Numerical safety: no NaN/Inf may ever reach the agent.
         obs = np.nan_to_num(obs, nan=0.0, posinf=0.0, neginf=0.0)
@@ -250,6 +281,21 @@ class CaptureTradingEnv(gym.Env):
             np.tanh(dist),                # bounded distance from the trailing line
             direction,                    # trend direction of the line
             mfi_c,                        # MFI (volume) momentum, centered
+        ], dtype=np.float64)
+
+    def _cross_features(self) -> np.ndarray:
+        """
+        Cross-asset (intermarket) block (PAST-ONLY): the partner instrument's last
+        return, its rolling momentum and trend slope, and the self-vs-partner
+        return spread (relative strength). All from bars <= t (partner aligned
+        causally via merge_asof backward).
+        """
+        t = self.t
+        return np.array([
+            self.p_ret[t] * 100.0,      # partner's last bar return
+            self.p_mom[t] * 100.0,      # partner momentum (rolling mean)
+            self.p_slope[t] * 1000.0,   # partner trend slope
+            self.spread[t] * 100.0,     # self minus partner (relative strength)
         ], dtype=np.float64)
 
     def _regime_features(self) -> np.ndarray:

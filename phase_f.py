@@ -31,7 +31,10 @@ import numpy as np
 import pandas as pd
 
 HERE = Path(__file__).parent
-OUT = HERE / "runs" / "phase3" / "lockbox"
+# LONGGATE=0 -> "bear hunter" variant (gated-short, no forced long) into a SEPARATE
+# folder so the official one-shot lockbox result is never overwritten.
+_LONGGATE = os.environ.get("LONGGATE", "1") == "1"
+OUT = HERE / "runs" / "phase3" / ("lockbox" if _LONGGATE else "lockbox_bear")
 OUT.mkdir(parents=True, exist_ok=True)
 TICKERS = [t.strip().upper() for t in os.environ.get(
     "TICKERS", "SPY,QQQ,AAPL,MSFT,NVDA,JPM,XLE,TLT").split(",") if t.strip()]

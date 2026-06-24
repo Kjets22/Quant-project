@@ -54,7 +54,10 @@ def cfg_for(ticker: str):
     cfg.reward.reward_mode = "money"
     cfg.reward.flat_bonus = 0.01
     cfg.reward.turnover_penalty_w = float(os.environ.get("TURNOVER", "0.4"))  # anti-churn
-    cfg.reward.allow_short = False          # LONG / FLAT only (no shorting)
+    # SHORT=1 -> long/short/flat (test shorting downtrends); else long/flat only.
+    cfg.reward.allow_short = os.environ.get("SHORT", "0") == "1"
+    # SHORT_GATED=1 -> may only short inside a confirmed (sticky) down-trend.
+    cfg.env.short_only_in_down = os.environ.get("SHORT_GATED", "0") == "1"
     cfg.env.use_regime_features = True      # trend-awareness
     cfg.env.window = 96
     return cfg

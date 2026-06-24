@@ -114,6 +114,10 @@ class EnvConfig:
     regime_vol_lookback: int = 256
     regime_hi_pct: float = 0.7
     regime_min_run: int = 1          # MoE: bars a regime must persist before switching
+    # Regime-gated shorting: if True (and shorting allowed), a SHORT is only taken
+    # in a confirmed (sticky) down-trend; otherwise the short action becomes flat.
+    short_only_in_down: bool = False
+    short_gate_min_run: int = 12
 
 
 @dataclass

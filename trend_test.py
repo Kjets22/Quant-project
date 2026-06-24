@@ -52,7 +52,7 @@ def sharpe(close, signal):
 def analyze(ticker):
     dev = load_dev_ticker(ticker, Lockbox.load_or_build())
     print(f"\n================  {ticker}  ================")
-    for rule, name in (("60min", "1h"), ("1D", "1day")):
+    for rule, name in (("15min", "15m"), ("30min", "30m"), ("60min", "1h"), ("1D", "1day")):
         close = resample(dev, rule)
         n = len(close)
         bh, _ = pnl(close, np.ones(n - 1))

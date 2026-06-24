@@ -104,6 +104,16 @@ class CaptureTradingEnv(gym.Env):
         self.reward_fn = CaptureReward(self.close_px, self.leg_range, cfg,
                                        regime_ids=regime_ids)
 
+        # Regime-gated shorting: precompute a causal "confirmed down-trend" mask so
+        # the agent may only short inside a sticky down-regime (else short -> flat).
+        self.short_only_in_down = bool(getattr(cfg.env, "short_only_in_down", False))
+        self.down_mask = None
+        if self.short_only_in_down:
+            from regime import regime_id
+            self.down_mask = (regime_id(
+                self.close_px, min_run=int(getattr(cfg.env, "short_gate_min_run", 12))
+            ) == 1)   # regime 1 = down-trend
+
         # --- Spaces ----------------------------------------------------------
         # Action: 0 -> short(-1) (or flat if shorting disabled), 1 -> flat, 2 -> long(+1)
         self.action_space = spaces.Discrete(3)
@@ -128,7 +138,12 @@ class CaptureTradingEnv(gym.Env):
     # ----------------------------------------------------------------------- #
     def _action_to_position(self, action: int) -> int:
         if action == 0:
-            return -1 if self.cfg.reward.allow_short else 0
+            if not self.cfg.reward.allow_short:
+                return 0
+            # Regime-gated shorting: only short inside a confirmed down-trend.
+            if self.short_only_in_down and not self.down_mask[self.t]:
+                return 0
+            return -1
         if action == 2:
             return 1
         return 0

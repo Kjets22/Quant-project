@@ -126,6 +126,10 @@ class CaptureReward:
         if position == 0:
             reward += rc.flat_bonus
 
+        # Turnover penalty: discourage churning (teach the agent to hold).
+        if rc.turnover_penalty_w != 0.0:
+            reward -= rc.turnover_penalty_w * traded
+
         # Phase-B risk-aware terms (no-op unless a weight is enabled).
         reward += self._risk_terms(R, rc)
 

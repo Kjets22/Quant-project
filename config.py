@@ -79,6 +79,10 @@ class RewardConfig:
     # regime == active_regime (zero elsewhere), so the expert specializes. -1 = off.
     active_regime: int = -1
 
+    # Turnover penalty: extra reward cost per unit of position change, to teach the
+    # agent to HOLD rather than churn (the diagnostic showed overtrading kills it).
+    turnover_penalty_w: float = 0.0
+
     # Phase B: risk-aware reward terms (reward side only — lookahead wall intact).
     # ALL default to off/zero, so the pure capture reward is recovered exactly and
     # existing tests stay green. Each term is added to the per-step reward.

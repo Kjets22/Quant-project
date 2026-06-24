@@ -1,0 +1,98 @@
+# Capture Trader — Research Findings (honest writeup)
+
+**Goal:** train an RL agent that beats buy-and-hold (B&H) out-of-sample on liquid
+US equity instruments (QQQ, SPY, TLT, ...).
+
+## TL;DR — the honest conclusion
+
+**There is no reliable predictive edge to be had timing these instruments on
+5-minute–to-hourly bars.** We proved this directly (not by giving up): short-horizon
+returns are ~unpredictable, and transaction costs make active trading a losing game
+by default. The one thing that genuinely works is **participation, not prediction** —
+ride trends, sit out chop — which delivers a **better risk-adjusted return** (Sharpe,
+drawdown) than B&H, but does **not** reliably beat B&H on absolute return in a bull
+market. That risk-adjusted improvement is the real, defensible deliverable. Nothing
+here is a proven money-maker; paper-trade before risking capital.
+
+## Why it can't beat B&H (the diagnosis — `diagnose.py`, `diagnose_tf.py`)
+
+1. **Returns are ~unpredictable at every timeframe tested.** An honest out-of-sample
+   linear predictor gives QQQ **R² ≈ +0.0005** and **direction accuracy 50.2%** (a
+   coin flip); 1h ≈ 51%, 1day ≈ 46%. TLT is the same. There is no linear signal to
+   exploit — textbook efficient-market behavior.
+2. **Transaction costs are brutal at short horizons.** A round-trip eats **37–45% of
+   a typical bar move** at 5-min. With no edge, every trade is a coin flip that pays
+   the spread. Momentum/mean-reversion rules lose **thousands** of dollars to costs.
+3. **"Do nothing" beats every active strategy** on a losing asset, and B&H beats
+   "do nothing" on a rising one — the squeeze that makes an absolute edge nearly
+   impossible here.
+
+## What actually works (`trend_test.py`)
+
+A simple **trend filter — long when above its moving average, FLAT otherwise** —
+beats B&H on a **risk-adjusted** basis:
+
+| | B&H | trend long/flat | note |
+|---|--:|--:|---|
+| QQQ 1h (SMA50) | Sharpe 0.98 | **Sharpe 2.08** | ~2× risk-adjusted |
+| QQQ 1day (SMA200) | +170 | **+189**, 7 trades | beats on P&L too |
+| TLT 1day (SMA20) | −57 | **−17** | cuts loss ~70% |
+
+The edge is **trend participation + drawdown avoidance**, only at hourly/daily (where
+costs are negligible), long-or-flat, very low turnover.
+
+## Best RL config (`run_cross.py`)
+
+**all-weather + cross-asset**, hourly, money reward + turnover penalty:
+- force **long in confirmed up-trends**, regime-**gated short** in down-trends, flat in chop
+- cross-asset (QQQ↔SPY) features: each sees the partner's return/momentum/trend/spread
+
+Out-of-sample (dev):
+
+| | Sharpe | agent P&L | B&H | beat-B&H |
+|---|--:|--:|--:|--:|
+| QQQ | **+0.73** | +32.5 | +25.9 | 50% |
+| SPY | −0.10 | −0.3 | +19.9 | 33% |
+
+QQQ marginally beats B&H; **SPY does not generalize** — the inconsistency between two
+near-identical assets is the tell that this is at the edge of noise, not a robust edge.
+
+## What was tried and DISCARDED (the full scoreboard)
+
+| Approach | Verdict |
+|---|---|
+| Capture (oracle-normalized) reward | ❌ −1.42 Sharpe, 19% beat-B&H |
+| Position-awareness features | ❌ discard |
+| Risk-aware reward (diff-Sharpe/DD/vol) | ❌ worse (weights too large) |
+| AlphaTrend features (signals, then datapoints-only) | ❌ discard standalone |
+| Regime features (Phase C) | ➖ marginal (steadier only) |
+| Tuned single policy (Optuna) | ❌ "Sharpe 1.0" was a flat-agent **mirage** |
+| Regime mixture-of-experts (±hysteresis, ±AlphaTrend) | ❌ overtrades, −$170 to −$630 |
+| Money reward (raw $) | ➕ first **positive** Sharpe, still loses to B&H |
+| Hourly long/flat trend RL | ➕ beats B&H risk-adjusted on TLT |
+| **all-weather + cross-asset** | ✅ **best**; marginal QQQ beat |
+| Support/resistance features | ❌ **degraded** both (overfitting) |
+
+Two independent results — SPY failing where QQQ won, and S/R features *hurting* — both
+confirm: **the bottleneck is signal, not features.** Adding capacity to a no-signal
+problem overfits and makes OOS worse.
+
+## Engineering notes worth keeping
+
+- **GPU is slower here** (3.7×) — PPO + tiny MLP is CPU/rollout-bound; parallelize
+  across CPU processes instead.
+- **Lookahead wall held throughout** — every feature is causal (verified with
+  future-scramble tests); oracle/future info touches only the reward.
+- **Per-fold checkpointing** makes runs resumable across the (frequent) power losses.
+- The **lockbox** was opened once on an earlier all-weather config (no proven edge) and
+  is now spent — any new config needs a **fresh** holdout, not a second peek.
+
+## Honest expectations
+
+- Beating B&H on a bull-market index by timing is ~impossible; it captures the full
+  uptrend cost-free. The realistic value of this work is **risk-adjusted** (smoother
+  equity, lower drawdown), not higher absolute return.
+- Short-run / single-asset numbers mean little. Watch OOS vs dev; a result that doesn't
+  generalize across two near-identical assets is noise.
+- This is a research scaffold. **Do not trade real capital on it.** Paper-trade a frozen
+  config on fresh data for a meaningful window first.

@@ -134,6 +134,10 @@ class EnvConfig:
     # (resistance) and low (support), ATR-normalized, plus where price sits between.
     use_sr_features: bool = False
     sr_lookback: int = 200
+    # Time-of-day / time-since-open features (causal): intraday seasonality matters
+    # (open volatility, midday lull, close ramp). sin/cos of time-of-day + minutes
+    # since the regular session open (13:30 UTC = 9:30 ET), normalized.
+    use_time_features: bool = False
 
 
 @dataclass

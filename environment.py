@@ -31,6 +31,7 @@ N_ALPHATREND_FEATURES = 3  # AlphaTrend: line distance, direction, MFI (no buy/s
 N_REGIME_FEATURES = 4      # Phase C
 N_CROSS_FEATURES = 4       # cross-asset: partner ret, momentum, trend slope, self-spread
 N_SR_FEATURES = 3          # support/resistance: dist-to-resistance, dist-to-support, sr-position
+N_TIME_FEATURES = 3        # time-of-day sin/cos + minutes-since-open
 
 
 def align_partner(self_df: pd.DataFrame, partner_df: pd.DataFrame) -> pd.DataFrame:
@@ -169,6 +170,16 @@ class CaptureTradingEnv(gym.Env):
             self.sr_sup = (self.df["low"].rolling(N, min_periods=1).min()
                            .shift(1).bfill().to_numpy())
 
+        # Time-of-day / minutes-since-open (causal: the clock is known in advance).
+        self.use_time_features = bool(getattr(cfg.env, "use_time_features", False))
+        if self.use_time_features:
+            ts = pd.to_datetime(self.df["timestamp"])
+            mod = (ts.dt.hour * 60 + ts.dt.minute).to_numpy().astype(float)
+            self.tod_sin = np.sin(2 * np.pi * mod / 1440.0)
+            self.tod_cos = np.cos(2 * np.pi * mod / 1440.0)
+            # minutes since 13:30 UTC (regular open), normalized by the 390-min session
+            self.mins_since_open = np.clip((mod - 810.0) / 390.0, -1.0, 2.0)
+
         # --- Spaces ----------------------------------------------------------
         # Action: 0 -> short(-1) (or flat if shorting disabled), 1 -> flat, 2 -> long(+1)
         self.action_space = spaces.Discrete(3)
@@ -177,7 +188,8 @@ class CaptureTradingEnv(gym.Env):
                    + (N_ALPHATREND_FEATURES if self.use_alphatrend_features else 0)
                    + (N_REGIME_FEATURES if self.use_regime_features else 0)
                    + (N_CROSS_FEATURES if self.use_cross_features else 0)
-                   + (N_SR_FEATURES if self.use_sr_features else 0))
+                   + (N_SR_FEATURES if self.use_sr_features else 0)
+                   + (N_TIME_FEATURES if self.use_time_features else 0))
         self.observation_space = spaces.Box(
             low=-np.inf, high=np.inf, shape=(obs_dim,), dtype=np.float32
         )
@@ -245,6 +257,10 @@ class CaptureTradingEnv(gym.Env):
             parts.append(self._cross_features())
         if self.use_sr_features:
             parts.append(self._sr_features())
+        if self.use_time_features:
+            t = self.t
+            parts.append(np.array([self.tod_sin[t], self.tod_cos[t],
+                                   self.mins_since_open[t]], dtype=np.float64))
         obs = np.concatenate(parts).astype(np.float32)
         # Numerical safety: no NaN/Inf may ever reach the agent.
         obs = np.nan_to_num(obs, nan=0.0, posinf=0.0, neginf=0.0)

@@ -113,6 +113,14 @@ class CaptureTradingEnv(gym.Env):
             self.down_mask = (regime_id(
                 self.close_px, min_run=int(getattr(cfg.env, "short_gate_min_run", 12))
             ) == 1)   # regime 1 = down-trend
+        # Symmetric long gate: force long inside a confirmed up-trend.
+        self.force_long_in_up = bool(getattr(cfg.env, "force_long_in_up", False))
+        self.up_mask = None
+        if self.force_long_in_up:
+            from regime import regime_id
+            self.up_mask = (regime_id(
+                self.close_px, min_run=int(getattr(cfg.env, "up_gate_min_run", 12))
+            ) == 0)   # regime 0 = up-trend
 
         # --- Spaces ----------------------------------------------------------
         # Action: 0 -> short(-1) (or flat if shorting disabled), 1 -> flat, 2 -> long(+1)
@@ -137,6 +145,9 @@ class CaptureTradingEnv(gym.Env):
 
     # ----------------------------------------------------------------------- #
     def _action_to_position(self, action: int) -> int:
+        # Symmetric long gate: in a confirmed up-trend, always hold long.
+        if self.force_long_in_up and self.up_mask[self.t]:
+            return 1
         if action == 0:
             if not self.cfg.reward.allow_short:
                 return 0

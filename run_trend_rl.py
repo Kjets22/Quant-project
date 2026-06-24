@@ -31,7 +31,8 @@ import pandas as pd
 HERE = Path(__file__).parent
 OUT = HERE / "runs" / "phase3" / "trend_rl"
 OUT.mkdir(parents=True, exist_ok=True)
-TICKERS = ["QQQ", "TLT"]
+TICKERS = [t.strip().upper() for t in
+           os.environ.get("TICKERS", "QQQ,TLT").split(",") if t.strip()]
 K = 6
 TF = "60min"
 TIMESTEPS = int(os.environ.get("TREND_TIMESTEPS", "150000"))
@@ -58,6 +59,8 @@ def cfg_for(ticker: str):
     cfg.reward.allow_short = os.environ.get("SHORT", "0") == "1"
     # SHORT_GATED=1 -> may only short inside a confirmed (sticky) down-trend.
     cfg.env.short_only_in_down = os.environ.get("SHORT_GATED", "0") == "1"
+    # LONG_GATED=1 -> force long inside a confirmed up-trend (participate fully).
+    cfg.env.force_long_in_up = os.environ.get("LONG_GATED", "0") == "1"
     cfg.env.use_regime_features = True      # trend-awareness
     cfg.env.window = 96
     return cfg

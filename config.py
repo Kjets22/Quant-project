@@ -118,6 +118,10 @@ class EnvConfig:
     # in a confirmed (sticky) down-trend; otherwise the short action becomes flat.
     short_only_in_down: bool = False
     short_gate_min_run: int = 12
+    # Symmetric long gate: force LONG in a confirmed (sticky) up-trend (participate
+    # in the uptrend instead of under-allocating). Completes the regime policy.
+    force_long_in_up: bool = False
+    up_gate_min_run: int = 12
 
 
 @dataclass

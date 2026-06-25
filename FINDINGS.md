@@ -77,6 +77,22 @@ Two independent results — SPY failing where QQQ won, and S/R features *hurting
 confirm: **the bottleneck is signal, not features.** Adding capacity to a no-signal
 problem overfits and makes OOS worse.
 
+### Later attempts (QQQ/SPY) — all confirm the boundary
+
+| Idea | Result |
+|---|---|
+| Daily horizon (longer holds) | ❌ worse on bull indices; works only on falling TLT; RL ≈ simple SMA rule |
+| **Daily + support/resistance** | ➕ S/R *helps at daily* (QQQ Sharpe +0.39→+0.79, marginal B&H beat) though it *hurt* at hourly — S/R is timeframe-dependent; still SPY loses, tiny data |
+| Swing (heavy turnover penalty, ~43h holds) | ➖ neutral — steadier, not better |
+| Recurrent LSTM + higher LR | ❌ worse than MLP (overfit) |
+| Tuned hyperparams (256x256, etc.) | ➖ no robust gain |
+| **Stacked error-predictor** (predict where base is wrong, gate it) | ❌ **meta-model AUC 0.505 (coin flip)** — base errors are unpredictable OOS; gating made it *worse*. Confirms "50%+50%→75%" fails: the meta-model has no real predictive power because a trade is "wrong" only due to the unpredictable next move. |
+| Time-of-day / time-since-open feature | ➖ no effect (AUC stayed 0.50) |
+
+**The deepest confirmation:** even a meta-learner *cannot* predict the base model's
+mistakes (AUC 0.50), because the mistakes are driven by irreducibly random price
+direction. No reward, feature, model, horizon, or stacking escapes an efficient market.
+
 ## Engineering notes worth keeping
 
 - **GPU is slower here** (3.7×) — PPO + tiny MLP is CPU/rollout-bound; parallelize

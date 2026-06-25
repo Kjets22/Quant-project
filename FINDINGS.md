@@ -93,6 +93,29 @@ problem overfits and makes OOS worse.
 mistakes (AUC 0.50), because the mistakes are driven by irreducibly random price
 direction. No reward, feature, model, horizon, or stacking escapes an efficient market.
 
+### The market-neutral pivot — QQQ/SPY statistical arbitrage (the closest to a real edge)
+
+Directional timing of a single bull-market index can't beat B&H (B&H captures the
+whole uptrend cost-free). A **market-neutral spread** doesn't compete with B&H at all,
+so we tested QQQ-SPY pairs mean-reversion (`pairs.py`, `pairs_validate.py`).
+
+- **First genuine GROSS signal in the whole project:** the 30-min spread mean-reverts
+  (gross Sharpe ~+1.0 OOS), unlike directional timing which was 50% even gross.
+- **Single 60/40 split looked great:** net Sharpe **+0.83** OOS after realistic
+  ultra-liquid-ETF costs (0.2 bps/leg), market-neutral (corr 0.16).
+- **But rigorous validation killed it.** Walk-forward (6 OOS blocks): pooled annualized
+  Sharpe only **+0.39** (0.2 bps) → **+0.07** (0.5 bps), just **4/6 blocks positive**
+  (block 1 strongly negative), and the **Deflated Sharpe ≈ 0** — it does NOT survive
+  multiple-testing correction. ADF p≈0.09 (not formally cointegrated; relationship drifts).
+- **Why thin:** QQQ and SPY overlap ~85% — the spread is too small for its
+  mean-reversion to exceed harvesting costs. Real stat-arb needs a wider-spread
+  cointegrated pair (competitors / sector-vs-member), where the deviation dwarfs cost.
+
+**Lesson (textbook, from the guide):** an impressive single backtest → walk-forward +
+deflated Sharpe → exposed as not robust. The validation discipline is what separates a
+real edge from a fluke, and here it correctly returned **no validated edge** — while
+pointing at where a real one might live (wider-spread, less-correlated cointegrated pairs).
+
 ## Engineering notes worth keeping
 
 - **GPU is slower here** (3.7×) — PPO + tiny MLP is CPU/rollout-bound; parallelize

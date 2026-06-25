@@ -138,6 +138,10 @@ class EnvConfig:
     # (open volatility, midday lull, close ramp). sin/cos of time-of-day + minutes
     # since the regular session open (13:30 UTC = 9:30 ET), normalized.
     use_time_features: bool = False
+    # Hand the bot the SIMPLE RULE's own signal: is price above its SMA (20/50/200)
+    # and how far, ATR-normalized. Tests whether the agent can match/beat the rule
+    # when given the rule's information. Causal (SMA shifted by one bar).
+    use_rule_features: bool = False
 
 
 @dataclass

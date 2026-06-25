@@ -32,6 +32,7 @@ N_REGIME_FEATURES = 4      # Phase C
 N_CROSS_FEATURES = 4       # cross-asset: partner ret, momentum, trend slope, self-spread
 N_SR_FEATURES = 3          # support/resistance: dist-to-resistance, dist-to-support, sr-position
 N_TIME_FEATURES = 3        # time-of-day sin/cos + minutes-since-open
+N_RULE_FEATURES = 4        # simple-rule signal: above SMA20/50/200 (+/-1) + dist from SMA50
 
 
 def align_partner(self_df: pd.DataFrame, partner_df: pd.DataFrame) -> pd.DataFrame:
@@ -180,6 +181,14 @@ class CaptureTradingEnv(gym.Env):
             # minutes since 13:30 UTC (regular open), normalized by the 390-min session
             self.mins_since_open = np.clip((mod - 810.0) / 390.0, -1.0, 2.0)
 
+        # Simple-rule signal handed to the agent (causal SMAs, shifted by one bar).
+        self.use_rule_features = bool(getattr(cfg.env, "use_rule_features", False))
+        if self.use_rule_features:
+            s = self.df["close"]
+            self.sma20 = s.rolling(20, min_periods=1).mean().shift(1).bfill().to_numpy()
+            self.sma50 = s.rolling(50, min_periods=1).mean().shift(1).bfill().to_numpy()
+            self.sma200 = s.rolling(200, min_periods=1).mean().shift(1).bfill().to_numpy()
+
         # --- Spaces ----------------------------------------------------------
         # Action: 0 -> short(-1) (or flat if shorting disabled), 1 -> flat, 2 -> long(+1)
         self.action_space = spaces.Discrete(3)
@@ -189,7 +198,8 @@ class CaptureTradingEnv(gym.Env):
                    + (N_REGIME_FEATURES if self.use_regime_features else 0)
                    + (N_CROSS_FEATURES if self.use_cross_features else 0)
                    + (N_SR_FEATURES if self.use_sr_features else 0)
-                   + (N_TIME_FEATURES if self.use_time_features else 0))
+                   + (N_TIME_FEATURES if self.use_time_features else 0)
+                   + (N_RULE_FEATURES if self.use_rule_features else 0))
         self.observation_space = spaces.Box(
             low=-np.inf, high=np.inf, shape=(obs_dim,), dtype=np.float32
         )
@@ -261,6 +271,15 @@ class CaptureTradingEnv(gym.Env):
             t = self.t
             parts.append(np.array([self.tod_sin[t], self.tod_cos[t],
                                    self.mins_since_open[t]], dtype=np.float64))
+        if self.use_rule_features:
+            t = self.t
+            c, atr = self.close_px[t], self.atr[t]
+            parts.append(np.array([
+                float(np.sign(c - self.sma20[t])),     # the rule's signal at 3 lengths
+                float(np.sign(c - self.sma50[t])),
+                float(np.sign(c - self.sma200[t])),
+                np.tanh((c - self.sma50[t]) / atr),    # how far above/below the trend line
+            ], dtype=np.float64))
         obs = np.concatenate(parts).astype(np.float32)
         # Numerical safety: no NaN/Inf may ever reach the agent.
         obs = np.nan_to_num(obs, nan=0.0, posinf=0.0, neginf=0.0)

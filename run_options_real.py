@@ -31,16 +31,20 @@ from options_ml_pipeline import (
 
 
 def main():
-    start = sys.argv[1] if len(sys.argv) > 1 else "2025-04-01"
-    end = sys.argv[2] if len(sys.argv) > 2 else "2026-06-20"
-    pq = CACHE / f"chain_{start}_{end}.parquet"
+    ul = sys.argv[1] if len(sys.argv) > 1 else "SPY"
+    start = sys.argv[2] if len(sys.argv) > 2 else "2025-04-01"
+    end = sys.argv[3] if len(sys.argv) > 3 else "2026-06-20"
+    pq = CACHE / f"chain_{ul}_{start}_{end}.parquet"
+    legacy = CACHE / f"chain_{start}_{end}.parquet"   # SPY first run used this name
+    if not pq.exists() and ul == "SPY" and legacy.exists():
+        pq = legacy
 
     if pq.exists():
         print(f"[load] cached chain {pq.name}")
         ch = pd.read_parquet(pq)
     else:
-        print(f"[build] fetching real SPY chain {start}..{end} (cached per contract)")
-        ch = build_chain(start, end)
+        print(f"[build] fetching real {ul} chain {start}..{end} (cached per contract)")
+        ch = build_chain(start, end, underlying=ul)
         try:
             ch.to_parquet(pq)
         except Exception:

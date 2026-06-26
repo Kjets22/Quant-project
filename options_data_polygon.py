@@ -19,9 +19,9 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import requests
 
-import data  # truststore SSL + .env
+import data  # truststore SSL + .env — MUST precede `import requests` (injects OS trust store)
+import requests
 from config import default_config
 from options_ml_pipeline import _bs_price_and_delta, implied_vol
 

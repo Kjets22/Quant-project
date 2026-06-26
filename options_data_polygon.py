@@ -19,6 +19,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import requests
 
 import data  # truststore SSL + .env
 from config import default_config
@@ -33,16 +34,20 @@ def _session_key():
     return data._make_session(), default_config().api_key
 
 
-def _get(session, key, url, params, retries=4):
+def _get(session, key, url, params, retries=6):
     params = {**params, "apiKey": key}
     for i in range(retries):
-        r = session.get(url, params=params, timeout=30)
+        try:
+            r = session.get(url, params=params, timeout=45)
+        except requests.exceptions.RequestException:
+            time.sleep(5 * (i + 1))         # transient timeout/connection drop -> retry
+            continue
         if r.status_code == 429:
             time.sleep(10 * (i + 1))
             continue
         r.raise_for_status()
         return r.json()
-    raise RuntimeError("rate-limited out")
+    raise RuntimeError(f"request failed after {retries} retries: {url}")
 
 
 def underlying_daily(ul, start, end):
@@ -80,8 +85,11 @@ def contract_aggs(ticker, start, end):
     if cf.exists():
         return json.loads(cf.read_text())
     s, k = _session_key()
-    j = _get(s, k, f"https://api.polygon.io/v2/aggs/ticker/{ticker}/range/1/day/{start}/{end}",
-             {"limit": 50000, "adjusted": "true"})
+    try:
+        j = _get(s, k, f"https://api.polygon.io/v2/aggs/ticker/{ticker}/range/1/day/{start}/{end}",
+                 {"limit": 50000, "adjusted": "true"})
+    except RuntimeError:
+        return []                          # skip this contract; don't kill the run
     bars = [{"date": str(dt.datetime.utcfromtimestamp(b["t"] / 1000).date()),
              "close": b["c"], "volume": b["v"]} for b in j.get("results", [])]
     cf.write_text(json.dumps(bars))

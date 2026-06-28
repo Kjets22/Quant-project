@@ -126,6 +126,35 @@ pointing at where a real one might live (wider-spread, less-correlated cointegra
 - The **lockbox** was opened once on an earlier all-weather config (no proven edge) and
   is now spent — any new config needs a **fresh** holdout, not a second peek.
 
+### The options pivot — SPY volatility-risk-premium (the structurally-grounded shot)
+
+Per the options guide: don't predict prices (that's just Black-Scholes), predict
+volatility and harvest the VRP. Built a real pipeline (`options_ml_pipeline.py`,
+`options_data_polygon.py`): ~21k expired SPY contracts, IV via Black-Scholes
+inversion, IV-space surface features, LightGBM forward-RV model, 10/1/1-month split.
+Features came out economically correct (ATM IV 12–42%, **+0.07 put skew** as it must be).
+
+- **The headline "90.5% VRP-sign hit on test" was a calendar artifact, not skill.**
+  The month-by-month regime table shows IV>RV swings from **100% in calm months to
+  15–26% in the Jan–Feb 2026 vol spike**. The test month was calm; val (25%) was a
+  spike. A "signal" that's 100% in calm and 15% in shocks is long-the-calm, not predictive.
+- **Buying options on a directional signal is mathematically a loser:** on real SPY,
+  break-even directional accuracy for long ATM options is **~61%** (premium + VRP), and
+  we have ~50%. The 2:1 stop/target bracket is also break-even by geometry (random
+  entries → 33% win = 0 expectancy; the only positive came from market drift = B&H beta).
+- **Selling vol (the real VRP edge), validated honestly:**
+  - short ATM straddle, after 4% spread: mean **$0.04/trade (Sharpe ~0.04)**, −$870 maxDD.
+  - adding stop-loss/take-profit made it **worse** and did NOT cap the tail (gaps blow
+    through stops; the TP clips winners).
+  - **defined-risk iron condors** (buy wings) DID bound the tail (worst −$15 vs −$47),
+    70% win — but total **+$14 over 13 months** (4-leg spread eats the credit), and
+    **Deflated Sharpe = 0.000**; block Sharpes wildly regime-dependent. Collected premium
+    for 10 months, gave it back in the Mar–Apr 2026 shift.
+
+**Options verdict: no validated edge either.** The VRP is real but too thin to clear
+option spreads, and it's regime-fragile (calm carry, spike loss) — exactly the
+"pennies in front of a steamroller" the guide warns about.
+
 ## Honest expectations
 
 - Beating B&H on a bull-market index by timing is ~impossible; it captures the full

@@ -155,6 +155,29 @@ Features came out economically correct (ATM IV 12–42%, **+0.07 put skew** as i
 option spreads, and it's regime-fragile (calm carry, spike loss) — exactly the
 "pennies in front of a steamroller" the guide warns about.
 
+### Triple-barrier + ML entry selection — the one statistically-significant effect (still not tradeable)
+
+The guide's meta-labeling done right (`triple_barrier_ml.py`, `triple_barrier_validate.py`,
+`triple_barrier_breadth.py`): label each entry by which bracket (target/stop) it hits
+first, train LightGBM to pick winners, trade non-overlapping out-of-sample.
+
+- **At 1:1 (even payoff), the ML-selected win rate beat 50% and SURVIVED walk-forward**
+  (SPY 52.7%, QQQ 52.2%) — the first directional result that didn't collapse.
+- **Breadth test (8 names) = z +3.23 over 10,056 independent trades** — clears the
+  Harvey-Liu-Zhu t>3 hurdle. *7 of 8 names tilt >50%.* Statistically real.
+- **But it's market DRIFT, not skill:** the only faller (TLT) is the only name <50%.
+  The ML mostly learned "be long," and longs win slightly more when price drifts up = B&H beta.
+- **And it's NOT tradeable:** gross edge ~$0.08/trade; realistic costs erase it —
+  net **+$144 @1bp → −$426 @3bps → −$996 @5bps**. The edge is smaller than the spread.
+- At 2:1 the win rate drops to ~33% (pure geometry); no directional edge appears where
+  it would matter. You cannot get both >50% win AND target>stop without real prediction.
+
+**Final, proven conclusion:** across ~30 approaches in equities (5min→daily, RL, pairs,
+brackets, meta-labeling) and options (VRP straddles, condors), the ONLY statistically
+real effect is the market's upward **drift (beta)**, and every attempt to harvest it via
+active trading is killed by transaction costs. Textbook efficient-market behavior —
+demonstrated, not assumed. **No validated, tradeable edge.**
+
 ## Honest expectations
 
 - Beating B&H on a bull-market index by timing is ~impossible; it captures the full

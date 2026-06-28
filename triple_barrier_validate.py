@@ -24,7 +24,8 @@ import lightgbm as lgb
 
 from triple_barrier_ml import atr, features, hourly, label, H
 
-COST_BPS = 1.0
+import os
+COST_BPS = float(os.environ.get("TB_COST_BPS", "1.0"))
 TP = SL = 1.0
 
 

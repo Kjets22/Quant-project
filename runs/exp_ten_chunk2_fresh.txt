@@ -1,0 +1,2 @@
+                        C 30:3: n=  275  win%= 5.8%  mean= +28.3bps  total=  +78%  Sharpe= 0.68  <== POSITIVE
+            D struct-stop 10:1: n=  912  win%=13.0%  mean=  +3.5bps  total=  +32%  Sharpe= 0.43  <== POSITIVE

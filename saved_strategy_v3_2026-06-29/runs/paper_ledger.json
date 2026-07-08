@@ -1,0 +1,26 @@
+{
+  "config": "30min 1.5:1 top-7% base+S/R, 8 names, 3 bps",
+  "paper_start": "2026-06-29",
+  "as_of": "2026-06-30",
+  "open": [
+    {
+      "ticker": "TLT",
+      "entry_ts": "2026-06-29 16:30:00",
+      "entry": 87.36,
+      "target": 87.51,
+      "stop": 87.25,
+      "exit_ts": "2026-06-29 19:00:00",
+      "exit": 87.42,
+      "outcome": "OPEN",
+      "ret_pct": null
+    }
+  ],
+  "closed": [],
+  "summary": {
+    "closed": 0,
+    "wins": 0,
+    "win_pct": null,
+    "total_ret_pct": 0.0,
+    "open": 1
+  }
+}

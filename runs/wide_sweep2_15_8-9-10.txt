@@ -1,0 +1,6 @@
+CORRECTED sweep @ 15-min (time exits at actual close; win = target hit only)
+     ratio  trades   tgt%  stop%  time%  mean bps   total%
+  4:1 (v4 ref)    3334  26.1%  72.8%   1.1%      +0.6      +20  <== POSITIVE
+           8:1    3438  11.4%  85.1%   3.5%      -2.6      -90
+           9:1    3439   9.0%  86.8%   4.2%      -4.0     -137
+          10:1    3449   7.6%  87.7%   4.7%      -4.1     -142

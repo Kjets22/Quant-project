@@ -1,0 +1,145 @@
+[
+  {
+    "tk": "TLT",
+    "entry": "2026-06-22 21:00:00",
+    "entry_px": 86.09,
+    "target": 86.24,
+    "stop": 85.94,
+    "exit": "2026-06-23 08:00:00",
+    "bars": 3,
+    "outcome": "TARGET",
+    "ret": 0.14
+  },
+  {
+    "tk": "XLE",
+    "entry": "2026-06-24 12:00:00",
+    "entry_px": 53.85,
+    "target": 54.02,
+    "stop": 53.68,
+    "exit": "2026-06-24 13:00:00",
+    "bars": 1,
+    "outcome": "STOP",
+    "ret": -0.35
+  },
+  {
+    "tk": "TLT",
+    "entry": "2026-06-24 13:00:00",
+    "entry_px": 87.27,
+    "target": 87.41,
+    "stop": 87.12,
+    "exit": "2026-06-24 15:00:00",
+    "bars": 2,
+    "outcome": "TARGET",
+    "ret": 0.14
+  },
+  {
+    "tk": "TLT",
+    "entry": "2026-06-25 09:00:00",
+    "entry_px": 87.32,
+    "target": 87.45,
+    "stop": 87.19,
+    "exit": "2026-06-25 12:00:00",
+    "bars": 3,
+    "outcome": "TARGET",
+    "ret": 0.12
+  },
+  {
+    "tk": "MSFT",
+    "entry": "2026-06-25 12:00:00",
+    "entry_px": 362.99,
+    "target": 365.51,
+    "stop": 360.47,
+    "exit": "2026-06-25 13:00:00",
+    "bars": 1,
+    "outcome": "STOP",
+    "ret": -0.73
+  },
+  {
+    "tk": "SPY",
+    "entry": "2026-06-25 13:00:00",
+    "entry_px": 729.85,
+    "target": 732.68,
+    "stop": 727.02,
+    "exit": "2026-06-25 14:00:00",
+    "bars": 1,
+    "outcome": "TARGET",
+    "ret": 0.36
+  },
+  {
+    "tk": "MSFT",
+    "entry": "2026-06-25 19:00:00",
+    "entry_px": 352.69,
+    "target": 356.14,
+    "stop": 349.24,
+    "exit": "2026-06-25 23:00:00",
+    "bars": 4,
+    "outcome": "TARGET",
+    "ret": 0.95
+  },
+  {
+    "tk": "QQQ",
+    "entry": "2026-06-25 21:00:00",
+    "entry_px": 715.81,
+    "target": 721.66,
+    "stop": 709.96,
+    "exit": "2026-06-26 08:00:00",
+    "bars": 3,
+    "outcome": "STOP",
+    "ret": -0.85
+  },
+  {
+    "tk": "QQQ",
+    "entry": "2026-06-26 10:00:00",
+    "entry_px": 707.07,
+    "target": 712.58,
+    "stop": 701.56,
+    "exit": "2026-06-26 12:00:00",
+    "bars": 2,
+    "outcome": "TARGET",
+    "ret": 0.75
+  },
+  {
+    "tk": "XLE",
+    "entry": "2026-06-26 12:00:00",
+    "entry_px": 53.73,
+    "target": 53.94,
+    "stop": 53.52,
+    "exit": "2026-06-26 13:00:00",
+    "bars": 1,
+    "outcome": "TARGET",
+    "ret": 0.36
+  },
+  {
+    "tk": "TLT",
+    "entry": "2026-06-26 20:00:00",
+    "entry_px": 87.27,
+    "target": 87.41,
+    "stop": 87.13,
+    "exit": "2026-06-26 23:00:00",
+    "bars": 3,
+    "outcome": "OPEN",
+    "ret": null
+  },
+  {
+    "tk": "NVDA",
+    "entry": "2026-06-26 21:00:00",
+    "entry_px": 192.37,
+    "target": 194.19,
+    "stop": 190.54,
+    "exit": "2026-06-26 23:00:00",
+    "bars": 2,
+    "outcome": "OPEN",
+    "ret": null
+  },
+  {
+    "tk": "QQQ",
+    "entry": "2026-06-26 22:00:00",
+    "entry_px": 706.3,
+    "target": 710.99,
+    "stop": 701.61,
+    "exit": "2026-06-26 23:00:00",
+    "bars": 1,
+    "outcome": "OPEN",
+    "ret": null
+  }
+]

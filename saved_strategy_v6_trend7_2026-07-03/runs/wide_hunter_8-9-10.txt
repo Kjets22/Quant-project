@@ -1,0 +1,5 @@
+WIDE HUNTER @ 60-min, HBAR=96, +trend features (corrected accounting, 5 bps)
+   tgt:stop  ratio  trades   tgt%  stop%  time%  mean bps   total%
+  8:1       8.0    1131  10.6%  88.0%   1.4%      -2.2      -24
+  9:1       9.0    1227   9.0%  89.6%   1.5%      -7.2      -89
+  10:1      10.0    1439   8.3%  89.1%   2.6%      -1.6      -23

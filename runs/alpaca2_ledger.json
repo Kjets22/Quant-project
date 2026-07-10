@@ -1,0 +1,12 @@
+{
+ "open": [],
+ "pending": [],
+ "closed": [],
+ "acted_bars": {
+  "v6_TLT": "2026-07-10 13:00:00"
+ },
+ "state": {
+  "peak_equity": 100000.0,
+  "halted": false
+ }
+}

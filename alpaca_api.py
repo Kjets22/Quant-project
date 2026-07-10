@@ -84,6 +84,28 @@ def submit_bracket(symbol, qty, take_profit, stop_loss, client_id):
     })
 
 
+def get_order(order_id):
+    """Full order state incl. bracket legs (nested)."""
+    return _req("GET", f"/v2/orders/{order_id}", params={"nested": "true"})
+
+
+def submit_limit_bracket(symbol, qty, limit_price, take_profit, stop_loss, client_id):
+    """LIMIT BUY at the signal price + bracket. Day order: dies at close if unfilled."""
+    return _req("POST", "/v2/orders", json={
+        "symbol": symbol, "qty": str(int(qty)), "side": "buy", "type": "limit",
+        "limit_price": str(round(limit_price, 2)), "time_in_force": "day",
+        "order_class": "bracket", "client_order_id": client_id,
+        "take_profit": {"limit_price": str(round(take_profit, 2))},
+        "stop_loss": {"stop_price": str(round(stop_loss, 2))},
+    })
+
+
+def market_sell(symbol, qty, client_id):
+    return _req("POST", "/v2/orders", json={
+        "symbol": symbol, "qty": str(int(qty)), "side": "sell", "type": "market",
+        "time_in_force": "day", "client_order_id": client_id})
+
+
 def cancel_order(order_id):
     r = requests.delete(f"{BASE}/v2/orders/{order_id}", headers=HDRS, timeout=30)
     return r.status_code in (200, 204, 404)

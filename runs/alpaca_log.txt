@@ -9,3 +9,7 @@
 2026-07-10 14:37:25Z  cycle start | equity=$99,997.59 day=-2.41 dd=2.42 | market=OPEN
 2026-07-10 14:37:27Z    CLOSED  v6 TLT via bracket  pnl=-1.32
 2026-07-10 14:37:43Z  cycle done | signals=0 open=0 closed-total=1
+2026-07-10 14:46:03Z  cycle start | equity=$99,997.59 day=-2.41 dd=2.42 | market=OPEN
+2026-07-10 14:46:18Z  cycle done | signals=0 open=0 closed-total=1
+2026-07-10 14:55:20Z  A/B cycle | equity=$99,997.59 day=-2.41 dd=2.41 | market=OPEN
+2026-07-10 14:55:33Z  A/B cycle done | signals=0 open=0 pending=0 closed=0

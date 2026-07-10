@@ -1,0 +1,25 @@
+DAILY REPORT — 2026-07-10 11:06 local  (market OPEN)
+account equity $99,998.25   day P&L -1.75   cash $98,139.91
+
+===== MARKET arm =====
+  strat  closed   win%  missed  realized$  open   unreal$  avg slip
+     v3       0      -       0      +0.00     0     +0.00         -
+     v4       0      -       0      +0.00     0     +0.00         -
+     v6       0      -       0      +0.00     0     +0.00         -
+     v7       0      -       0      +0.00     0     +0.00         -
+     vC       0      -       0      +0.00     0     +0.00         -
+  TOTAL       0      -       0      +0.00     0     +0.00
+
+===== LIMIT arm =====
+  strat  closed   win%  missed  realized$  open   unreal$  avg slip
+     v3       0      -       0      +0.00     0     +0.00         -
+     v4       0      -       0      +0.00     0     +0.00         -
+     v6       0      -       0      +0.00     0     +0.00         -
+     v7       0      -       0      +0.00     0     +0.00         -
+     vC       0      -       0      +0.00     0     +0.00         -
+  TOTAL       0      -       0      +0.00     0     +0.00
+
+A/B VERDICT SO FAR: tied arm leads by $0.00 (mkt $+0.00 vs lmt $+0.00, incl. unrealized)
+
+===== FLAGS =====
+  none — all systems normal

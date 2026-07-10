@@ -1,6 +1,5 @@
 {
- "open": [],
- "pending": [
+ "open": [
   {
    "strat": "v6",
    "tk": "TLT",
@@ -12,7 +11,12 @@
    "ddl_days": 8,
    "style": "mkt",
    "order_id": "64fa805a-687b-46a2-82ab-da392f44d77d",
-   "expiry": "2026-07-11 15:01:21.543447"
+   "expiry": "2026-07-11 15:01:21.543447",
+   "fill": 84.44,
+   "tp_leg": "fe939284-140b-4163-85ea-9de701727e94",
+   "sl_leg": "6d0dc579-4d58-44af-bae4-30a62b5cc16b",
+   "ets": "2026-07-10 15:16:04.919368",
+   "deadline": "2026-07-18 15:16:04.919368"
   },
   {
    "strat": "v6",
@@ -25,15 +29,21 @@
    "ddl_days": 8,
    "style": "lmt",
    "order_id": "3409da5c-ac35-4fba-8da9-d6e295053e52",
-   "expiry": "2026-07-10 16:00:00"
+   "expiry": "2026-07-10 16:00:00",
+   "fill": 84.44,
+   "tp_leg": "fcda28d4-de98-45b5-b543-d0f66490959c",
+   "sl_leg": "a4d7e6e3-3b31-4fee-8c78-2434cf05a4cf",
+   "ets": "2026-07-10 15:16:04.919368",
+   "deadline": "2026-07-18 15:16:04.919368"
   }
  ],
+ "pending": [],
  "closed": [],
  "acted_bars": {
-  "v6_TLT": "2026-07-10 14:00:00"
+  "v6_TLT": "2026-07-10 18:00:00"
  },
  "state": {
-  "peak_equity": 100000.0,
+  "peak_equity": 100001.22,
   "halted": false
  }
 }

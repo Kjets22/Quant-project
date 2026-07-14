@@ -63,8 +63,11 @@ CONFIGS = [("v3", TICKERS, 30, 24, "atr",     1.5, 1.0, "sr",    ("q", 0.93),   
            # vA: Evolution-II ACCURACY champion. $1.50 tgt / $2 stop, 4h clock, top-5%
            # gate. Win rate replicated arena->gate->final: 65.6% -> 68.6% (172 trades/yr).
            # Thin margin (+1.2bps) — live-slippage experiment; accuracy specialist.
-           ("vA",  ["QQQ"], 5, 48, "dollar",  1.5, 2.0, "full",  ("conf", 0.95), 2)]
-MODEL_BY_STRAT = {"vQ2": "histgb"}                       # default: the standard LightGBM
+           ("vA",  ["QQQ"], 5, 48, "dollar",  1.5, 2.0, "full",  ("conf", 0.95), 2),
+           # vP: Evolution-III P&L champion — beat vQ through all 3 stages (arena +8.67%
+           # worst-of-3, gate +3.27%, final +4.18% vs vQ +2.77%). 8h clock, $2/$2, HistGB.
+           ("vP",  ["QQQ"], 5, 96, "dollar",  2.0, 2.0, "full",  ("conf", 0.85), 3)]
+MODEL_BY_STRAT = {"vQ2": "histgb", "vP": "histgb"}       # default: the standard LightGBM
 # NOTE: vQ and vQ2 share QQQ; the one-per-ticker guardrail means whichever signals first
 # holds the slot that hour — occasional skips are expected and logged.
 

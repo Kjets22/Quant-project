@@ -1,0 +1,319 @@
+== EVOLUTION-III INIT: 32 agents (vQ, vQ2, vA seeded); fitness = WORST of 3 half-year P&Ls ==
+  g01 fit=  +1.19%  subs=[1.19, 3.56, 4.38]  {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g01 fit=  +2.55%  subs=[2.55, 3.49, 2.57]  {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g01 fit=  +3.53%  subs=[3.53, 8.2, 5.8]  {"H": 48, "feat": "F4", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g01 fit=  +1.28%  subs=[1.28, 6.99, 5.44]  {"H": 48, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g01 fit=  -3.36%  subs=[-3.36, -0.88, 3.26]  {"H": 12, "feat": "F2", "model": "histgb", "q": 0.9, "rth": 0, "stop": 2.5, "tgt": 2.0}
+  g01 fit=  +2.05%  subs=[2.05, 5.27, 4.54]  {"H": 12, "feat": "F4", "model": "lgbm_tiny", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g01 fit= -99.00%  subs=[]  {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g01 fit= -99.00%  subs=[]  {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g01 fit=  +8.67%  subs=[16.71, 8.67, 12.27]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g01 fit= -99.00%  subs=[]  {"H": 6, "feat": "F4", "model": "histgb", "q": 0.9, "rth": 0, "stop": 1.5, "tgt": 2.5}
+  g01 fit= -99.00%  subs=[]  {"H": 6, "feat": "F3", "model": "histgb", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g01 fit=  +1.98%  subs=[3.74, 1.98, 2.84]  {"H": 24, "feat": "F3", "model": "histgb", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g01 fit=  -9.86%  subs=[-9.86, -2.31, 1.89]  {"H": 48, "feat": "F2", "model": "lgbm_s", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g01 fit= -99.00%  subs=[]  {"H": 48, "feat": "F4", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g01 fit= -99.00%  subs=[]  {"H": 48, "feat": "F4", "model": "lgbm_s", "q": 0.97, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g01 fit= -99.00%  subs=[]  {"H": 48, "feat": "F5", "model": "lgbm_s", "q": 0.95, "rth": 1, "stop": 2.0, "tgt": 1.5}
+  g01 fit=  -8.31%  subs=[0.58, -3.87, -8.31]  {"H": 48, "feat": "F3", "model": "lgbm_tiny", "q": 0.75, "rth": 1, "stop": 2.5, "tgt": 1.5}
+  g01 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.8, "rth": 1, "stop": 3.0, "tgt": 3.0}
+  g01 fit= -99.00%  subs=[]  {"H": 48, "feat": "F4", "model": "lgbm_tiny", "q": 0.9, "rth": 0, "stop": 1.0, "tgt": 1.5}
+  g01 fit= -99.00%  subs=[]  {"H": 24, "feat": "F5", "model": "histgb_d", "q": 0.9, "rth": 1, "stop": 2.0, "tgt": 2.5}
+  g01 fit= -99.00%  subs=[]  {"H": 48, "feat": "F4", "model": "lgbm_big", "q": 0.75, "rth": 1, "stop": 1.5, "tgt": 2.0}
+  g01 fit=  +3.35%  subs=[4.01, 6.72, 3.35]  {"H": 24, "feat": "F5", "model": "histgb_d", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g01 fit=  +4.97%  subs=[8.12, 4.97, 6.97]  {"H": 96, "feat": "F5", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g01 fit=  -0.78%  subs=[10.24, -0.78, 6.44]  {"H": 48, "feat": "F5", "model": "lgbm_tiny", "q": 0.75, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g01 fit=  -2.77%  subs=[0.56, 1.0, -2.77]  {"H": 48, "feat": "F4", "model": "lgbm_tiny", "q": 0.75, "rth": 1, "stop": 3.0, "tgt": 1.5}
+  g01 fit=  +0.48%  subs=[0.48, 6.1, 7.29]  {"H": 96, "feat": "F2", "model": "lgbm_big", "q": 0.8, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g01 fit=  +2.75%  subs=[8.61, 3.81, 2.75]  {"H": 24, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g01 fit= -39.35%  subs=[-29.55, -39.35, -24.09]  {"H": 6, "feat": "F3", "model": "lgbm_tiny", "q": 0.8, "rth": 0, "stop": 1.5, "tgt": 1.0}
+  g01 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 4.0}
+  g01 fit=  -9.21%  subs=[-7.24, -3.93, -9.21]  {"H": 24, "feat": "F2", "model": "lgbm_big", "q": 0.75, "rth": 0, "stop": 1.5, "tgt": 1.0}
+== GEN 1 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g02 fit=  +2.94%  subs=[8.66, 6.85, 2.94]  {"H": 96, "feat": "F5", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g02 fit=  +3.17%  subs=[5.96, 3.9, 3.17]  {"H": 48, "feat": "F4", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g02 fit= -20.55%  subs=[-16.01, -20.55, -7.31]  {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g02 fit=  +2.53%  subs=[6.56, 2.53, 3.43]  {"H": 24, "feat": "F2", "model": "histgb", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g02 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.5, "tgt": 4.0}
+  g02 fit=  -1.17%  subs=[-0.49, -1.17, -0.53]  {"H": 6, "feat": "F4", "model": "lgbm_big", "q": 0.85, "rth": 1, "stop": 3.0, "tgt": 2.5}
+  g02 fit=  +2.49%  subs=[12.4, 8.89, 2.49]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 1.5, "tgt": 1.5}
+  g02 fit=  +5.38%  subs=[5.79, 6.26, 5.38]  {"H": 48, "feat": "F2", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g02 fit=  +2.82%  subs=[8.89, 2.82, 4.9]  {"H": 96, "feat": "F3", "model": "lgbm_s", "q": 0.8, "rth": 0, "stop": 2.5, "tgt": 1.5}
+  g02 fit=  +1.62%  subs=[3.06, 1.62, 4.02]  {"H": 24, "feat": "F3", "model": "histgb_d", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g02 fit=  -2.60%  subs=[20.61, -2.6, -0.96]  {"H": 48, "feat": "F2", "model": "lgbm_s", "q": 0.75, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g02 fit=  +4.07%  subs=[5.01, 4.07, 10.66]  {"H": 96, "feat": "F5", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g02 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.85, "rth": 1, "stop": 1.5, "tgt": 2.0}
+  g02 fit=  +5.44%  subs=[7.11, 6.47, 5.44]  {"H": 48, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g02 fit= -99.00%  subs=[]  {"H": 48, "feat": "F4", "model": "lgbm_s", "q": 0.85, "rth": 1, "stop": 1.5, "tgt": 1.5}
+  g02 fit=  +3.16%  subs=[3.16, 3.51, 4.3]  {"H": 24, "feat": "F3", "model": "histgb_d", "q": 0.8, "rth": 0, "stop": 1.0, "tgt": 1.5}
+  g02 fit=  +4.26%  subs=[5.67, 7.5, 4.26]  {"H": 24, "feat": "F4", "model": "histgb", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g02 fit= -99.00%  subs=[]  {"H": 24, "feat": "F3", "model": "histgb_d", "q": 0.75, "rth": 0, "stop": 1.5, "tgt": 2.5}
+  g02 fit=  +4.02%  subs=[5.46, 6.6, 4.02]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 1.5, "tgt": 1.5}
+  g02 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.85, "rth": 0, "stop": 1.0, "tgt": 2.5}
+  g02 fit=  +1.47%  subs=[4.59, 1.47, 3.27]  {"H": 96, "feat": "F3", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 1.0, "tgt": 1.0}
+  g02 fit=  +1.15%  subs=[5.48, 3.49, 1.15]  {"H": 24, "feat": "F5", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g02 fit=  -1.59%  subs=[-1.59, 1.74, 1.41]  {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g02 fit=  -8.07%  subs=[-6.92, -8.07, -1.48]  {"H": 6, "feat": "F5", "model": "histgb", "q": 0.95, "rth": 0, "stop": 3.0, "tgt": 1.5}
+  g02 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "lgbm_s", "q": 0.75, "rth": 1, "stop": 1.0, "tgt": 2.5}
+  g02 fit= -99.00%  subs=[]  {"H": 48, "feat": "F2", "model": "histgb", "q": 0.75, "rth": 0, "stop": 1.0, "tgt": 2.0}
+== GEN 2 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g03 fit=  -1.57%  subs=[9.72, -1.57, 8.48]  {"H": 96, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g03 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.97, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g03 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "lgbm_big", "q": 0.9, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g03 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g03 fit=  +2.32%  subs=[11.15, 2.32, 3.63]  {"H": 48, "feat": "F2", "model": "histgb", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g03 fit=  +6.17%  subs=[11.07, 6.17, 9.12]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g03 fit=  +5.54%  subs=[5.54, 7.25, 9.52]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g03 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "lgbm_s", "q": 0.97, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g03 fit=  +0.65%  subs=[2.79, 1.48, 0.65]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 1, "stop": 3.0, "tgt": 1.5}
+  g03 fit=  +4.26%  subs=[5.09, 5.83, 4.26]  {"H": 96, "feat": "F5", "model": "lgbm_s", "q": 0.97, "rth": 0, "stop": 2.5, "tgt": 2.0}
+  g03 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "histgb_d", "q": 0.9, "rth": 1, "stop": 2.0, "tgt": 2.5}
+  g03 fit=  -5.79%  subs=[16.89, -5.79, 6.84]  {"H": 24, "feat": "F5", "model": "histgb", "q": 0.75, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g03 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g03 fit= -99.00%  subs=[]  {"H": 6, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g03 fit= -99.00%  subs=[]  {"H": 48, "feat": "F3", "model": "histgb", "q": 0.95, "rth": 1, "stop": 2.0, "tgt": 1.0}
+  g03 fit=  +5.88%  subs=[5.88, 7.23, 7.97]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g03 fit=  +3.49%  subs=[5.34, 5.5, 3.49]  {"H": 48, "feat": "F3", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g03 fit=  -2.42%  subs=[14.25, -2.42, 1.24]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g03 fit= -99.00%  subs=[]  {"H": 6, "feat": "F4", "model": "histgb_d", "q": 0.8, "rth": 0, "stop": 1.5, "tgt": 3.0}
+  g03 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "lgbm_tiny", "q": 0.95, "rth": 1, "stop": 1.0, "tgt": 2.0}
+  g03 fit= -99.00%  subs=[]  {"H": 24, "feat": "F4", "model": "histgb_d", "q": 0.75, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g03 fit= -18.77%  subs=[-9.27, -18.77, -12.16]  {"H": 12, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 1.5}
+  g03 fit= -99.00%  subs=[]  {"H": 6, "feat": "F5", "model": "lgbm_tiny", "q": 0.8, "rth": 1, "stop": 1.5, "tgt": 1.5}
+  g03 fit= -99.00%  subs=[]  {"H": 48, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 4.0}
+  g03 fit= -99.00%  subs=[]  {"H": 6, "feat": "F2", "model": "lgbm_s", "q": 0.97, "rth": 1, "stop": 2.0, "tgt": 2.0}
+== GEN 3 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g04 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.97, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g04 fit=  +5.53%  subs=[8.08, 7.2, 5.53]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g04 fit=  +3.54%  subs=[15.09, 9.01, 3.54]  {"H": 48, "feat": "F2", "model": "lgbm_big", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g04 fit=  +4.49%  subs=[4.49, 6.29, 5.12]  {"H": 96, "feat": "F3", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g04 fit= -99.00%  subs=[]  {"H": 24, "feat": "F5", "model": "histgb_d", "q": 0.8, "rth": 1, "stop": 2.5, "tgt": 3.0}
+  g04 fit=  +1.15%  subs=[2.87, 1.15, 8.01]  {"H": 48, "feat": "F3", "model": "histgb", "q": 0.75, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g04 fit=  +1.42%  subs=[3.85, 6.04, 1.42]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 1.0}
+  g04 fit=  +1.07%  subs=[6.67, 2.62, 1.07]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g04 fit=  +1.76%  subs=[5.48, 1.76, 5.27]  {"H": 48, "feat": "F3", "model": "histgb", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 1.5}
+  g04 fit=  +5.04%  subs=[6.59, 5.48, 5.04]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g04 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 4.0}
+  g04 fit=  +3.14%  subs=[7.14, 4.01, 3.14]  {"H": 48, "feat": "F4", "model": "histgb", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g04 fit=  +0.89%  subs=[2.82, 0.89, 5.77]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g04 fit=  +3.40%  subs=[5.58, 6.35, 3.4]  {"H": 48, "feat": "F3", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g04 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g04 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.95, "rth": 0, "stop": 1.0, "tgt": 1.5}
+  g04 fit=  +2.28%  subs=[2.28, 3.91, 3.0]  {"H": 12, "feat": "F2", "model": "histgb", "q": 0.97, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g04 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.97, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g04 fit= -99.00%  subs=[]  {"H": 12, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g04 fit=  +4.38%  subs=[6.55, 4.38, 7.3]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.5, "tgt": 2.5}
+  g04 fit=  +1.20%  subs=[6.69, 1.2, 10.22]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.8, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g04 fit=  -2.64%  subs=[2.19, -2.64, 8.34]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g04 fit=  +6.07%  subs=[8.6, 6.07, 7.46]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g04 fit=  -0.22%  subs=[3.57, -0.22, 7.96]  {"H": 96, "feat": "F3", "model": "lgbm_tiny", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 1.5}
+  g04 fit=  -4.07%  subs=[-2.43, -2.06, -4.07]  {"H": 24, "feat": "F3", "model": "lgbm_tiny", "q": 0.85, "rth": 1, "stop": 3.0, "tgt": 2.0}
+  g04 fit= -36.88%  subs=[-26.12, -36.88, -29.3]  {"H": 6, "feat": "F4", "model": "histgb_d", "q": 0.8, "rth": 0, "stop": 1.5, "tgt": 1.0}
+== GEN 4 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g05 fit=  +7.41%  subs=[11.13, 7.41, 13.16]  {"H": 96, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g05 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "histgb", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.5}
+  g05 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g05 fit=  +2.45%  subs=[3.34, 2.56, 2.45]  {"H": 48, "feat": "F2", "model": "histgb", "q": 0.8, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g05 fit=  +3.63%  subs=[3.63, 9.39, 3.69]  {"H": 48, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g05 fit=  +7.03%  subs=[12.41, 7.03, 10.92]  {"H": 96, "feat": "F2", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g05 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.9, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g05 fit=  -1.23%  subs=[1.25, -1.23, 3.38]  {"H": 6, "feat": "F4", "model": "lgbm_big", "q": 0.8, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g05 fit=  +3.86%  subs=[13.8, 3.86, 6.74]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g05 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 4.0}
+  g05 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "lgbm_big", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 3.0}
+  g05 fit=  +3.77%  subs=[6.39, 5.05, 3.77]  {"H": 24, "feat": "F3", "model": "lgbm_big", "q": 0.95, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g05 fit= -99.00%  subs=[]  {"H": 12, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g05 fit=  +5.74%  subs=[7.34, 5.74, 8.14]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g05 fit= -99.00%  subs=[]  {"H": 24, "feat": "F4", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g05 fit= -99.00%  subs=[]  {"H": 12, "feat": "F3", "model": "lgbm_s", "q": 0.8, "rth": 1, "stop": 2.0, "tgt": 4.0}
+  g05 fit=  -2.75%  subs=[4.63, -2.75, 3.88]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 1.5}
+  g05 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g05 fit=  +4.31%  subs=[7.08, 7.48, 4.31]  {"H": 48, "feat": "F3", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g05 fit=  +4.87%  subs=[7.12, 6.24, 4.87]  {"H": 96, "feat": "F3", "model": "lgbm_big", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g05 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.95, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g05 fit=  +2.38%  subs=[11.21, 4.12, 2.38]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 3.0, "tgt": 3.0}
+  g05 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "lgbm_tiny", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g05 fit= -99.00%  subs=[]  {"H": 48, "feat": "F5", "model": "lgbm_big", "q": 0.85, "rth": 1, "stop": 1.0, "tgt": 2.0}
+  g05 fit= -99.00%  subs=[]  {"H": 48, "feat": "F2", "model": "histgb", "q": 0.8, "rth": 0, "stop": 2.5, "tgt": 4.0}
+== GEN 5 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g06 fit=  +0.58%  subs=[0.58, 0.92, 4.01]  {"H": 6, "feat": "F3", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g06 fit=  +3.51%  subs=[5.49, 3.51, 8.78]  {"H": 96, "feat": "F5", "model": "histgb", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g06 fit=  +5.38%  subs=[6.33, 10.86, 5.38]  {"H": 96, "feat": "F5", "model": "lgbm_tiny", "q": 0.95, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g06 fit=  +4.58%  subs=[5.1, 5.56, 4.58]  {"H": 96, "feat": "F4", "model": "lgbm_tiny", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g06 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.75, "rth": 0, "stop": 1.5, "tgt": 3.0}
+  g06 fit=  +0.60%  subs=[6.85, 0.6, 2.12]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 1.0, "tgt": 1.5}
+  g06 fit=  +4.96%  subs=[6.44, 6.02, 4.96]  {"H": 12, "feat": "F4", "model": "lgbm_big", "q": 0.95, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g06 fit= -99.00%  subs=[]  {"H": 6, "feat": "F2", "model": "lgbm_s", "q": 0.95, "rth": 1, "stop": 1.5, "tgt": 2.0}
+  g06 fit= -99.00%  subs=[]  {"H": 12, "feat": "F5", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 1.0, "tgt": 2.0}
+  g06 fit= -99.00%  subs=[]  {"H": 24, "feat": "F2", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 4.0}
+  g06 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "lgbm_big", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.5}
+  g06 fit=  +3.53%  subs=[3.53, 5.11, 4.07]  {"H": 48, "feat": "F4", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 1.5, "tgt": 1.5}
+  g06 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g06 fit= -99.00%  subs=[]  {"H": 48, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g06 fit=  +1.84%  subs=[8.47, 1.84, 7.02]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.5, "tgt": 2.0}
+  g06 fit=  +4.60%  subs=[6.39, 5.44, 4.6]  {"H": 96, "feat": "F5", "model": "lgbm_s", "q": 0.97, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g06 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g06 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 4.0}
+  g06 fit=  +3.96%  subs=[8.58, 3.96, 4.81]  {"H": 48, "feat": "F2", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g06 fit=  -9.35%  subs=[-9.35, -3.8, -8.22]  {"H": 24, "feat": "F2", "model": "lgbm_big", "q": 0.85, "rth": 0, "stop": 2.5, "tgt": 1.0}
+  g06 fit= -99.00%  subs=[]  {"H": 48, "feat": "F2", "model": "lgbm_tiny", "q": 0.97, "rth": 1, "stop": 2.5, "tgt": 4.0}
+  g06 fit=  +0.22%  subs=[10.49, 4.18, 0.22]  {"H": 24, "feat": "F3", "model": "lgbm_big", "q": 0.75, "rth": 0, "stop": 3.0, "tgt": 3.0}
+  g06 fit= -99.00%  subs=[]  {"H": 12, "feat": "F3", "model": "lgbm_s", "q": 0.95, "rth": 1, "stop": 2.5, "tgt": 3.0}
+== GEN 6 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g07 fit= -99.00%  subs=[]  {"H": 12, "feat": "F5", "model": "lgbm_tiny", "q": 0.75, "rth": 0, "stop": 1.0, "tgt": 2.0}
+  g07 fit=  -0.15%  subs=[0.52, -0.15, 4.4]  {"H": 48, "feat": "F3", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g07 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 4.0}
+  g07 fit= -99.00%  subs=[]  {"H": 6, "feat": "F5", "model": "histgb_d", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g07 fit= -99.00%  subs=[]  {"H": 12, "feat": "F2", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 1.0, "tgt": 4.0}
+  g07 fit=  +5.85%  subs=[12.79, 5.85, 8.03]  {"H": 96, "feat": "F4", "model": "lgbm_big", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g07 fit= -99.00%  subs=[]  {"H": 48, "feat": "F2", "model": "histgb", "q": 0.97, "rth": 1, "stop": 2.0, "tgt": 1.0}
+  g07 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g07 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "lgbm_tiny", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g07 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "histgb_d", "q": 0.85, "rth": 1, "stop": 1.5, "tgt": 2.0}
+  g07 fit=  +3.47%  subs=[4.56, 8.62, 3.47]  {"H": 96, "feat": "F2", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g07 fit=  -3.80%  subs=[-3.8, 1.49, 2.59]  {"H": 12, "feat": "F3", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g07 fit=  -0.75%  subs=[-0.75, 1.21, 0.71]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 1.0}
+  g07 fit=  +4.54%  subs=[9.82, 9.32, 4.54]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.5, "tgt": 2.0}
+  g07 fit=  -2.33%  subs=[2.07, -2.33, 2.63]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 1.0}
+  g07 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g07 fit=  +3.71%  subs=[10.0, 3.71, 10.04]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g07 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g07 fit=  +3.98%  subs=[8.03, 4.27, 3.98]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g07 fit=  +4.13%  subs=[10.0, 7.6, 4.13]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 0, "stop": 3.0, "tgt": 1.0}
+  g07 fit= -99.00%  subs=[]  {"H": 48, "feat": "F2", "model": "histgb_d", "q": 0.75, "rth": 1, "stop": 2.5, "tgt": 3.0}
+  g07 fit=  +6.99%  subs=[10.76, 8.37, 6.99]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g07 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.95, "rth": 1, "stop": 2.5, "tgt": 2.0}
+  g07 fit= -99.00%  subs=[]  {"H": 48, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 1, "stop": 1.5, "tgt": 1.5}
+  g07 fit=  -3.70%  subs=[-1.31, -3.7, 0.98]  {"H": 6, "feat": "F3", "model": "lgbm_s", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 1.5}
+  g07 fit= -99.00%  subs=[]  {"H": 12, "feat": "F4", "model": "lgbm_big", "q": 0.97, "rth": 0, "stop": 1.0, "tgt": 2.0}
+== GEN 7 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g08 fit=  +2.39%  subs=[4.8, 7.68, 2.39]  {"H": 96, "feat": "F2", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g08 fit= -99.00%  subs=[]  {"H": 12, "feat": "F5", "model": "lgbm_tiny", "q": 0.85, "rth": 1, "stop": 2.5, "tgt": 2.5}
+  g08 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 1, "stop": 1.5, "tgt": 2.0}
+  g08 fit= -99.00%  subs=[]  {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.95, "rth": 1, "stop": 1.5, "tgt": 2.5}
+  g08 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.97, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g08 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.97, "rth": 0, "stop": 2.5, "tgt": 4.0}
+  g08 fit=  +5.25%  subs=[11.09, 5.25, 10.52]  {"H": 96, "feat": "F3", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g08 fit=  -1.57%  subs=[1.67, 2.18, -1.57]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.8, "rth": 1, "stop": 2.5, "tgt": 2.5}
+  g08 fit= -99.00%  subs=[]  {"H": 12, "feat": "F3", "model": "lgbm_s", "q": 0.75, "rth": 1, "stop": 2.5, "tgt": 4.0}
+  g08 fit=  +2.50%  subs=[11.08, 2.5, 8.72]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g08 fit=  +1.91%  subs=[4.35, 1.91, 6.06]  {"H": 48, "feat": "F3", "model": "histgb", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g08 fit=  -3.68%  subs=[-0.69, -3.68, -2.16]  {"H": 6, "feat": "F2", "model": "histgb", "q": 0.85, "rth": 1, "stop": 2.5, "tgt": 2.0}
+  g08 fit=  +3.19%  subs=[11.06, 3.19, 7.67]  {"H": 96, "feat": "F5", "model": "lgbm_tiny", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g08 fit= -99.00%  subs=[]  {"H": 6, "feat": "F2", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g08 fit=  +3.27%  subs=[7.61, 8.84, 3.27]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.97, "rth": 0, "stop": 2.5, "tgt": 1.0}
+  g08 fit=  +4.32%  subs=[5.15, 6.9, 4.32]  {"H": 24, "feat": "F5", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g08 fit=  +3.84%  subs=[8.05, 8.52, 3.84]  {"H": 96, "feat": "F5", "model": "lgbm_s", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 1.0}
+  g08 fit=  +4.75%  subs=[6.02, 8.4, 4.75]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.5, "tgt": 2.0}
+  g08 fit=  +3.29%  subs=[8.16, 6.0, 3.29]  {"H": 96, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g08 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.9, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g08 fit= -99.00%  subs=[]  {"H": 24, "feat": "F5", "model": "histgb_d", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 3.0}
+  g08 fit= -99.00%  subs=[]  {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.75, "rth": 1, "stop": 2.5, "tgt": 3.0}
+  g08 fit=  -0.35%  subs=[-0.35, -0.16, -0.31]  {"H": 12, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 0, "stop": 1.0, "tgt": 1.0}
+== GEN 8 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g09 fit=  +2.74%  subs=[9.02, 6.13, 2.74]  {"H": 96, "feat": "F5", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g09 fit=  +4.12%  subs=[4.12, 7.8, 6.22]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g09 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.95, "rth": 1, "stop": 1.0, "tgt": 3.0}
+  g09 fit= -99.00%  subs=[]  {"H": 12, "feat": "F5", "model": "lgbm_big", "q": 0.97, "rth": 1, "stop": 1.5, "tgt": 1.0}
+  g09 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g09 fit= -99.00%  subs=[]  {"H": 48, "feat": "F3", "model": "lgbm_tiny", "q": 0.75, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g09 fit= -99.00%  subs=[]  {"H": 6, "feat": "F4", "model": "histgb", "q": 0.9, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g09 fit=  +3.32%  subs=[6.15, 8.58, 3.32]  {"H": 24, "feat": "F5", "model": "histgb", "q": 0.95, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g09 fit=  +1.73%  subs=[5.47, 7.2, 1.73]  {"H": 96, "feat": "F5", "model": "lgbm_tiny", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g09 fit=  +4.50%  subs=[6.89, 6.47, 4.5]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.5, "tgt": 2.0}
+  g09 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "lgbm_tiny", "q": 0.9, "rth": 1, "stop": 1.0, "tgt": 3.0}
+  g09 fit=  +5.80%  subs=[9.1, 5.8, 6.42]  {"H": 48, "feat": "F4", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g09 fit= -99.00%  subs=[]  {"H": 24, "feat": "F3", "model": "lgbm_tiny", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g09 fit= -99.00%  subs=[]  {"H": 96, "feat": "F5", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g09 fit=  +3.87%  subs=[3.87, 6.97, 7.85]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g09 fit= -99.00%  subs=[]  {"H": 48, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g09 fit=  +2.05%  subs=[4.37, 2.05, 6.79]  {"H": 96, "feat": "F2", "model": "lgbm_tiny", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g09 fit=  +4.01%  subs=[8.8, 4.01, 7.67]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g09 fit=  -6.02%  subs=[-6.02, -1.48, 1.03]  {"H": 6, "feat": "F3", "model": "histgb", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g09 fit=  +2.68%  subs=[3.74, 5.39, 2.68]  {"H": 12, "feat": "F4", "model": "histgb_d", "q": 0.97, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g09 fit=  -4.25%  subs=[-4.25, -0.89, 2.75]  {"H": 6, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g09 fit= -99.00%  subs=[]  {"H": 12, "feat": "F2", "model": "histgb_d", "q": 0.9, "rth": 0, "stop": 1.0, "tgt": 1.5}
+  g09 fit=  +0.15%  subs=[0.16, 1.85, 0.15]  {"H": 96, "feat": "F5", "model": "lgbm_big", "q": 0.85, "rth": 1, "stop": 1.5, "tgt": 1.0}
+  g09 fit= -99.00%  subs=[]  {"H": 12, "feat": "F5", "model": "histgb", "q": 0.9, "rth": 1, "stop": 3.0, "tgt": 4.0}
+== GEN 9 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g10 fit=  +4.32%  subs=[10.94, 4.32, 5.49]  {"H": 96, "feat": "F2", "model": "lgbm_big", "q": 0.85, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g10 fit= -99.00%  subs=[]  {"H": 48, "feat": "F4", "model": "lgbm_s", "q": 0.97, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g10 fit=  +4.59%  subs=[8.43, 10.42, 4.59]  {"H": 96, "feat": "F2", "model": "lgbm_s", "q": 0.95, "rth": 0, "stop": 2.5, "tgt": 2.0}
+  g10 fit= -99.00%  subs=[]  {"H": 6, "feat": "F2", "model": "histgb", "q": 0.9, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g10 fit= -99.00%  subs=[]  {"H": 6, "feat": "F3", "model": "histgb", "q": 0.95, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g10 fit=  -1.08%  subs=[9.14, -1.08, 6.9]  {"H": 96, "feat": "F2", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 3.0, "tgt": 2.0}
+  g10 fit=  +6.60%  subs=[7.93, 9.61, 6.6]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g10 fit=  +5.83%  subs=[9.85, 5.83, 6.93]  {"H": 96, "feat": "F5", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g10 fit=  +5.85%  subs=[7.16, 9.28, 5.85]  {"H": 96, "feat": "F5", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g10 fit=  +1.52%  subs=[1.52, 2.05, 3.08]  {"H": 12, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g10 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g10 fit=  -2.26%  subs=[1.39, 1.06, -2.26]  {"H": 96, "feat": "F3", "model": "lgbm_big", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 1.0}
+  g10 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.95, "rth": 1, "stop": 1.5, "tgt": 2.0}
+  g10 fit=  -3.07%  subs=[-3.07, 2.98, 1.51]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.8, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g10 fit=  +2.04%  subs=[4.13, 2.04, 5.27]  {"H": 24, "feat": "F2", "model": "histgb_d", "q": 0.97, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g10 fit=  +2.98%  subs=[3.67, 3.55, 2.98]  {"H": 96, "feat": "F2", "model": "lgbm_big", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 1.0}
+  g10 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "lgbm_tiny", "q": 0.95, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g10 fit= -99.00%  subs=[]  {"H": 6, "feat": "F4", "model": "lgbm_tiny", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g10 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g10 fit= -99.00%  subs=[]  {"H": 48, "feat": "F3", "model": "histgb", "q": 0.85, "rth": 0, "stop": 1.0, "tgt": 3.0}
+  g10 fit= -99.00%  subs=[]  {"H": 12, "feat": "F5", "model": "lgbm_s", "q": 0.97, "rth": 1, "stop": 1.0, "tgt": 3.0}
+  g10 fit=  -3.35%  subs=[-1.35, -3.35, -2.55]  {"H": 24, "feat": "F3", "model": "histgb", "q": 0.75, "rth": 1, "stop": 1.5, "tgt": 1.0}
+  g10 fit=  +0.39%  subs=[5.68, 0.39, 2.18]  {"H": 96, "feat": "F3", "model": "histgb_d", "q": 0.97, "rth": 0, "stop": 1.5, "tgt": 1.5}
+  [checkpoint — run `step` again]
+  [injected 4 LSTM/GRU challengers into the population]
+  g10 fit=  -0.56%  subs=[0.55, 3.77, -0.56]  {"H": 12, "feat": "F4", "model": "lstm", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g10 fit= -99.00%  subs=[]  {"H": 24, "feat": "F4", "model": "lstm", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g10 fit=  +1.02%  subs=[1.02, 4.15, 3.19]  {"H": 12, "feat": "F4", "model": "gru", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g10 fit=  +1.21%  subs=[7.04, 4.94, 1.21]  {"H": 48, "feat": "F4", "model": "gru", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 1.5}
+== GEN 10 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g11 fit= -99.00%  subs=[]  {"H": 48, "feat": "F2", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 4.0}
+  g11 fit=  +5.21%  subs=[10.19, 5.84, 5.21]  {"H": 96, "feat": "F2", "model": "lgbm_tiny", "q": 0.9, "rth": 0, "stop": 2.5, "tgt": 2.0}
+  g11 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "lgbm_big", "q": 0.75, "rth": 1, "stop": 1.0, "tgt": 1.5}
+  g11 fit=  -4.78%  subs=[-0.88, 7.07, -4.78]  {"H": 96, "feat": "F2", "model": "gru", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 1.0}
+  g11 fit=  +4.38%  subs=[4.38, 4.41, 5.8]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 3.0, "tgt": 1.0}
+  g11 fit= -99.00%  subs=[]  {"H": 6, "feat": "F3", "model": "lgbm_tiny", "q": 0.97, "rth": 1, "stop": 2.5, "tgt": 2.5}
+  g11 fit=  +2.89%  subs=[2.89, 5.44, 4.8]  {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g11 fit= -99.00%  subs=[]  {"H": 24, "feat": "F2", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 1.0, "tgt": 2.0}
+  g11 fit=  +0.54%  subs=[0.54, 4.54, 1.03]  {"H": 96, "feat": "F2", "model": "histgb", "q": 0.97, "rth": 0, "stop": 1.5, "tgt": 1.0}
+  g11 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g11 fit=  +3.06%  subs=[3.79, 7.54, 3.06]  {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g11 fit= -99.00%  subs=[]  {"H": 48, "feat": "F5", "model": "gru", "q": 0.8, "rth": 1, "stop": 1.5, "tgt": 3.0}
+  g11 fit= -99.00%  subs=[]  {"H": 6, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g11 fit=  -0.99%  subs=[-0.99, 5.37, 7.63]  {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g11 fit=  +4.65%  subs=[8.78, 4.65, 6.58]  {"H": 96, "feat": "F4", "model": "lgbm_tiny", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g11 fit=  +6.49%  subs=[6.49, 7.14, 10.88]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.8, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g11 fit=  +3.01%  subs=[3.03, 6.45, 3.01]  {"H": 96, "feat": "F2", "model": "lgbm_tiny", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 1.0}
+  g11 fit=  +7.86%  subs=[11.45, 10.86, 7.86]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g11 fit=  +3.18%  subs=[3.18, 4.15, 4.0]  {"H": 96, "feat": "F3", "model": "histgb_d", "q": 0.95, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g11 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 1.0, "tgt": 2.0}
+  g11 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "histgb", "q": 0.95, "rth": 0, "stop": 1.0, "tgt": 2.0}
+  g11 fit= -99.00%  subs=[]  {"H": 48, "feat": "F2", "model": "histgb", "q": 0.97, "rth": 0, "stop": 2.5, "tgt": 3.0}
+  g11 fit= -99.00%  subs=[]  {"H": 6, "feat": "F3", "model": "histgb_d", "q": 0.75, "rth": 1, "stop": 1.0, "tgt": 4.0}
+  g11 fit= -99.00%  subs=[]  {"H": 48, "feat": "F3", "model": "lgbm_tiny", "q": 0.97, "rth": 0, "stop": 2.0, "tgt": 4.0}
+== GEN 11 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+  g12 fit=  -2.39%  subs=[-2.39, 1.72, 2.64]  {"H": 12, "feat": "F2", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g12 fit=  +2.27%  subs=[10.2, 2.27, 5.26]  {"H": 96, "feat": "F2", "model": "histgb_d", "q": 0.75, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g12 fit= -99.00%  subs=[]  {"H": 48, "feat": "F4", "model": "gru", "q": 0.9, "rth": 1, "stop": 3.0, "tgt": 2.0}
+  g12 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "lstm", "q": 0.85, "rth": 1, "stop": 2.5, "tgt": 2.0}
+  g12 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 1.0, "tgt": 2.0}
+  g12 fit=  +7.72%  subs=[8.96, 10.18, 7.72]  {"H": 96, "feat": "F5", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g12 fit= -99.00%  subs=[]  {"H": 96, "feat": "F2", "model": "gru", "q": 0.8, "rth": 0, "stop": 1.0, "tgt": 2.0}
+  g12 fit=  +0.15%  subs=[0.15, 9.16, 4.06]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.5}
+  g12 fit=  +5.86%  subs=[5.86, 7.45, 10.24]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.5, "tgt": 1.5}
+  g12 fit= -99.00%  subs=[]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g12 fit= -12.75%  subs=[-10.87, -12.75, -7.46]  {"H": 6, "feat": "F4", "model": "gru", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g12 fit=  -1.76%  subs=[-1.76, 0.2, 3.32]  {"H": 6, "feat": "F2", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g12 fit=  +3.00%  subs=[3.65, 4.98, 3.0]  {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g12 fit=  +4.90%  subs=[12.08, 4.9, 5.63]  {"H": 96, "feat": "F2", "model": "lgbm_s", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g12 fit=  +3.57%  subs=[7.74, 3.57, 6.93]  {"H": 96, "feat": "F4", "model": "lgbm_s", "q": 0.85, "rth": 0, "stop": 1.5, "tgt": 2.0}
+  g12 fit= -99.00%  subs=[]  {"H": 96, "feat": "F3", "model": "histgb_d", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 3.0}
+  g12 fit=  +1.53%  subs=[12.73, 6.98, 1.53]  {"H": 96, "feat": "F3", "model": "gru", "q": 0.9, "rth": 0, "stop": 2.0, "tgt": 1.5}
+  g12 fit=  +2.61%  subs=[7.61, 2.61, 2.71]  {"H": 96, "feat": "F3", "model": "lstm", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g12 fit=  +5.50%  subs=[5.5, 7.9, 5.68]  {"H": 96, "feat": "F4", "model": "histgb_d", "q": 0.8, "rth": 0, "stop": 2.0, "tgt": 2.0}
+  g12 fit= -99.00%  subs=[]  {"H": 48, "feat": "F5", "model": "histgb_d", "q": 0.85, "rth": 1, "stop": 2.0, "tgt": 2.0}
+  g12 fit=  -4.53%  subs=[-4.53, -3.48, -2.86]  {"H": 6, "feat": "F2", "model": "lgbm_big", "q": 0.97, "rth": 0, "stop": 3.0, "tgt": 1.5}
+  g12 fit=  +1.49%  subs=[10.11, 1.49, 2.32]  {"H": 48, "feat": "F4", "model": "lgbm_tiny", "q": 0.8, "rth": 0, "stop": 3.0, "tgt": 2.5}
+  g12 fit=  -8.17%  subs=[-4.9, -8.17, -5.21]  {"H": 6, "feat": "F3", "model": "lgbm_s", "q": 0.85, "rth": 1, "stop": 2.5, "tgt": 1.5}
+== GEN 12 BEST fit=+8.67% {"H": 96, "feat": "F4", "model": "histgb", "q": 0.85, "rth": 0, "stop": 2.0, "tgt": 2.0} ==
+== EVOLUTION-III COMPLETE — run `final` ==
+== EVOLUTION-III COMPLETE — run `final` ==

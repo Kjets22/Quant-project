@@ -31,7 +31,7 @@ import alpaca_api as broker
 
 LEDGER = Path("runs/alpaca2_ledger.json")
 TASK_LOG = Path("runs/alpaca_task.log")
-STRATS = ["v3", "v4", "v6", "v7", "vC", "vQ", "vQ2", "vA"]
+STRATS = ["v3", "v4", "v6", "v7", "vC", "vQ", "vQ2", "vA", "vP"]
 SLIP_BUDGET_BPS = 5.0
 
 

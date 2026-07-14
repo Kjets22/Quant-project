@@ -54,11 +54,15 @@ CONFIGS = [("v3", TICKERS, 30, 24, "atr",     1.5, 1.0, "sr",    ("q", 0.93),   
            ("v6", TICKERS, 60, 96, "atr",     7.0, 1.0, "trend", ("q", 0.93),    8),
            ("v7", TICKERS, 60, 96, "struct", 10.0, 1.0, "trend", ("q", 0.93),    8),
            ("vC", TICKERS, 60, 96, "atr",    30.0, 3.0, "trend", ("q", 0.93),    8),
+           # vQ: original tournament champion — high turnover (~9/mo), thin edge.
+           ("vQ",  ["QQQ"], 5, 12, "dollar",  2.0, 2.0, "full",  ("conf", 0.90), 1),
            # vQ2: EVOLVED champion (10-gen tournament, min-of-halves fitness). Long-only
            # QQQ, $2.50 target / $2 stop, 2-hour clock, HistGB, top-10% confidence gate.
            # Arena halves +1.98/+1.52; untouched final year: 68.4% win, +12.2 bps/trade.
            ("vQ2", ["QQQ"], 5, 24, "dollar",  2.5, 2.0, "full",  ("conf", 0.90), 1)]
 MODEL_BY_STRAT = {"vQ2": "histgb"}                       # default: the standard LightGBM
+# NOTE: vQ and vQ2 share QQQ; the one-per-ticker guardrail means whichever signals first
+# holds the slot that hour — occasional skips are expected and logged.
 
 LEDGER = Path("runs/alpaca2_ledger.json")
 LOG = Path("runs/alpaca_log.txt")

@@ -206,9 +206,14 @@ def step():
         logline(f"== EVOLUTION-II INIT: {POP} agents (vQ + vQ2 seeded), fitness = "
                 f"min-of-halves TOTAL P&L ==")
     # migrate any single-objective scores from the first stepping run (probas cached: cheap)
+    migrated = 0
     for k, v in list(st["scores"].items()):
         if not isinstance(v, list):
             st["scores"][k] = list(fitness(json.loads(k)))
+            migrated += 1
+    if migrated:
+        STATE.write_text(json.dumps(st))
+        logline(f"  [migrated {migrated} scores to dual-objective]")
     t0 = time.time()
     while st["gen"] <= GENS:
         for g in st["pop"]:
@@ -256,8 +261,9 @@ def final():
     sc = st["scores"]
 
     def gate_pick(track, idx):
-        top3 = sorted([g for g in st["pop"] if gkey(g) in sc],
-                      key=lambda g: -sc[gkey(g)][idx])[:3]
+        # consider EVERY genome ever evaluated, not just the final population
+        allg = [json.loads(k) for k in sc]
+        top3 = sorted(allg, key=lambda g: -sc[gkey(g)][idx])[:3]
         print(f"=== GATE (2024-07-14..2025-07-14): top-3 by {track} must confirm ===")
         gated = []
         for g in top3:

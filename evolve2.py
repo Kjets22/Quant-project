@@ -153,12 +153,20 @@ def pnl_fit(rets):
 
 
 def fitness(g):
+    """Dual objective: (pnl_fit, acc_fit). acc = min-of-halves WIN RATE, but only for
+    genomes that are PROFITABLE in both halves (blocks 90%-win/lose-big degenerates)."""
     proba = gproba(g, ARENA0)
     if proba is None:
-        return -99.0, -99.0, -99.0
-    f1 = pnl_fit(sim(g, proba, ARENA0, HALF, ARENA0))
-    f2 = pnl_fit(sim(g, proba, HALF, ARENA1, ARENA0))
-    return min(f1, f2), f1, f2
+        return -99.0, -99.0
+    r1 = sim(g, proba, ARENA0, HALF, ARENA0)
+    r2 = sim(g, proba, HALF, ARENA1, ARENA0)
+    p1, p2 = pnl_fit(r1), pnl_fit(r2)
+    pnl = min(p1, p2)
+    if pnl <= 0:
+        acc = -99.0
+    else:
+        acc = float(min((np.array(r1) > 0).mean(), (np.array(r2) > 0).mean()) * 100)
+    return pnl, acc
 
 
 def gkey(g):
@@ -197,26 +205,41 @@ def step():
         st = {"gen": 1, "pop": pop, "scores": {}, "history": []}
         logline(f"== EVOLUTION-II INIT: {POP} agents (vQ + vQ2 seeded), fitness = "
                 f"min-of-halves TOTAL P&L ==")
+    # migrate any single-objective scores from the first stepping run (probas cached: cheap)
+    for k, v in list(st["scores"].items()):
+        if not isinstance(v, list):
+            st["scores"][k] = list(fitness(json.loads(k)))
     t0 = time.time()
     while st["gen"] <= GENS:
         for g in st["pop"]:
             k = gkey(g)
             if k not in st["scores"]:
-                fit, f1, f2 = fitness(g)
-                st["scores"][k] = fit
-                logline(f"  g{st['gen']:02d} fit={fit:+7.2f}%  (h1 {f1:+.2f} / h2 {f2:+.2f})  {k}")
+                pnl, acc = fitness(g)
+                st["scores"][k] = [pnl, acc]
+                logline(f"  g{st['gen']:02d} pnl={pnl:+7.2f}%  acc={acc:5.1f}%  {k}")
                 STATE.write_text(json.dumps(st))
                 if time.time() - t0 > 460:
                     logline("  [checkpoint — run `step` again]")
                     return
-        ranked = sorted(st["pop"], key=lambda g: -st["scores"][gkey(g)])
-        best = ranked[0]
-        st["history"].append({"gen": st["gen"], "best_fit": st["scores"][gkey(best)],
-                              "best": best})
-        logline(f"== GEN {st['gen']} BEST fit={st['scores'][gkey(best)]:+.2f}% {gkey(best)} ==")
-        elites = ranked[:ELITE]
-        children, seen = [], {gkey(g) for g in elites}
-        while len(children) < POP - ELITE - IMMI:
+        by_pnl = sorted(st["pop"], key=lambda g: -st["scores"][gkey(g)][0])
+        by_acc = sorted(st["pop"], key=lambda g: -st["scores"][gkey(g)][1])
+        st["history"].append({"gen": st["gen"],
+                              "best_pnl": st["scores"][gkey(by_pnl[0])][0],
+                              "best_pnl_g": by_pnl[0],
+                              "best_acc": st["scores"][gkey(by_acc[0])][1],
+                              "best_acc_g": by_acc[0]})
+        logline(f"== GEN {st['gen']} BEST pnl={st['scores'][gkey(by_pnl[0])][0]:+.2f}% "
+                f"{gkey(by_pnl[0])}")
+        logline(f"             BEST acc={st['scores'][gkey(by_acc[0])][1]:.1f}% "
+                f"{gkey(by_acc[0])} ==")
+        # dual elite pool: top halves of each track, deduped, breed together
+        elites, seen = [], set()
+        for g in by_pnl[:ELITE // 2 + 1] + by_acc[:ELITE // 2 + 1]:
+            if gkey(g) not in seen:
+                seen.add(gkey(g)); elites.append(g)
+        elites = elites[:ELITE]
+        children = []
+        while len(children) < POP - len(elites) - IMMI:
             ch = mutate(crossover(rng.choice(elites), rng.choice(elites)))
             if gkey(ch) in seen:
                 ch = rand_genome()
@@ -230,22 +253,31 @@ def step():
 
 def final():
     st = json.loads(STATE.read_text())
-    ranked = sorted(st["pop"], key=lambda g: -st["scores"].get(gkey(g), -99))
-    top3 = ranked[:3]
-    print("=== GATE (2024-07-14..2025-07-14): top-3 must confirm ===")
-    gated = []
-    for g in top3:
-        proba = gproba(g, ARENA1)
-        rets = sim(g, proba, ARENA1, GATE1, ARENA1)
-        tot = pnl_fit(rets)
-        n = len(rets)
-        wins = float((np.array(rets) > 0).mean()) if n else 0
-        print(f"  gate: total={tot:+.2f}% n={n} win%={wins:.1%}  {gkey(g)}")
-        gated.append((tot, g))
-    gated.sort(key=lambda x: -x[0])
-    champ = gated[0][1]
-    print(f"\n=== FINAL one-shot (2025-07-14..now) — champion vs vQ vs vQ2 ===")
-    for name, g in (("CHAMPION", champ), ("vQ", VQ), ("vQ2", VQ2)):
+    sc = st["scores"]
+
+    def gate_pick(track, idx):
+        top3 = sorted([g for g in st["pop"] if gkey(g) in sc],
+                      key=lambda g: -sc[gkey(g)][idx])[:3]
+        print(f"=== GATE (2024-07-14..2025-07-14): top-3 by {track} must confirm ===")
+        gated = []
+        for g in top3:
+            proba = gproba(g, ARENA1)
+            rets = sim(g, proba, ARENA1, GATE1, ARENA1)
+            r = np.array(rets)
+            tot = pnl_fit(rets)
+            n = len(r)
+            wins = float((r > 0).mean()) if n else 0
+            print(f"  gate: total={tot:+.2f}% n={n} win%={wins:.1%}  {gkey(g)}")
+            score = tot if idx == 0 else (wins * 100 if tot > 0 and n >= 15 else -99)
+            gated.append((score, g))
+        gated.sort(key=lambda x: -x[0])
+        return gated[0][1]
+
+    champ_pnl = gate_pick("P&L", 0)
+    champ_acc = gate_pick("ACCURACY", 1)
+    print(f"\n=== FINAL one-shot (2025-07-14..now) — both champions vs vQ vs vQ2 ===")
+    for name, g in (("PNL-CHAMP", champ_pnl), ("ACC-CHAMP", champ_acc),
+                    ("vQ", VQ), ("vQ2", VQ2)):
         proba = gproba(g, GATE1)
         rets = sim(g, proba, GATE1, "2099-01-01", GATE1)
         r = np.array(rets)

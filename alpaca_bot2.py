@@ -54,9 +54,11 @@ CONFIGS = [("v3", TICKERS, 30, 24, "atr",     1.5, 1.0, "sr",    ("q", 0.93),   
            ("v6", TICKERS, 60, 96, "atr",     7.0, 1.0, "trend", ("q", 0.93),    8),
            ("v7", TICKERS, 60, 96, "struct", 10.0, 1.0, "trend", ("q", 0.93),    8),
            ("vC", TICKERS, 60, 96, "atr",    30.0, 3.0, "trend", ("q", 0.93),    8),
-           # vQ: tournament champion, long-only, QQQ, +-$2 dollar bracket, 60-min clock,
-           # top-10% CONFIDENCE gate. Validated Jul25-Apr26 (66% win) + Apr-Jul26 (67%).
-           ("vQ", ["QQQ"],  5, 12, "dollar",  2.0, 2.0, "full",  ("conf", 0.90), 1)]
+           # vQ2: EVOLVED champion (10-gen tournament, min-of-halves fitness). Long-only
+           # QQQ, $2.50 target / $2 stop, 2-hour clock, HistGB, top-10% confidence gate.
+           # Arena halves +1.98/+1.52; untouched final year: 68.4% win, +12.2 bps/trade.
+           ("vQ2", ["QQQ"], 5, 24, "dollar",  2.5, 2.0, "full",  ("conf", 0.90), 1)]
+MODEL_BY_STRAT = {"vQ2": "histgb"}                       # default: the standard LightGBM
 
 LEDGER = Path("runs/alpaca2_ledger.json")
 LOG = Path("runs/alpaca_log.txt")
@@ -173,9 +175,13 @@ def train_or_load(strat, tk, mins, hbar, mode, tp, sl, featmode, sel):
     if len(tr) < 500 or y[tr].sum() < 20:
         pkl.write_bytes(pickle.dumps(None))
         return None
-    clf = lgb.LGBMClassifier(n_estimators=300, learning_rate=0.03, num_leaves=15,
-                             min_child_samples=40, subsample=0.8, colsample_bytree=0.8,
-                             reg_lambda=1.0, verbose=-1)
+    if MODEL_BY_STRAT.get(strat) == "histgb":
+        from qqq_tournament import MODELS as TOURN_MODELS
+        clf = TOURN_MODELS["histgb"]()
+    else:
+        clf = lgb.LGBMClassifier(n_estimators=300, learning_rate=0.03, num_leaves=15,
+                                 min_child_samples=40, subsample=0.8, colsample_bytree=0.8,
+                                 reg_lambda=1.0, verbose=-1)
     clf.fit(X.iloc[tr], y[tr].astype(int))
     ptr = clf.predict_proba(X.iloc[tr])[:, 1]
     if sel[0] == "conf":                                 # long-side confidence gate (vQ)

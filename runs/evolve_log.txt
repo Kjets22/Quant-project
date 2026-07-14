@@ -1,0 +1,136 @@
+== EVOLUTION INIT: 20 agents (vQ seeded) ==
+  g01 eval fit=+0.59 (h1 +1.04/h2 +0.59) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.0}
+  g01 eval fit=-1.00 (h1 +0.65/h2 -1.00) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 1.5}
+  g01 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 1.5, "tgt": 2.0}
+  g01 eval fit=-0.38 (h1 -0.38/h2 +0.56) {"H": 12, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 2.0}
+  g01 eval fit=-1.00 (h1 -0.96/h2 -1.00) {"H": 12, "feat": "F3", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.0}
+  g01 eval fit=+0.59 (h1 +0.65/h2 +0.59) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.0}
+  g01 eval fit=+0.95 (h1 +0.95/h2 +0.98) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.0}
+  g01 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.95, "stop": 1.5, "tgt": 3.0}
+  g01 eval fit=+0.82 (h1 +0.82/h2 +1.61) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 3.0, "tgt": 2.5}
+  g01 eval fit=+1.16 (h1 +1.16/h2 +1.83) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 2.5}
+  g01 eval fit=-2.28 (h1 -1.35/h2 -2.28) {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.95, "stop": 2.5, "tgt": 2.0}
+  g01 eval fit=-0.90 (h1 -0.29/h2 -0.90) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 3.0, "tgt": 3.0}
+  g01 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 12, "feat": "F4", "model": "histgb", "q": 0.95, "stop": 2.0, "tgt": 2.5}
+  g01 eval fit=-2.50 (h1 -0.90/h2 -2.50) {"H": 6, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 3.0, "tgt": 2.5}
+  g01 eval fit=-0.99 (h1 -0.03/h2 -0.99) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 2.0}
+  g01 eval fit=-2.16 (h1 -2.16/h2 -1.47) {"H": 12, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.5, "tgt": 2.0}
+  g01 eval fit=-0.04 (h1 -0.04/h2 -0.04) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.95, "stop": 2.5, "tgt": 2.5}
+== GEN 1 BEST fit=+1.16 {"H": 24, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 2.5} ==
+  g02 eval fit=-0.32 (h1 -0.15/h2 -0.32) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 2.0}
+  g02 eval fit=-0.29 (h1 -0.29/h2 -0.29) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.5, "tgt": 2.0}
+  g02 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.95, "stop": 2.0, "tgt": 2.5}
+  g02 eval fit=-0.13 (h1 -0.13/h2 -0.10) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 3.0, "tgt": 2.0}
+  g02 eval fit=+0.60 (h1 +0.60/h2 +2.75) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 1.5, "tgt": 2.0}
+  g02 eval fit=-0.43 (h1 -0.43/h2 +0.51) {"H": 12, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.0}
+  g02 eval fit=+0.60 (h1 +0.68/h2 +0.60) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 2.0}
+  g02 eval fit=-1.27 (h1 -0.32/h2 -1.27) {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 2.0}
+  g02 eval fit=+0.05 (h1 +0.90/h2 +0.05) {"H": 12, "feat": "F3", "model": "histgb", "q": 0.95, "stop": 2.0, "tgt": 2.0}
+  g02 eval fit=-1.99 (h1 -0.72/h2 -1.99) {"H": 12, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 2.0}
+  g02 eval fit=-2.30 (h1 -2.30/h2 -1.24) {"H": 12, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 1.5}
+  g02 eval fit=+0.86 (h1 +0.86/h2 +1.49) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.5}
+  g02 eval fit=+1.03 (h1 +1.03/h2 +1.42) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 2.5}
+  g02 eval fit=-0.56 (h1 +0.08/h2 -0.56) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 3.0, "tgt": 2.5}
+  g02 eval fit=-0.93 (h1 -0.93/h2 -0.89) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 3.0, "tgt": 2.0}
+== GEN 2 BEST fit=+1.16 {"H": 24, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 2.5} ==
+  g03 eval fit=+0.47 (h1 +0.72/h2 +0.47) {"H": 12, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 2.5}
+  g03 eval fit=+0.63 (h1 +0.78/h2 +0.63) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 3.0, "tgt": 3.0}
+  g03 eval fit=+0.39 (h1 +0.41/h2 +0.39) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.95, "stop": 2.5, "tgt": 2.5}
+  g03 eval fit=+1.17 (h1 +1.21/h2 +1.17) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.5}
+  g03 eval fit=+0.19 (h1 +0.27/h2 +0.19) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.9, "stop": 2.5, "tgt": 3.0}
+  g03 eval fit=-0.58 (h1 +0.51/h2 -0.58) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 1.5}
+  g03 eval fit=+0.08 (h1 +0.08/h2 +0.53) {"H": 6, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 2.5}
+  g03 eval fit=+0.43 (h1 +0.43/h2 +0.51) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 3.0, "tgt": 2.5}
+  g03 eval fit=+0.33 (h1 +0.95/h2 +0.33) {"H": 6, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5}
+  g03 eval fit=-0.35 (h1 +1.23/h2 -0.35) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 3.0, "tgt": 3.0}
+  g03 eval fit=+0.29 (h1 +0.98/h2 +0.29) {"H": 12, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5}
+  g03 eval fit=-0.90 (h1 -0.90/h2 -0.29) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 2.5, "tgt": 3.0}
+  g03 eval fit=-0.14 (h1 +0.03/h2 -0.14) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 3.0, "tgt": 2.5}
+  g03 eval fit=+0.59 (h1 +1.57/h2 +0.59) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 3.0, "tgt": 3.0}
+== GEN 3 BEST fit=+1.17 {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.5} ==
+  g04 eval fit=+0.13 (h1 +0.13/h2 +0.54) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 2.0}
+  g04 eval fit=+1.24 (h1 +1.24/h2 +1.95) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 2.5}
+  g04 eval fit=-1.36 (h1 -1.36/h2 -0.73) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.9, "stop": 3.0, "tgt": 1.5}
+  g04 eval fit=+0.03 (h1 +0.03/h2 +0.12) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.0}
+  g04 eval fit=+1.52 (h1 +1.98/h2 +1.52) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5}
+  g04 eval fit=-0.08 (h1 -0.08/h2 +0.95) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.95, "stop": 2.0, "tgt": 1.5}
+  g04 eval fit=+1.25 (h1 +1.33/h2 +1.25) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 2.5}
+  g04 eval fit=-1.57 (h1 -1.57/h2 -1.03) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 1.5, "tgt": 1.5}
+  g04 eval fit=-0.99 (h1 -0.01/h2 -0.99) {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.95, "stop": 3.0, "tgt": 2.5}
+  g04 eval fit=-5.26 (h1 -5.26/h2 -2.73) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 3.0, "tgt": 1.5}
+  g04 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.95, "stop": 2.0, "tgt": 2.5}
+  g04 eval fit=+0.37 (h1 +0.81/h2 +0.37) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.5, "tgt": 3.0}
+  g04 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 6, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 1.5, "tgt": 2.5}
+  g04 eval fit=+0.55 (h1 +0.57/h2 +0.55) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.0}
+  g04 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 1.5, "tgt": 2.5}
+== GEN 4 BEST fit=+1.52 {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5} ==
+  g05 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 1.5, "tgt": 2.5}
+  g05 eval fit=-0.47 (h1 +0.52/h2 -0.47) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 1.5}
+  g05 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 1.5, "tgt": 3.0}
+  g05 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 12, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 3.0}
+  g05 eval fit=-1.90 (h1 -1.14/h2 -1.90) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 3.0, "tgt": 1.5}
+  g05 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 3.0}
+  g05 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 3.0}
+  g05 eval fit=-0.07 (h1 +1.01/h2 -0.07) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.5, "tgt": 2.0}
+  g05 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 12, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 3.0}
+  g05 eval fit=+0.85 (h1 +0.85/h2 +1.22) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.95, "stop": 2.0, "tgt": 2.0}
+  g05 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.95, "stop": 2.0, "tgt": 3.0}
+  g05 eval fit=-0.21 (h1 +0.09/h2 -0.21) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 1.5, "tgt": 1.5}
+== GEN 5 BEST fit=+1.52 {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5} ==
+  g06 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 1.5, "tgt": 2.5}
+  g06 eval fit=+0.62 (h1 +0.89/h2 +0.62) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.5, "tgt": 2.5}
+  g06 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 1.5, "tgt": 2.5}
+  g06 eval fit=-0.97 (h1 +0.46/h2 -0.97) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 1.5}
+  g06 eval fit=-0.05 (h1 -0.05/h2 +0.57) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 1.5, "tgt": 1.5}
+  g06 eval fit=-5.32 (h1 -5.32/h2 -3.26) {"H": 6, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 3.0, "tgt": 1.5}
+  g06 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.95, "stop": 2.0, "tgt": 3.0}
+  g06 eval fit=+0.20 (h1 +1.07/h2 +0.20) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.5, "tgt": 2.5}
+  g06 eval fit=-3.36 (h1 -2.67/h2 -3.36) {"H": 12, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 1.5}
+  g06 eval fit=-0.95 (h1 +0.01/h2 -0.95) {"H": 6, "feat": "F3", "model": "lgbm_s", "q": 0.95, "stop": 3.0, "tgt": 2.5}
+  g06 eval fit=-0.24 (h1 +0.83/h2 -0.24) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.9, "stop": 3.0, "tgt": 2.5}
+== GEN 6 BEST fit=+1.52 {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5} ==
+  g07 eval fit=+0.90 (h1 +1.59/h2 +0.90) {"H": 12, "feat": "F4", "model": "histgb", "q": 0.95, "stop": 2.0, "tgt": 2.0}
+  g07 eval fit=+0.52 (h1 +0.52/h2 +0.66) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 3.0}
+  g07 eval fit=+0.91 (h1 +0.91/h2 +1.57) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 3.0, "tgt": 2.5}
+  g07 eval fit=+0.72 (h1 +2.13/h2 +0.72) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 2.5}
+  g07 eval fit=-2.61 (h1 -2.61/h2 -1.83) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.5, "tgt": 1.5}
+  g07 eval fit=+0.64 (h1 +2.35/h2 +0.64) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 3.0, "tgt": 3.0}
+  g07 eval fit=-2.70 (h1 -2.70/h2 -1.36) {"H": 12, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 2.5, "tgt": 1.5}
+  g07 eval fit=-5.11 (h1 -5.11/h2 -4.25) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 2.5, "tgt": 1.5}
+  g07 eval fit=-1.27 (h1 -1.27/h2 -0.68) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 3.0, "tgt": 1.5}
+  g07 eval fit=+1.36 (h1 +1.36/h2 +1.48) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.95, "stop": 2.0, "tgt": 2.0}
+  g07 eval fit=+1.06 (h1 +2.44/h2 +1.06) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5}
+  g07 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 6, "feat": "F3", "model": "lgbm_s", "q": 0.95, "stop": 1.5, "tgt": 3.0}
+  g07 eval fit=-1.90 (h1 -1.90/h2 -0.83) {"H": 12, "feat": "F3", "model": "histgb", "q": 0.95, "stop": 2.5, "tgt": 1.5}
+== GEN 7 BEST fit=+1.52 {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5} ==
+  g08 eval fit=-0.73 (h1 +0.79/h2 -0.73) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.95, "stop": 2.5, "tgt": 1.5}
+  g08 eval fit=+0.89 (h1 +1.75/h2 +0.89) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.95, "stop": 3.0, "tgt": 2.5}
+  g08 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 6, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 3.0}
+  g08 eval fit=+0.26 (h1 +1.67/h2 +0.26) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.5}
+  g08 eval fit=-0.38 (h1 +1.40/h2 -0.38) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.5, "tgt": 3.0}
+  g08 eval fit=+0.15 (h1 +1.22/h2 +0.15) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.95, "stop": 3.0, "tgt": 2.5}
+  g08 eval fit=-0.30 (h1 -0.03/h2 -0.30) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 2.5, "tgt": 3.0}
+  g08 eval fit=-0.73 (h1 -0.73/h2 +0.78) {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.0, "tgt": 2.5}
+== GEN 8 BEST fit=+1.52 {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5} ==
+  g09 eval fit=-1.24 (h1 -1.24/h2 -0.80) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.5, "tgt": 1.5}
+  g09 eval fit=-2.89 (h1 +0.71/h2 -2.89) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.85, "stop": 2.5, "tgt": 2.0}
+  g09 eval fit=-2.99 (h1 -2.02/h2 -2.99) {"H": 6, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 1.5}
+  g09 eval fit=-3.28 (h1 -3.28/h2 -2.85) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.9, "stop": 2.5, "tgt": 2.0}
+  g09 eval fit=-99.00 (h1 -99.00/h2 +0.62) {"H": 6, "feat": "F4", "model": "histgb", "q": 0.95, "stop": 2.0, "tgt": 2.5}
+  g09 eval fit=-0.68 (h1 -0.68/h2 -0.30) {"H": 6, "feat": "F3", "model": "lgbm_s", "q": 0.9, "stop": 3.0, "tgt": 3.0}
+  g09 eval fit=-5.03 (h1 -3.54/h2 -5.03) {"H": 6, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 3.0, "tgt": 2.0}
+  g09 eval fit=-0.65 (h1 +0.48/h2 -0.65) {"H": 24, "feat": "F3", "model": "lgbm_s", "q": 0.9, "stop": 2.5, "tgt": 1.5}
+  g09 eval fit=+0.27 (h1 +1.58/h2 +0.27) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.5, "tgt": 2.5}
+== GEN 9 BEST fit=+1.52 {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5} ==
+  g10 eval fit=+0.41 (h1 +0.41/h2 +0.41) {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.5}
+  g10 eval fit=-0.10 (h1 +0.31/h2 -0.10) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.85, "stop": 2.5, "tgt": 2.5}
+  g10 eval fit=-0.92 (h1 +0.82/h2 -0.92) {"H": 24, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 2.0, "tgt": 2.0}
+  g10 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 3.0}
+  g10 eval fit=-0.96 (h1 -0.96/h2 -0.14) {"H": 12, "feat": "F4", "model": "lgbm_s", "q": 0.85, "stop": 2.5, "tgt": 2.0}
+  g10 eval fit=-1.04 (h1 +0.21/h2 -1.04) {"H": 6, "feat": "F3", "model": "histgb", "q": 0.95, "stop": 2.0, "tgt": 2.0}
+  g10 eval fit=-1.01 (h1 +0.49/h2 -1.01) {"H": 6, "feat": "F4", "model": "lgbm_s", "q": 0.9, "stop": 2.0, "tgt": 2.0}
+  g10 eval fit=-0.16 (h1 -0.16/h2 +0.49) {"H": 12, "feat": "F3", "model": "histgb", "q": 0.85, "stop": 1.5, "tgt": 2.0}
+  g10 eval fit=-99.00 (h1 -99.00/h2 -99.00) {"H": 24, "feat": "F4", "model": "histgb", "q": 0.95, "stop": 2.0, "tgt": 3.0}
+  g10 eval fit=-0.01 (h1 +1.36/h2 -0.01) {"H": 24, "feat": "F4", "model": "lgbm_s", "q": 0.95, "stop": 3.0, "tgt": 2.0}
+== GEN 10 BEST fit=+1.52 {"H": 24, "feat": "F4", "model": "histgb", "q": 0.9, "stop": 2.0, "tgt": 2.5} ==
+== EVOLUTION COMPLETE (10 generations) — run `final` ==

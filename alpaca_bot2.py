@@ -38,6 +38,7 @@ from triple_barrier_ml import features
 from triple_barrier_breadth import TICKERS
 from sr_features import sr_features
 from wide_hunter import atr_fixed, trend_features
+from qqq_tournament import extra_features
 from basket import ticker_cfg
 from data import fetch_polygon
 
@@ -47,11 +48,15 @@ DAILY_LOSS_LIMIT = 400.0           # shared (two arms trade in parallel)
 DD_BREAKER = 3_000.0
 MIN_ATR_PCT = 0.0012
 SEL_Q = 0.93
-CONFIGS = [("v3", 30, 24, "atr",     1.5, 1.0, False, 2),
-           ("v4", 15, 24, "atr",     4.0, 1.0, False, 1),
-           ("v6", 60, 96, "atr",     7.0, 1.0, True,  8),
-           ("v7", 60, 96, "struct", 10.0, 1.0, True,  8),
-           ("vC", 60, 96, "atr",    30.0, 3.0, True,  8)]
+#          name  tickers  mins hbar  mode      tp    sl  features  selection      ddl
+CONFIGS = [("v3", TICKERS, 30, 24, "atr",     1.5, 1.0, "sr",    ("q", 0.93),    2),
+           ("v4", TICKERS, 15, 24, "atr",     4.0, 1.0, "sr",    ("q", 0.93),    1),
+           ("v6", TICKERS, 60, 96, "atr",     7.0, 1.0, "trend", ("q", 0.93),    8),
+           ("v7", TICKERS, 60, 96, "struct", 10.0, 1.0, "trend", ("q", 0.93),    8),
+           ("vC", TICKERS, 60, 96, "atr",    30.0, 3.0, "trend", ("q", 0.93),    8),
+           # vQ: tournament champion, long-only, QQQ, +-$2 dollar bracket, 60-min clock,
+           # top-10% CONFIDENCE gate. Validated Jul25-Apr26 (66% win) + Apr-Jul26 (67%).
+           ("vQ", ["QQQ"],  5, 12, "dollar",  2.0, 2.0, "full",  ("conf", 0.90), 1)]
 
 LEDGER = Path("runs/alpaca2_ledger.json")
 LOG = Path("runs/alpaca_log.txt")
@@ -107,7 +112,7 @@ def full_series(tk):
     return df
 
 
-def prep(tk, mins, use_trend, mode):
+def prep(tk, mins, featmode, mode):
     d = full_series(tk).set_index("timestamp").resample(f"{mins}min").agg(
         high=("high", "max"), low=("low", "min"), close=("close", "last"),
         volume=("volume", "sum")).dropna().reset_index()
@@ -118,27 +123,39 @@ def prep(tk, mins, use_trend, mode):
     A = atr_fixed(h, l, c)
     X = pd.concat([features(h, l, c, v).reset_index(drop=True),
                    sr_features(d).reset_index(drop=True)], axis=1)
-    if use_trend:
+    if featmode in ("trend", "full"):
         X = pd.concat([X, trend_features(h, l, c, A).reset_index(drop=True)], axis=1)
+    if featmode == "full":
+        X = pd.concat([X, extra_features(d, h, l, c, v, A).reset_index(drop=True)], axis=1)
     if mode == "struct":
         swing = (pd.Series(l).rolling(20).min().shift(1) - 0.25 * A).to_numpy()
         risk = c - swing
         valid = np.isfinite(risk) & (risk > 0.2 * A) & (risk < 4.0 * A)
         stop_px, tgt_px = swing, c + 10.0 * risk
+    elif mode == "dollar":
+        valid = np.isfinite(A)
+        stop_px, tgt_px = None, None                     # filled per config in caller ($)
     else:
         valid = np.isfinite(A)
         stop_px, tgt_px = None, None
     return ts, h, l, c, A, X, valid, stop_px, tgt_px
 
 
-def train_or_load(strat, tk, mins, hbar, mode, tp, sl, use_trend):
+def _barriers(mode, c, A, tp, sl, stop_px, tgt_px):
+    if mode == "struct":
+        return stop_px, tgt_px
+    if mode == "dollar":
+        return c - sl, c + tp                            # fixed-dollar barriers
+    return c - sl * A, c + tp * A                        # ATR barriers
+
+
+def train_or_load(strat, tk, mins, hbar, mode, tp, sl, featmode, sel):
     MODELS.mkdir(exist_ok=True)
     pkl = MODELS / f"{strat}_{tk}_{datetime.now(timezone.utc):%Y%m%d}.pkl"
     if pkl.exists():
         return pickle.loads(pkl.read_bytes())
-    ts, h, l, c, A, X, valid, stop_px, tgt_px = prep(tk, mins, use_trend, mode)
-    if mode != "struct":
-        stop_px, tgt_px = c - sl * A, c + tp * A
+    ts, h, l, c, A, X, valid, stop_px, tgt_px = prep(tk, mins, featmode, mode)
+    stop_px, tgt_px = _barriers(mode, c, A, tp, sl, stop_px, tgt_px)
     n = len(c)
     y = np.full(n, np.nan)
     for i in range(n - 1):
@@ -160,7 +177,11 @@ def train_or_load(strat, tk, mins, hbar, mode, tp, sl, use_trend):
                              min_child_samples=40, subsample=0.8, colsample_bytree=0.8,
                              reg_lambda=1.0, verbose=-1)
     clf.fit(X.iloc[tr], y[tr].astype(int))
-    thr = float(np.quantile(clf.predict_proba(X.iloc[tr])[:, 1], SEL_Q))
+    ptr = clf.predict_proba(X.iloc[tr])[:, 1]
+    if sel[0] == "conf":                                 # long-side confidence gate (vQ)
+        thr = float(0.5 + np.quantile(np.abs(ptr - 0.5), sel[1]))
+    else:                                                # top-quantile of P(win)
+        thr = float(np.quantile(ptr, sel[1]))
     obj = {"clf": clf, "thr": thr}
     pkl.write_bytes(pickle.dumps(obj))
     return obj
@@ -266,20 +287,19 @@ def cycle(dry=False):
     counts = {s: sum(1 for x in led["open"] + led["pending"] if x["style"] == s)
               for s in ("mkt", "lmt")}
     n_sig = 0
-    for strat, mins, hbar, mode, tp, sl, use_trend, ddl in CONFIGS:
-        for tk in TICKERS:
+    for strat, tks, mins, hbar, mode, tp, sl, featmode, sel, ddl in CONFIGS:
+        for tk in tks:
             try:
-                model = train_or_load(strat, tk, mins, hbar, mode, tp, sl, use_trend)
+                model = train_or_load(strat, tk, mins, hbar, mode, tp, sl, featmode, sel)
                 if model is None:
                     continue
-                ts, h, l, c, A, X, valid, stop_px, tgt_px = prep(tk, mins, use_trend, mode)
-                if mode != "struct":
-                    stop_px, tgt_px = c - sl * A, c + tp * A
+                ts, h, l, c, A, X, valid, stop_px, tgt_px = prep(tk, mins, featmode, mode)
+                stop_px, tgt_px = _barriers(mode, c, A, tp, sl, stop_px, tgt_px)
                 i = len(c) - 1
                 if i < 1 or not valid[i] or X.iloc[i].isna().any():
                     continue
-                if A[i] / c[i] < MIN_ATR_PCT:
-                    continue
+                if mode != "dollar" and A[i] / c[i] < MIN_ATR_PCT:
+                    continue                             # ATR floor n/a for $-bracket vQ
                 proba = float(model["clf"].predict_proba(X.iloc[[i]])[0, 1])
                 bar_key, bar_ts = f"{strat}_{tk}", str(pd.Timestamp(ts[i]))
                 if proba < model["thr"] or led["acted_bars"].get(bar_key) == bar_ts:

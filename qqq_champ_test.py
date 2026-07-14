@@ -25,8 +25,8 @@ from qqq_tournament import load, MODELS
 
 H, TGT = 12, 2.0
 EFF_COST = 5.0 / 1e4
-MONTH0 = "2026-06-14"
-CONF_Q = 0.80
+MONTH0 = sys.argv[1] if len(sys.argv) > 1 else "2026-06-14"
+CONF_Q = float(sys.argv[2]) if len(sys.argv) > 2 else 0.80
 
 
 def main():
@@ -52,7 +52,8 @@ def main():
     ptr = clf.predict_proba(X.iloc[tr])[:, 1]
     conf_thr = np.quantile(np.abs(ptr - 0.5), CONF_Q)
 
-    fwd = np.where(fin & (ts >= np.datetime64(MONTH0)))[0]
+    end = np.datetime64(sys.argv[3]) if len(sys.argv) > 3 else ts[-1] + np.timedelta64(1, "D")
+    fwd = np.where(fin & (ts >= np.datetime64(MONTH0)) & (ts < end))[0]
     proba = clf.predict_proba(X.iloc[fwd])[:, 1]
     pmap = {int(ix): float(p) for ix, p in zip(fwd, proba)}
 

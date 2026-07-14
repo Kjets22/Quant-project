@@ -148,10 +148,15 @@ def main():
                                  f"during market hours) — is the scheduled task running?")
             except Exception:
                 pass
-    # 5. models trained today
-    tag = f"_{datetime.now(timezone.utc):%Y%m%d}.pkl"
-    if not any(Path("models").glob(f"*{tag}")):
-        flags.append("WARN: no models trained today — first cycle of the day may not have run.")
+    # 5. model freshness (newest pickle within 36h — avoids UTC-date false alarms at night)
+    pkls = list(Path("models").glob("*.pkl"))
+    if pkls:
+        newest = max(p.stat().st_mtime for p in pkls)
+        age_h = (datetime.now().timestamp() - newest) / 3600
+        if age_h > 36:
+            flags.append(f"WARN: newest model is {age_h:.0f}h old — daily retraining may have stopped.")
+    else:
+        flags.append("WARN: no models exist — the bot has never trained.")
     # 6. halted
     if led.get("state", {}).get("halted"):
         flags.append("CRITICAL: drawdown breaker is HALTED — no new entries until reviewed.")

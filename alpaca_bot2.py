@@ -80,10 +80,11 @@ MODEL_BY_STRAT = {"vQ2": "histgb", "vP": "histgb", "vS": "histgb"}
 # NOTE: vQ and vQ2 share QQQ; the one-per-ticker guardrail means whichever signals first
 # holds the slot that hour — occasional skips are expected and logged.
 
-# ---- OPTIONS OVERLAY (vc_options_real.py result: 1-2w ATM calls +14.9%/trade) ----
-# Every vC signal ALSO buys ~$1k of ATM calls, sold when the stock leg closes.
+# ---- vCO: the OPTIONS strategy (vc_options_real.py: 1-2w ATM calls +14.9%/trade) ----
+# Fires on the same signals as vC but is its OWN strategy with its OWN book — tracked
+# and reported separately from vC stock so the two can be compared head-to-head.
 # Calls only — the stable is long-only (short side failed the fresh holdout).
-OPT_STRATS = {"vC"}
+OPT_STRATS = {"vC"}                # signal sources that also trigger a vCO entry
 OPT_PREMIUM = 1_000.0              # target premium per signal
 OPT_DTE = (8, 16)                  # expiry window; must outlive vC's 8-day time exit
 OPT_MAX_OPEN = 8
@@ -340,7 +341,7 @@ def manage_opts(led, dry):
             if o["status"] == "filled" and not p.get("fill"):
                 p["fill"] = float(o["filled_avg_price"])
                 log(f"  OPT FILLED {p['occ']} x{p['qty']} @ {p['fill']:.2f}")
-            stock_alive = any(x["tk"] == p["tk"] and x["strat"] == p["strat"]
+            stock_alive = any(x["tk"] == p["tk"] and x["strat"] == p.get("src", "vC")
                               and x["style"] == "mkt"
                               for x in led["open"] + led["pending"])
             expiry_near = pd.Timestamp(p["expiry"]).date() <= today + pd.Timedelta(days=1)
@@ -442,8 +443,9 @@ def cycle(dry=False):
                             o = broker.market_buy(con["symbol"], qo,
                                                   f"opt-{strat}-{tk}-{stamp}")
                             led["opt_open"].append(dict(
-                                strat=strat, tk=tk, occ=con["symbol"], qty=qo,
-                                order_id=o["id"], expiry=con["expiration_date"],
+                                strat="vCO", src=strat, tk=tk, occ=con["symbol"],
+                                qty=qo, order_id=o["id"],
+                                expiry=con["expiration_date"],
                                 sig_px=float(c[i]), bar=bar_ts, ets=str(now),
                                 deadline=str(now + pd.Timedelta(days=ddl)),
                                 est_px=px))
@@ -481,8 +483,10 @@ def status():
             print(f"      pend  {x['strat']} {x['tk']} ({'limit @ '+format(x['sig_px'],'.2f') if s=='lmt' else 'market'})")
     ocl = led.get("opt_closed", [])
     opnl = sum(x.get("pnl") or 0 for x in ocl)
-    print(f"  OPTIONS overlay (vC calls): open={len(led.get('opt_open', []))} "
-          f"closed={len(ocl)} realized=${opnl:+.2f}")
+    owins = sum(1 for x in ocl if (x.get("pnl") or 0) > 0)
+    print(f"  vCO OPTIONS strategy (own book, vC signals): "
+          f"open={len(led.get('opt_open', []))} closed={len(ocl)} wins={owins} "
+          f"realized=${opnl:+.2f}")
     for x in led.get("opt_open", []):
         print(f"      opt   {x['occ']} x{x['qty']} "
               f"{'@ '+format(x['fill'], '.2f') if x.get('fill') else '(pending fill)'} "

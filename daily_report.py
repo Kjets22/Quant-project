@@ -106,14 +106,21 @@ def main():
       f"(mkt ${arm_tot.get('mkt',0):+,.2f} vs lmt ${arm_tot.get('lmt',0):+,.2f}, "
       f"incl. unrealized)")
     w("")
-    # ---------- options overlay (vC calls) ----------
+    # ---------- vCO: the options strategy (own book, same signals as vC) ----------
     ool, ocl = led.get("opt_open", []), led.get("opt_closed", [])
     if ool or ocl or opos:
-        w("===== OPTIONS OVERLAY (vC calls) =====")
+        w("===== vCO — OPTIONS strategy (vC signals, separate book) =====")
         realized = sum(x.get("pnl") or 0 for x in ocl)
         unreal = sum(float(p.get("unrealized_pl") or 0) for p in opos)
-        w(f"  open {len(ool)} | closed {len(ocl)} | realized ${realized:+,.2f} "
-          f"| unrealized ${unreal:+,.2f}")
+        wins = sum(1 for x in ocl if (x.get("pnl") or 0) > 0)
+        wp = f"{wins/len(ocl):.0%}" if ocl else "-"
+        w(f"  closed {len(ocl)} | win% {wp} | realized ${realized:+,.2f} "
+          f"| open {len(ool)} | unrealized ${unreal:+,.2f}")
+        vc_cl = [x for x in led["closed"]
+                 if x["strat"] == "vC" and x["style"] == "mkt" and x["outcome"] != "MISSED"]
+        vc_r = sum(x.get("pnl") or 0 for x in vc_cl)
+        w(f"  head-to-head: vC stock (mkt arm) realized ${vc_r:+,.2f} over "
+          f"{len(vc_cl)} closed vs vCO options ${realized:+,.2f} over {len(ocl)}")
         for p in opos:
             w(f"    {p['symbol']} x{p['qty']} entry {float(p['avg_entry_price']):.2f} "
               f"now {float(p['current_price'] or 0):.2f} "

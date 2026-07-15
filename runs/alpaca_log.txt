@@ -509,3 +509,117 @@
 2026-07-14 19:46:04Z  A/B cycle | equity=$100,095.86 day=+104.04 dd=0.00 | market=OPEN
 2026-07-14 19:46:26Z  A/B cycle done | signals=0 open=6 pending=0 closed=2
 2026-07-14 20:01:04Z  A/B cycle | equity=$100,093.34 day=+101.52 dd=2.52 | market=closed
+2026-07-14 20:16:04Z  A/B cycle | equity=$100,090.34 day=+98.52 dd=5.52 | market=closed
+2026-07-14 20:17:20Z  A/B cycle | equity=$100,090.53 day=+98.71 dd=5.33 | market=closed | DRYRUN
+2026-07-14 20:17:26Z    SIGNAL v3 MSFT bar=2026-07-14 19:30:00 p=0.525 sig_px=384.94 tgt=388.68 stop=382.44 qty=2 [DRYRUN]
+2026-07-14 20:17:36Z  A/B cycle done | signals=1 open=6 pending=0 closed=2
+2026-07-14 20:31:04Z  A/B cycle | equity=$100,092.56 day=+100.74 dd=3.30 | market=closed
+2026-07-14 20:39:26Z  A/B cycle | equity=$100,089.58 day=+97.76 dd=6.28 | market=closed | DRYRUN
+2026-07-14 20:39:35Z    SIGNAL v3 MSFT bar=2026-07-14 20:00:00 p=0.546 sig_px=384.93 tgt=388.45 stop=382.58 qty=2 [DRYRUN]
+2026-07-14 20:39:44Z  A/B cycle done | signals=1 open=6 pending=0 closed=2
+2026-07-14 20:46:04Z  A/B cycle | equity=$100,088.89 day=+97.07 dd=6.97 | market=closed
+2026-07-14 20:50:51Z  A/B cycle | equity=$100,088.02 day=+96.20 dd=7.84 | market=closed | DRYRUN
+2026-07-14 20:51:00Z    SIGNAL v4 NVDA bar=2026-07-14 20:30:00 p=0.357 sig_px=211.62 tgt=214.98 stop=210.78 qty=4 [DRYRUN]
+2026-07-14 20:51:07Z  A/B cycle done | signals=1 open=6 pending=0 closed=2
+2026-07-14 21:01:04Z  A/B cycle | equity=$100,089.46 day=+97.64 dd=6.40 | market=closed
+2026-07-14 21:15:23Z  A/B cycle | equity=$100,091.92 day=+100.10 dd=3.94 | market=closed | DRYRUN
+2026-07-14 21:15:32Z    SIGNAL v4 NVDA bar=2026-07-14 21:00:00 p=0.355 sig_px=211.65 tgt=214.63 stop=210.91 qty=4 [DRYRUN]
+2026-07-14 21:15:34Z    SIGNAL vC NVDA bar=2026-07-14 20:00:00 p=0.010 sig_px=211.66 tgt=266.60 stop=206.17 qty=4 [DRYRUN]
+2026-07-14 21:15:43Z  A/B cycle done | signals=2 open=6 pending=0 closed=2
+2026-07-14 21:16:04Z  A/B cycle | equity=$100,091.92 day=+100.10 dd=3.94 | market=closed
+2026-07-14 21:31:04Z  A/B cycle | equity=$100,086.98 day=+95.16 dd=8.88 | market=closed
+2026-07-14 21:46:04Z  A/B cycle | equity=$100,087.96 day=+96.14 dd=7.90 | market=closed
+2026-07-14 22:01:04Z  A/B cycle | equity=$100,093.05 day=+101.23 dd=2.81 | market=closed
+2026-07-14 22:16:04Z  A/B cycle | equity=$100,088.28 day=+96.46 dd=7.58 | market=closed
+2026-07-14 22:31:04Z  A/B cycle | equity=$100,092.21 day=+100.39 dd=3.65 | market=closed
+2026-07-14 22:46:04Z  A/B cycle | equity=$100,088.16 day=+96.34 dd=7.70 | market=closed
+2026-07-14 23:01:04Z  A/B cycle | equity=$100,091.06 day=+99.24 dd=4.80 | market=closed
+2026-07-14 23:16:12Z  A/B cycle | equity=$100,087.52 day=+95.70 dd=8.34 | market=closed
+2026-07-14 23:31:04Z  A/B cycle | equity=$100,091.98 day=+100.16 dd=3.88 | market=closed
+2026-07-14 23:46:04Z  A/B cycle | equity=$100,091.56 day=+99.74 dd=4.30 | market=closed
+2026-07-15 00:01:04Z  A/B cycle | equity=$100,094.08 day=+102.26 dd=1.78 | market=closed
+2026-07-15 00:16:04Z  A/B cycle | equity=$100,096.48 day=+104.66 dd=0.00 | market=closed
+2026-07-15 00:31:04Z  A/B cycle | equity=$100,096.78 day=+104.96 dd=0.00 | market=closed
+2026-07-15 00:46:04Z  A/B cycle | equity=$100,092.20 day=+100.38 dd=4.58 | market=closed
+2026-07-15 01:01:04Z  A/B cycle | equity=$100,094.44 day=+102.62 dd=2.34 | market=closed
+2026-07-15 01:16:04Z  A/B cycle | equity=$100,093.50 day=+101.68 dd=3.28 | market=closed
+2026-07-15 01:31:04Z  A/B cycle | equity=$100,094.70 day=+102.88 dd=2.08 | market=closed
+2026-07-15 01:46:04Z  A/B cycle | equity=$100,092.70 day=+100.88 dd=4.08 | market=closed
+2026-07-15 02:01:04Z  A/B cycle | equity=$100,096.30 day=+104.48 dd=0.48 | market=closed
+2026-07-15 02:16:04Z  A/B cycle | equity=$100,095.86 day=+104.04 dd=0.92 | market=closed
+2026-07-15 02:31:04Z  A/B cycle | equity=$100,091.74 day=+99.92 dd=5.04 | market=closed
+2026-07-15 02:46:04Z  A/B cycle | equity=$100,091.56 day=+99.74 dd=5.22 | market=closed
+2026-07-15 03:01:03Z  A/B cycle | equity=$100,090.10 day=+98.28 dd=6.68 | market=closed
+2026-07-15 03:16:09Z  A/B cycle | equity=$100,097.42 day=+105.60 dd=0.00 | market=closed
+2026-07-15 03:31:03Z  A/B cycle | equity=$100,099.14 day=+107.32 dd=0.00 | market=closed
+2026-07-15 03:46:03Z  A/B cycle | equity=$100,096.42 day=+104.60 dd=2.72 | market=closed
+2026-07-15 04:01:03Z  A/B cycle | equity=$100,100.44 day=+108.62 dd=0.00 | market=closed
+2026-07-15 04:16:03Z  A/B cycle | equity=$100,100.00 day=+108.18 dd=0.44 | market=closed
+2026-07-15 04:31:03Z  A/B cycle | equity=$100,098.62 day=+106.80 dd=1.82 | market=closed
+2026-07-15 04:46:03Z  A/B cycle | equity=$100,097.58 day=+105.76 dd=2.86 | market=closed
+2026-07-15 05:01:04Z  A/B cycle | equity=$100,099.88 day=+108.06 dd=0.56 | market=closed
+2026-07-15 05:16:03Z  A/B cycle | equity=$100,094.64 day=+102.82 dd=5.80 | market=closed
+2026-07-15 05:31:04Z  A/B cycle | equity=$100,093.86 day=+102.04 dd=6.58 | market=closed
+2026-07-15 05:46:03Z  A/B cycle | equity=$100,097.24 day=+105.42 dd=3.20 | market=closed
+2026-07-15 06:01:03Z  A/B cycle | equity=$100,099.24 day=+107.42 dd=1.20 | market=closed
+2026-07-15 06:16:03Z  A/B cycle | equity=$100,102.92 day=+111.10 dd=0.00 | market=closed
+2026-07-15 06:31:04Z  A/B cycle | equity=$100,097.58 day=+105.76 dd=5.34 | market=closed
+2026-07-15 06:46:04Z  A/B cycle | equity=$100,094.08 day=+102.26 dd=8.84 | market=closed
+2026-07-15 07:01:03Z  A/B cycle | equity=$100,089.28 day=+97.46 dd=13.64 | market=closed
+2026-07-15 07:16:09Z  A/B cycle | equity=$100,089.48 day=+97.66 dd=13.44 | market=closed
+2026-07-15 07:31:04Z  A/B cycle | equity=$100,083.72 day=+91.90 dd=19.20 | market=closed
+2026-07-15 07:46:03Z  A/B cycle | equity=$100,087.14 day=+95.32 dd=15.78 | market=closed
+2026-07-15 08:01:04Z  A/B cycle | equity=$100,093.61 day=-1.34 dd=9.31 | market=closed
+2026-07-15 08:16:03Z  A/B cycle | equity=$100,075.77 day=-19.18 dd=27.15 | market=closed
+2026-07-15 08:31:03Z  A/B cycle | equity=$100,086.31 day=-8.64 dd=16.61 | market=closed
+2026-07-15 08:46:03Z  A/B cycle | equity=$100,086.01 day=-8.94 dd=16.91 | market=closed
+2026-07-15 09:01:04Z  A/B cycle | equity=$100,092.10 day=-2.85 dd=10.82 | market=closed
+2026-07-15 09:16:04Z  A/B cycle | equity=$100,090.86 day=-4.09 dd=12.06 | market=closed
+2026-07-15 09:31:03Z  A/B cycle | equity=$100,091.61 day=-3.34 dd=11.31 | market=closed
+2026-07-15 09:46:03Z  A/B cycle | equity=$100,089.35 day=-5.60 dd=13.57 | market=closed
+2026-07-15 10:01:04Z  A/B cycle | equity=$100,088.77 day=-6.18 dd=14.15 | market=closed
+2026-07-15 10:16:03Z  A/B cycle | equity=$100,091.11 day=-3.84 dd=11.81 | market=closed
+2026-07-15 10:31:04Z  A/B cycle | equity=$100,088.69 day=-6.26 dd=14.23 | market=closed
+2026-07-15 10:46:03Z  A/B cycle | equity=$100,092.17 day=-2.78 dd=10.75 | market=closed
+2026-07-15 11:01:04Z  A/B cycle | equity=$100,096.16 day=+1.21 dd=6.76 | market=closed
+2026-07-15 11:16:03Z  A/B cycle | equity=$100,091.91 day=-3.04 dd=11.01 | market=closed
+2026-07-15 11:31:04Z  A/B cycle | equity=$100,087.18 day=-7.77 dd=15.74 | market=closed
+2026-07-15 11:46:04Z  A/B cycle | equity=$100,088.49 day=-6.46 dd=14.43 | market=closed
+2026-07-15 12:01:04Z  A/B cycle | equity=$100,089.67 day=-5.28 dd=13.25 | market=closed
+2026-07-15 12:16:04Z  A/B cycle | equity=$100,092.57 day=-2.38 dd=10.35 | market=closed
+2026-07-15 12:31:04Z  A/B cycle | equity=$100,098.39 day=+3.44 dd=4.53 | market=closed
+2026-07-15 12:46:03Z  A/B cycle | equity=$100,101.26 day=+6.31 dd=1.66 | market=closed
+2026-07-15 13:01:04Z  A/B cycle | equity=$100,107.07 day=+12.12 dd=0.00 | market=closed
+2026-07-15 13:16:10Z  A/B cycle | equity=$100,100.39 day=+5.44 dd=6.68 | market=closed
+2026-07-15 14:01:04Z  A/B cycle | equity=$100,127.99 day=+33.04 dd=0.00 | market=OPEN
+2026-07-15 14:02:22Z    SIGNAL vC XLE bar=2026-07-15 13:00:00 p=0.004 sig_px=56.79 tgt=62.78 stop=56.19 qty=17
+2026-07-15 14:03:02Z  A/B cycle done | signals=1 open=6 pending=2 closed=2
+2026-07-15 14:16:04Z  A/B cycle | equity=$100,112.63 day=+17.68 dd=15.36 | market=OPEN
+2026-07-15 14:16:04Z    FILLED mkt vC XLE @ 56.65 (signal 56.79, slip -24.7 bps)
+2026-07-15 14:16:04Z    FILLED lmt vC XLE @ 56.65 (signal 56.79, slip -25.0 bps)
+2026-07-15 14:16:25Z    SIGNAL v6 AAPL bar=2026-07-15 13:00:00 p=0.242 sig_px=320.76 tgt=334.78 stop=318.76 qty=3
+2026-07-15 14:16:27Z    SIGNAL vC NVDA bar=2026-07-15 13:00:00 p=0.011 sig_px=211.98 tgt=257.76 stop=207.40 qty=4
+2026-07-15 14:16:30Z  A/B cycle done | signals=2 open=8 pending=2 closed=2
+2026-07-15 14:31:03Z  A/B cycle | equity=$100,107.35 day=+12.40 dd=20.64 | market=OPEN
+2026-07-15 14:31:04Z    FILLED mkt v6 AAPL @ 325.35 (signal 320.76, slip +142.9 bps)
+2026-07-15 14:31:20Z    SIGNAL v3 JPM bar=2026-07-15 14:00:00 p=0.527 sig_px=346.76 tgt=348.54 stop=345.58 qty=2
+2026-07-15 14:31:29Z  A/B cycle done | signals=1 open=9 pending=1 closed=2
+2026-07-15 14:41:23Z  A/B cycle | equity=$100,090.38 day=-4.57 dd=37.61 | market=OPEN | DRYRUN
+2026-07-15 14:41:29Z    CLOSED mkt vC XLE STOP pnl=-7.99
+2026-07-15 14:41:30Z    CLOSED lmt vC XLE STOP pnl=-7.96
+2026-07-15 14:41:59Z  A/B cycle done | signals=0 open=7 pending=1 closed=4
+2026-07-15 14:46:04Z  A/B cycle | equity=$100,087.12 day=-7.83 dd=40.87 | market=OPEN
+2026-07-15 14:46:34Z  A/B cycle done | signals=0 open=7 pending=1 closed=4
+2026-07-15 15:01:05Z  A/B cycle | equity=$100,095.26 day=+0.31 dd=32.73 | market=OPEN
+2026-07-15 15:01:06Z    MISSED lmt v6 AAPL (limit 320.76 never filled)
+2026-07-15 15:04:02Z    SIGNAL v3 JPM bar=2026-07-15 14:30:00 p=0.581 sig_px=347.43 tgt=349.26 stop=346.21 qty=2
+2026-07-15 15:04:46Z    SIGNAL vC XLE bar=2026-07-15 14:00:00 p=0.002 sig_px=56.17 tgt=62.91 stop=55.50 qty=17
+2026-07-15 15:04:54Z  A/B cycle done | signals=2 open=7 pending=2 closed=5
+2026-07-15 15:16:04Z  A/B cycle | equity=$100,085.19 day=-9.76 dd=42.80 | market=OPEN
+2026-07-15 15:16:05Z    FILLED mkt vC XLE @ 56.16 (signal 56.17, slip -2.7 bps)
+2026-07-15 15:16:06Z    FILLED lmt vC XLE @ 56.17 (signal 56.17, slip -0.9 bps)
+2026-07-15 15:21:12Z    SIGNAL vC NVDA bar=2026-07-15 14:00:00 p=0.013 sig_px=210.03 tgt=258.41 stop=205.19 qty=4
+2026-07-15 15:21:18Z  A/B cycle done | signals=1 open=9 pending=0 closed=5
+2026-07-15 15:31:10Z  A/B cycle | equity=$100,084.15 day=-10.80 dd=43.84 | market=OPEN
+2026-07-15 15:33:48Z    SIGNAL v3 JPM bar=2026-07-15 15:00:00 p=0.540 sig_px=348.24 tgt=350.10 stop=346.99 qty=2
+2026-07-15 15:35:28Z  A/B cycle done | signals=1 open=9 pending=0 closed=5

@@ -1,0 +1,37 @@
+DAILY REPORT — 2026-07-15 16:15 local  (market closed)
+account equity $100,128.52   day P&L +33.57   cash $91,591.84
+
+===== MARKET arm =====
+  strat  closed   win%  missed  realized$  open   unreal$  avg slip
+     v3       0      -       0      +0.00     0     +0.00         -
+     v4       0      -       0      +0.00     0     +0.00         -
+     v6       0      -       0      +0.00     2     +3.76   +70.3bp
+     v7       1     0%       0      -1.93     0     +0.00   +10.3bp
+     vC       1     0%       0      -7.99     3    +74.49   -25.0bp
+     vQ       0      -       0      +0.00     0     +0.00         -
+    vQ2       0      -       0      +0.00     0     +0.00         -
+     vA       0      -       0      +0.00     0     +0.00         -
+     vP       0      -       0      +0.00     0     +0.00         -
+     vR       0      -       0      +0.00     0     +0.00         -
+     vS       0      -       0      +0.00     0     +0.00         -
+  TOTAL       2     0%       0      -9.92     5    +78.25
+
+===== LIMIT arm =====
+  strat  closed   win%  missed  realized$  open   unreal$  avg slip
+     v3       0      -       0      +0.00     0     +0.00         -
+     v4       0      -       0      +0.00     0     +0.00         -
+     v6       0      -       1      +0.00     1     -2.53    -2.4bp
+     v7       1     0%       0      -1.14     0     +0.00    -0.8bp
+     vC       1     0%       0      -7.96     3    +74.28   -23.8bp
+     vQ       0      -       0      +0.00     0     +0.00         -
+    vQ2       0      -       0      +0.00     0     +0.00         -
+     vA       0      -       0      +0.00     0     +0.00         -
+     vP       0      -       0      +0.00     0     +0.00         -
+     vR       0      -       0      +0.00     0     +0.00         -
+     vS       0      -       0      +0.00     0     +0.00         -
+  TOTAL       2     0%       1      -9.10     4    +71.75
+
+A/B VERDICT SO FAR: MARKET arm leads by $5.68 (mkt $+68.33 vs lmt $+62.65, incl. unrealized)
+
+===== FLAGS =====
+  WARN: market-arm avg slippage +7.3 bps exceeds the 5 bps budget — edge margins at risk.

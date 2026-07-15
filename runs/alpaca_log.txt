@@ -646,3 +646,25 @@
 2026-07-15 17:46:04Z  A/B cycle | equity=$100,092.42 day=-2.53 dd=35.57 | market=OPEN
 2026-07-15 17:46:17Z    SIGNAL v3 JPM bar=2026-07-15 17:00:00 p=0.564 sig_px=347.14 tgt=349.22 stop=345.76 qty=2
 2026-07-15 17:46:37Z  A/B cycle done | signals=1 open=9 pending=0 closed=5
+2026-07-15 18:01:04Z  A/B cycle | equity=$100,102.06 day=+7.11 dd=25.93 | market=OPEN
+2026-07-15 18:01:21Z    SIGNAL v3 JPM bar=2026-07-15 17:30:00 p=0.530 sig_px=348.15 tgt=350.29 stop=346.72 qty=2
+2026-07-15 18:01:31Z  A/B cycle done | signals=1 open=9 pending=0 closed=5
+2026-07-15 18:16:05Z  A/B cycle | equity=$100,100.66 day=+5.71 dd=27.33 | market=OPEN
+2026-07-15 18:16:27Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 18:31:04Z  A/B cycle | equity=$100,099.59 day=+4.64 dd=28.40 | market=OPEN
+2026-07-15 18:31:24Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 18:46:04Z  A/B cycle | equity=$100,101.15 day=+6.20 dd=26.84 | market=OPEN
+2026-07-15 18:46:27Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 19:01:04Z  A/B cycle | equity=$100,104.65 day=+9.70 dd=23.34 | market=OPEN
+2026-07-15 19:01:39Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 19:16:04Z  A/B cycle | equity=$100,114.70 day=+19.75 dd=13.29 | market=OPEN
+2026-07-15 19:16:26Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 19:31:03Z  A/B cycle | equity=$100,116.06 day=+21.11 dd=11.93 | market=OPEN
+2026-07-15 19:31:28Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 19:46:04Z  A/B cycle | equity=$100,116.91 day=+21.96 dd=11.08 | market=OPEN
+2026-07-15 19:46:34Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 20:01:08Z  A/B cycle | equity=$100,127.51 day=+32.56 dd=0.48 | market=closed
+2026-07-15 20:01:36Z  A/B cycle | equity=$100,127.45 day=+32.50 dd=0.54 | market=closed | DRYRUN
+2026-07-15 20:01:57Z    SIGNAL v6 AAPL bar=2026-07-15 19:00:00 p=0.243 sig_px=326.02 tgt=341.94 stop=323.75 qty=3 [DRYRUN]
+2026-07-15 20:01:57Z    SIGNAL v6 NVDA bar=2026-07-15 19:00:00 p=0.278 sig_px=211.45 tgt=223.93 stop=209.67 qty=4 [DRYRUN]
+2026-07-15 20:02:04Z  A/B cycle done | signals=2 open=9 pending=0 closed=5

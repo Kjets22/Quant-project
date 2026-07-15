@@ -623,3 +623,26 @@
 2026-07-15 15:31:10Z  A/B cycle | equity=$100,084.15 day=-10.80 dd=43.84 | market=OPEN
 2026-07-15 15:33:48Z    SIGNAL v3 JPM bar=2026-07-15 15:00:00 p=0.540 sig_px=348.24 tgt=350.10 stop=346.99 qty=2
 2026-07-15 15:35:28Z  A/B cycle done | signals=1 open=9 pending=0 closed=5
+2026-07-15 15:46:04Z  A/B cycle | equity=$100,087.82 day=-7.13 dd=40.17 | market=OPEN
+2026-07-15 15:46:35Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 16:01:04Z  A/B cycle | equity=$100,092.28 day=-2.67 dd=35.71 | market=OPEN
+2026-07-15 16:01:25Z    SIGNAL v3 JPM bar=2026-07-15 15:30:00 p=0.538 sig_px=348.45 tgt=350.29 stop=347.22 qty=2
+2026-07-15 16:01:40Z  A/B cycle done | signals=1 open=9 pending=0 closed=5
+2026-07-15 16:16:11Z  A/B cycle | equity=$100,076.35 day=-18.60 dd=51.64 | market=OPEN
+2026-07-15 16:16:46Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 16:31:05Z  A/B cycle | equity=$100,073.41 day=-21.54 dd=54.58 | market=OPEN
+2026-07-15 16:31:26Z    SIGNAL v3 JPM bar=2026-07-15 16:00:00 p=0.564 sig_px=348.28 tgt=350.18 stop=347.01 qty=2
+2026-07-15 16:31:38Z  A/B cycle done | signals=1 open=9 pending=0 closed=5
+2026-07-15 16:46:04Z  A/B cycle | equity=$100,075.26 day=-19.69 dd=52.73 | market=OPEN
+2026-07-15 16:46:46Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 17:01:05Z  A/B cycle | equity=$100,080.55 day=-14.40 dd=47.44 | market=OPEN
+2026-07-15 17:01:30Z    SIGNAL v3 JPM bar=2026-07-15 16:30:00 p=0.573 sig_px=347.53 tgt=349.54 stop=346.19 qty=2
+2026-07-15 17:01:46Z  A/B cycle done | signals=1 open=9 pending=0 closed=5
+2026-07-15 17:16:04Z  A/B cycle | equity=$100,077.46 day=-17.49 dd=50.53 | market=OPEN
+2026-07-15 17:16:32Z    SIGNAL vC NVDA bar=2026-07-15 16:00:00 p=0.007 sig_px=207.28 tgt=257.46 stop=202.26 qty=4
+2026-07-15 17:16:36Z  A/B cycle done | signals=1 open=9 pending=0 closed=5
+2026-07-15 17:31:04Z  A/B cycle | equity=$100,088.34 day=-6.61 dd=39.65 | market=OPEN
+2026-07-15 17:31:33Z  A/B cycle done | signals=0 open=9 pending=0 closed=5
+2026-07-15 17:46:04Z  A/B cycle | equity=$100,092.42 day=-2.53 dd=35.57 | market=OPEN
+2026-07-15 17:46:17Z    SIGNAL v3 JPM bar=2026-07-15 17:00:00 p=0.564 sig_px=347.14 tgt=349.22 stop=345.76 qty=2
+2026-07-15 17:46:37Z  A/B cycle done | signals=1 open=9 pending=0 closed=5

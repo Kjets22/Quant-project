@@ -67,13 +67,15 @@ CONFIGS = [("v3", TICKERS, 30, 24, "atr",     1.5, 1.0, "sr",    ("q", 0.93),   
            # vP: Evolution-III P&L champion — beat vQ through all 3 stages (arena +8.67%
            # worst-of-3, gate +3.27%, final +4.18% vs vQ +2.77%). 8h clock, $2/$2, HistGB.
            ("vP",  ["QQQ"], 5, 96, "dollar",  2.0, 2.0, "full",  ("conf", 0.85), 3),
-           # vS: Evolution-IV champion (evolve4.py) — percentage bracket +0.5%/-0.4%,
+           # vR: user-spec percentage bracket +0.4%/-0.2% (true 2:1), 2h clock, top-3%
+           # gate. Evolution IV FINAL WINNER: +7.00% (t=2.04) on the untouched year —
+           # the best P&L in the QQQ family, at full 5 bps costs. probe_pct.py.
+           ("vR",  ["QQQ"], 5, 24, "pct",  0.004, 0.002, "full", ("q", 0.97), 1),
+           # vS: Evolution-IV evolved challenger — percentage bracket +0.5%/-0.4%,
            # 8h clock, HistGB, top-10% gate. Gate year +11.17% (n=328); final year
-           # +6.18% (t=0.87). REPLACED vR at the user's direction 2026-07-15 — note
-           # vR won the final one-shot (+7.00%, t=2.04); restore line kept below.
+           # +6.18% (t=0.87) — LOST the final to vR but runs alongside it live
+           # (user wants both; turnover-vs-precision live test).
            ("vS",  ["QQQ"], 5, 96, "pct",  0.005, 0.004, "full", ("q", 0.90), 3)]
-           # vR (retired, never traded live; one-line restore if wanted):
-           # ("vR", ["QQQ"], 5, 24, "pct", 0.004, 0.002, "full", ("q", 0.97), 1)
 MODEL_BY_STRAT = {"vQ2": "histgb", "vP": "histgb", "vS": "histgb"}
 # NOTE: vQ and vQ2 share QQQ; the one-per-ticker guardrail means whichever signals first
 # holds the slot that hour — occasional skips are expected and logged.

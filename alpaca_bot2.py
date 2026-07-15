@@ -80,6 +80,15 @@ MODEL_BY_STRAT = {"vQ2": "histgb", "vP": "histgb", "vS": "histgb"}
 # NOTE: vQ and vQ2 share QQQ; the one-per-ticker guardrail means whichever signals first
 # holds the slot that hour — occasional skips are expected and logged.
 
+# ---- OPTIONS OVERLAY (vc_options_real.py result: 1-2w ATM calls +14.9%/trade) ----
+# Every vC signal ALSO buys ~$1k of ATM calls, sold when the stock leg closes.
+# Calls only — the stable is long-only (short side failed the fresh holdout).
+OPT_STRATS = {"vC"}
+OPT_PREMIUM = 1_000.0              # target premium per signal
+OPT_DTE = (8, 16)                  # expiry window; must outlive vC's 8-day time exit
+OPT_MAX_OPEN = 8
+OPT_MAX_CONTRACTS = 10
+
 LEDGER = Path("runs/alpaca2_ledger.json")
 LOG = Path("runs/alpaca_log.txt")
 MODELS = Path("models")
@@ -96,8 +105,12 @@ def log(msg):
 
 def load_ledger():
     if LEDGER.exists():
-        return json.loads(LEDGER.read_text())
+        led = json.loads(LEDGER.read_text())
+        led.setdefault("opt_open", [])
+        led.setdefault("opt_closed", [])
+        return led
     led = {"open": [], "pending": [], "closed": [], "acted_bars": {},
+           "opt_open": [], "opt_closed": [],
            "state": {"peak_equity": 100000.0, "halted": False}}
     old = Path("runs/alpaca_ledger.json")                 # seed from bot v1
     if old.exists():
@@ -290,6 +303,61 @@ def manage_exits(led, dry):
     led["open"] = keep
 
 
+def pick_call(tk, spot):
+    """Nearest-the-money call expiring in OPT_DTE days (covers the time exit)."""
+    today = (pd.Timestamp.utcnow().tz_localize(None) - pd.Timedelta(hours=4)).date()
+    cons = broker.option_contracts(
+        tk, str(today + pd.Timedelta(days=OPT_DTE[0])),
+        str(today + pd.Timedelta(days=OPT_DTE[1])), spot * 0.97, spot * 1.03)
+    if not cons:
+        return None
+    cons.sort(key=lambda c: (abs(float(c["strike_price"]) - spot),
+                             c["expiration_date"]))
+    return cons[0]
+
+
+def manage_opts(led, dry):
+    """Fill-poll the option legs; sell when the stock leg is gone / deadline / expiry."""
+    now = pd.Timestamp.utcnow().tz_localize(None)
+    today = (now - pd.Timedelta(hours=4)).date()
+    keep = []
+    for p in led["opt_open"]:
+        try:
+            if p.get("closing_id"):                       # sell already submitted
+                o = broker.get_order(p["closing_id"])
+                if o["status"] == "filled":
+                    sell = float(o["filled_avg_price"])
+                    pnl = round((sell - (p.get("fill") or sell)) * 100 * p["qty"], 2)
+                    p.update(exit=sell, pnl=pnl, xts=str(now))
+                    led["opt_closed"].append(p)
+                    log(f"  OPT CLOSED {p['occ']} pnl={pnl:+.2f}")
+                    continue
+                keep.append(p); continue
+            o = broker.get_order(p["order_id"])
+            if o["status"] in ("canceled", "expired", "rejected"):
+                p.update(pnl=0.0, xts=str(now), note="entry never filled")
+                led["opt_closed"].append(p); continue
+            if o["status"] == "filled" and not p.get("fill"):
+                p["fill"] = float(o["filled_avg_price"])
+                log(f"  OPT FILLED {p['occ']} x{p['qty']} @ {p['fill']:.2f}")
+            stock_alive = any(x["tk"] == p["tk"] and x["strat"] == p["strat"]
+                              and x["style"] == "mkt"
+                              for x in led["open"] + led["pending"])
+            expiry_near = pd.Timestamp(p["expiry"]).date() <= today + pd.Timedelta(days=1)
+            due = (not stock_alive) or pd.Timestamp(p["deadline"]) <= now or expiry_near
+            if due and p.get("fill") and not dry:
+                so = broker.market_sell(p["occ"], p["qty"],
+                                        f"optx-{p['tk']}-{now:%Y%m%d%H%M%S}")
+                p["closing_id"] = so["id"]
+                log(f"  OPT SELL {p['occ']} x{p['qty']} "
+                    f"({'stock closed' if not stock_alive else 'deadline/expiry'})")
+            keep.append(p)
+        except Exception as e:
+            log(f"  [opt manage error {p.get('occ')}: {e}]")
+            keep.append(p)
+    led["opt_open"] = keep
+
+
 def cycle(dry=False):
     led = load_ledger()
     acct = broker.account()
@@ -305,6 +373,7 @@ def cycle(dry=False):
         return
     poll_pending(led, dry)
     manage_exits(led, dry)
+    manage_opts(led, dry)
     if drawdown >= DD_BREAKER and not led["state"]["halted"]:
         led["state"]["halted"] = True
         log(f"!! DRAWDOWN BREAKER — HALTED (edit {LEDGER} to resume)")
@@ -361,6 +430,27 @@ def cycle(dry=False):
                     led["pending"].append(dict(base, style="lmt", order_id=o["id"],
                                                expiry=str(expiry)))
                     counts["lmt"] += 1; held["lmt"].add(tk)
+                if (strat in OPT_STRATS and len(led["opt_open"]) < OPT_MAX_OPEN
+                        and not any(x["tk"] == tk for x in led["opt_open"])):
+                    try:
+                        con = pick_call(tk, c[i])
+                        if con:
+                            px = float(con.get("close_price") or 0) or None
+                            qo = (max(1, min(OPT_MAX_CONTRACTS,
+                                             int(OPT_PREMIUM // (px * 100))))
+                                  if px else 1)
+                            o = broker.market_buy(con["symbol"], qo,
+                                                  f"opt-{strat}-{tk}-{stamp}")
+                            led["opt_open"].append(dict(
+                                strat=strat, tk=tk, occ=con["symbol"], qty=qo,
+                                order_id=o["id"], expiry=con["expiration_date"],
+                                sig_px=float(c[i]), bar=bar_ts, ets=str(now),
+                                deadline=str(now + pd.Timedelta(days=ddl)),
+                                est_px=px))
+                            log(f"  OPT BUY {con['symbol']} x{qo} "
+                                f"(prev close ${px if px else '?'})")
+                    except Exception as e:
+                        log(f"  [opt entry error {strat} {tk}: {e}]")
             except Exception as e:
                 log(f"  [error {strat} {tk}: {e}]")
     log(f"A/B cycle done | signals={n_sig} open={len(led['open'])} "
@@ -389,6 +479,14 @@ def status():
                   f"tgt {x['tgt']:.2f} stop {x['stop']:.2f}")
         for x in pend:
             print(f"      pend  {x['strat']} {x['tk']} ({'limit @ '+format(x['sig_px'],'.2f') if s=='lmt' else 'market'})")
+    ocl = led.get("opt_closed", [])
+    opnl = sum(x.get("pnl") or 0 for x in ocl)
+    print(f"  OPTIONS overlay (vC calls): open={len(led.get('opt_open', []))} "
+          f"closed={len(ocl)} realized=${opnl:+.2f}")
+    for x in led.get("opt_open", []):
+        print(f"      opt   {x['occ']} x{x['qty']} "
+              f"{'@ '+format(x['fill'], '.2f') if x.get('fill') else '(pending fill)'} "
+              f"exp {x['expiry']}")
 
 
 if __name__ == "__main__":

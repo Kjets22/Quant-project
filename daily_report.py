@@ -40,7 +40,10 @@ def main():
     led = json.loads(LEDGER.read_text()) if LEDGER.exists() else None
     acct = broker.account()
     clk = broker.clock()
-    bpos = {p["symbol"]: p for p in broker.positions()}
+    allpos = broker.positions()
+    bpos = {p["symbol"]: p for p in allpos
+            if p.get("asset_class") != "us_option"}          # stock reconciliation only
+    opos = [p for p in allpos if p.get("asset_class") == "us_option"]
     equity = float(acct["equity"])
     day = equity - float(acct["last_equity"])
 
@@ -103,6 +106,27 @@ def main():
       f"(mkt ${arm_tot.get('mkt',0):+,.2f} vs lmt ${arm_tot.get('lmt',0):+,.2f}, "
       f"incl. unrealized)")
     w("")
+    # ---------- options overlay (vC calls) ----------
+    ool, ocl = led.get("opt_open", []), led.get("opt_closed", [])
+    if ool or ocl or opos:
+        w("===== OPTIONS OVERLAY (vC calls) =====")
+        realized = sum(x.get("pnl") or 0 for x in ocl)
+        unreal = sum(float(p.get("unrealized_pl") or 0) for p in opos)
+        w(f"  open {len(ool)} | closed {len(ocl)} | realized ${realized:+,.2f} "
+          f"| unrealized ${unreal:+,.2f}")
+        for p in opos:
+            w(f"    {p['symbol']} x{p['qty']} entry {float(p['avg_entry_price']):.2f} "
+              f"now {float(p['current_price'] or 0):.2f} "
+              f"P&L {float(p['unrealized_pl'] or 0):+,.2f}")
+        led_syms = {x["occ"] for x in ool}
+        for p in opos:
+            if p["symbol"] not in led_syms:
+                flags.append(f"FLAG: option position {p['symbol']} at broker but not "
+                             f"in the ledger — manual trade or tracking bug.")
+        for x in ool:
+            if pd.Timestamp(x["expiry"]).date() <= (now - pd.Timedelta(hours=4)).date():
+                flags.append(f"WARN: option {x['occ']} is at/past expiry and still open.")
+        w("")
 
     # ---------- health checks ----------
     # 1. AUTO-FIX: pending orders past expiry that are still live at the broker

@@ -106,6 +106,29 @@ def market_sell(symbol, qty, client_id):
         "time_in_force": "day", "client_order_id": client_id})
 
 
+def market_buy(symbol, qty, client_id):
+    """Plain market BUY (works for stock and OCC option symbols alike)."""
+    return _req("POST", "/v2/orders", json={
+        "symbol": symbol, "qty": str(int(qty)), "side": "buy", "type": "market",
+        "time_in_force": "day", "client_order_id": client_id})
+
+
+def option_contracts(underlying, exp_gte, exp_lte, k_lo, k_hi, ctype="call"):
+    """Tradable option contracts on the PAPER account (paginated)."""
+    out, token = [], None
+    while True:
+        p = {"underlying_symbols": underlying, "type": ctype, "limit": 500,
+             "expiration_date_gte": exp_gte, "expiration_date_lte": exp_lte,
+             "strike_price_gte": str(k_lo), "strike_price_lte": str(k_hi)}
+        if token:
+            p["page_token"] = token
+        j = _req("GET", "/v2/options/contracts", params=p)
+        out += j.get("option_contracts", [])
+        token = j.get("next_page_token")
+        if not token:
+            return out
+
+
 def cancel_order(order_id):
     r = requests.delete(f"{BASE}/v2/orders/{order_id}", headers=HDRS, timeout=30)
     return r.status_code in (200, 204, 404)

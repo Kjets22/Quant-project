@@ -45,6 +45,20 @@ REFRESH_S = 300
 PORT = 8765
 
 STATE = {"ok": False, "msg": "starting up: training models (first run takes a while)..."}
+DESCS = {
+    "ALL": "Every strategy's hypothetical trades since Jun 29 — click a strategy to see just its trades.",
+    "v3":  "The original: 30-min bars, 8 tickers, target 1.5x ATR / stop 1x ATR, ~12h max hold. Passed the fresh-ticker holdout (+80%, 5/5 folds).",
+    "v4":  "High-payoff sibling of v3: 15-min bars, 4x ATR target / 1x ATR stop, ~6h. Wins only ~30% of the time but winners are 4x the losers.",
+    "v6":  "Trend hunter: hourly bars, 7x ATR target / 1x ATR stop, up to ~4 days, trend features. Experimental — thin but real edge.",
+    "v7":  "Structure stop: stop sits under the 20-bar swing low, target = 10x the actual risk, hourly, ~4 days. Rare wins (~10%), huge when they land.",
+    "vC":  "Moonshot drift-rider: 30x ATR target (almost never hit — it rides trends), 3x ATR stop, hourly, ~4 days. Wins come from TIME+ drift exits.",
+    "vQ":  "QQQ scalper: $2 target / $2 stop within 1 hour, top-10% confidence gate. The first QQQ tournament champion.",
+    "vQ2": "Evolution I champion: QQQ $2.50 target / $2.00 stop in 2h, HistGB model. Very few trades, ~68% win rate.",
+    "vA":  "Evolution II accuracy champion: QQQ $1.50 / $2.00 in 4h, top-5% gate. ~69% win rate — the accuracy specialist.",
+    "vP":  "Evolution III P&L champion: QQQ $2 / $2 in 8h, HistGB, high volume (~280 trades/yr). Final year +4.18%.",
+    "vR":  "Your spec — and the Evolution IV final WINNER: QQQ +0.4% / -0.2% (true 2:1) in 2h, top-3% gate. Best final year of the family (+7.00%).",
+    "vS":  "Evolution IV evolved challenger: QQQ +0.5% / -0.4% in 8h, top-10% gate. Lost the final to vR (+6.18%) — runs live for comparison.",
+}
 MODELS_MEM = {}                      # (strat, tk) -> {"clf", "thr"} or None
 MODELS_DIR = Path("models")
 _PREP = {}                           # per-refresh prep memo (shared across strategies)
@@ -177,7 +191,7 @@ def refresh():
             "trades": [t for t in all_trades if t["tk"] == tk],
         }
     STATE.update(ok=True, msg="", tickers=tickers_out,
-                 strats=[cfg[0] for cfg in CONFIGS],
+                 strats=[cfg[0] for cfg in CONFIGS], descs=DESCS,
                  updated=time.strftime("%H:%M:%S"))
     Path("runs").mkdir(exist_ok=True)
     Path("runs/live_ledger.json").write_text(json.dumps(all_trades, indent=1))
@@ -223,6 +237,7 @@ HTML = """<!doctype html><html><head><meta charset="utf-8"><title>capture_trader
  .tab.on{background:#2563eb;border-color:#2563eb;color:#fff}
  .tab .n{color:#8a919e;font-size:11px;margin-left:5px}.tab.on .n{color:#cfe0ff}
  .lbl{color:#8a919e;font-size:12px;margin:2px 4px 4px 0}
+ #desc{background:#161b22;border-left:3px solid #2563eb;border-radius:4px;color:#aeb6c2;font-size:13px;padding:8px 12px;margin-bottom:10px}
  #chart{height:420px;border:1px solid #2a323d;border-radius:8px}
  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px}
  th,td{padding:5px 8px;text-align:right;border-bottom:1px solid #232a33}
@@ -233,6 +248,7 @@ HTML = """<!doctype html><html><head><meta charset="utf-8"><title>capture_trader
 <h2>capture_trader — what each strategy would have traded <span id="upd" style="font-size:13px;color:#8a919e"></span></h2>
 <div class="cards" id="cards"></div>
 <div class="lbl">strategy</div><div class="tabs" id="stabs"></div>
+<div id="desc"></div>
 <div class="lbl">ticker</div><div class="tabs" id="tabs"></div>
 <div id="chart"></div>
 <div class="note">markers: &#9650; entry &nbsp; &#9679; exit (green=target, red=stop, yellow=time) &nbsp;|&nbsp; dashed lines = open trade's target/stop &nbsp;|&nbsp; hypothetical fills at signal close, 5 bps cost, $1k/trade &nbsp;|&nbsp; data ~15 min delayed, refreshes every 5 min &nbsp;|&nbsp; real bot fills are in the daily report</div>
@@ -259,9 +275,11 @@ function render(S){
    <div class="card"><div class="k">P&L since Jun 29</div><div class="v ${pnl>=0?'g':'r'}">$${pnl>=0?'+':''}${pnl}</div></div>
    <div class="card"><div class="k">closed / wins</div><div class="v">${closed.length} / ${wins}${closed.length?' ('+Math.round(100*wins/closed.length)+'%)':''}</div></div>
    <div class="card"><div class="k">open now</div><div class="v o">${nopen}</div></div>`;
+ document.getElementById('desc').textContent=(S.descs&&S.descs[CURS])||'';
  const st=document.getElementById('stabs'); st.innerHTML='';
  ['ALL',...S.strats].forEach(s=>{const b=document.createElement('div');
    b.className='tab'+(s===CURS?' on':'');
+   if(S.descs&&S.descs[s])b.title=S.descs[s];
    const n=(s==='ALL'?all:all.filter(t=>t.strat===s)).length;
    b.innerHTML=s+'<span class="n">'+n+'</span>';
    b.onclick=()=>{CURS=s;

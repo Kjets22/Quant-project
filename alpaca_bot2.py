@@ -66,7 +66,11 @@ CONFIGS = [("v3", TICKERS, 30, 24, "atr",     1.5, 1.0, "sr",    ("q", 0.93),   
            ("vA",  ["QQQ"], 5, 48, "dollar",  1.5, 2.0, "full",  ("conf", 0.95), 2),
            # vP: Evolution-III P&L champion — beat vQ through all 3 stages (arena +8.67%
            # worst-of-3, gate +3.27%, final +4.18% vs vQ +2.77%). 8h clock, $2/$2, HistGB.
-           ("vP",  ["QQQ"], 5, 96, "dollar",  2.0, 2.0, "full",  ("conf", 0.85), 3)]
+           ("vP",  ["QQQ"], 5, 96, "dollar",  2.0, 2.0, "full",  ("conf", 0.85), 3),
+           # vR: user-spec percentage bracket +0.4%/-0.2% (true 2:1), 2h clock, top-3%
+           # gate. ALL 8 probe variants arena-positive; gate +6.50%; FINAL +7.00% —
+           # the best P&L in the QQQ family, at full 5 bps costs. probe_pct.py.
+           ("vR",  ["QQQ"], 5, 24, "pct",  0.004, 0.002, "full", ("q", 0.97), 1)]
 MODEL_BY_STRAT = {"vQ2": "histgb", "vP": "histgb"}       # default: the standard LightGBM
 # NOTE: vQ and vQ2 share QQQ; the one-per-ticker guardrail means whichever signals first
 # holds the slot that hour — occasional skips are expected and logged.
@@ -159,6 +163,8 @@ def _barriers(mode, c, A, tp, sl, stop_px, tgt_px):
         return stop_px, tgt_px
     if mode == "dollar":
         return c - sl, c + tp                            # fixed-dollar barriers
+    if mode == "pct":
+        return c * (1 - sl), c * (1 + tp)                # percentage barriers
     return c - sl * A, c + tp * A                        # ATR barriers
 
 
@@ -315,8 +321,8 @@ def cycle(dry=False):
                 i = len(c) - 1
                 if i < 1 or not valid[i] or X.iloc[i].isna().any():
                     continue
-                if mode != "dollar" and A[i] / c[i] < MIN_ATR_PCT:
-                    continue                             # ATR floor n/a for $-bracket vQ
+                if mode not in ("dollar", "pct") and A[i] / c[i] < MIN_ATR_PCT:
+                    continue                             # ATR floor n/a for $/% brackets
                 proba = float(model["clf"].predict_proba(X.iloc[[i]])[0, 1])
                 bar_key, bar_ts = f"{strat}_{tk}", str(pd.Timestamp(ts[i]))
                 if proba < model["thr"] or led["acted_bars"].get(bar_key) == bar_ts:

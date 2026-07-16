@@ -325,7 +325,12 @@ HTML = """<!doctype html><html><head><meta charset="utf-8"><title>capture_trader
 <table id="blot"><thead><tr><th>ticker</th><th>strat</th><th>entry (UTC)</th><th>entry</th>
 <th>target</th><th>stop</th><th>conv</th><th>outcome</th><th>$ P&L</th></tr></thead><tbody></tbody></table>
 <script>
-let CUR="QQQ", CURS="ALL", chart, series, lines=[];
+let CUR="QQQ", CURS="ALL", chart, series, lines=[], SD=null;
+async function jget(u){const r=await fetch(u);return r.json()}
+async function ensureCandles(tk){
+ if(SD&&SD.tickers[tk]&&!SD.tickers[tk].candles)
+  SD.tickers[tk].candles=await jget('/candles?tk='+encodeURIComponent(tk));
+}
 function fmt(t){const d=new Date(t*1000);return d.toISOString().slice(5,16).replace("T"," ")}
 function build(){
  chart=LightweightCharts.createChart(document.getElementById('chart'),{layout:{background:{color:'#111418'},textColor:'#8a919e'},grid:{vertLines:{color:'#1c2128'},horzLines:{color:'#1c2128'}},timeScale:{timeVisible:true,secondsVisible:false}});
@@ -352,20 +357,20 @@ function render(S){
    if(S.descs&&S.descs[s])b.title=S.descs[s];
    const n=(s==='ALL'?all:all.filter(t=>t.strat===s)).length;
    b.innerHTML=s+'<span class="n">'+n+'</span>';
-   b.onclick=()=>{CURS=s;
+   b.onclick=async()=>{CURS=s;
      if(s!=='ALL'){const mine=all.filter(t=>t.strat===s);
        if(mine.length&&!mine.some(t=>t.tk===CUR)){
          const cnt={};mine.forEach(t=>cnt[t.tk]=(cnt[t.tk]||0)+1);
          CUR=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0];}}
-     render(S)};
+     await ensureCandles(CUR);render(S)};
    st.appendChild(b);});
  const tabs=document.getElementById('tabs'); tabs.innerHTML='';
  Object.keys(S.tickers).forEach(tk=>{const b=document.createElement('div');
    b.className='tab'+(tk===CUR?' on':'');
    const nOpen=S.tickers[tk].trades.filter(t=>match(t)&&t.outcome==='OPEN').length;
-   b.textContent=tk+(nOpen?' ●':''); b.onclick=()=>{CUR=tk;render(S)}; tabs.appendChild(b);});
+   b.textContent=tk+(nOpen?' ●':''); b.onclick=async()=>{CUR=tk;await ensureCandles(tk);render(S)}; tabs.appendChild(b);});
  const T=S.tickers[CUR]; if(!T)return;
- series.setData(T.candles);
+ if(T.candles)series.setData(T.candles);
  lines.forEach(l=>series.removePriceLine(l)); lines=[];
  const mk=[];
  T.trades.filter(match).forEach(t=>{
@@ -389,8 +394,14 @@ function render(S){
    tb.appendChild(tr);});
 }
 async function poll(){
- try{const r=await fetch('/state.json');const S=await r.json();
-  if(S.ok){render(S)}else{document.getElementById('cards').innerHTML='<div class="card"><div class="v">'+S.msg+'</div></div>'}
+ try{const meta=await jget('/meta.json');
+  if(meta.ok){
+   const tr=await jget('/trades.json');
+   SD={...meta,tickers:{}};
+   Object.keys(tr).forEach(tk=>{SD.tickers[tk]={trades:tr[tk],candles:null}});
+   await ensureCandles(CUR);
+   render(SD);
+  }else{document.getElementById('cards').innerHTML='<div class="card"><div class="v">'+meta.msg+'</div></div>'}
  }catch(e){}
  setTimeout(poll,60000);
 }
@@ -400,19 +411,51 @@ build();poll();
 
 class H(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path.startswith("/state.json"):
+        # Small split endpoints: something on this machine's loopback (AV filter
+        # driver?) truncates large HTTP responses at 255/256-of-2^n boundaries no
+        # matter how they are sent, so every payload here stays well under 64 KB
+        # gzipped. Candles are served per ticker and fetched lazily by the page.
+        ctype = "application/json"
+        if self.path.startswith("/meta.json"):
+            body = json.dumps({k: STATE.get(k) for k in
+                               ("ok", "msg", "updated", "strats", "descs")}).encode()
+        elif self.path.startswith("/trades.json"):
+            body = json.dumps({tk: v["trades"] for tk, v in
+                               STATE.get("tickers", {}).items()}).encode()
+        elif self.path.startswith("/candles"):
+            tk = (self.path.split("tk=")[-1].split("&")[0]
+                  if "tk=" in self.path else "")
+            body = json.dumps(STATE.get("tickers", {})
+                              .get(tk, {}).get("candles", [])).encode()
+        elif self.path.startswith("/state.json"):     # legacy full dump
             body = json.dumps(STATE).encode()
-            ctype = "application/json"
         else:
             body = HTML.encode()
             ctype = "text/html; charset=utf-8"
+        # gzip big payloads: something in the Windows loopback path truncates large
+        # plain responses at ~510 KiB even with sendall; compressed JSON is ~70 KB.
+        import gzip as _gz
+        enc = None
+        if len(body) > 100_000 and "gzip" in (self.headers.get("Accept-Encoding") or ""):
+            body = _gz.compress(body, 5)
+            enc = "gzip"
         self.send_response(200)
         self.send_header("Content-Type", ctype)
+        if enc:
+            self.send_header("Content-Encoding", enc)
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
-        # sendall, not wfile.write: on Windows a single unbuffered socket write silently
-        # truncates past the ~510 KB send buffer, cutting large state.json bodies short.
         self.connection.sendall(body)
+        # graceful close: Windows aborts the connection (RST, discarding in-flight
+        # bytes) if we close right after a big write. FIN first, then drain.
+        import socket as _sk
+        try:
+            self.connection.shutdown(_sk.SHUT_WR)
+            self.connection.settimeout(3)
+            while self.connection.recv(4096):
+                pass
+        except Exception:
+            pass
 
     def log_message(self, *a):
         pass

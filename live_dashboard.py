@@ -37,6 +37,8 @@ import lightgbm as lgb
 import alpaca_bot2 as bot
 from alpaca_bot2 import CONFIGS, MODEL_BY_STRAT, MIN_ATR_PCT, prep, _barriers
 from triple_barrier_breadth import TICKERS
+from vc_options_real import contracts_near, day_close
+from qqq_options_real import bars_for, et_date
 
 PAPER_START = pd.Timestamp("2026-06-29")
 EFF_COST = 5.0 / 1e4                 # 3 bps + 2 bps slippage, on notional
@@ -58,6 +60,7 @@ DESCS = {
     "vP":  "Evolution III P&L champion: QQQ $2 / $2 in 8h, HistGB, high volume (~280 trades/yr). Final year +4.18%.",
     "vR":  "Your spec — and the Evolution IV final WINNER: QQQ +0.4% / -0.2% (true 2:1) in 2h, top-3% gate. Best final year of the family (+7.00%).",
     "vS":  "Evolution IV evolved challenger: QQQ +0.5% / -0.4% in 8h, top-10% gate. Lost the final to vR (+6.18%) — runs live for comparison.",
+    "vCO": "OPTIONS twin of vC: each vC signal buys ~$1k of 1-2 week ATM calls (REAL traded option prices, 1%/side cost), sold when the stock leg exits. Entry = option price per share; P&L per $1k premium. Live on paper as its own book.",
 }
 MODELS_MEM = {}                      # (strat, tk) -> {"clf", "thr"} or None
 MODELS_DIR = Path("models")
@@ -164,6 +167,69 @@ def sim_dash(strat, tk, mins, hbar, mode, tp, sl, featmode, sel, model):
     return trades
 
 
+def _opt_leg(tk, t0, t1, S0, ts_all, c_all):
+    """Price a vC trade's option twin from real bars. Returns (entry, exit, closed)."""
+    import datetime as dt
+    d0 = et_date(t0)
+    cand = [c0 for c0 in contracts_near(tk, d0, S0 * 0.97, S0 * 1.03)
+            if 5 <= (dt.date.fromisoformat(c0["exp"]) - d0).days <= 14]
+    cand.sort(key=lambda c0: (abs(c0["K"] - S0), dt.date.fromisoformat(c0["exp"])))
+    for con in cand[:3]:
+        exp = dt.date.fromisoformat(con["exp"])
+        end_day = max(et_date(t1) if t1 is not None else d0, exp)
+        bars = bars_for(con["ticker"], str(d0), str(end_day))
+        if not bars:
+            continue
+        bt = np.array([b["t"] for b in bars], dtype=np.int64)
+        t0ms = int(t0.value // 1_000_000)
+        i0 = int(np.searchsorted(bt, t0ms))
+        if i0 >= len(bars) or bt[i0] - t0ms > 24 * 3600_000:
+            continue
+        entry = bars[i0]["c"] if bt[i0] == t0ms else bars[i0]["o"]
+        if entry <= 0.03:
+            continue
+        if t1 is None:                                    # stock leg still open
+            return entry, bars[-1]["c"], False
+        if et_date(t1) > exp:                             # option died mid-trade
+            Sx = day_close(ts_all, c_all, exp)
+            if Sx is None:
+                continue
+            return entry, max(Sx - con["K"], 0.0), True
+        t1ms = int(t1.value // 1_000_000)
+        i1 = min(int(np.searchsorted(bt, t1ms)), len(bars) - 1)
+        return entry, (bars[i1]["c"] if bt[i1] <= t1ms else bars[i1]["o"]), True
+    return None
+
+
+def vco_trades(vc):
+    """Option twins of the dashboard's simulated vC trades (real option prices)."""
+    out, hc = [], 0.01
+    for t in vc:
+        try:
+            pr = _PREP.get((t["tk"], 60, "trend", "std"))
+            if pr is None:
+                continue
+            ts_all, c_all = pr[0], pr[3]
+            t0 = pd.Timestamp(t["entry_ts"], unit="s")
+            t1 = pd.Timestamp(t["exit_ts"], unit="s") if t.get("exit_ts") else None
+            leg = _opt_leg(t["tk"], t0, t1, t["entry"], ts_all, c_all)
+            if leg is None:
+                continue
+            e, x, closed = leg
+            ret = (x * (1 - hc) - e * (1 + hc)) / (e * (1 + hc))
+            out.append(dict(strat="vCO", tk=t["tk"], entry_ts=t["entry_ts"],
+                            exit_ts=t.get("exit_ts"), entry=round(float(e), 2),
+                            exit=round(float(x), 2), target=None, stop=None,
+                            qty=round(1000.0 / (e * 100), 1),
+                            conviction=t["conviction"],
+                            outcome=("OPEN" if not closed
+                                     else ("CALL+" if ret > 0 else "CALL-")),
+                            pnl=round(1000.0 * ret, 2)))
+        except Exception as ex:
+            print(f"  [vCO warn {t['tk']}] {ex}", flush=True)
+    return out
+
+
 def refresh():
     _PREP.clear()
     bot._DATA.clear()                # force a fresh Polygon tail fetch
@@ -178,6 +244,10 @@ def refresh():
                                        featmode, sel, model)
             except Exception as e:
                 print(f"  [sim warn {strat}/{tk}] {e}", flush=True)
+    try:
+        all_trades += vco_trades([t for t in all_trades if t["strat"] == "vC"])
+    except Exception as e:
+        print(f"  [vCO build warn] {e}", flush=True)
     tickers_out = {}
     for tk in TICKERS:
         d15 = (bot.full_series(tk).set_index("timestamp").resample("15min")
@@ -191,7 +261,7 @@ def refresh():
             "trades": [t for t in all_trades if t["tk"] == tk],
         }
     STATE.update(ok=True, msg="", tickers=tickers_out,
-                 strats=[cfg[0] for cfg in CONFIGS], descs=DESCS,
+                 strats=[cfg[0] for cfg in CONFIGS] + ["vCO"], descs=DESCS,
                  updated=time.strftime("%H:%M:%S"))
     Path("runs").mkdir(exist_ok=True)
     Path("runs/live_ledger.json").write_text(json.dumps(all_trades, indent=1))
@@ -301,20 +371,20 @@ function render(S){
  T.trades.filter(match).forEach(t=>{
    mk.push({time:t.entry_ts,position:'belowBar',color:'#60a5fa',shape:'arrowUp',text:t.strat+' buy '+t.entry});
    if(t.outcome==='OPEN'){
-     lines.push(series.createPriceLine({price:t.target,color:'#34d399',lineStyle:2,title:t.strat+' target'}));
-     lines.push(series.createPriceLine({price:t.stop,color:'#f87171',lineStyle:2,title:t.strat+' stop'}));
-     lines.push(series.createPriceLine({price:t.entry,color:'#60a5fa',lineStyle:3,title:t.strat+' entry'}));
-   } else {
-     const col=t.outcome==='TARGET'?'#34d399':(t.outcome==='STOP'?'#f87171':'#fbbf24');
+     if(t.target)lines.push(series.createPriceLine({price:t.target,color:'#34d399',lineStyle:2,title:t.strat+' target'}));
+     if(t.stop)lines.push(series.createPriceLine({price:t.stop,color:'#f87171',lineStyle:2,title:t.strat+' stop'}));
+     if(t.target)lines.push(series.createPriceLine({price:t.entry,color:'#60a5fa',lineStyle:3,title:t.strat+' entry'}));
+   } else if(t.exit_ts){
+     const col=(t.outcome==='TARGET'||t.outcome==='CALL+')?'#34d399':((t.outcome==='STOP'||t.outcome==='CALL-')?'#f87171':'#fbbf24');
      mk.push({time:t.exit_ts,position:'aboveBar',color:col,shape:'circle',text:t.outcome+' '+(t.pnl>=0?'+':'')+t.pnl});
    }});
  mk.sort((a,b)=>a.time-b.time); series.setMarkers(mk);
  const tb=document.querySelector('#blot tbody'); tb.innerHTML='';
  filt.sort((a,b)=>b.entry_ts-a.entry_ts);
  filt.forEach(t=>{const tr=document.createElement('tr');
-   const cls=t.outcome==='TARGET'?'g':(t.outcome==='STOP'?'r':(t.outcome==='OPEN'?'o':''));
+   const cls=(t.outcome==='TARGET'||t.outcome==='CALL+')?'g':((t.outcome==='STOP'||t.outcome==='CALL-')?'r':(t.outcome==='OPEN'?'o':''));
    tr.innerHTML=`<td>${t.tk}</td><td>${t.strat}</td><td>${fmt(t.entry_ts)}</td><td>${t.entry}</td>
-     <td>${t.target}</td><td>${t.stop}</td><td>${t.conviction}</td><td class="${cls}">${t.outcome}</td>
+     <td>${t.target??'-'}</td><td>${t.stop??'-'}</td><td>${t.conviction}</td><td class="${cls}">${t.outcome}</td>
      <td class="${t.pnl>=0?'g':'r'}">${t.pnl>=0?'+':''}${t.pnl??''}</td>`;
    tb.appendChild(tr);});
 }

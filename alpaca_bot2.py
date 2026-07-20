@@ -9,8 +9,10 @@ fill prices from the broker deciding the comparison. Limit patience = one full b
 strategy's timeframe; unfilled -> cancelled and recorded as MISSED.
 
 All exits are per-ORDER (bracket leg status / targeted market sell), never per-symbol,
-so the two arms co-exist safely on the same tickers. Guardrails per arm: max 10 open,
-one per ticker, plus the shared daily-loss stop and drawdown halt.
+so arms AND strategies co-exist safely on the same tickers. Every strategy is a
+separate entity: one position per ticker PER STRATEGY (never blocked by another
+strategy's holdings), a per-arm position backstop, plus the shared daily-loss stop
+and drawdown halt.
 
   python alpaca_bot2.py --once | --dryrun | --status
 PAPER ONLY (endpoint hard-asserted). Replaces alpaca_bot.py as the scheduled cycle.
@@ -43,7 +45,8 @@ from basket import ticker_cfg
 from data import fetch_polygon
 
 NOTIONAL = 1_000.0
-MAX_POSITIONS = 10                 # per arm
+MAX_POSITIONS = 24                 # per-arm backstop (~$24k); the real limiter is
+                                   # one position per ticker PER STRATEGY
 DAILY_LOSS_LIMIT = 400.0           # shared (two arms trade in parallel)
 DD_BREAKER = 3_000.0
 MIN_ATR_PCT = 0.0012
@@ -77,8 +80,8 @@ CONFIGS = [("v3", TICKERS, 30, 24, "atr",     1.5, 1.0, "sr",    ("q", 0.93),   
            # (user wants both; turnover-vs-precision live test).
            ("vS",  ["QQQ"], 5, 96, "pct",  0.005, 0.004, "full", ("q", 0.90), 3)]
 MODEL_BY_STRAT = {"vQ2": "histgb", "vP": "histgb", "vS": "histgb"}
-# NOTE: vQ and vQ2 share QQQ; the one-per-ticker guardrail means whichever signals first
-# holds the slot that hour — occasional skips are expected and logged.
+# Strategies are SEPARATE entities: each may hold its own position in a ticker even
+# when another strategy holds the same ticker (per-strategy one-per-ticker only).
 
 # ---- vCO: the OPTIONS strategy (vc_options_real.py: 1-2w ATM calls +14.9%/trade) ----
 # Fires on the same signals as vC but is its OWN strategy with its OWN book — tracked
@@ -392,7 +395,11 @@ def cycle(dry=False):
         log(f"!! DRAWDOWN BREAKER — HALTED (edit {LEDGER} to resume)")
     no_new = led["state"]["halted"] or day_pnl <= -DAILY_LOSS_LIMIT
 
-    held = {s: {x["tk"] for x in led["open"] + led["pending"] if x["style"] == s}
+    # Each strategy is a SEPARATE entity (user spec): one position per ticker PER
+    # STRATEGY, so v6 holding TLT never blocks vC's TLT trade. Exits are per-order
+    # (bracket leg IDs), so same-ticker positions across strategies coexist safely.
+    held = {s: {(x["strat"], x["tk"]) for x in led["open"] + led["pending"]
+                if x["style"] == s}
             for s in ("mkt", "lmt")}
     counts = {s: sum(1 for x in led["open"] + led["pending"] if x["style"] == s)
               for s in ("mkt", "lmt")}
@@ -430,19 +437,19 @@ def cycle(dry=False):
                             tgt=float(tgt_px[i]), stop=float(stop_px[i]),
                             bar=bar_ts, ddl_days=ddl)
                 stamp = f"{pd.Timestamp(ts[i]):%Y%m%d%H%M}"
-                if counts["mkt"] < MAX_POSITIONS and tk not in held["mkt"]:
+                if counts["mkt"] < MAX_POSITIONS and (strat, tk) not in held["mkt"]:
                     o = broker.submit_bracket(tk, qty, tgt_px[i], stop_px[i],
                                               f"mkt-{strat}-{tk}-{stamp}")
                     led["pending"].append(dict(base, style="mkt", order_id=o["id"],
                                                expiry=str(now + pd.Timedelta(hours=24))))
-                    counts["mkt"] += 1; held["mkt"].add(tk)
-                if counts["lmt"] < MAX_POSITIONS and tk not in held["lmt"]:
+                    counts["mkt"] += 1; held["mkt"].add((strat, tk))
+                if counts["lmt"] < MAX_POSITIONS and (strat, tk) not in held["lmt"]:
                     o = broker.submit_limit_bracket(tk, qty, c[i], tgt_px[i], stop_px[i],
                                                     f"lmt-{strat}-{tk}-{stamp}")
                     expiry = pd.Timestamp(ts[i]) + pd.Timedelta(minutes=2 * mins)
                     led["pending"].append(dict(base, style="lmt", order_id=o["id"],
                                                expiry=str(expiry)))
-                    counts["lmt"] += 1; held["lmt"].add(tk)
+                    counts["lmt"] += 1; held["lmt"].add((strat, tk))
                 # vCO is INDEPENDENT of the stock arms: it fires on every vC signal
                 # (even when another strategy holds the ticker slot) and manages its
                 # own virtual bracket in manage_opts — the design the backtest

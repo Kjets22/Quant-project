@@ -418,12 +418,14 @@ def cycle(dry=False):
                             tgt=float(tgt_px[i]), stop=float(stop_px[i]),
                             bar=bar_ts, ddl_days=ddl)
                 stamp = f"{pd.Timestamp(ts[i]):%Y%m%d%H%M}"
+                stock_entered = False
                 if counts["mkt"] < MAX_POSITIONS and tk not in held["mkt"]:
                     o = broker.submit_bracket(tk, qty, tgt_px[i], stop_px[i],
                                               f"mkt-{strat}-{tk}-{stamp}")
                     led["pending"].append(dict(base, style="mkt", order_id=o["id"],
                                                expiry=str(now + pd.Timedelta(hours=24))))
                     counts["mkt"] += 1; held["mkt"].add(tk)
+                    stock_entered = True
                 if counts["lmt"] < MAX_POSITIONS and tk not in held["lmt"]:
                     o = broker.submit_limit_bracket(tk, qty, c[i], tgt_px[i], stop_px[i],
                                                     f"lmt-{strat}-{tk}-{stamp}")
@@ -431,7 +433,11 @@ def cycle(dry=False):
                     led["pending"].append(dict(base, style="lmt", order_id=o["id"],
                                                expiry=str(expiry)))
                     counts["lmt"] += 1; held["lmt"].add(tk)
-                if (strat in OPT_STRATS and len(led["opt_open"]) < OPT_MAX_OPEN
+                # vCO fires ONLY when the vC stock leg actually entered — otherwise the
+                # option is an orphan the exit logic dumps next cycle (Jul-17 lesson:
+                # two TLT orphans, -$50, because v6 held the ticker slot).
+                if (strat in OPT_STRATS and stock_entered
+                        and len(led["opt_open"]) < OPT_MAX_OPEN
                         and not any(x["tk"] == tk for x in led["opt_open"])):
                     try:
                         con = pick_call(tk, c[i])

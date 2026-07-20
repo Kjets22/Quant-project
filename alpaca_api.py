@@ -106,6 +106,22 @@ def market_sell(symbol, qty, client_id):
         "time_in_force": "day", "client_order_id": client_id})
 
 
+def submit_limit(symbol, qty, limit_price, client_id, extended=False):
+    """Plain DAY limit BUY; extended=True makes it eligible 4:00-20:00 ET.
+    (Alpaca allows ONLY day limit orders in extended hours — no market/bracket.)"""
+    return _req("POST", "/v2/orders", json={
+        "symbol": symbol, "qty": str(int(qty)), "side": "buy", "type": "limit",
+        "limit_price": str(round(limit_price, 2)), "time_in_force": "day",
+        "extended_hours": bool(extended), "client_order_id": client_id})
+
+
+def limit_sell(symbol, qty, limit_price, client_id, extended=False):
+    return _req("POST", "/v2/orders", json={
+        "symbol": symbol, "qty": str(int(qty)), "side": "sell", "type": "limit",
+        "limit_price": str(round(limit_price, 2)), "time_in_force": "day",
+        "extended_hours": bool(extended), "client_order_id": client_id})
+
+
 def market_buy(symbol, qty, client_id):
     """Plain market BUY (works for stock and OCC option symbols alike)."""
     return _req("POST", "/v2/orders", json={

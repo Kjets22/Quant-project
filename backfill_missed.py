@@ -65,13 +65,14 @@ def outage_windows():
 
 
 def rth_cycle_times(lo, hi):
-    """The bot's cycle timestamps (:01/:16/:31/:46, 13:31-20:16 UTC approx) in [lo,hi]."""
+    """The bot's cycle timestamps (:01/:16/:31/:46) in [lo,hi]. Since 2026-07-20 the
+    bot trades extended hours too, so the cadence spans ~4am-8pm ET (08:01-23:46 UTC)."""
     times = []
     for day in pd.date_range(lo.normalize(), hi.normalize(), freq="D"):
         if day.dayofweek >= 5:
             continue
-        t = day + pd.Timedelta(hours=13, minutes=31)
-        end = day + pd.Timedelta(hours=20, minutes=16)
+        t = day + pd.Timedelta(hours=8, minutes=1)
+        end = day + pd.Timedelta(hours=23, minutes=46)
         while t <= end:
             if lo < t < hi:
                 times.append(t)

@@ -112,9 +112,10 @@ def load_ledger():
         led = json.loads(LEDGER.read_text())
         led.setdefault("opt_open", [])
         led.setdefault("opt_closed", [])
+        led.setdefault("opt_queue", [])
         return led
     led = {"open": [], "pending": [], "closed": [], "acted_bars": {},
-           "opt_open": [], "opt_closed": [],
+           "opt_open": [], "opt_closed": [], "opt_queue": [],
            "state": {"peak_equity": 100000.0, "halted": False}}
     old = Path("runs/alpaca_ledger.json")                 # seed from bot v1
     if old.exists():
@@ -178,6 +179,20 @@ def prep(tk, mins, featmode, mode):
         valid = np.isfinite(A)
         stop_px, tgt_px = None, None
     return ts, h, l, c, A, X, valid, stop_px, tgt_px
+
+
+def session():
+    """'rth' 9:30-16:00 ET, 'ext' 4:00-9:30 / 16:00-20:00 ET weekdays, else 'closed'.
+    Extended hours matter: the QQQ family's edge fires almost entirely off-hours."""
+    et = pd.Timestamp.now(tz="America/New_York")
+    if et.dayofweek >= 5:
+        return "closed"
+    m = et.hour * 60 + et.minute
+    if 570 <= m < 960:
+        return "rth"
+    if 240 <= m < 570 or 960 <= m < 1200:
+        return "ext"
+    return "closed"
 
 
 def _barriers(mode, c, A, tp, sl, stop_px, tgt_px):
@@ -272,7 +287,15 @@ def poll_pending(led, dry):
     led["pending"] = keep
 
 
-def manage_exits(led, dry):
+def _sell_now(tk, qty, cur, cid, sess):
+    """Session-aware sell: market during RTH; marketable extended DAY limit off-hours
+    (Alpaca allows only day limits in extended sessions)."""
+    if sess == "rth":
+        return broker.market_sell(tk, qty, cid)
+    return broker.limit_sell(tk, qty, cur * 0.997, cid, extended=True)
+
+
+def manage_exits(led, dry, sess):
     now = pd.Timestamp.utcnow().tz_localize(None)
     keep = []
     for p in led["open"]:
@@ -287,15 +310,33 @@ def manage_exits(led, dry):
                         break
         except Exception as e:
             log(f"  [exit poll error {p['tk']}: {e}]")
+        if outcome is None and p.get("synthetic"):
+            # extended-hours entries have no bracket legs at the broker: the bot IS
+            # the bracket, checking live price vs the stored levels every cycle
+            try:
+                pos = broker.position(p["tk"])
+                cur = float(pos["current_price"]) if pos else None
+                if cur is not None:
+                    syn = ("STOP" if cur <= p["stop"]
+                           else "TARGET" if cur >= p["tgt"] else None)
+                    if syn:
+                        if not dry:
+                            _sell_now(p["tk"], p["qty"], cur,
+                                      f"sx-{p['style']}-{p['tk']}-{now:%Y%m%d%H%M%S}",
+                                      sess)
+                        outcome, exit_px = syn, cur
+            except Exception as e:
+                log(f"  [syn exit error {p['tk']}: {e}]")
         if outcome is None and pd.Timestamp(p["deadline"]) <= now:
+            pos = broker.position(p["tk"])
+            cur = float(pos["current_price"]) if pos else p["fill"]
             if not dry:
                 for leg_id in (p.get("tp_leg"), p.get("sl_leg")):
                     if leg_id:
                         broker.cancel_order(leg_id)
-                broker.market_sell(p["tk"], p["qty"],
-                                   f"tx-{p['style']}-{p['tk']}-{now:%Y%m%d%H%M%S}")
-            pos = broker.position(p["tk"])
-            exit_px = float(pos["current_price"]) if pos else p["fill"]
+                _sell_now(p["tk"], p["qty"], cur,
+                          f"tx-{p['style']}-{p['tk']}-{now:%Y%m%d%H%M%S}", sess)
+            exit_px = cur
             outcome = "TIME"
         if outcome:
             pnl = round((exit_px - p["fill"]) * p["qty"], 2)
@@ -320,11 +361,30 @@ def pick_call(tk, spot):
     return cons[0]
 
 
-def manage_opts(led, dry):
+def place_opt(led, strat, tk, sig_px, tgt, stop, bar_ts, stamp, ddl, now):
+    """Buy the vCO call for a vC signal (RTH only — options have no extended hours)."""
+    if (len(led["opt_open"]) >= OPT_MAX_OPEN
+            or any(x["tk"] == tk for x in led["opt_open"])):
+        return
+    con = pick_call(tk, sig_px)
+    if not con:
+        return
+    px = float(con.get("close_price") or 0) or None
+    qo = (max(1, min(OPT_MAX_CONTRACTS, int(OPT_PREMIUM // (px * 100))))
+          if px else 1)
+    o = broker.market_buy(con["symbol"], qo, f"opt-{strat}-{tk}-{stamp}")
+    led["opt_open"].append(dict(
+        strat="vCO", src=strat, tk=tk, occ=con["symbol"], qty=qo,
+        order_id=o["id"], expiry=con["expiration_date"], sig_px=float(sig_px),
+        tgt=float(tgt), stop=float(stop), bar=bar_ts, ets=str(now),
+        deadline=str(now + pd.Timedelta(days=ddl)), est_px=px))
+    log(f"  OPT BUY {con['symbol']} x{qo} (prev close ${px if px else '?'})")
+
+
+def manage_opts(led, dry, sess):
     """vCO runs its OWN virtual bracket, independent of the stock arms: sell the call
     when the UNDERLYING trades through vC's target or stop, at the time deadline, or
-    the day before expiry. (Coupling exits to the stock book orphaned trades when
-    another strategy held the ticker slot — Jul-17 lesson.)"""
+    the day before expiry. Sells only during RTH (options don't trade extended)."""
     now = pd.Timestamp.utcnow().tz_localize(None)
     today = (now - pd.Timedelta(hours=4)).date()
     keep = []
@@ -361,7 +421,7 @@ def manage_opts(led, dry):
                         reason = "STOP"                   # stop checked first (worst case)
                     elif float(seg["high"].max()) >= p["tgt"]:
                         reason = "TARGET"
-            if reason and p.get("fill") and not dry:
+            if reason and p.get("fill") and not dry and sess == "rth":
                 so = broker.market_sell(p["occ"], p["qty"],
                                         f"optx-{p['tk']}-{now:%Y%m%d%H%M%S}")
                 p["closing_id"] = so["id"]
@@ -381,15 +441,24 @@ def cycle(dry=False):
     day_pnl = equity - float(acct["last_equity"])
     led["state"]["peak_equity"] = max(led["state"]["peak_equity"], equity)
     drawdown = led["state"]["peak_equity"] - equity
-    clk = broker.clock()
+    sess = session()
     log(f"A/B cycle | equity=${equity:,.2f} day={day_pnl:+.2f} dd={drawdown:.2f} | "
-        f"market={'OPEN' if clk['is_open'] else 'closed'}{' | DRYRUN' if dry else ''}")
-    if not clk["is_open"] and not dry:
+        f"session={sess}{' | DRYRUN' if dry else ''}")
+    if sess == "closed" and not dry:
         save_ledger(led)
         return
     poll_pending(led, dry)
-    manage_exits(led, dry)
-    manage_opts(led, dry)
+    manage_exits(led, dry, sess)
+    manage_opts(led, dry, sess)
+    if sess == "rth" and not dry and led.get("opt_queue"):
+        q, led["opt_queue"] = led["opt_queue"], []
+        for s in q:                       # vC signals that fired while options slept
+            try:
+                place_opt(led, s["strat"], s["tk"], s["sig_px"], s["tgt"], s["stop"],
+                          s["bar"], s["stamp"], s["ddl"],
+                          pd.Timestamp.utcnow().tz_localize(None))
+            except Exception as e:
+                log(f"  [opt queue error {s['tk']}: {e}]")
     if drawdown >= DD_BREAKER and not led["state"]["halted"]:
         led["state"]["halted"] = True
         log(f"!! DRAWDOWN BREAKER — HALTED (edit {LEDGER} to resume)")
@@ -438,45 +507,52 @@ def cycle(dry=False):
                             bar=bar_ts, ddl_days=ddl)
                 stamp = f"{pd.Timestamp(ts[i]):%Y%m%d%H%M}"
                 if counts["mkt"] < MAX_POSITIONS and (strat, tk) not in held["mkt"]:
-                    o = broker.submit_bracket(tk, qty, tgt_px[i], stop_px[i],
-                                              f"mkt-{strat}-{tk}-{stamp}")
+                    if sess == "rth":
+                        o = broker.submit_bracket(tk, qty, tgt_px[i], stop_px[i],
+                                                  f"mkt-{strat}-{tk}-{stamp}")
+                        exp, syn = str(now + pd.Timedelta(hours=24)), False
+                    else:      # extended hours: aggressive marketable DAY limit
+                        o = broker.submit_limit(tk, qty, c[i] * 1.001,
+                                                f"mkt-{strat}-{tk}-{stamp}",
+                                                extended=True)
+                        exp, syn = str(now + pd.Timedelta(minutes=30)), True
                     led["pending"].append(dict(base, style="mkt", order_id=o["id"],
-                                               expiry=str(now + pd.Timedelta(hours=24))))
+                                               synthetic=syn, expiry=exp))
                     counts["mkt"] += 1; held["mkt"].add((strat, tk))
                 if counts["lmt"] < MAX_POSITIONS and (strat, tk) not in held["lmt"]:
-                    o = broker.submit_limit_bracket(tk, qty, c[i], tgt_px[i], stop_px[i],
-                                                    f"lmt-{strat}-{tk}-{stamp}")
+                    if sess == "rth":
+                        o = broker.submit_limit_bracket(tk, qty, c[i], tgt_px[i],
+                                                        stop_px[i],
+                                                        f"lmt-{strat}-{tk}-{stamp}")
+                        syn = False
+                    else:      # extended hours: exact-price DAY limit
+                        o = broker.submit_limit(tk, qty, c[i],
+                                                f"lmt-{strat}-{tk}-{stamp}",
+                                                extended=True)
+                        syn = True
                     expiry = pd.Timestamp(ts[i]) + pd.Timedelta(minutes=2 * mins)
                     led["pending"].append(dict(base, style="lmt", order_id=o["id"],
-                                               expiry=str(expiry)))
+                                               synthetic=syn, expiry=str(expiry)))
                     counts["lmt"] += 1; held["lmt"].add((strat, tk))
                 # vCO is INDEPENDENT of the stock arms: it fires on every vC signal
                 # (even when another strategy holds the ticker slot) and manages its
                 # own virtual bracket in manage_opts — the design the backtest
                 # validated. (Jul-17: coupling exits to the stock book orphaned two
                 # TLT calls for -$50; decoupled since.)
-                if (strat in OPT_STRATS
-                        and len(led["opt_open"]) < OPT_MAX_OPEN
-                        and not any(x["tk"] == tk for x in led["opt_open"])):
+                if strat in OPT_STRATS:
                     try:
-                        con = pick_call(tk, c[i])
-                        if con:
-                            px = float(con.get("close_price") or 0) or None
-                            qo = (max(1, min(OPT_MAX_CONTRACTS,
-                                             int(OPT_PREMIUM // (px * 100))))
-                                  if px else 1)
-                            o = broker.market_buy(con["symbol"], qo,
-                                                  f"opt-{strat}-{tk}-{stamp}")
-                            led["opt_open"].append(dict(
-                                strat="vCO", src=strat, tk=tk, occ=con["symbol"],
-                                qty=qo, order_id=o["id"],
-                                expiry=con["expiration_date"],
-                                sig_px=float(c[i]), tgt=float(tgt_px[i]),
-                                stop=float(stop_px[i]), bar=bar_ts, ets=str(now),
-                                deadline=str(now + pd.Timedelta(days=ddl)),
-                                est_px=px))
-                            log(f"  OPT BUY {con['symbol']} x{qo} "
-                                f"(prev close ${px if px else '?'})")
+                        if sess == "rth":
+                            place_opt(led, strat, tk, float(c[i]), float(tgt_px[i]),
+                                      float(stop_px[i]), bar_ts, stamp, ddl, now)
+                        else:
+                            # options don't trade extended hours: queue for the next
+                            # open (the validated backtest's delayed-entry behavior)
+                            led.setdefault("opt_queue", []).append(
+                                dict(strat=strat, tk=tk, sig_px=float(c[i]),
+                                     tgt=float(tgt_px[i]), stop=float(stop_px[i]),
+                                     bar=bar_ts, stamp=stamp, ddl=ddl))
+                            log(f"  OPT QUEUED {tk} (options market closed; "
+                                f"buying at next open)")
                     except Exception as e:
                         log(f"  [opt entry error {strat} {tk}: {e}]")
             except Exception as e:

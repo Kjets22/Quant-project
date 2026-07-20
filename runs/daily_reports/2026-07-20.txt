@@ -1,0 +1,41 @@
+DAILY REPORT — 2026-07-20 16:15 local  (market closed)
+account equity $100,033.00   day P&L +1.02   cash $85,140.39
+
+===== MARKET arm =====
+  strat  closed   win%  missed  realized$  open   unreal$  avg slip
+     v3       1     0%       0      -0.60     0     +0.00   -11.8bp
+     v4       0      -       0      +0.00     0     +0.00         -
+     v6       2     0%       0     -10.15     2     +2.75   +54.6bp
+     v7       1     0%       0      -1.93     4    +23.86    +5.0bp
+     vC       1     0%       0      -7.99     3    +36.75   -25.0bp
+     vQ       0      -       0      +0.00     0     +0.00         -
+    vQ2       0      -       0      +0.00     0     +0.00         -
+     vA       0      -       0      +0.00     0     +0.00         -
+     vP       0      -       0      +0.00     0     +0.00         -
+     vR       0      -       0      +0.00     0     +0.00         -
+     vS       0      -       0      +0.00     0     +0.00         -
+  TOTAL       5     0%       0     -20.67     9    +63.36
+
+===== LIMIT arm =====
+  strat  closed   win%  missed  realized$  open   unreal$  avg slip
+     v3       2     0%       0      -2.05     0     +0.00   -15.4bp
+     v4       0      -       0      +0.00     0     +0.00         -
+     v6       2     0%       2      -8.25     1     +1.82    -3.9bp
+     v7       1     0%       0      -1.14     4    +25.39    -0.9bp
+     vC       1     0%       0      -7.96     3    +36.54   -23.8bp
+     vQ       0      -       0      +0.00     0     +0.00         -
+    vQ2       0      -       0      +0.00     0     +0.00         -
+     vA       0      -       0      +0.00     0     +0.00         -
+     vP       0      -       0      +0.00     0     +0.00         -
+     vR       0      -       0      +0.00     0     +0.00         -
+     vS       0      -       0      +0.00     0     +0.00         -
+  TOTAL       6     0%       2     -19.40     8    +63.75
+
+A/B VERDICT SO FAR: LIMIT arm leads by $1.66 (mkt $+42.69 vs lmt $+44.35, incl. unrealized)
+
+===== vCO — OPTIONS strategy (vC signals, separate book) =====
+  closed 2 | win% 0% | realized $-50.00 | open 0 | unrealized $+0.00
+  head-to-head: vC stock (mkt arm) realized $-7.99 over 1 closed vs vCO options $-50.00 over 2
+
+===== FLAGS =====
+  WARN: market-arm avg slippage +9.4 bps exceeds the 5 bps budget — edge margins at risk.

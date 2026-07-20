@@ -318,7 +318,10 @@ def pick_call(tk, spot):
 
 
 def manage_opts(led, dry):
-    """Fill-poll the option legs; sell when the stock leg is gone / deadline / expiry."""
+    """vCO runs its OWN virtual bracket, independent of the stock arms: sell the call
+    when the UNDERLYING trades through vC's target or stop, at the time deadline, or
+    the day before expiry. (Coupling exits to the stock book orphaned trades when
+    another strategy held the ticker slot — Jul-17 lesson.)"""
     now = pd.Timestamp.utcnow().tz_localize(None)
     today = (now - pd.Timedelta(hours=4)).date()
     keep = []
@@ -331,7 +334,8 @@ def manage_opts(led, dry):
                     pnl = round((sell - (p.get("fill") or sell)) * 100 * p["qty"], 2)
                     p.update(exit=sell, pnl=pnl, xts=str(now))
                     led["opt_closed"].append(p)
-                    log(f"  OPT CLOSED {p['occ']} pnl={pnl:+.2f}")
+                    log(f"  OPT CLOSED {p['occ']} {p.get('exit_reason', '')} "
+                        f"pnl={pnl:+.2f}")
                     continue
                 keep.append(p); continue
             o = broker.get_order(p["order_id"])
@@ -341,17 +345,25 @@ def manage_opts(led, dry):
             if o["status"] == "filled" and not p.get("fill"):
                 p["fill"] = float(o["filled_avg_price"])
                 log(f"  OPT FILLED {p['occ']} x{p['qty']} @ {p['fill']:.2f}")
-            stock_alive = any(x["tk"] == p["tk"] and x["strat"] == p.get("src", "vC")
-                              and x["style"] == "mkt"
-                              for x in led["open"] + led["pending"])
-            expiry_near = pd.Timestamp(p["expiry"]).date() <= today + pd.Timedelta(days=1)
-            due = (not stock_alive) or pd.Timestamp(p["deadline"]) <= now or expiry_near
-            if due and p.get("fill") and not dry:
+            reason = None
+            if pd.Timestamp(p["deadline"]) <= now:
+                reason = "TIME"
+            elif pd.Timestamp(p["expiry"]).date() <= today + pd.Timedelta(days=1):
+                reason = "EXPIRY"
+            elif p.get("tgt") and p.get("stop"):
+                d = full_series(p["tk"])
+                seg = d[d["timestamp"] >= pd.Timestamp(p["ets"])]
+                if len(seg):
+                    if float(seg["low"].min()) <= p["stop"]:
+                        reason = "STOP"                   # stop checked first (worst case)
+                    elif float(seg["high"].max()) >= p["tgt"]:
+                        reason = "TARGET"
+            if reason and p.get("fill") and not dry:
                 so = broker.market_sell(p["occ"], p["qty"],
                                         f"optx-{p['tk']}-{now:%Y%m%d%H%M%S}")
                 p["closing_id"] = so["id"]
-                log(f"  OPT SELL {p['occ']} x{p['qty']} "
-                    f"({'stock closed' if not stock_alive else 'deadline/expiry'})")
+                p["exit_reason"] = reason
+                log(f"  OPT SELL {p['occ']} x{p['qty']} ({reason})")
             keep.append(p)
         except Exception as e:
             log(f"  [opt manage error {p.get('occ')}: {e}]")
@@ -418,14 +430,12 @@ def cycle(dry=False):
                             tgt=float(tgt_px[i]), stop=float(stop_px[i]),
                             bar=bar_ts, ddl_days=ddl)
                 stamp = f"{pd.Timestamp(ts[i]):%Y%m%d%H%M}"
-                stock_entered = False
                 if counts["mkt"] < MAX_POSITIONS and tk not in held["mkt"]:
                     o = broker.submit_bracket(tk, qty, tgt_px[i], stop_px[i],
                                               f"mkt-{strat}-{tk}-{stamp}")
                     led["pending"].append(dict(base, style="mkt", order_id=o["id"],
                                                expiry=str(now + pd.Timedelta(hours=24))))
                     counts["mkt"] += 1; held["mkt"].add(tk)
-                    stock_entered = True
                 if counts["lmt"] < MAX_POSITIONS and tk not in held["lmt"]:
                     o = broker.submit_limit_bracket(tk, qty, c[i], tgt_px[i], stop_px[i],
                                                     f"lmt-{strat}-{tk}-{stamp}")
@@ -433,10 +443,12 @@ def cycle(dry=False):
                     led["pending"].append(dict(base, style="lmt", order_id=o["id"],
                                                expiry=str(expiry)))
                     counts["lmt"] += 1; held["lmt"].add(tk)
-                # vCO fires ONLY when the vC stock leg actually entered — otherwise the
-                # option is an orphan the exit logic dumps next cycle (Jul-17 lesson:
-                # two TLT orphans, -$50, because v6 held the ticker slot).
-                if (strat in OPT_STRATS and stock_entered
+                # vCO is INDEPENDENT of the stock arms: it fires on every vC signal
+                # (even when another strategy holds the ticker slot) and manages its
+                # own virtual bracket in manage_opts — the design the backtest
+                # validated. (Jul-17: coupling exits to the stock book orphaned two
+                # TLT calls for -$50; decoupled since.)
+                if (strat in OPT_STRATS
                         and len(led["opt_open"]) < OPT_MAX_OPEN
                         and not any(x["tk"] == tk for x in led["opt_open"])):
                     try:
@@ -452,7 +464,8 @@ def cycle(dry=False):
                                 strat="vCO", src=strat, tk=tk, occ=con["symbol"],
                                 qty=qo, order_id=o["id"],
                                 expiry=con["expiration_date"],
-                                sig_px=float(c[i]), bar=bar_ts, ets=str(now),
+                                sig_px=float(c[i]), tgt=float(tgt_px[i]),
+                                stop=float(stop_px[i]), bar=bar_ts, ets=str(now),
                                 deadline=str(now + pd.Timedelta(days=ddl)),
                                 est_px=px))
                             log(f"  OPT BUY {con['symbol']} x{qo} "

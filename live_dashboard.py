@@ -60,7 +60,7 @@ DESCS = {
     "vP":  "Evolution III P&L champion: QQQ $2 / $2 in 8h, HistGB, high volume (~280 trades/yr). Final year +4.18%.",
     "vR":  "Your spec — and the Evolution IV final WINNER: QQQ +0.4% / -0.2% (true 2:1) in 2h, top-3% gate. Best final year of the family (+7.00%).",
     "vS":  "Evolution IV evolved challenger: QQQ +0.5% / -0.4% in 8h, top-10% gate. Lost the final to vR (+6.18%) — runs live for comparison.",
-    "vCO": "OPTIONS twin of vC: each vC signal buys ~$1k of 1-2 week ATM calls (REAL traded option prices, 1%/side cost), sold when the stock leg exits. Entry = option price per share; P&L per $1k premium. Live on paper as its own book.",
+    "vCO": "OPTIONS strategy on vC signals (fully independent book): each signal buys ~$1k of 1-2 week ATM calls and runs its OWN virtual bracket — sold when the underlying hits vC's target or stop, at the 8-day time limit, or before expiry. Entry = option price per share; P&L per $1k premium.",
 }
 MODELS_MEM = {}                      # (strat, tk) -> {"clf", "thr"} or None
 MODELS_DIR = Path("models")

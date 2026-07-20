@@ -36,6 +36,16 @@ SLIP_BUDGET_BPS = 5.0
 
 
 def main():
+    # user policy: automatically recover trades missed due to outages or the old
+    # cross-strategy block, so each strategy's record stays fair (backfill is
+    # idempotent; genuine skips are never credited)
+    backfill_err = None
+    try:
+        import subprocess
+        subprocess.run([sys.executable, "backfill_missed.py"],
+                       capture_output=True, timeout=900)
+    except Exception as e:
+        backfill_err = str(e)
     now = pd.Timestamp.utcnow().tz_localize(None)
     led = json.loads(LEDGER.read_text()) if LEDGER.exists() else None
     acct = broker.account()
@@ -191,6 +201,36 @@ def main():
     # 6. halted
     if led.get("state", {}).get("halted"):
         flags.append("CRITICAL: drawdown breaker is HALTED — no new entries until reviewed.")
+
+    # ---------- recovered trades (outage / old-rule misses; hypothetical fills) ----
+    recf = Path("runs/recovered_trades.json")
+    rec = json.loads(recf.read_text()) if recf.exists() else []
+    if rec:
+        w("===== RECOVERED trades (missed via OUTAGE or the old cross-strategy "
+          "block; simulated fills at signal px, 5bps) =====")
+        w(f"  {'strat':>5} {'n':>3} {'P&L$':>8}  outcomes")
+        by = {}
+        for r in rec:
+            by.setdefault(r["strat"], []).append(r)
+        rtot = 0.0
+        for st in STRATS:
+            rows = by.get(st)
+            if not rows:
+                continue
+            p = sum(r["pnl"] for r in rows)
+            rtot += p
+            oc = {}
+            for r in rows:
+                oc[r["outcome"]] = oc.get(r["outcome"], 0) + 1
+            w(f"  {st:>5} {len(rows):>3} {p:>+8.2f}  "
+              + " ".join(f"{k}:{v}" for k, v in sorted(oc.items())))
+        n_out = sum(1 for r in rec if r["reason"] == "OUTAGE")
+        w(f"  TOTAL {len(rec):>3} {rtot:>+8.2f}  ({n_out} outage, "
+          f"{len(rec) - n_out} rule-block)")
+        w(f"  ADJUSTED balance (broker equity + recovered): ${equity + rtot:,.2f}")
+        w("")
+    if backfill_err:
+        flags.append(f"WARN: auto-backfill failed: {backfill_err}")
 
     w("===== FLAGS =====")
     if flags:

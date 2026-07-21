@@ -1,10 +1,15 @@
-MORNING-QQQ daily run  2026-07-21
-==============================================
+MORNING daily run  2026-07-21  (vM stock + vMO 0DTE-ATM options, QQQ+SPY)
+==================================================================
 data refresh: OK
 
 CHAMPION {"last_entry": 690, "nr": 0.3, "or_bars": 5, "rr": 2.0, "sides": "both", "volx": null}
-  ladder: arena_worst=+0.01%  gate=+4.78%  final=+6.57% (n=68)
-  forward since 2026-07-21: n=0 total=+0.00% win=0%
+  QQQ ladder: arena_worst=+0.01%  gate=+4.78%  final=+6.57% (n=68)
+  QQQ stock forward since 2026-07-21: n=0 total=+0.00% win=0%
+  SPY stock forward since 2026-07-21: n=0 total=+0.00% win=0%
 
-search: 20 new configs evaluated (20 lifetime)
+vMO OPTIONS (0dte atm, 1%/side, fixed premium/trade)
+  QQQ vMO forward: n=0 total=+0.0% of premium win=0%
+  SPY vMO forward: n=0 total=+0.0% of premium win=0%
+
+search: 20 new configs evaluated (40 lifetime)
   no config beat the champion's ladder today

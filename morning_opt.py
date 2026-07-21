@@ -91,9 +91,10 @@ def _get(session, key, url, params, retries=6):
 _CONS: dict = {}
 
 
-def contracts_for(day, klo, khi, ctype, max_days=12):
-    """QQQ contracts of `ctype` expiring day..day+max_days, strikes in [klo,khi]."""
-    key = f"QQQ_{ctype}_{day}_{int(klo)}_{int(khi)}_{max_days}"
+def contracts_for(day, klo, khi, ctype, max_days=12, underlying="QQQ"):
+    """Contracts of `ctype` on `underlying` expiring day..day+max_days, strikes in
+    [klo,khi]. (Cache keys start with the underlying, so existing QQQ caches match.)"""
+    key = f"{underlying}_{ctype}_{day}_{int(klo)}_{int(khi)}_{max_days}"
     cf = CACHE / f"mo_cons_{key}.json"
     if key in _CONS:
         return _CONS[key]
@@ -104,7 +105,7 @@ def contracts_for(day, klo, khi, ctype, max_days=12):
     out = []
     for expired in ("true", "false"):
         url = "https://api.polygon.io/v3/reference/options/contracts"
-        params = {"underlying_ticker": "QQQ", "contract_type": ctype,
+        params = {"underlying_ticker": underlying, "contract_type": ctype,
                   "expiration_date.gte": str(day),
                   "expiration_date.lte": str(day + dt.timedelta(days=max_days)),
                   "strike_price.gte": klo, "strike_price.lte": khi,
@@ -167,14 +168,14 @@ def _et_ts(ts) -> pd.Timestamp:
 
 
 # ------------------------------------------------------------- contract selection
-def pick_contracts(day, spot, side, dte_bucket, strike_mode):
+def pick_contracts(day, spot, side, dte_bucket, strike_mode, underlying="QQQ"):
     """Choose the expiry per dte_bucket and strike per strike_mode at entry.
 
     Returns (candidates, dte) — candidates is the target contract first plus up
     to two nearest-strike fallbacks in the SAME expiry (liquidity insurance,
     same pattern as qqq_options_real), or ([], None) if nothing is listed."""
     ctype = "call" if side == "long" else "put"
-    cons = contracts_for(day, spot * 0.97, spot * 1.03, ctype)
+    cons = contracts_for(day, spot * 0.97, spot * 1.03, ctype, underlying=underlying)
     by_dte: dict = {}
     for c in cons:
         d = (dt.date.fromisoformat(c["exp"]) - day).days
@@ -229,7 +230,7 @@ def _exit_fill(bt, bars, t_ms):
 
 
 # ------------------------------------------------------------------------ replay
-def replay(trades, dte_bucket, strike_mode, verbose=False):
+def replay(trades, dte_bucket, strike_mode, verbose=False, underlying="QQQ"):
     """Replay stock trades as REAL option trades. Returns one result dict per
     input trade with status in {'filled','unfillable','no_contract'}.
     opt_ret is set only on 'filled' rows (costs 1% per side already applied)."""
@@ -250,7 +251,8 @@ def replay(trades, dte_bucket, strike_mode, verbose=False):
                "dte_bucket": dte_bucket, "strike_mode": strike_mode,
                "status": "no_contract", "contract": None, "K": None, "exp": None,
                "dte": None, "opt_entry": None, "opt_exit": None, "opt_ret": None}
-        cands, dte = pick_contracts(d0, spot, side, dte_bucket, strike_mode)
+        cands, dte = pick_contracts(d0, spot, side, dte_bucket, strike_mode,
+                                    underlying=underlying)
         if cands:
             res["status"] = "unfillable"      # contract exists; bars must confirm
             res["dte"] = dte

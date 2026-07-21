@@ -1,0 +1,6 @@
+SPY vM options replay — 143 trades 2024-07-22..now
+stock (2bps): tot +6.78%  win 57%
+
+0dte/atm: n=143 filled=143 (unfillable rate 0%) | win 49% avg +9.7% med -1.0% tot +1390.5% | era1 +676% (n=69) / era2 +715% (n=74)
+0dte/otm1: n=143 filled=143 (unfillable rate 0%) | win 44% avg +9.8% med -9.7% tot +1396.8% | era1 +709% (n=69) / era2 +688% (n=74)
+1-3d/atm: n=143 filled=139 (unfillable rate 3%) | win 51% avg +4.3% med +1.8% tot +593.8% | era1 +360% (n=68) / era2 +234% (n=71)

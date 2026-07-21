@@ -1,0 +1,161 @@
+{
+ "champion": {
+  "or_bars": 5,
+  "rr": 2.0,
+  "nr": 0.3,
+  "last_entry": 690,
+  "sides": "both",
+  "volx": null
+ },
+ "champion_since": "2026-07-21",
+ "challenger": null,
+ "challenger_since": null,
+ "forward": {
+  "{\"last_entry\": 690, \"nr\": 0.3, \"or_bars\": 5, \"rr\": 2.0, \"sides\": \"both\", \"volx\": null}": {
+   "2026-07-21": []
+  }
+ },
+ "tried": {
+  "{\"last_entry\": 715, \"nr\": null, \"or_bars\": 8, \"rr\": 3.0, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -5.214877862952161,
+   "gate": 0.554765981305879,
+   "final": 0.2399043951658235,
+   "final_n": 49
+  },
+  "{\"last_entry\": 660, \"nr\": 0.4, \"or_bars\": 6, \"rr\": 1.5, \"sides\": \"both\", \"volx\": null}": {
+   "date": "2026-07-21",
+   "arena_worst": -0.7122024644594022,
+   "gate": 5.153935761504376,
+   "final": 5.99161472648713,
+   "final_n": 84
+  },
+  "{\"last_entry\": 715, \"nr\": 0.3, \"or_bars\": 3, \"rr\": 2.0, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -99.0,
+   "gate": 4.36578609773112,
+   "final": -3.0425400549561776,
+   "final_n": 12
+  },
+  "{\"last_entry\": 715, \"nr\": 0.4, \"or_bars\": 3, \"rr\": null, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-07-21",
+   "arena_worst": -1.4131530549627633,
+   "gate": 5.224914524515039,
+   "final": 4.813007411444073,
+   "final_n": 68
+  },
+  "{\"last_entry\": 690, \"nr\": 0.3, \"or_bars\": 3, \"rr\": 2.0, \"sides\": \"both\", \"volx\": null}": {
+   "date": "2026-07-21",
+   "arena_worst": -0.5096376302549213,
+   "gate": 6.631669717417077,
+   "final": -1.4345661291079816,
+   "final_n": 76
+  },
+  "{\"last_entry\": 630, \"nr\": 0.5, \"or_bars\": 5, \"rr\": 2.0, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -99.0,
+   "gate": 1.6431133937544276,
+   "final": -1.2537654702126484,
+   "final_n": 22
+  },
+  "{\"last_entry\": 715, \"nr\": 0.5, \"or_bars\": 4, \"rr\": 2.0, \"sides\": \"both\", \"volx\": null}": {
+   "date": "2026-07-21",
+   "arena_worst": -0.7620025855572548,
+   "gate": 9.479572931188084,
+   "final": -4.2910044961401965,
+   "final_n": 133
+  },
+  "{\"last_entry\": 660, \"nr\": 0.3, \"or_bars\": 2, \"rr\": 3.0, \"sides\": \"short\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -99.0,
+   "gate": 2.0580573377468934,
+   "final": -1.3794985793244154,
+   "final_n": 10
+  },
+  "{\"last_entry\": 715, \"nr\": 0.5, \"or_bars\": 2, \"rr\": 2.0, \"sides\": \"both\", \"volx\": null}": {
+   "date": "2026-07-21",
+   "arena_worst": -1.9990381631506922,
+   "gate": 11.418367442819827,
+   "final": -8.272504480636925,
+   "final_n": 140
+  },
+  "{\"last_entry\": 715, \"nr\": null, \"or_bars\": 6, \"rr\": 1.5, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -5.023748008956195,
+   "gate": 0.8898232688946673,
+   "final": -3.081038919641073,
+   "final_n": 54
+  },
+  "{\"last_entry\": 660, \"nr\": 0.4, \"or_bars\": 6, \"rr\": 1.5, \"sides\": \"short\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -99.0,
+   "gate": -99.0,
+   "final": -99.0,
+   "final_n": 7
+  },
+  "{\"last_entry\": 630, \"nr\": 0.3, \"or_bars\": 8, \"rr\": 1.5, \"sides\": \"both\", \"volx\": null}": {
+   "date": "2026-07-21",
+   "arena_worst": -3.224505208513108,
+   "gate": 2.0588141743069452,
+   "final": 1.8189140951919056,
+   "final_n": 37
+  },
+  "{\"last_entry\": 715, \"nr\": null, \"or_bars\": 8, \"rr\": 2.0, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -5.214877862952161,
+   "gate": 0.3405859427452736,
+   "final": -0.5303328918575242,
+   "final_n": 49
+  },
+  "{\"last_entry\": 690, \"nr\": 0.2, \"or_bars\": 5, \"rr\": 2.0, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -99.0,
+   "gate": -99.0,
+   "final": 0.4822013935375701,
+   "final_n": 11
+  },
+  "{\"last_entry\": 630, \"nr\": 0.3, \"or_bars\": 5, \"rr\": 1.5, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-07-21",
+   "arena_worst": -0.5605201561688824,
+   "gate": 4.854250761005594,
+   "final": 4.132924562755427,
+   "final_n": 30
+  },
+  "{\"last_entry\": 690, \"nr\": 0.3, \"or_bars\": 3, \"rr\": 3.0, \"sides\": \"short\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -99.0,
+   "gate": 2.588259228904457,
+   "final": -1.59462959019379,
+   "final_n": 10
+  },
+  "{\"last_entry\": 715, \"nr\": 0.4, \"or_bars\": 3, \"rr\": 3.0, \"sides\": \"both\", \"volx\": null}": {
+   "date": "2026-07-21",
+   "arena_worst": -0.7039165269439731,
+   "gate": 5.879125971223731,
+   "final": -1.0303064698850741,
+   "final_n": 104
+  },
+  "{\"last_entry\": 690, \"nr\": 0.3, \"or_bars\": 8, \"rr\": 2.0, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -99.0,
+   "gate": -99.0,
+   "final": 1.1918286596734822,
+   "final_n": 11
+  },
+  "{\"last_entry\": 690, \"nr\": 0.2, \"or_bars\": 3, \"rr\": 1.5, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-07-21",
+   "arena_worst": -99.0,
+   "gate": 3.836382841824879,
+   "final": -3.1423798182989544,
+   "final_n": 12
+  },
+  "{\"last_entry\": 630, \"nr\": 0.3, \"or_bars\": 3, \"rr\": 3.0, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-07-21",
+   "arena_worst": -1.127409163977187,
+   "gate": 4.924888504682643,
+   "final": 3.4760493368790732,
+   "final_n": 46
+  }
+ },
+ "events": []
+}

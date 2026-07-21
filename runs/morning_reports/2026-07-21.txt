@@ -1,0 +1,10 @@
+MORNING-QQQ daily run  2026-07-21
+==============================================
+data refresh: OK
+
+CHAMPION {"last_entry": 690, "nr": 0.3, "or_bars": 5, "rr": 2.0, "sides": "both", "volx": null}
+  ladder: arena_worst=+0.01%  gate=+4.78%  final=+6.57% (n=68)
+  forward since 2026-07-21: n=0 total=+0.00% win=0%
+
+search: 20 new configs evaluated (20 lifetime)
+  no config beat the champion's ladder today

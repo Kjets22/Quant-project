@@ -49,8 +49,13 @@ STATE = Path("runs/morning_state.json")
 REPORTS = Path("runs/morning_reports")
 FREEZE = "2026-07-21"                      # forward track starts here
 CHAMP = dict(or_bars=5, rr=2.0, nr=0.3, last_entry=690, sides="both", volx=None)
-TICKERS = ["QQQ", "SPY"]                   # vM + vMO run on both
+TICKERS = ["QQQ", "SPY", "DIA"]            # vM stock legs (DIA validated 2026-07-21)
+OPT_TICKERS = ["QQQ", "SPY"]               # only tickers with viable option markets
 VMO = ("0dte", "atm")                      # options overlay: bucket, strike mode
+# EXPERIMENTAL wide bucket (QQQ only): nr<=0.4 = "3 quietest of 7". Gate +4.35% /
+# final +7.38% (t=1.84) but arena worst -0.03% -> NOT validated; forward-tracked so
+# live data adjudicates. Raises book trade-day coverage toward the user's ~50% goal.
+WIDE = dict(or_bars=5, rr=2.0, nr=0.4, last_entry=690, sides="both", volx=None)
 
 SPACE = {"or_bars": [2, 3, 4, 5, 6, 8],
          "rr": [1.5, 2.0, 3.0, None],
@@ -207,7 +212,8 @@ def main():
     no_fetch = "--no-fetch" in sys.argv
     no_push = "--no-push" in sys.argv
     today = date.today().isoformat()
-    lines = [f"MORNING daily run  {today}  (vM stock + vMO 0DTE-ATM options, QQQ+SPY)",
+    lines = [f"MORNING daily run  {today}  "
+             f"(vM stock QQQ/SPY/DIA + QQQ-wide exp + vMO 0DTE options QQQ/SPY)",
              "=" * 66]
 
     if not no_fetch:
@@ -239,9 +245,29 @@ def main():
         for ds, r in new:
             lines.append(f"    new fill {ds}: {r * 1e4:+.1f}bp")
 
-    # ---- options forward tracks (vMO on each ticker, real bars) ----
+    # ---- experimental wide track (QQQ, nr<=0.4; forward evidence decides) ----
+    wide_key = f"QQQ|{ckey(WIDE)}"
+    new_w = forward_sim(dds["QQQ"], st, wide_key,
+                        lambda d: orb2s(d, **WIDE), FREEZE)
+    ws = fwd_stats(st, wide_key, FREEZE)
+    lines.append(f"  QQQ WIDE nr<=0.4 (EXPERIMENTAL, not validated) forward: "
+                 f"n={ws['n']} total={ws['total']:+.2f}% win={ws['win']:.0%}")
+    for ds, r in new_w:
+        lines.append(f"    new fill {ds}: {r * 1e4:+.1f}bp")
+
+    # ---- book trade-day coverage since freeze (the user's ~50% goal, measured) ----
+    stock_keys = [f"{tk}|{champ_key}" for tk in TICKERS] + [wide_key]
+    all_days = sorted({ds for k in stock_keys
+                       for ds in st["forward"].get(k, {})})
+    hit = sum(1 for ds in all_days
+              if any(st["forward"].get(k, {}).get(ds) for k in stock_keys))
+    if all_days:
+        lines.append(f"  BOOK coverage since {FREEZE}: traded {hit}/{len(all_days)} "
+                     f"days ({hit / len(all_days):.0%}) — goal ~50%")
+
+    # ---- options forward tracks (vMO on each options-viable ticker, real bars) ----
     lines.append(f"\nvMO OPTIONS ({VMO[0]} {VMO[1]}, 1%/side, fixed premium/trade)")
-    for tk in TICKERS:
+    for tk in OPT_TICKERS:
         try:
             new, misses = opt_forward(dds[tk], st, tk, FREEZE)
             fs = fwd_stats(st, f"{tk}|vMO|{VMO[0]}-{VMO[1]}", FREEZE)

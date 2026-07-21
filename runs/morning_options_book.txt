@@ -1,0 +1,494 @@
+MORNING OPTIONS BOOK REPLAY — QQQ+SPY nr<=0.3 (best near-miss; book champion = NONE)
+run at 2026-07-21 15:23 | window 2024-07-22..now (Polygon option-minute floor) | era cut 2025-07-14
+legs: QQQ + SPY only (DIA/XLK/MDY not options-viable) | costs 1%/side of premium, 2%/side sensitivity on best cell | stock 2bps
+CORE = nr_rank <= 0.3 (validated vMO bucket); MARGINAL = 0.3 < nr_rank <= 0.3 (book bucket == core bucket -> marginal EMPTY by construction)
+
+====================================================================================================
+TICKER QQQ — 135 trades 2024-07-23..2026-07-15 | distinct nr_ranks fired: [0.0, 0.1667] | core n=135 marginal n=0
+  STOCK (2bps): tot +11.35% avg +8.4bp win 60%
+  --- 0dte/atm ---
+    ALL      n=135 filled=135 (fill 100%) | win 49% avg +16.7% med -0.8% tot +2260.2% | era1(gate) +481.0% (n=67) / era2(final) +1779.2% (n=68)
+    2%/side  avg +14.4% tot +1948.0% win 47%
+    CORE     n=135 filled=135 (fill 100%) | win 49% avg +16.7% med -0.8% tot +2260.2% | era1(gate) +481.0% (n=67) / era2(final) +1779.2% (n=68)
+    MARGINAL n=0
+  --- 0dte/otm1 ---
+    ALL      n=135 filled=135 (fill 100%) | win 42% avg +17.9% med -9.0% tot +2413.9% | era1(gate) +425.0% (n=67) / era2(final) +1988.9% (n=68)
+    2%/side  avg +15.5% tot +2098.7% win 42%
+    CORE     n=135 filled=135 (fill 100%) | win 42% avg +17.9% med -9.0% tot +2413.9% | era1(gate) +425.0% (n=67) / era2(final) +1988.9% (n=68)
+    MARGINAL n=0
+  --- 1-3d/atm ---
+    ALL      n=135 filled=133 (fill 99%) | win 56% avg +7.7% med +4.2% tot +1021.8% | era1(gate) +354.2% (n=67) / era2(final) +667.5% (n=66)
+    2%/side  avg +5.5% tot +738.1% win 52%
+    CORE     n=135 filled=133 (fill 99%) | win 56% avg +7.7% med +4.2% tot +1021.8% | era1(gate) +354.2% (n=67) / era2(final) +667.5% (n=66)
+    MARGINAL n=0
+
+====================================================================================================
+TICKER SPY — 145 trades 2024-07-24..2026-07-16 | distinct nr_ranks fired: [0.0, 0.1667] | core n=145 marginal n=0
+  STOCK (2bps): tot +6.75% avg +4.7bp win 57%
+  --- 0dte/atm ---
+    ALL      n=145 filled=145 (fill 100%) | win 48% avg +9.3% med -5.2% tot +1348.8% | era1(gate) +675.5% (n=69) / era2(final) +673.2% (n=76)
+    2%/side  avg +7.1% tot +1034.9% win 47%
+    CORE     n=145 filled=145 (fill 100%) | win 48% avg +9.3% med -5.2% tot +1348.8% | era1(gate) +675.5% (n=69) / era2(final) +673.2% (n=76)
+    MARGINAL n=0
+  --- 0dte/otm1 ---
+    ALL      n=145 filled=145 (fill 100%) | win 43% avg +9.2% med -11.7% tot +1332.1% | era1(gate) +708.6% (n=69) / era2(final) +623.6% (n=76)
+    2%/side  avg +7.0% tot +1018.6% win 43%
+    CORE     n=145 filled=145 (fill 100%) | win 43% avg +9.2% med -11.7% tot +1332.1% | era1(gate) +708.6% (n=69) / era2(final) +623.6% (n=76)
+    MARGINAL n=0
+  --- 1-3d/atm ---
+    ALL      n=145 filled=141 (fill 97%) | win 50% avg +4.1% med +1.2% tot +584.4% | era1(gate) +360.1% (n=68) / era2(final) +224.3% (n=73)
+    2%/side  avg +2.1% tot +293.5% win 48%
+    CORE     n=145 filled=141 (fill 97%) | win 50% avg +4.1% med +1.2% tot +584.4% | era1(gate) +360.1% (n=68) / era2(final) +224.3% (n=73)
+    MARGINAL n=0
+
+====================================================================================================
+BOOK VIEW (equal-weight sum of the two option legs, per cell)
+  0dte/atm: n=280 tot +3608.9% | era1(gate) +1156.5% / era2(final) +2452.4%
+  0dte/otm1: n=280 tot +3746.1% | era1(gate) +1133.6% / era2(final) +2612.5%
+  1-3d/atm: n=280 tot +1606.1% | era1(gate) +714.3% / era2(final) +891.8%
+
+BEST CELL: QQQ 0dte/otm1 — n=135 filled=135 (fill 100%) | win 42% avg +17.9% med -9.0% tot +2413.9% | era1(gate) +425.0% (n=67) / era2(final) +1988.9% (n=68)
+  2%/side sensitivity: avg +15.5% med -10.8% tot +2098.7% win 42%
+
+HONESTY: this config passed NOTHING (arena worst -1.48%); the replay window (2024-07-22..now) covers only gate+final eras and its gate/final stock performance was never examined in the selection ladder. Marginal set is empty because the near-miss bucket IS the core bucket — the marginal-vs-core decision is untestable on this config. Unfillable/no-contract trades never enter P&L.
+
+JSON_TABLE = [
+ {
+  "ticker": "QQQ",
+  "dte": "0dte",
+  "strike": "atm",
+  "all": {
+   "n": 135,
+   "filled": 135,
+   "fill_rate": 1.0,
+   "win": 0.4888888888888889,
+   "avg": 0.1674190697509185,
+   "med": -0.008202003632315902,
+   "tot": 22.601574416373996,
+   "era1": {
+    "n": 67,
+    "tot": 4.80985446888412
+   },
+   "era2": {
+    "n": 68,
+    "tot": 17.791719947489874
+   }
+  },
+  "all_2pct": {
+   "n": 135,
+   "filled": 135,
+   "fill_rate": 1.0,
+   "win": 0.4740740740740741,
+   "avg": 0.14429728187706387,
+   "med": -0.027845457709711127,
+   "tot": 19.480133053403623,
+   "era1": {
+    "n": 67,
+    "tot": 3.387595517232622
+   },
+   "era2": {
+    "n": 68,
+    "tot": 16.092537536171005
+   }
+  },
+  "core": {
+   "n": 135,
+   "filled": 135,
+   "fill_rate": 1.0,
+   "win": 0.4888888888888889,
+   "avg": 0.1674190697509185,
+   "med": -0.008202003632315902,
+   "tot": 22.601574416373996,
+   "era1": {
+    "n": 67,
+    "tot": 4.80985446888412
+   },
+   "era2": {
+    "n": 68,
+    "tot": 17.791719947489874
+   }
+  },
+  "marginal": {
+   "n": 0,
+   "filled": 0,
+   "fill_rate": null,
+   "win": null,
+   "avg": null,
+   "med": null,
+   "tot": null,
+   "era1": {
+    "n": 0,
+    "tot": null
+   },
+   "era2": {
+    "n": 0,
+    "tot": null
+   }
+  }
+ },
+ {
+  "ticker": "QQQ",
+  "dte": "0dte",
+  "strike": "otm1",
+  "all": {
+   "n": 135,
+   "filled": 135,
+   "fill_rate": 1.0,
+   "win": 0.4222222222222222,
+   "avg": 0.17880857887165147,
+   "med": -0.08981612446958982,
+   "tot": 24.139158147672948,
+   "era1": {
+    "n": 67,
+    "tot": 4.2503366728606355
+   },
+   "era2": {
+    "n": 68,
+    "tot": 19.88882147481231
+   }
+  },
+  "all_2pct": {
+   "n": 135,
+   "filled": 135,
+   "fill_rate": 1.0,
+   "win": 0.4222222222222222,
+   "avg": 0.15546121149451433,
+   "med": -0.10784313725490204,
+   "tot": 20.987263551759437,
+   "era1": {
+    "n": 67,
+    "tot": 2.839159475933314
+   },
+   "era2": {
+    "n": 68,
+    "tot": 18.148104075826126
+   }
+  },
+  "core": {
+   "n": 135,
+   "filled": 135,
+   "fill_rate": 1.0,
+   "win": 0.4222222222222222,
+   "avg": 0.17880857887165147,
+   "med": -0.08981612446958982,
+   "tot": 24.139158147672948,
+   "era1": {
+    "n": 67,
+    "tot": 4.2503366728606355
+   },
+   "era2": {
+    "n": 68,
+    "tot": 19.88882147481231
+   }
+  },
+  "marginal": {
+   "n": 0,
+   "filled": 0,
+   "fill_rate": null,
+   "win": null,
+   "avg": null,
+   "med": null,
+   "tot": null,
+   "era1": {
+    "n": 0,
+    "tot": null
+   },
+   "era2": {
+    "n": 0,
+    "tot": null
+   }
+  }
+ },
+ {
+  "ticker": "QQQ",
+  "dte": "1-3d",
+  "strike": "atm",
+  "all": {
+   "n": 135,
+   "filled": 133,
+   "fill_rate": 0.9851851851851852,
+   "win": 0.556390977443609,
+   "avg": 0.07682350479082896,
+   "med": 0.04174533732443017,
+   "tot": 10.21752613718025,
+   "era1": {
+    "n": 67,
+    "tot": 3.542336748087372
+   },
+   "era2": {
+    "n": 66,
+    "tot": 6.675189389092878
+   }
+  },
+  "all_2pct": {
+   "n": 135,
+   "filled": 133,
+   "fill_rate": 0.9851851851851852,
+   "win": 0.518796992481203,
+   "avg": 0.055496043812599004,
+   "med": 0.02111263109895121,
+   "tot": 7.3809738270756675,
+   "era1": {
+    "n": 67,
+    "tot": 2.1451821283985737
+   },
+   "era2": {
+    "n": 66,
+    "tot": 5.235791698677094
+   }
+  },
+  "core": {
+   "n": 135,
+   "filled": 133,
+   "fill_rate": 0.9851851851851852,
+   "win": 0.556390977443609,
+   "avg": 0.07682350479082896,
+   "med": 0.04174533732443017,
+   "tot": 10.21752613718025,
+   "era1": {
+    "n": 67,
+    "tot": 3.542336748087372
+   },
+   "era2": {
+    "n": 66,
+    "tot": 6.675189389092878
+   }
+  },
+  "marginal": {
+   "n": 0,
+   "filled": 0,
+   "fill_rate": null,
+   "win": null,
+   "avg": null,
+   "med": null,
+   "tot": null,
+   "era1": {
+    "n": 0,
+    "tot": null
+   },
+   "era2": {
+    "n": 0,
+    "tot": null
+   }
+  }
+ },
+ {
+  "ticker": "SPY",
+  "dte": "0dte",
+  "strike": "atm",
+  "all": {
+   "n": 145,
+   "filled": 145,
+   "fill_rate": 1.0,
+   "win": 0.4827586206896552,
+   "avg": 0.09301983644848973,
+   "med": -0.0519396201915274,
+   "tot": 13.48787628503101,
+   "era1": {
+    "n": 69,
+    "tot": 6.755477167430348
+   },
+   "era2": {
+    "n": 76,
+    "tot": 6.732399117600662
+   }
+  },
+  "all_2pct": {
+   "n": 145,
+   "filled": 145,
+   "fill_rate": 1.0,
+   "win": 0.4689655172413793,
+   "avg": 0.07137159251011597,
+   "med": -0.07071681131468988,
+   "tot": 10.348880913966816,
+   "era1": {
+    "n": 69,
+    "tot": 5.25507159865573
+   },
+   "era2": {
+    "n": 76,
+    "tot": 5.093809315311087
+   }
+  },
+  "core": {
+   "n": 145,
+   "filled": 145,
+   "fill_rate": 1.0,
+   "win": 0.4827586206896552,
+   "avg": 0.09301983644848973,
+   "med": -0.0519396201915274,
+   "tot": 13.48787628503101,
+   "era1": {
+    "n": 69,
+    "tot": 6.755477167430348
+   },
+   "era2": {
+    "n": 76,
+    "tot": 6.732399117600662
+   }
+  },
+  "marginal": {
+   "n": 0,
+   "filled": 0,
+   "fill_rate": null,
+   "win": null,
+   "avg": null,
+   "med": null,
+   "tot": null,
+   "era1": {
+    "n": 0,
+    "tot": null
+   },
+   "era2": {
+    "n": 0,
+    "tot": null
+   }
+  }
+ },
+ {
+  "ticker": "SPY",
+  "dte": "0dte",
+  "strike": "otm1",
+  "all": {
+   "n": 145,
+   "filled": 145,
+   "fill_rate": 1.0,
+   "win": 0.43448275862068964,
+   "avg": 0.09187215278018049,
+   "med": -0.11721296353237814,
+   "tot": 13.321462153126172,
+   "era1": {
+    "n": 69,
+    "tot": 7.085754223629294
+   },
+   "era2": {
+    "n": 76,
+    "tot": 6.235707929496879
+   }
+  },
+  "all_2pct": {
+   "n": 145,
+   "filled": 145,
+   "fill_rate": 1.0,
+   "win": 0.43448275862068964,
+   "avg": 0.07024663975225058,
+   "med": -0.1346973572037511,
+   "tot": 10.185762764076335,
+   "era1": {
+    "n": 69,
+    "tot": 5.578807219794291
+   },
+   "era2": {
+    "n": 76,
+    "tot": 4.606955544282046
+   }
+  },
+  "core": {
+   "n": 145,
+   "filled": 145,
+   "fill_rate": 1.0,
+   "win": 0.43448275862068964,
+   "avg": 0.09187215278018049,
+   "med": -0.11721296353237814,
+   "tot": 13.321462153126172,
+   "era1": {
+    "n": 69,
+    "tot": 7.085754223629294
+   },
+   "era2": {
+    "n": 76,
+    "tot": 6.235707929496879
+   }
+  },
+  "marginal": {
+   "n": 0,
+   "filled": 0,
+   "fill_rate": null,
+   "win": null,
+   "avg": null,
+   "med": null,
+   "tot": null,
+   "era1": {
+    "n": 0,
+    "tot": null
+   },
+   "era2": {
+    "n": 0,
+    "tot": null
+   }
+  }
+ },
+ {
+  "ticker": "SPY",
+  "dte": "1-3d",
+  "strike": "atm",
+  "all": {
+   "n": 145,
+   "filled": 141,
+   "fill_rate": 0.9724137931034482,
+   "win": 0.5035460992907801,
+   "avg": 0.04144410206154184,
+   "med": 0.011715641017477936,
+   "tot": 5.843618390677399,
+   "era1": {
+    "n": 68,
+    "tot": 3.6008887513869476
+   },
+   "era2": {
+    "n": 73,
+    "tot": 2.2427296392904514
+   }
+  },
+  "all_2pct": {
+   "n": 145,
+   "filled": 141,
+   "fill_rate": 0.9724137931034482,
+   "win": 0.48226950354609927,
+   "avg": 0.020817362072206476,
+   "med": -0.008322299981085746,
+   "tot": 2.9352480521811133,
+   "era1": {
+    "n": 68,
+    "tot": 2.1827685542907505
+   },
+   "era2": {
+    "n": 73,
+    "tot": 0.7524794978903627
+   }
+  },
+  "core": {
+   "n": 145,
+   "filled": 141,
+   "fill_rate": 0.9724137931034482,
+   "win": 0.5035460992907801,
+   "avg": 0.04144410206154184,
+   "med": 0.011715641017477936,
+   "tot": 5.843618390677399,
+   "era1": {
+    "n": 68,
+    "tot": 3.6008887513869476
+   },
+   "era2": {
+    "n": 73,
+    "tot": 2.2427296392904514
+   }
+  },
+  "marginal": {
+   "n": 0,
+   "filled": 0,
+   "fill_rate": null,
+   "win": null,
+   "avg": null,
+   "med": null,
+   "tot": null,
+   "era1": {
+    "n": 0,
+    "tot": null
+   },
+   "era2": {
+    "n": 0,
+    "tot": null
+   }
+  }
+ }
+]

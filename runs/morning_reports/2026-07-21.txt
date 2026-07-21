@@ -1,4 +1,4 @@
-MORNING daily run  2026-07-21  (vM stock + vMO 0DTE-ATM options, QQQ+SPY)
+MORNING daily run  2026-07-21  (vM stock QQQ/SPY/DIA + QQQ-wide exp + vMO 0DTE options QQQ/SPY)
 ==================================================================
 data refresh: OK
 
@@ -7,6 +7,9 @@ CHAMPION {"last_entry": 690, "nr": 0.3, "or_bars": 5, "rr": 2.0, "sides": "both"
   QQQ stock forward since 2026-07-21: n=0 total=+0.00% win=0%
   SPY stock forward since 2026-07-21: n=0 total=+0.00% win=0%
   DIA stock forward since 2026-07-21: n=0 total=+0.00% win=0%
+  VTI stock forward since 2026-07-21: n=0 total=+0.00% win=0%
+  SCHX stock forward since 2026-07-21: n=0 total=+0.00% win=0%
+  OEF stock forward since 2026-07-21: n=0 total=+0.00% win=0%
   QQQ WIDE nr<=0.4 (EXPERIMENTAL, not validated) forward: n=0 total=+0.00% win=0%
   BOOK coverage since 2026-07-21: traded 0/1 days (0%) — goal ~50%
 
@@ -14,5 +17,5 @@ vMO OPTIONS (0dte atm, 1%/side, fixed premium/trade)
   QQQ vMO forward: n=0 total=+0.0% of premium win=0%
   SPY vMO forward: n=0 total=+0.0% of premium win=0%
 
-search: 20 new configs evaluated (60 lifetime)
+search: 20 new configs evaluated (80 lifetime)
   no config beat the champion's ladder today

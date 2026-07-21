@@ -49,7 +49,10 @@ STATE = Path("runs/morning_state.json")
 REPORTS = Path("runs/morning_reports")
 FREEZE = "2026-07-21"                      # forward track starts here
 CHAMP = dict(or_bars=5, rr=2.0, nr=0.3, last_entry=690, sides="both", volx=None)
-TICKERS = ["QQQ", "SPY", "DIA"]            # vM stock legs (DIA validated 2026-07-21)
+# vM stock legs — all passed the pre-registered transfer bar (gate>0 & final>0 &
+# t>0.5): DIA/VTI/SCHX/OEF validated 2026-07-21. OEF = weakest leg (cost-fragile at
+# 5bps, ~$54M/day tape, OR window >25min on ~10% of mornings) — watch its forward track.
+TICKERS = ["QQQ", "SPY", "DIA", "VTI", "SCHX", "OEF"]
 OPT_TICKERS = ["QQQ", "SPY"]               # only tickers with viable option markets
 VMO = ("0dte", "atm")                      # options overlay: bucket, strike mode
 # EXPERIMENTAL wide bucket (QQQ only): nr<=0.4 = "3 quietest of 7". Gate +4.35% /
@@ -212,8 +215,8 @@ def main():
     no_fetch = "--no-fetch" in sys.argv
     no_push = "--no-push" in sys.argv
     today = date.today().isoformat()
-    lines = [f"MORNING daily run  {today}  "
-             f"(vM stock QQQ/SPY/DIA + QQQ-wide exp + vMO 0DTE options QQQ/SPY)",
+    lines = [f"MORNING daily run  {today}  (vM 6-ticker validated book "
+             f"+ QQQ-wide exp + vMO 0DTE options QQQ/SPY)",
              "=" * 66]
 
     if not no_fetch:

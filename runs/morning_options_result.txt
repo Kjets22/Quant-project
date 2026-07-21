@@ -1,0 +1,369 @@
+MORNING OPTIONS REPLAY — real Polygon QQQ option 5-min bars
+run at 2026-07-21 14:26, window start 2024-07-22 (rolling 2y plan floor), end = last cached underlying day
+costs: 1%/side of premium (2%/side sensitivity recomputed per cell); stock leg carries 2bps round trip
+
+EQUIVALENCE — orb2s_trade(4, None, nr=0.7, 660, 'both') vs morning_qqq4.orb2s: 1274 days, 783 trades, all identical to 1e-12
+
+====================================================================================================
+STRATEGY A_HF_O4_Rn_nr.7_e660: orb2s(or_bars=4, rr=None, nr=0.7, last_entry=660, sides='both')
+  window 2024-07-24 .. 2026-07-21  |  STOCK baseline (2bps, all 318 trades): tot +8.00%  avg +2.5bp  med -0.0bp  win 50%
+  stock by era: gate-era +11.33% (n=160) | final-era -3.34% (n=158)
+
+  cell              n  fill  fill% |  win      avg      med       tot |   avg@2%    tot@2% | stock(fill)
+  ------------------------------------------------------------------------------------------------------
+  0dte/atm        318   318   100% |  42%    +5.7%   -23.1%  +1797.3% |    +3.6%  +1131.8% |      +8.00%
+  0dte/otm1       318   318   100% |  38%    +6.4%   -31.9%  +2043.0% |    +4.3%  +1372.7% |      +8.00%
+  1-3d/atm        318   307    97% |  45%    +1.7%    -8.4%   +536.4% |    -0.3%    -82.2% |      +7.59%
+  1-3d/otm1       318   308    97% |  45%    +2.2%    -9.3%   +664.0% |    +0.1%    +40.8% |      +7.89%
+  4-10d/atm       318   314    99% |  46%    +1.2%    -4.3%   +363.2% |    -0.8%   -265.9% |      +8.00%
+  4-10d/otm1      318   313    98% |  45%    +1.1%    -4.2%   +334.4% |    -0.9%   -292.2% |      +8.08%
+
+====================================================================================================
+STRATEGY B_vM: orb2s(or_bars=5, rr=2.0, nr=0.3, last_entry=690, sides='both')
+  window 2024-07-23 .. 2026-07-15  |  STOCK baseline (2bps, all 135 trades): tot +11.35%  avg +8.4bp  med +7.8bp  win 60%
+  stock by era: gate-era +4.78% (n=67) | final-era +6.57% (n=68)
+
+  cell              n  fill  fill% |  win      avg      med       tot |   avg@2%    tot@2% | stock(fill)
+  ------------------------------------------------------------------------------------------------------
+  0dte/atm        135   135   100% |  49%   +16.7%    -0.8%  +2260.2% |   +14.4%  +1948.0% |     +11.35%
+  0dte/otm1       135   135   100% |  42%   +17.9%    -9.0%  +2413.9% |   +15.5%  +2098.7% |     +11.35%
+  1-3d/atm        135   133    99% |  56%    +7.7%    +4.2%  +1021.8% |    +5.5%   +738.1% |     +10.21%
+  1-3d/otm1       135   134    99% |  56%    +8.4%    +2.8%  +1120.1% |    +6.2%   +832.5% |     +10.51%
+  4-10d/atm       135   132    98% |  57%    +5.5%    +2.8%   +730.2% |    +3.4%   +454.3% |     +11.35%
+  4-10d/otm1      135   133    99% |  53%    +5.5%    +3.2%   +731.8% |    +3.4%   +453.9% |     +11.25%
+
+====================================================================================================
+BEST CELL (max total premium return, fillable>80% only): B_vM 0dte/otm1
+  n=135 filled=135 (fillable 100%)  win 42%  avg +17.9%  med -9.0%  tot +2413.9%
+  2%/side sensitivity: avg +15.6%  tot +2098.7%
+  same trades on STOCK (2bps): tot +11.35%
+  era split (1%/side): gate-era {'n': 67, 'tot': 4.2503366728606355}  final-era {'n': 68, 'tot': 19.88882147481231}
+
+COVERAGE HONESTY: options replay window is ONLY 2024-07-22..now — GATE (minus its first week) + FINAL. That is ONE market era (post-2024); the 2022 bear / 2023 chop that formed the ARENA is NOT testable with real option bars. Unfillable and no-contract trades never enter P&L and are reported per cell above.
+
+JSON_TABLE = [
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "0dte",
+  "strike": "atm",
+  "n": 318,
+  "filled": 318,
+  "fillable_rate": 1.0,
+  "no_contract": 0,
+  "unfillable": 0,
+  "win_rate": 0.418,
+  "avg_ret_premium": 0.0565,
+  "med_ret_premium": -0.2313,
+  "tot_ret_premium": 17.9726,
+  "avg_at_2pct_side": 0.0356,
+  "tot_at_2pct_side": 11.3184,
+  "stock_tot_on_filled": 0.08,
+  "era_split": {
+   "gate_era": {
+    "n": 160,
+    "tot": 14.655628717074833
+   },
+   "final_era": {
+    "n": 158,
+    "tot": 3.317017045501361
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "0dte",
+  "strike": "otm1",
+  "n": 318,
+  "filled": 318,
+  "fillable_rate": 1.0,
+  "no_contract": 0,
+  "unfillable": 0,
+  "win_rate": 0.384,
+  "avg_ret_premium": 0.0642,
+  "med_ret_premium": -0.3189,
+  "tot_ret_premium": 20.4303,
+  "avg_at_2pct_side": 0.0432,
+  "tot_at_2pct_side": 13.7274,
+  "stock_tot_on_filled": 0.08,
+  "era_split": {
+   "gate_era": {
+    "n": 160,
+    "tot": 15.386799582469095
+   },
+   "final_era": {
+    "n": 158,
+    "tot": 5.043531899661414
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "1-3d",
+  "strike": "atm",
+  "n": 318,
+  "filled": 307,
+  "fillable_rate": 0.9654,
+  "no_contract": 10,
+  "unfillable": 1,
+  "win_rate": 0.446,
+  "avg_ret_premium": 0.0175,
+  "med_ret_premium": -0.0842,
+  "tot_ret_premium": 5.3643,
+  "avg_at_2pct_side": -0.0027,
+  "tot_at_2pct_side": -0.8224,
+  "stock_tot_on_filled": 0.0759,
+  "era_split": {
+   "gate_era": {
+    "n": 155,
+    "tot": 7.795406168647888
+   },
+   "final_era": {
+    "n": 152,
+    "tot": -2.4311081809204538
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "1-3d",
+  "strike": "otm1",
+  "n": 318,
+  "filled": 308,
+  "fillable_rate": 0.9686,
+  "no_contract": 10,
+  "unfillable": 0,
+  "win_rate": 0.448,
+  "avg_ret_premium": 0.0216,
+  "med_ret_premium": -0.0926,
+  "tot_ret_premium": 6.6401,
+  "avg_at_2pct_side": 0.0013,
+  "tot_at_2pct_side": 0.4083,
+  "stock_tot_on_filled": 0.0789,
+  "era_split": {
+   "gate_era": {
+    "n": 155,
+    "tot": 8.368231158425505
+   },
+   "final_era": {
+    "n": 153,
+    "tot": -1.7281668413161264
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "4-10d",
+  "strike": "atm",
+  "n": 318,
+  "filled": 314,
+  "fillable_rate": 0.9874,
+  "no_contract": 0,
+  "unfillable": 4,
+  "win_rate": 0.455,
+  "avg_ret_premium": 0.0116,
+  "med_ret_premium": -0.0429,
+  "tot_ret_premium": 3.6323,
+  "avg_at_2pct_side": -0.0085,
+  "tot_at_2pct_side": -2.6587,
+  "stock_tot_on_filled": 0.08,
+  "era_split": {
+   "gate_era": {
+    "n": 158,
+    "tot": 6.078997002857178
+   },
+   "final_era": {
+    "n": 156,
+    "tot": -2.446680729895339
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "4-10d",
+  "strike": "otm1",
+  "n": 318,
+  "filled": 313,
+  "fillable_rate": 0.9843,
+  "no_contract": 0,
+  "unfillable": 5,
+  "win_rate": 0.45,
+  "avg_ret_premium": 0.0107,
+  "med_ret_premium": -0.042,
+  "tot_ret_premium": 3.3438,
+  "avg_at_2pct_side": -0.0093,
+  "tot_at_2pct_side": -2.9217,
+  "stock_tot_on_filled": 0.0808,
+  "era_split": {
+   "gate_era": {
+    "n": 158,
+    "tot": 4.9561354351752565
+   },
+   "final_era": {
+    "n": 155,
+    "tot": -1.6123735886016197
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "0dte",
+  "strike": "atm",
+  "n": 135,
+  "filled": 135,
+  "fillable_rate": 1.0,
+  "no_contract": 0,
+  "unfillable": 0,
+  "win_rate": 0.489,
+  "avg_ret_premium": 0.1674,
+  "med_ret_premium": -0.0082,
+  "tot_ret_premium": 22.6016,
+  "avg_at_2pct_side": 0.1443,
+  "tot_at_2pct_side": 19.4801,
+  "stock_tot_on_filled": 0.1135,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 4.80985446888412
+   },
+   "final_era": {
+    "n": 68,
+    "tot": 17.791719947489874
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "0dte",
+  "strike": "otm1",
+  "n": 135,
+  "filled": 135,
+  "fillable_rate": 1.0,
+  "no_contract": 0,
+  "unfillable": 0,
+  "win_rate": 0.422,
+  "avg_ret_premium": 0.1788,
+  "med_ret_premium": -0.0898,
+  "tot_ret_premium": 24.1392,
+  "avg_at_2pct_side": 0.1555,
+  "tot_at_2pct_side": 20.9873,
+  "stock_tot_on_filled": 0.1135,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 4.2503366728606355
+   },
+   "final_era": {
+    "n": 68,
+    "tot": 19.88882147481231
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "1-3d",
+  "strike": "atm",
+  "n": 135,
+  "filled": 133,
+  "fillable_rate": 0.9852,
+  "no_contract": 1,
+  "unfillable": 1,
+  "win_rate": 0.556,
+  "avg_ret_premium": 0.0768,
+  "med_ret_premium": 0.0417,
+  "tot_ret_premium": 10.2175,
+  "avg_at_2pct_side": 0.0555,
+  "tot_at_2pct_side": 7.381,
+  "stock_tot_on_filled": 0.1021,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 3.542336748087372
+   },
+   "final_era": {
+    "n": 66,
+    "tot": 6.675189389092878
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "1-3d",
+  "strike": "otm1",
+  "n": 135,
+  "filled": 134,
+  "fillable_rate": 0.9926,
+  "no_contract": 1,
+  "unfillable": 0,
+  "win_rate": 0.56,
+  "avg_ret_premium": 0.0836,
+  "med_ret_premium": 0.0284,
+  "tot_ret_premium": 11.2005,
+  "avg_at_2pct_side": 0.0621,
+  "tot_at_2pct_side": 8.3247,
+  "stock_tot_on_filled": 0.1051,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 3.7317319538318716
+   },
+   "final_era": {
+    "n": 67,
+    "tot": 7.468791671583966
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "4-10d",
+  "strike": "atm",
+  "n": 135,
+  "filled": 132,
+  "fillable_rate": 0.9778,
+  "no_contract": 0,
+  "unfillable": 3,
+  "win_rate": 0.568,
+  "avg_ret_premium": 0.0553,
+  "med_ret_premium": 0.0283,
+  "tot_ret_premium": 7.3022,
+  "avg_at_2pct_side": 0.0344,
+  "tot_at_2pct_side": 4.5432,
+  "stock_tot_on_filled": 0.1135,
+  "era_split": {
+   "gate_era": {
+    "n": 66,
+    "tot": 2.5707652315708454
+   },
+   "final_era": {
+    "n": 66,
+    "tot": 4.731409464573286
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "4-10d",
+  "strike": "otm1",
+  "n": 135,
+  "filled": 133,
+  "fillable_rate": 0.9852,
+  "no_contract": 0,
+  "unfillable": 2,
+  "win_rate": 0.526,
+  "avg_ret_premium": 0.055,
+  "med_ret_premium": 0.0321,
+  "tot_ret_premium": 7.3177,
+  "avg_at_2pct_side": 0.0341,
+  "tot_at_2pct_side": 4.5386,
+  "stock_tot_on_filled": 0.1125,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 2.28082541467581
+   },
+   "final_era": {
+    "n": 66,
+    "tot": 5.036860565274114
+   }
+  }
+ }
+]

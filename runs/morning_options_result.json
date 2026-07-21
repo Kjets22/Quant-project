@@ -1,0 +1,326 @@
+[
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "0dte",
+  "strike": "atm",
+  "n": 318,
+  "filled": 318,
+  "fillable_rate": 1.0,
+  "no_contract": 0,
+  "unfillable": 0,
+  "win_rate": 0.418,
+  "avg_ret_premium": 0.0565,
+  "med_ret_premium": -0.2313,
+  "tot_ret_premium": 17.9726,
+  "avg_at_2pct_side": 0.0356,
+  "tot_at_2pct_side": 11.3184,
+  "stock_tot_on_filled": 0.08,
+  "era_split": {
+   "gate_era": {
+    "n": 160,
+    "tot": 14.655628717074833
+   },
+   "final_era": {
+    "n": 158,
+    "tot": 3.317017045501361
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "0dte",
+  "strike": "otm1",
+  "n": 318,
+  "filled": 318,
+  "fillable_rate": 1.0,
+  "no_contract": 0,
+  "unfillable": 0,
+  "win_rate": 0.384,
+  "avg_ret_premium": 0.0642,
+  "med_ret_premium": -0.3189,
+  "tot_ret_premium": 20.4303,
+  "avg_at_2pct_side": 0.0432,
+  "tot_at_2pct_side": 13.7274,
+  "stock_tot_on_filled": 0.08,
+  "era_split": {
+   "gate_era": {
+    "n": 160,
+    "tot": 15.386799582469095
+   },
+   "final_era": {
+    "n": 158,
+    "tot": 5.043531899661414
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "1-3d",
+  "strike": "atm",
+  "n": 318,
+  "filled": 307,
+  "fillable_rate": 0.9654,
+  "no_contract": 10,
+  "unfillable": 1,
+  "win_rate": 0.446,
+  "avg_ret_premium": 0.0175,
+  "med_ret_premium": -0.0842,
+  "tot_ret_premium": 5.3643,
+  "avg_at_2pct_side": -0.0027,
+  "tot_at_2pct_side": -0.8224,
+  "stock_tot_on_filled": 0.0759,
+  "era_split": {
+   "gate_era": {
+    "n": 155,
+    "tot": 7.795406168647888
+   },
+   "final_era": {
+    "n": 152,
+    "tot": -2.4311081809204538
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "1-3d",
+  "strike": "otm1",
+  "n": 318,
+  "filled": 308,
+  "fillable_rate": 0.9686,
+  "no_contract": 10,
+  "unfillable": 0,
+  "win_rate": 0.448,
+  "avg_ret_premium": 0.0216,
+  "med_ret_premium": -0.0926,
+  "tot_ret_premium": 6.6401,
+  "avg_at_2pct_side": 0.0013,
+  "tot_at_2pct_side": 0.4083,
+  "stock_tot_on_filled": 0.0789,
+  "era_split": {
+   "gate_era": {
+    "n": 155,
+    "tot": 8.368231158425505
+   },
+   "final_era": {
+    "n": 153,
+    "tot": -1.7281668413161264
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "4-10d",
+  "strike": "atm",
+  "n": 318,
+  "filled": 314,
+  "fillable_rate": 0.9874,
+  "no_contract": 0,
+  "unfillable": 4,
+  "win_rate": 0.455,
+  "avg_ret_premium": 0.0116,
+  "med_ret_premium": -0.0429,
+  "tot_ret_premium": 3.6323,
+  "avg_at_2pct_side": -0.0085,
+  "tot_at_2pct_side": -2.6587,
+  "stock_tot_on_filled": 0.08,
+  "era_split": {
+   "gate_era": {
+    "n": 158,
+    "tot": 6.078997002857178
+   },
+   "final_era": {
+    "n": 156,
+    "tot": -2.446680729895339
+   }
+  }
+ },
+ {
+  "strategy": "A_HF_O4_Rn_nr.7_e660",
+  "dte": "4-10d",
+  "strike": "otm1",
+  "n": 318,
+  "filled": 313,
+  "fillable_rate": 0.9843,
+  "no_contract": 0,
+  "unfillable": 5,
+  "win_rate": 0.45,
+  "avg_ret_premium": 0.0107,
+  "med_ret_premium": -0.042,
+  "tot_ret_premium": 3.3438,
+  "avg_at_2pct_side": -0.0093,
+  "tot_at_2pct_side": -2.9217,
+  "stock_tot_on_filled": 0.0808,
+  "era_split": {
+   "gate_era": {
+    "n": 158,
+    "tot": 4.9561354351752565
+   },
+   "final_era": {
+    "n": 155,
+    "tot": -1.6123735886016197
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "0dte",
+  "strike": "atm",
+  "n": 135,
+  "filled": 135,
+  "fillable_rate": 1.0,
+  "no_contract": 0,
+  "unfillable": 0,
+  "win_rate": 0.489,
+  "avg_ret_premium": 0.1674,
+  "med_ret_premium": -0.0082,
+  "tot_ret_premium": 22.6016,
+  "avg_at_2pct_side": 0.1443,
+  "tot_at_2pct_side": 19.4801,
+  "stock_tot_on_filled": 0.1135,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 4.80985446888412
+   },
+   "final_era": {
+    "n": 68,
+    "tot": 17.791719947489874
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "0dte",
+  "strike": "otm1",
+  "n": 135,
+  "filled": 135,
+  "fillable_rate": 1.0,
+  "no_contract": 0,
+  "unfillable": 0,
+  "win_rate": 0.422,
+  "avg_ret_premium": 0.1788,
+  "med_ret_premium": -0.0898,
+  "tot_ret_premium": 24.1392,
+  "avg_at_2pct_side": 0.1555,
+  "tot_at_2pct_side": 20.9873,
+  "stock_tot_on_filled": 0.1135,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 4.2503366728606355
+   },
+   "final_era": {
+    "n": 68,
+    "tot": 19.88882147481231
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "1-3d",
+  "strike": "atm",
+  "n": 135,
+  "filled": 133,
+  "fillable_rate": 0.9852,
+  "no_contract": 1,
+  "unfillable": 1,
+  "win_rate": 0.556,
+  "avg_ret_premium": 0.0768,
+  "med_ret_premium": 0.0417,
+  "tot_ret_premium": 10.2175,
+  "avg_at_2pct_side": 0.0555,
+  "tot_at_2pct_side": 7.381,
+  "stock_tot_on_filled": 0.1021,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 3.542336748087372
+   },
+   "final_era": {
+    "n": 66,
+    "tot": 6.675189389092878
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "1-3d",
+  "strike": "otm1",
+  "n": 135,
+  "filled": 134,
+  "fillable_rate": 0.9926,
+  "no_contract": 1,
+  "unfillable": 0,
+  "win_rate": 0.56,
+  "avg_ret_premium": 0.0836,
+  "med_ret_premium": 0.0284,
+  "tot_ret_premium": 11.2005,
+  "avg_at_2pct_side": 0.0621,
+  "tot_at_2pct_side": 8.3247,
+  "stock_tot_on_filled": 0.1051,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 3.7317319538318716
+   },
+   "final_era": {
+    "n": 67,
+    "tot": 7.468791671583966
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "4-10d",
+  "strike": "atm",
+  "n": 135,
+  "filled": 132,
+  "fillable_rate": 0.9778,
+  "no_contract": 0,
+  "unfillable": 3,
+  "win_rate": 0.568,
+  "avg_ret_premium": 0.0553,
+  "med_ret_premium": 0.0283,
+  "tot_ret_premium": 7.3022,
+  "avg_at_2pct_side": 0.0344,
+  "tot_at_2pct_side": 4.5432,
+  "stock_tot_on_filled": 0.1135,
+  "era_split": {
+   "gate_era": {
+    "n": 66,
+    "tot": 2.5707652315708454
+   },
+   "final_era": {
+    "n": 66,
+    "tot": 4.731409464573286
+   }
+  }
+ },
+ {
+  "strategy": "B_vM",
+  "dte": "4-10d",
+  "strike": "otm1",
+  "n": 135,
+  "filled": 133,
+  "fillable_rate": 0.9852,
+  "no_contract": 0,
+  "unfillable": 2,
+  "win_rate": 0.526,
+  "avg_ret_premium": 0.055,
+  "med_ret_premium": 0.0321,
+  "tot_ret_premium": 7.3177,
+  "avg_at_2pct_side": 0.0341,
+  "tot_at_2pct_side": 4.5386,
+  "stock_tot_on_filled": 0.1125,
+  "era_split": {
+   "gate_era": {
+    "n": 67,
+    "tot": 2.28082541467581
+   },
+   "final_era": {
+    "n": 66,
+    "tot": 5.036860565274114
+   }
+  }
+ }
+]

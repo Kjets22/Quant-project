@@ -202,6 +202,17 @@ def main():
     if led.get("state", {}).get("halted"):
         flags.append("CRITICAL: drawdown breaker is HALTED — no new entries until reviewed.")
 
+    # ---------- morning engine (vM / vMO — separate simulation engine) ----------
+    mreps = sorted(Path("runs/morning_reports").glob("*.txt"))
+    if mreps:
+        w("===== vM / vMO — MORNING engine (simulation-only, its own daily run) =====")
+        keep = ("CHAMPION", "  QQQ", "  SPY", "  DIA", "  VTI", "  SCHX", "  OEF",
+                "  BOOK", "vMO OPTIONS")
+        for ln in mreps[-1].read_text(encoding="utf-8").splitlines():
+            if ln.startswith(keep):
+                w("  " + ln)
+        w("")
+
     # ---------- recovered trades (outage / old-rule misses; hypothetical fills) ----
     recf = Path("runs/recovered_trades.json")
     rec = json.loads(recf.read_text()) if recf.exists() else []

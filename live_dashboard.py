@@ -61,6 +61,8 @@ DESCS = {
     "vR":  "Your spec — and the Evolution IV final WINNER: QQQ +0.4% / -0.2% (true 2:1) in 2h, top-3% gate. Best final year of the family (+7.00%).",
     "vS":  "Evolution IV evolved challenger: QQQ +0.5% / -0.4% in 8h, top-10% gate. Lost the final to vR (+6.18%) — runs live for comparison.",
     "vCO": "OPTIONS strategy on vC signals (fully independent book): each signal buys ~$1k of 1-2 week ATM calls and runs its OWN virtual bracket — sold when the underlying hits vC's target or stop, at the 8-day time limit, or before expiry. Entry = option price per share; P&L per $1k premium.",
+    "vM":  "MORNING two-sided opening-range breakout (separate simulation engine, no live orders): 25-min OR, break either side, target 2x risk, NR<=0.3 compression filter, entries 9:55-11:30, flat by noon. QQQ ladder-passed (final +6.57%); transfers to SPY/DIA/VTI/SCHX/OEF. Forward track from Jul 21; rows show $1k/trade day results.",
+    "vMO": "OPTIONS twin of vM: the same morning signals as 0DTE ATM options (call on breaks up, PUT on breaks down — the stable's first short-side exposure), real option fills, 1%/side. Simulation-only forward track from Jul 21; P&L per $1k premium.",
 }
 MODELS_MEM = {}                      # (strat, tk) -> {"clf", "thr"} or None
 MODELS_DIR = Path("models")
@@ -230,6 +232,30 @@ def vco_trades(vc):
     return out
 
 
+def morning_trades():
+    """vM / vMO forward-track day results from the morning engine's state file
+    (separate simulation engine — per-day returns only, no fill prices stored)."""
+    p = Path("runs/morning_state.json")
+    if not p.exists():
+        return []
+    st = json.loads(p.read_text())
+    out = []
+    for key, days in st.get("forward", {}).items():
+        is_opt = key.lower().startswith("opt")
+        strat = "vMO" if is_opt else "vM"
+        tk = key[3:] if is_opt else key
+        for ds, rets in sorted(days.items()):
+            for r in rets:
+                out.append(dict(
+                    strat=strat, tk=tk,
+                    entry_ts=int(pd.Timestamp(f"{ds} 13:55:00").timestamp()),
+                    exit_ts=int(pd.Timestamp(f"{ds} 16:00:00").timestamp()),
+                    entry=None, exit=None, target=None, stop=None, qty=None,
+                    conviction="-", outcome=("WIN" if r > 0 else "LOSS"),
+                    pnl=round(1000.0 * float(r), 2)))
+    return out
+
+
 def refresh():
     _PREP.clear()
     bot._DATA.clear()                # force a fresh Polygon tail fetch
@@ -248,6 +274,10 @@ def refresh():
         all_trades += vco_trades([t for t in all_trades if t["strat"] == "vC"])
     except Exception as e:
         print(f"  [vCO build warn] {e}", flush=True)
+    try:
+        all_trades += morning_trades()
+    except Exception as e:
+        print(f"  [vM build warn] {e}", flush=True)
     tickers_out = {}
     for tk in TICKERS:
         d15 = (bot.full_series(tk).set_index("timestamp").resample("15min")
@@ -260,9 +290,14 @@ def refresh():
                          "close": round(r.close, 2)} for r in d15.itertuples()],
             "trades": [t for t in all_trades if t["tk"] == tk],
         }
+    # tickers the morning engine trades that have no chart data here (DIA etc.):
+    # blotter-only pseudo entries so their rows still show
+    for tk in {t["tk"] for t in all_trades} - set(tickers_out):
+        tickers_out[tk] = {"candles": [],
+                           "trades": [t for t in all_trades if t["tk"] == tk]}
     STATE.update(ok=True, msg="", tickers=tickers_out,
-                 strats=[cfg[0] for cfg in CONFIGS] + ["vCO"], descs=DESCS,
-                 updated=time.strftime("%H:%M:%S"))
+                 strats=[cfg[0] for cfg in CONFIGS] + ["vCO", "vM", "vMO"],
+                 descs=DESCS, updated=time.strftime("%H:%M:%S"))
     Path("runs").mkdir(exist_ok=True)
     Path("runs/live_ledger.json").write_text(json.dumps(all_trades, indent=1))
     closed = [t for t in all_trades if t["outcome"] != "OPEN"]
@@ -374,20 +409,20 @@ function render(S){
  lines.forEach(l=>series.removePriceLine(l)); lines=[];
  const mk=[];
  T.trades.filter(match).forEach(t=>{
-   mk.push({time:t.entry_ts,position:'belowBar',color:'#60a5fa',shape:'arrowUp',text:t.strat+' buy '+t.entry});
+   mk.push({time:t.entry_ts,position:'belowBar',color:'#60a5fa',shape:'arrowUp',text:t.strat+' buy '+(t.entry??'')});
    if(t.outcome==='OPEN'){
      if(t.target)lines.push(series.createPriceLine({price:t.target,color:'#34d399',lineStyle:2,title:t.strat+' target'}));
      if(t.stop)lines.push(series.createPriceLine({price:t.stop,color:'#f87171',lineStyle:2,title:t.strat+' stop'}));
      if(t.target)lines.push(series.createPriceLine({price:t.entry,color:'#60a5fa',lineStyle:3,title:t.strat+' entry'}));
    } else if(t.exit_ts){
-     const col=(t.outcome==='TARGET'||t.outcome==='CALL+')?'#34d399':((t.outcome==='STOP'||t.outcome==='CALL-')?'#f87171':'#fbbf24');
+     const col=(t.outcome==='TARGET'||t.outcome==='CALL+'||t.outcome==='WIN')?'#34d399':((t.outcome==='STOP'||t.outcome==='CALL-'||t.outcome==='LOSS')?'#f87171':'#fbbf24');
      mk.push({time:t.exit_ts,position:'aboveBar',color:col,shape:'circle',text:t.outcome+' '+(t.pnl>=0?'+':'')+t.pnl});
    }});
  mk.sort((a,b)=>a.time-b.time); series.setMarkers(mk);
  const tb=document.querySelector('#blot tbody'); tb.innerHTML='';
  filt.sort((a,b)=>b.entry_ts-a.entry_ts);
  filt.forEach(t=>{const tr=document.createElement('tr');
-   const cls=(t.outcome==='TARGET'||t.outcome==='CALL+')?'g':((t.outcome==='STOP'||t.outcome==='CALL-')?'r':(t.outcome==='OPEN'?'o':''));
+   const cls=(t.outcome==='TARGET'||t.outcome==='CALL+'||t.outcome==='WIN')?'g':((t.outcome==='STOP'||t.outcome==='CALL-'||t.outcome==='LOSS')?'r':(t.outcome==='OPEN'?'o':''));
    tr.innerHTML=`<td>${t.tk}</td><td>${t.strat}</td><td>${fmt(t.entry_ts)}</td><td>${t.entry}</td>
      <td>${t.target??'-'}</td><td>${t.stop??'-'}</td><td>${t.conviction}</td><td class="${cls}">${t.outcome}</td>
      <td class="${t.pnl>=0?'g':'r'}">${t.pnl>=0?'+':''}${t.pnl??''}</td>`;

@@ -61,8 +61,8 @@ DESCS = {
     "vR":  "Your spec — and the Evolution IV final WINNER: QQQ +0.4% / -0.2% (true 2:1) in 2h, top-3% gate. Best final year of the family (+7.00%).",
     "vS":  "Evolution IV evolved challenger: QQQ +0.5% / -0.4% in 8h, top-10% gate. Lost the final to vR (+6.18%) — runs live for comparison.",
     "vCO": "OPTIONS strategy on vC signals (fully independent book): each signal buys ~$1k of 1-2 week ATM calls and runs its OWN virtual bracket — sold when the underlying hits vC's target or stop, at the 8-day time limit, or before expiry. Entry = option price per share; P&L per $1k premium.",
-    "vM":  "MORNING two-sided opening-range breakout (separate simulation engine, no live orders): 25-min OR, break either side, target 2x risk, NR<=0.3 compression filter, entries 9:55-11:30, flat by noon. QQQ ladder-passed (final +6.57%); transfers to SPY/DIA/VTI/SCHX/OEF. Forward track from Jul 21; rows show $1k/trade day results.",
-    "vMO": "OPTIONS twin of vM: the same morning signals as 0DTE ATM options (call on breaks up, PUT on breaks down — the stable's first short-side exposure), real option fills, 1%/side. Simulation-only forward track from Jul 21; P&L per $1k premium.",
+    "vM":  "MORNING two-sided opening-range breakout (separate simulation engine, no live orders): 25-min OR, break either side, target 2x risk, NR<=0.3 compression filter, entries 9:55-11:30, flat by noon. QQQ ladder-passed (final +6.57%); transfers to SPY/DIA/VTI/SCHX/OEF. LIVE on the Alpaca paper account from Jul 22 (both arms + shorts); rows here show the sim engine's forward days.",
+    "vMO": "OPTIONS twin of vM: the same morning signals as 0DTE ATM options (call on breaks up, PUT on breaks down — the stable's first short-side exposure), real option fills, 1%/side. LIVE on paper from Jul 22 (QQQ+SPY). P&L per $1k premium.",
 }
 MODELS_MEM = {}                      # (strat, tk) -> {"clf", "thr"} or None
 MODELS_DIR = Path("models")
@@ -504,3 +504,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

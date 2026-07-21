@@ -89,6 +89,29 @@ def get_order(order_id):
     return _req("GET", f"/v2/orders/{order_id}", params={"nested": "true"})
 
 
+def submit_bracket_short(symbol, qty, take_profit, stop_loss, client_id):
+    """Market SELL-SHORT + bracket (buy-limit target below / buy-stop above)."""
+    return _req("POST", "/v2/orders", json={
+        "symbol": symbol, "qty": str(int(qty)), "side": "sell", "type": "market",
+        "time_in_force": "day", "order_class": "bracket",
+        "client_order_id": client_id,
+        "take_profit": {"limit_price": str(round(take_profit, 2))},
+        "stop_loss": {"stop_price": str(round(stop_loss, 2))},
+    })
+
+
+def submit_limit_bracket_short(symbol, qty, limit_price, take_profit, stop_loss,
+                               client_id):
+    """LIMIT SELL-SHORT at the signal price + bracket."""
+    return _req("POST", "/v2/orders", json={
+        "symbol": symbol, "qty": str(int(qty)), "side": "sell", "type": "limit",
+        "limit_price": str(round(limit_price, 2)), "time_in_force": "day",
+        "order_class": "bracket", "client_order_id": client_id,
+        "take_profit": {"limit_price": str(round(take_profit, 2))},
+        "stop_loss": {"stop_price": str(round(stop_loss, 2))},
+    })
+
+
 def submit_limit_bracket(symbol, qty, limit_price, take_profit, stop_loss, client_id):
     """LIMIT BUY at the signal price + bracket. Day order: dies at close if unfilled."""
     return _req("POST", "/v2/orders", json={

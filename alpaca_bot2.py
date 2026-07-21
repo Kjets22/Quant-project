@@ -93,6 +93,16 @@ OPT_DTE = (8, 16)                  # expiry window; must outlive vC's 8-day time
 OPT_MAX_OPEN = 8
 OPT_MAX_CONTRACTS = 10
 
+# ---- vM: morning two-sided ORB (parallel session's champion, ladder-passed
+# 2026-07-21; live per user instruction). LONG on a 25-min opening-range break up,
+# SHORT on a break down (the stable's first live shorts), only after a narrow-range
+# day (nr_rank <= 0.3 of last 7), entries until 11:30, flat by NOON. vMO twin buys
+# the 0DTE ATM call (long) / PUT (short) on QQQ+SPY. ----
+VM = dict(or_bars=5, rr=2.0, nr=0.3, last_entry=690)
+VM_TICKERS = ["QQQ", "SPY", "DIA", "VTI", "SCHX", "OEF"]
+VM_OPT_TICKERS = {"QQQ", "SPY"}
+VM_RISK_CAP = 0.012
+
 LEDGER = Path("runs/alpaca2_ledger.json")
 LOG = Path("runs/alpaca_log.txt")
 MODELS = Path("models")
@@ -268,7 +278,9 @@ def poll_pending(led, dry):
         if o["status"] == "filled":
             tp_leg, sl_leg = _legs(o)
             p.update(fill=float(o["filled_avg_price"]), tp_leg=tp_leg, sl_leg=sl_leg,
-                     ets=str(now), deadline=str(now + pd.Timedelta(days=p["ddl_days"])))
+                     ets=str(now),
+                     deadline=(p.get("deadline_ts")          # vM: hard noon exit
+                               or str(now + pd.Timedelta(days=p["ddl_days"]))))
             led["open"].append(p)
             slip = (p["fill"] - p["sig_px"]) / p["sig_px"] * 1e4
             log(f"  FILLED {p['style']} {p['strat']} {p['tk']} @ {p['fill']:.2f} "
@@ -295,6 +307,15 @@ def _sell_now(tk, qty, cur, cid, sess):
     return broker.limit_sell(tk, qty, cur * 0.997, cid, extended=True)
 
 
+def _close_now(p, cur, cid, sess):
+    """Close a position with the right direction: sell longs, BUY-cover shorts."""
+    if p.get("side") == "short":
+        if sess == "rth":
+            return broker.market_buy(p["tk"], p["qty"], cid)
+        return broker.submit_limit(p["tk"], p["qty"], cur * 1.003, cid, extended=True)
+    return _sell_now(p["tk"], p["qty"], cur, cid, sess)
+
+
 def manage_exits(led, dry, sess):
     now = pd.Timestamp.utcnow().tz_localize(None)
     keep = []
@@ -310,6 +331,7 @@ def manage_exits(led, dry, sess):
                         break
         except Exception as e:
             log(f"  [exit poll error {p['tk']}: {e}]")
+        short = p.get("side") == "short"
         if outcome is None and p.get("synthetic"):
             # extended-hours entries have no bracket legs at the broker: the bot IS
             # the bracket, checking live price vs the stored levels every cycle
@@ -317,13 +339,17 @@ def manage_exits(led, dry, sess):
                 pos = broker.position(p["tk"])
                 cur = float(pos["current_price"]) if pos else None
                 if cur is not None:
-                    syn = ("STOP" if cur <= p["stop"]
-                           else "TARGET" if cur >= p["tgt"] else None)
+                    if short:
+                        syn = ("STOP" if cur >= p["stop"]
+                               else "TARGET" if cur <= p["tgt"] else None)
+                    else:
+                        syn = ("STOP" if cur <= p["stop"]
+                               else "TARGET" if cur >= p["tgt"] else None)
                     if syn:
                         if not dry:
-                            _sell_now(p["tk"], p["qty"], cur,
-                                      f"sx-{p['style']}-{p['tk']}-{now:%Y%m%d%H%M%S}",
-                                      sess)
+                            _close_now(p, cur,
+                                       f"sx-{p['style']}-{p['tk']}-{now:%Y%m%d%H%M%S}",
+                                       sess)
                         outcome, exit_px = syn, cur
             except Exception as e:
                 log(f"  [syn exit error {p['tk']}: {e}]")
@@ -334,12 +360,13 @@ def manage_exits(led, dry, sess):
                 for leg_id in (p.get("tp_leg"), p.get("sl_leg")):
                     if leg_id:
                         broker.cancel_order(leg_id)
-                _sell_now(p["tk"], p["qty"], cur,
-                          f"tx-{p['style']}-{p['tk']}-{now:%Y%m%d%H%M%S}", sess)
+                _close_now(p, cur,
+                           f"tx-{p['style']}-{p['tk']}-{now:%Y%m%d%H%M%S}", sess)
             exit_px = cur
             outcome = "TIME"
         if outcome:
-            pnl = round((exit_px - p["fill"]) * p["qty"], 2)
+            sign = -1 if short else 1
+            pnl = round(sign * (exit_px - p["fill"]) * p["qty"], 2)
             p.update(outcome=outcome, exit=exit_px, pnl=pnl, xts=str(now))
             led["closed"].append(p)
             log(f"  CLOSED {p['style']} {p['strat']} {p['tk']} {outcome} pnl={pnl:+.2f}")
@@ -348,17 +375,74 @@ def manage_exits(led, dry, sess):
     led["open"] = keep
 
 
-def pick_call(tk, spot):
-    """Nearest-the-money call expiring in OPT_DTE days (covers the time exit)."""
-    today = (pd.Timestamp.utcnow().tz_localize(None) - pd.Timedelta(hours=4)).date()
+def pick_option(tk, spot, ctype, dte_lo, dte_hi):
+    """Nearest-the-money contract of `ctype` expiring dte_lo..dte_hi days out."""
+    today = pd.Timestamp.now(tz="America/New_York").date()
     cons = broker.option_contracts(
-        tk, str(today + pd.Timedelta(days=OPT_DTE[0])),
-        str(today + pd.Timedelta(days=OPT_DTE[1])), spot * 0.97, spot * 1.03)
+        tk, str(today + pd.Timedelta(days=dte_lo)),
+        str(today + pd.Timedelta(days=dte_hi)), spot * 0.97, spot * 1.03,
+        ctype=ctype)
     if not cons:
         return None
     cons.sort(key=lambda c: (abs(float(c["strike_price"]) - spot),
                              c["expiration_date"]))
     return cons[0]
+
+
+def pick_call(tk, spot):
+    return pick_option(tk, spot, "call", OPT_DTE[0], OPT_DTE[1])
+
+
+def vm_signal(tk):
+    """Live vM rule on today's bars (mirrors morning_opt.orb2s_trade exactly):
+    NR filter -> 25-min OR -> first bar CLOSE beyond either side -> bracket levels.
+    Returns None (no trade today) or dict(side, sig_px, tgt, stop, ref_bar)."""
+    df = full_series(tk)
+    idx = pd.DatetimeIndex(df["timestamp"]).tz_localize("UTC").tz_convert(
+        "America/New_York")
+    mins = np.asarray(idx.hour * 60 + idx.minute)
+    dates = np.asarray(idx.date)
+    days_ = sorted(set(dates))
+    if len(days_) < 9:
+        return None
+    today = days_[-1]
+    ranges = []
+    for dt_ in days_[-8:-1]:                    # last 7 completed days
+        m = (dates == dt_) & (mins >= 570) & (mins < 960)
+        if m.any():
+            ranges.append(float(df["high"].to_numpy()[m].max()
+                                - df["low"].to_numpy()[m].min()))
+    if len(ranges) < 7:
+        return None
+    nr_rank = sorted(ranges).index(ranges[-1]) / max(len(ranges) - 1, 1)
+    if nr_rank > VM["nr"]:
+        return None
+    am_m = (dates == today) & (mins >= 570) & (mins < 720)
+    if am_m.sum() < VM["or_bars"] + 1:
+        return None
+    h = df["high"].to_numpy()[am_m]
+    l = df["low"].to_numpy()[am_m]
+    c = df["close"].to_numpy()[am_m]
+    mm = mins[am_m]
+    tsv = df["timestamp"].to_numpy()[am_m]
+    hi = float(h[:VM["or_bars"]].max())
+    lo = float(l[:VM["or_bars"]].min())
+    for i in range(VM["or_bars"], len(c)):
+        if mm[i] > VM["last_entry"]:
+            return None
+        if c[i] > hi:
+            e = float(c[i]); risk = e - lo
+            if risk <= 0 or risk / e > VM_RISK_CAP:
+                return None                     # risk-cap veto kills the whole day
+            return dict(side="long", sig_px=e, tgt=e + VM["rr"] * risk, stop=lo,
+                        ref_bar=str(pd.Timestamp(tsv[i])))
+        if c[i] < lo:
+            e = float(c[i]); risk = hi - e
+            if risk <= 0 or risk / e > VM_RISK_CAP:
+                return None
+            return dict(side="short", sig_px=e, tgt=e - VM["rr"] * risk, stop=hi,
+                        ref_bar=str(pd.Timestamp(tsv[i])))
+    return None
 
 
 def place_opt(led, strat, tk, sig_px, tgt, stop, bar_ts, stamp, ddl, now):
@@ -417,7 +501,12 @@ def manage_opts(led, dry, sess):
                 d = full_series(p["tk"])
                 seg = d[d["timestamp"] >= pd.Timestamp(p["ets"])]
                 if len(seg):
-                    if float(seg["low"].min()) <= p["stop"]:
+                    if p.get("side") == "short":          # vMO put: directions flip
+                        if float(seg["high"].max()) >= p["stop"]:
+                            reason = "STOP"
+                        elif float(seg["low"].min()) <= p["tgt"]:
+                            reason = "TARGET"
+                    elif float(seg["low"].min()) <= p["stop"]:
                         reason = "STOP"                   # stop checked first (worst case)
                     elif float(seg["high"].max()) >= p["tgt"]:
                         reason = "TARGET"
@@ -557,6 +646,74 @@ def cycle(dry=False):
                         log(f"  [opt entry error {strat} {tk}: {e}]")
             except Exception as e:
                 log(f"  [error {strat} {tk}: {e}]")
+    # ---- vM: morning ORB entries (RTH 9:55-11:30 window only, one/ticker/day) ----
+    et_now = pd.Timestamp.now(tz="America/New_York")
+    et_min = et_now.hour * 60 + et_now.minute
+    if sess == "rth" and 595 <= et_min < 720 and not no_new:
+        noon_utc = str((et_now.normalize() + pd.Timedelta(hours=12))
+                       .tz_convert("UTC").tz_localize(None))
+        for tk in VM_TICKERS:
+            try:
+                key = f"vM_{tk}"
+                day_key = str(et_now.date())
+                if led["acted_bars"].get(key) == day_key:
+                    continue
+                sig = vm_signal(tk)
+                if sig is None:
+                    continue
+                n_sig += 1
+                if not dry:
+                    led["acted_bars"][key] = day_key
+                e = sig["sig_px"]
+                qty = int(NOTIONAL // e)
+                log(f"  SIGNAL vM {tk} {sig['side'].upper()} bar={sig['ref_bar']} "
+                    f"sig_px={e:.2f} tgt={sig['tgt']:.2f} stop={sig['stop']:.2f} "
+                    f"qty={qty}{' [DRYRUN]' if dry else ''}")
+                if qty < 1 or dry:
+                    continue
+                now2 = pd.Timestamp.utcnow().tz_localize(None)
+                stampv = f"{now2:%Y%m%d%H%M%S}"
+                base = dict(strat="vM", tk=tk, qty=qty, sig_px=e,
+                            tgt=float(sig["tgt"]), stop=float(sig["stop"]),
+                            bar=sig["ref_bar"], ddl_days=0, side=sig["side"],
+                            deadline_ts=noon_utc)
+                if counts["mkt"] < MAX_POSITIONS and ("vM", tk) not in held["mkt"]:
+                    o = (broker.submit_bracket if sig["side"] == "long"
+                         else broker.submit_bracket_short)(
+                        tk, qty, sig["tgt"], sig["stop"], f"mkt-vM-{tk}-{stampv}")
+                    led["pending"].append(dict(base, style="mkt", order_id=o["id"],
+                                               expiry=str(now2 + pd.Timedelta(hours=3))))
+                    counts["mkt"] += 1; held["mkt"].add(("vM", tk))
+                if counts["lmt"] < MAX_POSITIONS and ("vM", tk) not in held["lmt"]:
+                    o = (broker.submit_limit_bracket if sig["side"] == "long"
+                         else broker.submit_limit_bracket_short)(
+                        tk, qty, e, sig["tgt"], sig["stop"], f"lmt-vM-{tk}-{stampv}")
+                    led["pending"].append(dict(base, style="lmt", order_id=o["id"],
+                                               expiry=str(now2 + pd.Timedelta(minutes=30))))
+                    counts["lmt"] += 1; held["lmt"].add(("vM", tk))
+                if tk in VM_OPT_TICKERS:
+                    # vMO: 0DTE ATM call (long) / PUT (short), flat by noon
+                    ctype = "call" if sig["side"] == "long" else "put"
+                    con = pick_option(tk, e, ctype, 0, 0)
+                    if con and len(led["opt_open"]) < OPT_MAX_OPEN and not any(
+                            x["tk"] == tk and x["strat"] == "vMO"
+                            for x in led["opt_open"]):
+                        px = float(con.get("close_price") or 0) or None
+                        qo = (max(1, min(OPT_MAX_CONTRACTS,
+                                         int(OPT_PREMIUM // (px * 100))))
+                              if px else 1)
+                        oo = broker.market_buy(con["symbol"], qo,
+                                               f"vmo-{tk}-{stampv}")
+                        led["opt_open"].append(dict(
+                            strat="vMO", src="vM", tk=tk, occ=con["symbol"],
+                            qty=qo, order_id=oo["id"],
+                            expiry=con["expiration_date"], sig_px=e,
+                            tgt=float(sig["tgt"]), stop=float(sig["stop"]),
+                            side=sig["side"], bar=sig["ref_bar"], ets=str(now2),
+                            deadline=noon_utc, est_px=px))
+                        log(f"  OPT BUY {con['symbol']} x{qo} [vMO {sig['side']}]")
+            except Exception as e2:
+                log(f"  [vM error {tk}: {e2}]")
     log(f"A/B cycle done | signals={n_sig} open={len(led['open'])} "
         f"pending={len(led['pending'])} closed={len(led['closed'])}")
     save_ledger(led)

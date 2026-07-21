@@ -31,7 +31,7 @@ import alpaca_api as broker
 
 LEDGER = Path("runs/alpaca2_ledger.json")
 TASK_LOG = Path("runs/alpaca_task.log")
-STRATS = ["v3", "v4", "v6", "v7", "vC", "vQ", "vQ2", "vA", "vP", "vR", "vS"]
+STRATS = ["v3", "v4", "v6", "v7", "vC", "vQ", "vQ2", "vA", "vP", "vR", "vS", "vM"]
 SLIP_BUDGET_BPS = 5.0
 
 
@@ -116,21 +116,30 @@ def main():
       f"(mkt ${arm_tot.get('mkt',0):+,.2f} vs lmt ${arm_tot.get('lmt',0):+,.2f}, "
       f"incl. unrealized)")
     w("")
-    # ---------- vCO: the options strategy (own book, same signals as vC) ----------
+    # ---------- options strategies: vCO (vC calls) + vMO (vM 0DTE calls/puts) ------
     ool, ocl = led.get("opt_open", []), led.get("opt_closed", [])
     if ool or ocl or opos:
-        w("===== vCO — OPTIONS strategy (vC signals, separate book) =====")
-        realized = sum(x.get("pnl") or 0 for x in ocl)
-        unreal = sum(float(p.get("unrealized_pl") or 0) for p in opos)
-        wins = sum(1 for x in ocl if (x.get("pnl") or 0) > 0)
-        wp = f"{wins/len(ocl):.0%}" if ocl else "-"
-        w(f"  closed {len(ocl)} | win% {wp} | realized ${realized:+,.2f} "
-          f"| open {len(ool)} | unrealized ${unreal:+,.2f}")
-        vc_cl = [x for x in led["closed"]
-                 if x["strat"] == "vC" and x["style"] == "mkt" and x["outcome"] != "MISSED"]
-        vc_r = sum(x.get("pnl") or 0 for x in vc_cl)
-        w(f"  head-to-head: vC stock (mkt arm) realized ${vc_r:+,.2f} over "
-          f"{len(vc_cl)} closed vs vCO options ${realized:+,.2f} over {len(ocl)}")
+        w("===== OPTIONS strategies (separate books) =====")
+        for oname, label in (("vCO", "vC signals, 1-2w ATM calls"),
+                             ("vMO", "vM signals, 0DTE ATM call/put")):
+            oo = [x for x in ool if x.get("strat", "vCO") == oname]
+            oc = [x for x in ocl if x.get("strat", "vCO") == oname]
+            occs = {x["occ"] for x in oo}
+            un = sum(float(p.get("unrealized_pl") or 0) for p in opos
+                     if p["symbol"] in occs)
+            if not (oo or oc):
+                continue
+            realized = sum(x.get("pnl") or 0 for x in oc)
+            wins = sum(1 for x in oc if (x.get("pnl") or 0) > 0)
+            wp = f"{wins/len(oc):.0%}" if oc else "-"
+            w(f"  {oname} ({label}): closed {len(oc)} | win% {wp} | "
+              f"realized ${realized:+,.2f} | open {len(oo)} | unreal ${un:+,.2f}")
+        src_cl = [x for x in led["closed"]
+                  if x["strat"] == "vC" and x["style"] == "mkt"
+                  and x["outcome"] != "MISSED"]
+        vc_r = sum(x.get("pnl") or 0 for x in src_cl)
+        vco_r = sum(x.get("pnl") or 0 for x in ocl if x.get("strat", "vCO") == "vCO")
+        w(f"  head-to-head: vC stock (mkt) ${vc_r:+,.2f} vs vCO options ${vco_r:+,.2f}")
         for p in opos:
             w(f"    {p['symbol']} x{p['qty']} entry {float(p['avg_entry_price']):.2f} "
               f"now {float(p['current_price'] or 0):.2f} "

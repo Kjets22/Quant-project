@@ -5,25 +5,17 @@ data refresh: OK
 CHAMPION {"last_entry": 690, "nr": 0.3, "or_bars": 5, "rr": 2.0, "sides": "both", "volx": null}
   QQQ ladder: arena_worst=+0.01%  gate=+4.78%  final=+6.90% (n=70)
   QQQ stock forward since 2026-07-21: n=2 total=+0.34% win=100%
-    new fill 2026-07-23: +17.6bp
   SPY stock forward since 2026-07-21: n=2 total=+0.13% win=100%
-    new fill 2026-07-23: +2.0bp
   DIA stock forward since 2026-07-21: n=0 total=+0.00% win=0%
   VTI stock forward since 2026-07-21: n=2 total=+0.02% win=50%
-    new fill 2026-07-23: -3.6bp
   SCHX stock forward since 2026-07-21: n=2 total=+0.18% win=100%
-    new fill 2026-07-23: +10.0bp
   OEF stock forward since 2026-07-21: n=2 total=-0.13% win=50%
-    new fill 2026-07-23: +11.5bp
   QQQ WIDE nr<=0.4 (EXPERIMENTAL, not validated) forward: n=2 total=+0.34% win=100%
-    new fill 2026-07-23: +17.6bp
   BOOK coverage since 2026-07-21: traded 2/3 days (67%) — goal ~50%
 
 vMO OPTIONS (0dte atm, 1%/side, fixed premium/trade)
   QQQ vMO forward: n=2 total=+8.9% of premium win=100%
-    new option fill 2026-07-23: +6.8% of premium
   SPY vMO forward: n=2 total=+6.8% of premium win=50%
-    new option fill 2026-07-23: -3.2% of premium
 
-search: 20 new configs evaluated (140 lifetime)
+search: 20 new configs evaluated (160 lifetime)
   no config beat the champion's ladder today

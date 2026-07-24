@@ -307,6 +307,26 @@ def _sell_now(tk, qty, cur, cid, sess):
     return broker.limit_sell(tk, qty, cur * 0.997, cid, extended=True)
 
 
+MIN_RISK_LEFT = 0.5        # skip entries that have already eaten half the stop
+
+
+def entry_still_valid(tk, sig_px, stop, side="long"):
+    """The bot sees 15-min-DELAYED bars, so by order time price may already have
+    travelled most of the way to the stop — the trade then has almost no room and
+    is not the trade the backtest validated (evidence: vM DIA 2026-07-24 filled
+    88% of the way to its stop, stopped out 5 min later). Compare the REAL-TIME
+    price against the signal's risk budget and skip if under MIN_RISK_LEFT remains.
+    Returns (ok, cur, fraction_of_risk_remaining); allows the trade if no quote."""
+    cur = broker.latest_price(tk)
+    if cur is None:
+        return True, None, None
+    risk = (sig_px - stop) if side == "long" else (stop - sig_px)
+    if risk <= 0:
+        return True, cur, None
+    left = ((cur - stop) if side == "long" else (stop - cur)) / risk
+    return left >= MIN_RISK_LEFT, cur, left
+
+
 def _close_now(p, cur, cid, sess):
     """Close a position with the right direction: sell longs, BUY-cover shorts."""
     if p.get("side") == "short":
@@ -591,6 +611,12 @@ def cycle(dry=False):
                     f"{' [DRYRUN]' if dry else ''}")
                 if dry:
                     continue
+                ok, cur, left = entry_still_valid(tk, float(c[i]), float(stop_px[i]))
+                if not ok:
+                    log(f"  [skip {strat} {tk}: stale — price {cur:.2f} has eaten "
+                        f"{(1 - left) * 100:.0f}% of the stop distance since the "
+                        f"signal bar]")
+                    continue
                 now = pd.Timestamp.utcnow().tz_localize(None)
                 base = dict(strat=strat, tk=tk, qty=qty, sig_px=float(c[i]),
                             tgt=float(tgt_px[i]), stop=float(stop_px[i]),
@@ -680,6 +706,13 @@ def cycle(dry=False):
                 log(f"  SIGNAL vM {tk} {sig['side'].upper()} bar={sig['ref_bar']} "
                     f"sig_px={e:.2f} tgt={sig['tgt']:.2f} stop={sig['stop']:.2f} "
                     f"qty={qty}{' [DRYRUN]' if dry else ''}")
+                ok, cur, left = entry_still_valid(tk, e, sig["stop"], sig["side"])
+                if not ok:
+                    log(f"  [skip vM {tk}: stale — price {cur:.2f} has eaten "
+                        f"{(1 - left) * 100:.0f}% of the stop distance since the "
+                        f"signal bar (15-min data lag); the validated trade no "
+                        f"longer exists]")
+                    continue
                 if qty < 1 or dry:
                     continue
                 now2 = pd.Timestamp.utcnow().tz_localize(None)

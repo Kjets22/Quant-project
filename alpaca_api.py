@@ -56,6 +56,22 @@ def _req(method, path, **kw):
     return r.json() if r.text else {}
 
 
+DATA_BASE = "https://data.alpaca.markets"
+
+
+def latest_price(symbol):
+    """REAL-TIME last trade (IEX feed, free on paper). The bot's bar data is
+    15-min delayed, so this is the only way to know where price is NOW."""
+    try:
+        r = requests.get(f"{DATA_BASE}/v2/stocks/{symbol}/trades/latest",
+                         headers=HDRS, timeout=20)
+        if r.status_code != 200:
+            return None
+        return float(r.json()["trade"]["p"])
+    except Exception:
+        return None
+
+
 def account():
     return _req("GET", "/v2/account")
 

@@ -2,7 +2,7 @@
 
 > This file is the canonical, always-current memory of the whole trading system.
 > Update it whenever anything changes: new strategies, results, incidents, lessons.
-> Last updated: 2026-07-23 (evening)
+> Last updated: 2026-07-23 (late night, post-audit)
 
 ## 1. ACCOUNT & MISSION
 - Alpaca PAPER account ($100k start, live since 2026-07-10) — **paper only, real money is the user's explicit decision only**
@@ -73,7 +73,34 @@
 ## 9. STANDING USER INSTRUCTIONS
 - Commit+push everything; paper only; strategies are separate entities (never cross-block); recovered-trade crediting only for outages/old-rules; keep the frozen saved_strategy_v* snapshots untouched; keep THIS MINDMAP updated as the working memory
 
-## 10. OPEN QUESTIONS / WATCHLIST
+## 10. FULL-SYSTEM AUDIT — 2026-07-23 LATE (all verified; do NOT re-audit these)
+- ✅ Scheduled tasks ×3 all result=0, correct next-runs (bot 4:01am, report 16:15, morning 16:35)
+- ✅ Models: all 11 strategies retrained today (46 pickles); dashboard alive; both reports generated+pushed
+- ✅ Ledger: no stuck pendings, no stuck opt_queue, not halted; vCO calls have correct virtual
+  brackets (JPM tgt 379.90/stop 336.53/ddl 7-29/exp 7-31; NVDA similar)
+- 🔧 FIXED: exit client_order_id collisions (50×: multi-strategy same-ticker exits in one cycle
+  shared IDs — only first sell/cycle succeeded) → IDs now include strategy name
+- 🔧 FIXED: reconciliation now signed (shorts negative) + AUTO-SELLS excess long shares
+  (late-fill-after-cancel orphans; found 1 QQQ share — auto-fix will clear it next 16:15)
+- 🔧 FIXED: stale-signal bracket rejections (price through stop on fast moves; 15-min data lag)
+  and wash-trade rejections now log as classified skips, not errors
+- 🔧 FIXED: alpaca_api 60s timeout + 1 GET retry (Alpaca threw timeouts + a 500 tonight;
+  mutations never auto-retry — duplicate-order risk)
+- KNOWN CONSTRAINTS (by design, do not "fix"): netted account → wash-trade guard occasionally
+  blocks one arm when another strategy's exit order sits on the same ticker (~1-2/day, logged);
+  vM shorts skip stock legs when the book is long the ticker (puts express it); ext-hours limit
+  arms miss in thin books; synthetic exits are 15-min granularity vs broker-instant brackets
+
+## 11. COMPLETED — NEVER REDO
+- Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
+  results in §6/§7; the RTH question is CLOSED
+- Options research: real-fill replays for SPY strats, QQQ family, vC (all tickers) — concluded
+- Infra: extended hours, strategy independence, vCO/vMO independence + virtual brackets, shorts
+  plumbing, recovery engine, split dashboard endpoints (loopback truncation!), wake-proof
+  schedulers, MINDMAP-as-memory — all built & verified; audit fixes above committed (ae3a604)
+- Resume bullets + INTERVIEW_GUIDE.md + ALPACA_BOT_GUIDE.md written (earlier sessions)
+
+## 12. OPEN QUESTIONS / WATCHLIST
 - vM live-vs-sim gap (sim engine runs in parallel as control); vM shorts unproven live (fixed 7/23 evening, untested)
 - vCO JPM call (+$365 mark): does the virtual bracket exit well?
 - Slippage A/B verdict still accumulating (mkt +9bps-ish vs lmt ~0 but 16 misses/wk)

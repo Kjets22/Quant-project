@@ -673,45 +673,72 @@ def cycle(dry=False):
                     continue
                 now2 = pd.Timestamp.utcnow().tz_localize(None)
                 stampv = f"{now2:%Y%m%d%H%M%S}"
+                if tk in VM_OPT_TICKERS:
+                    # vMO FIRST, in its own try: the option leg must never die
+                    # because the stock leg can't trade (netting, shortability...)
+                    try:
+                        ctype = "call" if sig["side"] == "long" else "put"
+                        con = pick_option(tk, e, ctype, 0, 0)
+                        if con and len(led["opt_open"]) < OPT_MAX_OPEN and not any(
+                                x["tk"] == tk and x["strat"] == "vMO"
+                                for x in led["opt_open"]):
+                            px = float(con.get("close_price") or 0) or None
+                            qo = (max(1, min(OPT_MAX_CONTRACTS,
+                                             int(OPT_PREMIUM // (px * 100))))
+                                  if px else 1)
+                            oo = broker.market_buy(con["symbol"], qo,
+                                                   f"vmo-{tk}-{stampv}")
+                            led["opt_open"].append(dict(
+                                strat="vMO", src="vM", tk=tk, occ=con["symbol"],
+                                qty=qo, order_id=oo["id"],
+                                expiry=con["expiration_date"], sig_px=e,
+                                tgt=float(sig["tgt"]), stop=float(sig["stop"]),
+                                side=sig["side"], bar=sig["ref_bar"], ets=str(now2),
+                                deadline=noon_utc, est_px=px))
+                            log(f"  OPT BUY {con['symbol']} x{qo} [vMO {sig['side']}]")
+                    except Exception as e3:
+                        log(f"  [vMO error {tk}: {e3}]")
                 base = dict(strat="vM", tk=tk, qty=qty, sig_px=e,
                             tgt=float(sig["tgt"]), stop=float(sig["stop"]),
                             bar=sig["ref_bar"], ddl_days=0, side=sig["side"],
                             deadline_ts=noon_utc)
+                if sig["side"] == "short":
+                    # Alpaca nets positions per symbol: a short while ANY strategy
+                    # is long the ticker would just sell their shares. Skip the
+                    # stock legs then (the vMO put above still expresses the short).
+                    long_held = any(x["tk"] == tk and x.get("side") != "short"
+                                    for x in led["open"] + led["pending"])
+                    if long_held:
+                        log(f"  vM {tk} SHORT skipped on stock (long book holds "
+                            f"{tk} — netting); put leg only")
+                        continue
                 if counts["mkt"] < MAX_POSITIONS and ("vM", tk) not in held["mkt"]:
-                    o = (broker.submit_bracket if sig["side"] == "long"
-                         else broker.submit_bracket_short)(
-                        tk, qty, sig["tgt"], sig["stop"], f"mkt-vM-{tk}-{stampv}")
+                    if sig["side"] == "long":
+                        o = broker.submit_bracket(tk, qty, sig["tgt"], sig["stop"],
+                                                  f"mkt-vM-{tk}-{stampv}")
+                        syn = False
+                    else:
+                        # Alpaca rejects bracket SHORT entries (422): plain market
+                        # short + the bot's synthetic bracket (side-aware exits)
+                        o = broker.market_sell(tk, qty, f"mkt-vM-{tk}-{stampv}")
+                        syn = True
                     led["pending"].append(dict(base, style="mkt", order_id=o["id"],
+                                               synthetic=syn,
                                                expiry=str(now2 + pd.Timedelta(hours=3))))
                     counts["mkt"] += 1; held["mkt"].add(("vM", tk))
                 if counts["lmt"] < MAX_POSITIONS and ("vM", tk) not in held["lmt"]:
-                    o = (broker.submit_limit_bracket if sig["side"] == "long"
-                         else broker.submit_limit_bracket_short)(
-                        tk, qty, e, sig["tgt"], sig["stop"], f"lmt-vM-{tk}-{stampv}")
+                    if sig["side"] == "long":
+                        o = broker.submit_limit_bracket(tk, qty, e, sig["tgt"],
+                                                        sig["stop"],
+                                                        f"lmt-vM-{tk}-{stampv}")
+                        syn = False
+                    else:
+                        o = broker.limit_sell(tk, qty, e, f"lmt-vM-{tk}-{stampv}")
+                        syn = True
                     led["pending"].append(dict(base, style="lmt", order_id=o["id"],
+                                               synthetic=syn,
                                                expiry=str(now2 + pd.Timedelta(minutes=30))))
                     counts["lmt"] += 1; held["lmt"].add(("vM", tk))
-                if tk in VM_OPT_TICKERS:
-                    # vMO: 0DTE ATM call (long) / PUT (short), flat by noon
-                    ctype = "call" if sig["side"] == "long" else "put"
-                    con = pick_option(tk, e, ctype, 0, 0)
-                    if con and len(led["opt_open"]) < OPT_MAX_OPEN and not any(
-                            x["tk"] == tk and x["strat"] == "vMO"
-                            for x in led["opt_open"]):
-                        px = float(con.get("close_price") or 0) or None
-                        qo = (max(1, min(OPT_MAX_CONTRACTS,
-                                         int(OPT_PREMIUM // (px * 100))))
-                              if px else 1)
-                        oo = broker.market_buy(con["symbol"], qo,
-                                               f"vmo-{tk}-{stampv}")
-                        led["opt_open"].append(dict(
-                            strat="vMO", src="vM", tk=tk, occ=con["symbol"],
-                            qty=qo, order_id=oo["id"],
-                            expiry=con["expiration_date"], sig_px=e,
-                            tgt=float(sig["tgt"]), stop=float(sig["stop"]),
-                            side=sig["side"], bar=sig["ref_bar"], ets=str(now2),
-                            deadline=noon_utc, est_px=px))
-                        log(f"  OPT BUY {con['symbol']} x{qo} [vMO {sig['side']}]")
             except Exception as e2:
                 log(f"  [vM error {tk}: {e2}]")
     log(f"A/B cycle done | signals={n_sig} open={len(led['open'])} "
@@ -752,10 +779,31 @@ def status():
               f"exp {x['expiry']}")
 
 
+def _single_instance():
+    """Cross-cadence guard: the 15-min task and the 5-min morning task can fire in
+    the same minute — two concurrent cycles could double-enter before the ledger
+    saves. Stale locks (>10 min, crashed run) are broken automatically."""
+    import os
+    lock = Path("runs/bot2.lock")
+    lock.parent.mkdir(exist_ok=True)
+    if lock.exists():
+        age = pd.Timestamp.now() - pd.Timestamp(lock.stat().st_mtime, unit="s")
+        if age < pd.Timedelta(minutes=10):
+            print("another cycle is running (runs/bot2.lock fresh) — exiting")
+            return None
+    lock.write_text(str(os.getpid()))
+    return lock
+
+
 if __name__ == "__main__":
     if "--status" in sys.argv:
         status()
     elif "--dryrun" in sys.argv:
         cycle(dry=True)
     else:
-        cycle(dry=False)
+        _lk = _single_instance()
+        if _lk is not None:
+            try:
+                cycle(dry=False)
+            finally:
+                _lk.unlink(missing_ok=True)

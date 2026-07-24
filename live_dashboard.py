@@ -60,9 +60,9 @@ DESCS = {
     "vP":  "Evolution III P&L champion: QQQ $2 / $2 in 8h, HistGB, high volume (~280 trades/yr). Final year +4.18%.",
     "vR":  "Your spec — and the Evolution IV final WINNER: QQQ +0.4% / -0.2% (true 2:1) in 2h, top-3% gate. Best final year of the family (+7.00%).",
     "vS":  "Evolution IV evolved challenger: QQQ +0.5% / -0.4% in 8h, top-10% gate. Lost the final to vR (+6.18%) — runs live for comparison.",
-    "vCO": "OPTIONS strategy on vC signals (fully independent book): each signal buys ~$1k of 1-2 week ATM calls and runs its OWN virtual bracket — sold when the underlying hits vC's target or stop, at the 8-day time limit, or before expiry. Entry = option price per share; P&L per $1k premium.",
+    "vCO": "OPTIONS strategy on vC signals — LIVE BOOK (real fills from the paper account): ~$1k of 1-2 week ATM calls per signal, sold when the underlying hits vC's target/stop, the 8-day limit, or near expiry. The 'conv' column shows the contract; open rows are marked at live broker prices.",
     "vM":  "MORNING two-sided opening-range breakout (separate simulation engine, no live orders): 25-min OR, break either side, target 2x risk, NR<=0.3 compression filter, entries 9:55-11:30, flat by noon. QQQ ladder-passed (final +6.57%); transfers to SPY/DIA/VTI/SCHX/OEF. LIVE on the Alpaca paper account from Jul 22 (both arms + shorts); rows here show the sim engine's forward days.",
-    "vMO": "OPTIONS twin of vM: the same morning signals as 0DTE ATM options (call on breaks up, PUT on breaks down — the stable's first short-side exposure), real option fills, 1%/side. LIVE on paper from Jul 22 (QQQ+SPY). P&L per $1k premium.",
+    "vMO": "OPTIONS twin of vM — LIVE BOOK (real fills): 0DTE ATM options on the morning signals, call on breaks up, PUT on breaks down (the stable's first short-side exposure), QQQ+SPY, flat by noon. The 'conv' column shows the contract.",
 }
 MODELS_MEM = {}                      # (strat, tk) -> {"clf", "thr"} or None
 MODELS_DIR = Path("models")
@@ -232,6 +232,47 @@ def vco_trades(vc):
     return out
 
 
+def ledger_option_trades():
+    """The REAL vCO/vMO option books from the live bot's ledger — actual fills and
+    P&L, with live broker marks on open positions (not simulations)."""
+    p = Path("runs/alpaca2_ledger.json")
+    if not p.exists():
+        return []
+    led = json.loads(p.read_text())
+    marks = {}
+    try:
+        for pos in bot.broker.positions():
+            if pos.get("asset_class") == "us_option":
+                marks[pos["symbol"]] = (float(pos["current_price"]),
+                                        float(pos.get("unrealized_pl") or 0))
+    except Exception:
+        pass
+    out = []
+    for x in led.get("opt_closed", []) + led.get("opt_open", []):
+        closed = "exit" in x or x in led.get("opt_closed", [])
+        fill = x.get("fill")
+        ets = x.get("ets")
+        if not ets:
+            continue
+        mark, upl = marks.get(x["occ"], (None, None))
+        pnl = x.get("pnl")
+        if not closed and upl is not None:
+            pnl = upl
+        out.append(dict(
+            strat=x.get("strat", "vCO"), tk=x["tk"],
+            entry_ts=int(pd.Timestamp(ets).timestamp()),
+            exit_ts=(int(pd.Timestamp(x["xts"]).timestamp())
+                     if x.get("xts") else None),
+            entry=(round(float(fill), 2) if fill else x.get("est_px")),
+            exit=(round(float(x["exit"]), 2) if x.get("exit") is not None
+                  else (round(mark, 2) if mark else None)),
+            target=None, stop=None, qty=x.get("qty"), conviction=x["occ"],
+            outcome=("OPEN" if not closed
+                     else ("CALL+" if (pnl or 0) > 0 else "CALL-")),
+            pnl=round(float(pnl or 0), 2)))
+    return out
+
+
 def morning_trades():
     """vM / vMO forward-track day results from the morning engine's state file
     (separate simulation engine — per-day returns only, no fill prices stored)."""
@@ -241,9 +282,9 @@ def morning_trades():
     st = json.loads(p.read_text())
     out = []
     for key, days in st.get("forward", {}).items():
-        is_opt = key.lower().startswith("opt")
-        strat = "vMO" if is_opt else "vM"
-        tk = key[3:] if is_opt else key
+        if key.lower().startswith("opt"):
+            continue                 # vMO tab shows the LIVE book, not sim days
+        strat, tk = "vM", key
         for ds, rets in sorted(days.items()):
             for r in rets:
                 out.append(dict(
@@ -271,9 +312,9 @@ def refresh():
             except Exception as e:
                 print(f"  [sim warn {strat}/{tk}] {e}", flush=True)
     try:
-        all_trades += vco_trades([t for t in all_trades if t["strat"] == "vC"])
+        all_trades += ledger_option_trades()
     except Exception as e:
-        print(f"  [vCO build warn] {e}", flush=True)
+        print(f"  [options book warn] {e}", flush=True)
     try:
         all_trades += morning_trades()
     except Exception as e:
@@ -504,4 +545,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

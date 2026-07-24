@@ -20,3 +20,6 @@ models/
 __pycache__/
 *.pyc
 .pytest_cache/
+
+runs/evo_cache/
+runs/tourn_p_*.npy

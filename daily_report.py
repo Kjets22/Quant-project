@@ -166,20 +166,38 @@ def main():
                                  f"order past expiry was still live -> cancelled.")
             except Exception as e:
                 flags.append(f"WARN: could not verify pending {p['tk']}: {e}")
-    # 2. ledger vs broker reconciliation. Pending entries may or may not be filled yet,
-    #    so the broker qty must lie in [open_qty, open_qty + pending_qty] per symbol.
+    # 2. ledger vs broker reconciliation (signed: shorts count negative). Pending
+    #    entries may or may not be filled, so broker qty must lie between the
+    #    open-only and open+pending totals. Excess LONG shares are unambiguous
+    #    breakage (a cancelled order that filled late) -> auto-sold per the
+    #    delegated fix policy; anything else is flagged for review.
     open_q, pend_q = {}, {}
     for x in led["open"]:
-        open_q[x["tk"]] = open_q.get(x["tk"], 0) + x["qty"]
+        s = -1 if x.get("side") == "short" else 1
+        open_q[x["tk"]] = open_q.get(x["tk"], 0) + s * x["qty"]
     for x in led["pending"]:
-        pend_q[x["tk"]] = pend_q.get(x["tk"], 0) + x["qty"]
+        s = -1 if x.get("side") == "short" else 1
+        pend_q[x["tk"]] = pend_q.get(x["tk"], 0) + s * x["qty"]
     syms = set(bpos) | set(open_q) | set(pend_q)
     for sym in syms:
         bq = int(float(bpos[sym]["qty"])) if sym in bpos else 0
-        lo, hi = open_q.get(sym, 0), open_q.get(sym, 0) + pend_q.get(sym, 0)
+        a = open_q.get(sym, 0)
+        b = a + pend_q.get(sym, 0)
+        lo, hi = min(a, b), max(a, b)
         if not (lo <= bq <= hi):
-            flags.append(f"FLAG: {sym} broker qty {bq} outside ledger range [{lo},{hi}] "
-                         f"(manual trade? partial fill? review before trusting stats)")
+            excess = bq - hi
+            if excess > 0 and clk["is_open"]:
+                try:
+                    broker.market_sell(sym, excess,
+                                       f"fix-orphan-{sym}-{now:%H%M%S}")
+                    flags.append(f"FIXED: sold {excess} orphan {sym} share(s) — "
+                                 f"late fill after cancel; books restored.")
+                except Exception as e:
+                    flags.append(f"FLAG: {sym} has {excess} orphan share(s), "
+                                 f"auto-sell failed: {e}")
+            else:
+                flags.append(f"FLAG: {sym} broker qty {bq} outside ledger range "
+                             f"[{lo},{hi}] (manual trade? partial fill? review)")
     # 3. time exits due
     for x in led["open"]:
         if pd.Timestamp(x["deadline"]) <= now:

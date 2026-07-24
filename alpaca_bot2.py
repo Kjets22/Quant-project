@@ -348,8 +348,8 @@ def manage_exits(led, dry, sess):
                     if syn:
                         if not dry:
                             _close_now(p, cur,
-                                       f"sx-{p['style']}-{p['tk']}-{now:%Y%m%d%H%M%S}",
-                                       sess)
+                                       f"sx-{p['strat']}-{p['style']}-{p['tk']}-"
+                                       f"{now:%H%M%S}", sess)
                         outcome, exit_px = syn, cur
             except Exception as e:
                 log(f"  [syn exit error {p['tk']}: {e}]")
@@ -361,7 +361,8 @@ def manage_exits(led, dry, sess):
                     if leg_id:
                         broker.cancel_order(leg_id)
                 _close_now(p, cur,
-                           f"tx-{p['style']}-{p['tk']}-{now:%Y%m%d%H%M%S}", sess)
+                           f"tx-{p['strat']}-{p['style']}-{p['tk']}-{now:%H%M%S}",
+                           sess)
             exit_px = cur
             outcome = "TIME"
         if outcome:
@@ -644,6 +645,16 @@ def cycle(dry=False):
                                 f"buying at next open)")
                     except Exception as e:
                         log(f"  [opt entry error {strat} {tk}: {e}]")
+            except RuntimeError as e:
+                s = str(e)
+                if "42210000" in s and "stop_loss" in s:
+                    log(f"  [skip {strat} {tk}: signal stale — price already "
+                        f"through the stop (15-min data lag on a fast move)]")
+                elif "wash trade" in s:
+                    log(f"  [skip {strat} {tk}: wash-trade guard — conflicts with "
+                        f"another strategy's exit order on {tk} (netted account)]")
+                else:
+                    log(f"  [error {strat} {tk}: {e}]")
             except Exception as e:
                 log(f"  [error {strat} {tk}: {e}]")
     # ---- vM: morning ORB entries (RTH 9:55-11:30 window only, one/ticker/day) ----

@@ -1814,3 +1814,70 @@
 2026-07-23 20:01:03Z  A/B cycle | equity=$99,797.48 day=+99797.48 dd=620.02 | session=ext
 2026-07-23 20:01:31Z    SIGNAL v7 QQQ bar=2026-07-23 19:00:00 p=0.109 sig_px=689.11 tgt=711.08 stop=686.91 qty=1
 2026-07-23 20:01:36Z  A/B cycle done | signals=1 open=17 pending=2 closed=144
+2026-07-23 20:16:02Z  A/B cycle | equity=$99,796.48 day=+99796.48 dd=621.02 | session=ext
+2026-07-23 20:16:28Z  A/B cycle done | signals=0 open=17 pending=2 closed=144
+2026-07-23 20:31:02Z  A/B cycle | equity=$99,796.99 day=+99796.99 dd=620.51 | session=ext
+2026-07-23 20:31:29Z  A/B cycle done | signals=0 open=17 pending=2 closed=144
+2026-07-23 20:46:02Z  A/B cycle | equity=$99,795.56 day=+99795.56 dd=621.94 | session=ext
+2026-07-23 20:46:03Z    MISSED mkt v7 QQQ (limit 689.11 never filled)
+2026-07-23 20:46:29Z  A/B cycle done | signals=0 open=17 pending=1 closed=145
+2026-07-23 21:01:02Z  A/B cycle | equity=$99,801.98 day=+99801.98 dd=615.52 | session=ext
+2026-07-23 21:01:03Z    MISSED lmt v7 QQQ (limit 689.11 never filled)
+2026-07-23 21:01:28Z  A/B cycle done | signals=0 open=17 pending=0 closed=146
+2026-07-23 21:16:02Z  A/B cycle | equity=$99,797.29 day=+99797.29 dd=620.21 | session=ext
+2026-07-23 21:16:26Z    SIGNAL vP QQQ bar=2026-07-23 21:00:00 p=0.691 sig_px=695.22 tgt=697.22 stop=693.22 qty=1
+2026-07-23 21:16:28Z  A/B cycle done | signals=1 open=17 pending=2 closed=146
+2026-07-23 21:31:02Z  A/B cycle | equity=$99,793.35 day=+99793.35 dd=624.15 | session=ext
+2026-07-23 21:31:03Z    FILLED mkt vP QQQ @ 694.20 (signal 695.22, slip -14.7 bps)
+2026-07-23 21:31:03Z    FILLED lmt vP QQQ @ 694.20 (signal 695.22, slip -14.7 bps)
+2026-07-23 21:31:23Z    SIGNAL v3 NVDA bar=2026-07-23 21:00:00 p=0.539 sig_px=208.68 tgt=210.55 stop=207.43 qty=4
+2026-07-23 21:31:33Z  A/B cycle done | signals=1 open=19 pending=2 closed=146
+2026-07-23 21:46:02Z  A/B cycle | equity=$99,797.12 day=+99797.12 dd=620.38 | session=ext
+2026-07-23 21:46:02Z    FILLED mkt v3 NVDA @ 208.37 (signal 208.68, slip -14.9 bps)
+2026-07-23 21:46:03Z    FILLED lmt v3 NVDA @ 208.37 (signal 208.68, slip -14.9 bps)
+2026-07-23 21:46:30Z  A/B cycle done | signals=0 open=21 pending=0 closed=146
+2026-07-23 22:01:03Z  A/B cycle | equity=$99,796.08 day=+99796.08 dd=621.42 | session=ext
+2026-07-23 22:01:30Z  A/B cycle done | signals=0 open=21 pending=0 closed=146
+2026-07-23 22:16:02Z  A/B cycle | equity=$99,775.40 day=+99775.40 dd=642.10 | session=ext
+2026-07-23 22:16:13Z    CLOSED mkt vP QQQ STOP pnl=-1.50
+2026-07-23 22:16:14Z    CLOSED lmt vP QQQ STOP pnl=-1.50
+2026-07-23 22:16:30Z  A/B cycle done | signals=0 open=19 pending=0 closed=148
+2026-07-23 22:31:03Z  A/B cycle | equity=$99,786.51 day=+99786.51 dd=630.99 | session=ext
+2026-07-23 22:31:21Z    SIGNAL v3 NVDA bar=2026-07-23 22:00:00 p=0.566 sig_px=207.60 tgt=209.56 stop=206.29 qty=4
+2026-07-23 22:31:30Z  A/B cycle done | signals=1 open=19 pending=0 closed=148
+2026-07-23 22:46:02Z  A/B cycle | equity=$99,795.55 day=+99795.55 dd=621.95 | session=ext
+2026-07-23 22:46:22Z    SIGNAL v4 QQQ bar=2026-07-23 22:30:00 p=0.266 sig_px=693.87 tgt=700.30 stop=692.26 qty=1
+2026-07-23 22:46:30Z  A/B cycle done | signals=1 open=19 pending=2 closed=148
+2026-07-23 23:01:03Z  A/B cycle | equity=$99,803.15 day=+99803.15 dd=614.35 | session=ext
+2026-07-23 23:01:03Z    FILLED mkt v4 QQQ @ 694.14 (signal 693.87, slip +3.9 bps)
+2026-07-23 23:01:03Z    MISSED lmt v4 QQQ (limit 693.87 never filled)
+2026-07-23 23:01:25Z    SIGNAL v4 QQQ bar=2026-07-23 22:45:00 p=0.266 sig_px=694.05 tgt=700.23 stop=692.50 qty=1
+2026-07-23 23:01:32Z  A/B cycle done | signals=1 open=20 pending=1 closed=149
+2026-07-23 23:16:02Z  A/B cycle | equity=$99,792.78 day=+99792.78 dd=624.72 | session=ext
+2026-07-23 23:16:03Z    FILLED lmt v4 QQQ @ 694.04 (signal 694.05, slip -0.1 bps)
+2026-07-23 23:16:31Z  A/B cycle done | signals=0 open=21 pending=0 closed=149
+2026-07-23 23:31:02Z  A/B cycle | equity=$99,784.09 day=+99784.09 dd=633.41 | session=ext
+2026-07-23 23:31:23Z    SIGNAL v4 QQQ bar=2026-07-23 23:00:00 p=0.269 sig_px=693.99 tgt=700.14 stop=692.45 qty=1
+2026-07-23 23:31:29Z  A/B cycle done | signals=1 open=21 pending=0 closed=149
+2026-07-23 23:46:03Z  A/B cycle | equity=$99,782.03 day=-500.28 dd=635.47 | session=ext
+2026-07-23 23:46:34Z    [exit poll error MSFT: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Read timed out. (read timeout=30)]
+2026-07-23 23:46:50Z    [exit poll error AAPL: GET /v2/orders/20b4122d-0b37-4adf-8be2-cbc8714f0f29 -> 500: {"code":50010000,"message":"internal server error occurred"}]
+2026-07-23 23:46:55Z    [exit poll error AAPL: GET /v2/orders/680c5f7a-3e1f-44f6-945a-26158beca371 -> 500: {"code":50010000,"message":"internal server error occurred"}]
+2026-07-23 23:47:00Z    [exit poll error SPY: GET /v2/orders/843eab0b-5788-45ae-a540-918d2be2ce98 -> 500: {"code":50010000,"message":"internal server error occurred"}]
+2026-07-23 23:47:01Z    [exit poll error SPY: GET /v2/orders/bc33156f-5968-4630-a599-fd5094031edb -> 500: {"code":50010000,"message":"internal server error occurred"}]
+2026-07-23 23:47:31Z    [exit poll error TLT: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Read timed out. (read timeout=30)]
+2026-07-23 23:48:01Z    [exit poll error TLT: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Read timed out. (read timeout=30)]
+2026-07-23 23:48:32Z    [exit poll error NVDA: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Read timed out. (read timeout=30)]
+2026-07-23 23:49:03Z    [exit poll error NVDA: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Read timed out. (read timeout=30)]
+2026-07-23 23:49:03Z    [exit poll error MSFT: GET /v2/orders/d645e29b-40b3-42f5-b230-352089a92ab2 -> 500: {"code":50010000,"message":"internal server error occurred"}]
+2026-07-23 23:49:21Z    [exit poll error MSFT: GET /v2/orders/1ae5d309-843e-498e-b71f-ca11321689d4 -> 500: {"code":50010000,"message":"internal server error occurred"}]
+2026-07-23 23:49:53Z    [opt manage error JPM260731C00340000: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Read timed out. (read timeout=30)]
+2026-07-23 23:49:53Z    [opt manage error NVDA260731C00207500: GET /v2/orders/5ef1a645-206f-44f7-8bbc-b0c4ec7889ac -> 500: {"code":50010000,"message":"internal server error occurred"}]
+2026-07-23 23:50:08Z  A/B cycle done | signals=2 open=21 pending=0 closed=149
+2026-07-24 00:01:08Z  A/B cycle | equity=$99,781.02 day=-501.29 dd=636.48 | session=closed
+2026-07-24 00:11:57Z  A/B cycle | equity=$99,766.88 day=-515.43 dd=650.62 | session=closed | DRYRUN
+2026-07-24 00:12:15Z    CLOSED lmt v4 QQQ STOP pnl=-1.54
+2026-07-24 00:13:03Z  A/B cycle done | signals=1 open=20 pending=0 closed=150
+2026-07-24 00:55:02Z  A/B cycle | equity=$99,780.66 day=-501.65 dd=636.84 | session=closed | DRYRUN
+2026-07-24 00:55:11Z    [exit poll error MSFT: GET /v2/orders/c6b28619-036b-457a-ac9d-d10f09e71901 -> 500: {"code":50010000,"message":"internal server error occurred"}]
+2026-07-24 00:55:25Z  A/B cycle done | signals=0 open=20 pending=0 closed=150

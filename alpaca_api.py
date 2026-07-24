@@ -37,7 +37,20 @@ assert "paper" in BASE, "SAFETY: this client only talks to the PAPER endpoint."
 
 
 def _req(method, path, **kw):
-    r = requests.request(method, f"{BASE}{path}", headers=HDRS, timeout=30, **kw)
+    # GETs retry once on timeout/connection drops (Alpaca has flaky nights);
+    # POST/PATCH/DELETE never auto-retry (duplicate-order risk).
+    last = None
+    for attempt in (1, 2):
+        try:
+            r = requests.request(method, f"{BASE}{path}", headers=HDRS,
+                                 timeout=60, **kw)
+            break
+        except requests.exceptions.RequestException as e:
+            last = e
+            if method != "GET" or attempt == 2:
+                raise
+    else:
+        raise last
     if r.status_code >= 400:
         raise RuntimeError(f"{method} {path} -> {r.status_code}: {r.text[:300]}")
     return r.json() if r.text else {}

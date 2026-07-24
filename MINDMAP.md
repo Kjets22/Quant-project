@@ -91,6 +91,19 @@
   vM shorts skip stock legs when the book is long the ticker (puts express it); ext-hours limit
   arms miss in thin books; synthetic exits are 15-min granularity vs broker-instant brackets
 
+## 10b. DATA-LAG FINDING + FIX (2026-07-24) — the sim-vs-live gap explained
+- The bot's bars are **15-min delayed** (Polygon). Multi-day strategies (vC/v6/v7) don't care;
+  intraday tight-stop ones (vM, and vMO riding them) are wrecked by it.
+- Smoking gun: vM DIA short — signal 516.27 / stop 518.30 (risk 2.03); filled 518.05, i.e.
+  **88% of the risk budget gone before entry**; stopped 5 min later. Meanwhile the sim engine
+  (fills at the breakout bar close) shows QQQ/SPY forward 100% win — same days, opposite result.
+- FIX (committed 934fbf6): `alpaca_api.latest_price()` = real-time IEX last trade (free on paper);
+  `entry_still_valid()` skips entries with <50% of the risk budget remaining. Applied to vM +
+  ML strategies. Fails OPEN (no quote → trade proceeds). Verified: today's DIA short is blocked.
+- STILL OPEN (next step if vM keeps diverging): source vM's opening range and breakout detection
+  from Alpaca real-time bars instead of delayed Polygon bars, so entries fire at the breakout
+  rather than up to 20 min later. Guard is a filter, not a cure.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

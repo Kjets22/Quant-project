@@ -7,7 +7,6 @@ CHAMPION {"last_entry": 690, "nr": 0.3, "or_bars": 5, "rr": 2.0, "sides": "both"
   QQQ stock forward since 2026-07-21: n=2 total=+0.34% win=100%
   SPY stock forward since 2026-07-21: n=2 total=+0.13% win=100%
   DIA stock forward since 2026-07-21: n=1 total=-0.41% win=0%
-    new fill 2026-07-24: -41.3bp
   VTI stock forward since 2026-07-21: n=2 total=+0.02% win=50%
   SCHX stock forward since 2026-07-21: n=2 total=+0.18% win=100%
   OEF stock forward since 2026-07-21: n=2 total=-0.13% win=50%
@@ -18,5 +17,5 @@ vMO OPTIONS (0dte atm, 1%/side, fixed premium/trade)
   QQQ vMO forward: n=2 total=+8.9% of premium win=100%
   SPY vMO forward: n=2 total=+6.8% of premium win=50%
 
-search: 20 new configs evaluated (180 lifetime)
+search: 20 new configs evaluated (200 lifetime)
   no config beat the champion's ladder today

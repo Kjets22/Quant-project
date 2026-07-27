@@ -96,14 +96,14 @@ def save_state(st):
 def refresh():
     """Pull recent bars for all tracked tickers; supersede older recent files."""
     from basket import ticker_cfg
-    from data import fetch_polygon
+    from data import fetch_bars
     end = (date.today() + timedelta(days=1)).isoformat()
     for tk in TICKERS:
         out = Path(f"data_cache/{tk}_recent_2026-06-01_{end}.csv")
         cfg = ticker_cfg(tk)
         cfg.data.start_date, cfg.data.end_date = "2026-06-01", end
         cfg.data.multiplier, cfg.data.timespan = 5, "minute"
-        df = fetch_polygon(cfg)
+        df = fetch_bars(cfg)
         df.to_csv(out, index=False)
         print(f"  refreshed {tk}: {len(df)} rows -> {out.name}")
         for p in Path("data_cache").glob(f"{tk}_recent_2026-06-01_*.csv"):

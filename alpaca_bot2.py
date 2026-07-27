@@ -42,7 +42,7 @@ from sr_features import sr_features
 from wide_hunter import atr_fixed, trend_features
 from qqq_tournament import extra_features
 from basket import ticker_cfg
-from data import fetch_polygon
+from data import fetch_bars
 
 NOTIONAL = 1_000.0
 MAX_POSITIONS = 24                 # per-arm backstop (~$24k); the real limiter is
@@ -153,7 +153,7 @@ def full_series(tk):
     cfg.data.end_date = str((pd.Timestamp.utcnow().tz_localize(None) + pd.Timedelta(days=1)).date())
     cfg.data.multiplier, cfg.data.timespan = 5, "minute"
     try:
-        parts.append(fetch_polygon(cfg))
+        parts.append(fetch_bars(cfg))
     except Exception as e:
         log(f"  [tail fetch failed {tk}: {e} — using cached]")
     df = (pd.concat(parts, ignore_index=True)

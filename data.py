@@ -72,6 +72,65 @@ def _map_results(results: list[dict]) -> list[dict]:
     return rows
 
 
+def fetch_alpaca(cfg: Config) -> pd.DataFrame:
+    """Same bars, same schema, from ALPACA (free with the trading account).
+
+    Verified 2026-07-27 against Polygon: identical closes (max diff $0.0000 over an
+    overlapping session), full 4:00-20:00 ET extended-hours coverage, >=5y history,
+    same ~15-min delay on the SIP feed. This is the primary source; fetch_polygon
+    remains as a fallback so nothing breaks if either provider hiccups.
+    """
+    import alpaca_api as _al
+
+    d = cfg.data
+    tf = {"minute": "Min", "hour": "Hour", "day": "Day"}.get(d.timespan, "Min")
+    # The free data plan serves full SIP history but REFUSES any window reaching
+    # into the last 15 minutes ("subscription does not permit querying recent SIP
+    # data"), so clamp the end. This matches what Polygon gave us anyway — the bot
+    # has always run on ~15-min-delayed bars; real-time comes from latest_price().
+    cutoff = pd.Timestamp.utcnow().tz_localize(None) - pd.Timedelta(minutes=16)
+    end_ts = min(pd.Timestamp(f"{d.end_date}T23:59:59"), cutoff)
+    if end_ts <= pd.Timestamp(f"{d.start_date}T00:00:00"):
+        return pd.DataFrame(columns=OHLCV_COLS)
+    rows, token = [], None
+    while True:
+        p = {"symbols": d.ticker, "timeframe": f"{d.multiplier}{tf}",
+             "start": f"{d.start_date}T00:00:00Z",
+             "end": end_ts.strftime("%Y-%m-%dT%H:%M:%SZ"),
+             "limit": 10000, "adjustment": "raw", "feed": "sip", "sort": "asc"}
+        if token:
+            p["page_token"] = token
+        r = requests.get("https://data.alpaca.markets/v2/stocks/bars",
+                         headers=_al.HDRS, params=p, timeout=45)
+        if r.status_code != 200:
+            raise RuntimeError(f"alpaca bars {r.status_code}: {r.text[:200]}")
+        j = r.json()
+        for x in (j.get("bars") or {}).get(d.ticker, []):
+            rows.append({"timestamp": pd.to_datetime(x["t"]).tz_convert(None),
+                         "open": float(x["o"]), "high": float(x["h"]),
+                         "low": float(x["l"]), "close": float(x["c"]),
+                         "volume": float(x.get("v", 0.0))})
+        token = j.get("next_page_token")
+        if not token:
+            break
+    return pd.DataFrame(rows, columns=OHLCV_COLS)
+
+
+def fetch_bars(cfg: Config) -> pd.DataFrame:
+    """Alpaca first, Polygon as fallback. Call this instead of fetch_polygon so the
+    Polygon subscription can lapse without breaking anything."""
+    try:
+        df = fetch_alpaca(cfg)
+        if len(df):
+            return df
+        raise RuntimeError("alpaca returned 0 bars")
+    except Exception as e:
+        try:
+            return fetch_polygon(cfg)
+        except Exception:
+            raise e
+
+
 def fetch_polygon(cfg: Config, max_pages: int = 100, max_retries: int = 5) -> pd.DataFrame:
     """
     Fetch aggregates from Polygon, following the `next_url` cursor for

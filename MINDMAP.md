@@ -104,6 +104,26 @@
   from Alpaca real-time bars instead of delayed Polygon bars, so entries fire at the breakout
   rather than up to 20 min later. Guard is a filter, not a cure.
 
+## 10c. DATA SOURCE — POLYGON IS NOW OPTIONAL (2026-07-27)
+- Polygon **was** load-bearing: `full_series()` tails it every bot cycle; `morning_daily.refresh()`
+  pulls all 6 tickers daily. Cancelling it before this change would have starved the bot.
+- **Alpaca serves the same bars free** with the trading account. Verified over a full week on all
+  12 live tickers: mean close diff 0.000–0.025 bps, p99 ≤0.14 bps, 0–1 outlier bars/ticker >5 bps
+  (odd-lot/late-report singles), and **vM's 25-min opening-range hi/lo inputs match to $0.0000**.
+  Full 4:00–20:00 ET extended hours, ≥5y history.
+- `data.fetch_bars()` = Alpaca primary → Polygon fallback. Call sites swapped (bot + morning).
+- **Gotcha (cost me a false-green first pass): the free plan 403s any SIP window touching the last
+  15 minutes** — "subscription does not permit querying recent SIP data". `fetch_alpaca` clamps
+  `end` to now−16min. Do NOT remove that clamp.
+- Feeds: `sip` = full/consolidated but ≥15-min delayed (what the bot uses, same as Polygon ever
+  gave). `iex` = ~3-4 min behind but sparse (16 vs 228 extended-hours bars over 2 days) — NOT a
+  substitute for bars. Real-time single prices come from `alpaca_api.latest_price()` (IEX).
+- Verified end-to-end with Polygon monkeypatched to always raise: full_series, vm_signal, the
+  35-feature prep pipeline, and a full dry-run cycle all pass. **Safe to cancel Polygon.**
+- Still Polygon-only (research scripts, already-cached results, not scheduled): historical OPTION
+  bars in `qqq_options_real.py` / `vc_options_real.py` / `options_data_polygon.py`. If those need
+  re-running later, port them to Alpaca's `/v1beta1/options/bars` first.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

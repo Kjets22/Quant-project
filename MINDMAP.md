@@ -100,9 +100,18 @@
 - FIX (committed 934fbf6): `alpaca_api.latest_price()` = real-time IEX last trade (free on paper);
   `entry_still_valid()` skips entries with <50% of the risk budget remaining. Applied to vM +
   ML strategies. Fails OPEN (no quote → trade proceeds). Verified: today's DIA short is blocked.
+- PART 2 (2026-07-27, commit f64316f): the guard originally checked only drift toward the STOP.
+  v3 QQQ exposed the other half — signal 677.89 (tgt 681.88 / stop 675.24 = 1.5:1) filled at
+  681.49, leaving $0.39 upside vs $6.25 downside (16:1 adverse); it won +$0.50 on luck.
+  `entry_still_valid` now ALSO requires remaining reward:risk ≥ 50% of the validated ratio.
+  Calibration measured on all 15 real fills that day: blocks exactly the 2 collapsed-R:R entries,
+  allows the other 13 → 13% blocked. Guard fires live (2 skips logged 7/27: v6 TLT 52% stop
+  distance gone, v4 XLE 74%).
+- `opt_queue` dedupes per ticker (vC re-signals the same name hourly overnight; 4 identical TLT
+  calls had queued, only one could ever fill).
 - STILL OPEN (next step if vM keeps diverging): source vM's opening range and breakout detection
-  from Alpaca real-time bars instead of delayed Polygon bars, so entries fire at the breakout
-  rather than up to 20 min later. Guard is a filter, not a cure.
+  from real-time bars instead of delayed ones, so entries fire at the breakout rather than up to
+  20 min later. The guard is a filter, not a cure.
 
 ## 10c. DATA SOURCE — POLYGON IS NOW OPTIONAL (2026-07-27)
 - Polygon **was** load-bearing: `full_series()` tails it every bot cycle; `morning_daily.refresh()`

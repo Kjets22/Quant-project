@@ -308,23 +308,37 @@ def _sell_now(tk, qty, cur, cid, sess):
 
 
 MIN_RISK_LEFT = 0.5        # skip entries that have already eaten half the stop
+MIN_RR_LEFT = 0.5          # ...or half their reward-to-risk ratio
 
 
-def entry_still_valid(tk, sig_px, stop, side="long"):
+def entry_still_valid(tk, sig_px, stop, side="long", tgt=None):
     """The bot sees 15-min-DELAYED bars, so by order time price may already have
-    travelled most of the way to the stop — the trade then has almost no room and
-    is not the trade the backtest validated (evidence: vM DIA 2026-07-24 filled
-    88% of the way to its stop, stopped out 5 min later). Compare the REAL-TIME
-    price against the signal's risk budget and skip if under MIN_RISK_LEFT remains.
-    Returns (ok, cur, fraction_of_risk_remaining); allows the trade if no quote."""
+    moved a long way from the signal — and the trade then is NOT the one the
+    backtest validated. Two ways that happens, both seen live:
+      toward the STOP  — vM DIA 7/24 filled 88% of the way to its stop, dead in 5 min
+      toward the TARGET — v3 QQQ 7/27 filled 681.49 with target 681.88 and stop
+                          675.24: $0.39 of upside left against $6.25 of downside,
+                          a 16:1 adverse setup that only won by luck
+    So require BOTH: at least MIN_RISK_LEFT of the stop distance intact, and a
+    remaining reward:risk of at least MIN_RR_LEFT x the ratio the signal was
+    validated at. Returns (ok, cur, risk_left_fraction, reason).
+    Allows the trade when no quote is available (fail open)."""
     cur = broker.latest_price(tk)
     if cur is None:
-        return True, None, None
+        return True, None, None, None
     risk = (sig_px - stop) if side == "long" else (stop - sig_px)
     if risk <= 0:
-        return True, cur, None
+        return True, cur, None, None
     left = ((cur - stop) if side == "long" else (stop - cur)) / risk
-    return left >= MIN_RISK_LEFT, cur, left
+    if left < MIN_RISK_LEFT:
+        return False, cur, left, "stop"
+    if tgt is not None:
+        r0 = ((tgt - sig_px) if side == "long" else (sig_px - tgt)) / risk
+        k1 = (cur - stop) if side == "long" else (stop - cur)
+        r1 = (tgt - cur) if side == "long" else (cur - tgt)
+        if r0 > 0 and k1 > 0 and (r1 / k1) < MIN_RR_LEFT * r0:
+            return False, cur, left, "reward"
+    return True, cur, left, None
 
 
 def _close_now(p, cur, cid, sess):
@@ -611,11 +625,12 @@ def cycle(dry=False):
                     f"{' [DRYRUN]' if dry else ''}")
                 if dry:
                     continue
-                ok, cur, left = entry_still_valid(tk, float(c[i]), float(stop_px[i]))
+                ok, cur, left, why = entry_still_valid(
+                    tk, float(c[i]), float(stop_px[i]), tgt=float(tgt_px[i]))
                 if not ok:
-                    log(f"  [skip {strat} {tk}: stale — price {cur:.2f} has eaten "
-                        f"{(1 - left) * 100:.0f}% of the stop distance since the "
-                        f"signal bar]")
+                    log(f"  [skip {strat} {tk}: stale ({why}) — price {cur:.2f} vs "
+                        f"signal {c[i]:.2f}: {(1 - left) * 100:.0f}% of the stop "
+                        f"distance gone, reward/risk no longer as validated]")
                     continue
                 now = pd.Timestamp.utcnow().tz_localize(None)
                 base = dict(strat=strat, tk=tk, qty=qty, sig_px=float(c[i]),
@@ -663,12 +678,18 @@ def cycle(dry=False):
                         else:
                             # options don't trade extended hours: queue for the next
                             # open (the validated backtest's delayed-entry behavior)
-                            led.setdefault("opt_queue", []).append(
-                                dict(strat=strat, tk=tk, sig_px=float(c[i]),
-                                     tgt=float(tgt_px[i]), stop=float(stop_px[i]),
-                                     bar=bar_ts, stamp=stamp, ddl=ddl))
-                            log(f"  OPT QUEUED {tk} (options market closed; "
-                                f"buying at next open)")
+                            q = led.setdefault("opt_queue", [])
+                            # one queued option per ticker: vC re-signals the same
+                            # name every bar overnight, and only the first can fill
+                            # anyway (one option per ticker in place_opt)
+                            if not any(z["tk"] == tk for z in q) and not any(
+                                    z["tk"] == tk for z in led["opt_open"]):
+                                q.append(dict(strat=strat, tk=tk, sig_px=float(c[i]),
+                                              tgt=float(tgt_px[i]),
+                                              stop=float(stop_px[i]),
+                                              bar=bar_ts, stamp=stamp, ddl=ddl))
+                                log(f"  OPT QUEUED {tk} (options market closed; "
+                                    f"buying at next open)")
                     except Exception as e:
                         log(f"  [opt entry error {strat} {tk}: {e}]")
             except RuntimeError as e:
@@ -706,12 +727,13 @@ def cycle(dry=False):
                 log(f"  SIGNAL vM {tk} {sig['side'].upper()} bar={sig['ref_bar']} "
                     f"sig_px={e:.2f} tgt={sig['tgt']:.2f} stop={sig['stop']:.2f} "
                     f"qty={qty}{' [DRYRUN]' if dry else ''}")
-                ok, cur, left = entry_still_valid(tk, e, sig["stop"], sig["side"])
+                ok, cur, left, why = entry_still_valid(
+                    tk, e, sig["stop"], sig["side"], tgt=sig["tgt"])
                 if not ok:
-                    log(f"  [skip vM {tk}: stale — price {cur:.2f} has eaten "
-                        f"{(1 - left) * 100:.0f}% of the stop distance since the "
-                        f"signal bar (15-min data lag); the validated trade no "
-                        f"longer exists]")
+                    log(f"  [skip vM {tk}: stale ({why}) — price {cur:.2f} vs "
+                        f"signal {e:.2f}: {(1 - left) * 100:.0f}% of the stop "
+                        f"distance gone (15-min data lag); the validated trade "
+                        f"no longer exists]")
                     continue
                 if qty < 1 or dry:
                     continue

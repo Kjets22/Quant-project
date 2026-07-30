@@ -628,9 +628,12 @@ def cycle(dry=False):
                 ok, cur, left, why = entry_still_valid(
                     tk, float(c[i]), float(stop_px[i]), tgt=float(tgt_px[i]))
                 if not ok:
-                    log(f"  [skip {strat} {tk}: stale ({why}) — price {cur:.2f} vs "
-                        f"signal {c[i]:.2f}: {(1 - left) * 100:.0f}% of the stop "
-                        f"distance gone, reward/risk no longer as validated]")
+                    detail = (f"{(1 - left) * 100:.0f}% of the stop distance already "
+                              f"gone" if why == "stop" else
+                              "price ran toward the target, so the remaining "
+                              "reward:risk is worse than validated")
+                    log(f"  [skip {strat} {tk}: stale ({why}) — signal {c[i]:.2f}, "
+                        f"now {cur:.2f}: {detail}]")
                     continue
                 now = pd.Timestamp.utcnow().tz_localize(None)
                 base = dict(strat=strat, tk=tk, qty=qty, sig_px=float(c[i]),
@@ -730,10 +733,12 @@ def cycle(dry=False):
                 ok, cur, left, why = entry_still_valid(
                     tk, e, sig["stop"], sig["side"], tgt=sig["tgt"])
                 if not ok:
-                    log(f"  [skip vM {tk}: stale ({why}) — price {cur:.2f} vs "
-                        f"signal {e:.2f}: {(1 - left) * 100:.0f}% of the stop "
-                        f"distance gone (15-min data lag); the validated trade "
-                        f"no longer exists]")
+                    detail = (f"{(1 - left) * 100:.0f}% of the stop distance already "
+                              f"gone" if why == "stop" else
+                              "price ran toward the target, so the remaining "
+                              "reward:risk is worse than validated")
+                    log(f"  [skip vM {tk}: stale ({why}) — signal {e:.2f}, now "
+                        f"{cur:.2f}: {detail} (15-min data lag)]")
                     continue
                 if qty < 1 or dry:
                     continue

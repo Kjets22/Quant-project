@@ -133,6 +133,24 @@
   bars in `qqq_options_real.py` / `vc_options_real.py` / `options_data_polygon.py`. If those need
   re-running later, port them to Alpaca's `/v1beta1/options/bars` first.
 
+## 10d. vCO PROFIT GIVE-BACK — the JPM lesson (2026-07-29)
+- The JPM call was marked **+$870** on 7/27 and realized only **+$170** on 7/29 when it hit its
+  8-day TIME deadline. It rode +115% → +22% with no profit protection.
+- This is **faithful to the validated backtest** (vc_options_real exits the option at the STOCK
+  leg's target/stop/time), and the +14.9%/trade backtest average already contains give-backs like
+  this. So it is NOT a bug — but it is the single biggest driver of the equity swing that week
+  (the −$1,213 mark-to-market day on 7/29 was mostly this one position).
+- Consequence to remember when reading vCO marks: an open option mark is not money until the exit
+  rule fires, and vCO's exit rule is the STOCK's geometry (wide vC levels), not the option's P&L.
+- NOT changed: adding an option-level trailing stop or profit target would depart from the
+  validated design. If ever tested, it must go through the full ladder first — do not bolt it on.
+
+## 10e. GIT TLS (2026-07-30) — pushes failed with "unable to get local issuer certificate"
+- Something on this machine intercepts HTTPS (same family as the loopback-truncation AV issue).
+- FIX: `git config --local http.sslBackend schannel` (uses the Windows cert store, which trusts
+  the interceptor's root). Do NOT use `sslVerify=false`. If the scheduled report's auto-push ever
+  fails this way again, this is the remedy.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

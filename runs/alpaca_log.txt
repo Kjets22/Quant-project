@@ -2978,3 +2978,274 @@
 2026-07-30 20:01:50Z    SIGNAL v4 MSFT bar=2026-07-30 19:45:00 p=0.542 sig_px=455.36 tgt=466.65 stop=452.54 qty=2
 2026-07-30 20:01:51Z    [skip v4 MSFT: stale (stop) — signal 455.36, now 451.55: 135% of the stop distance already gone]
 2026-07-30 20:02:03Z  A/B cycle done | signals=1 open=14 pending=0 closed=219
+2026-07-30 20:31:03Z  A/B cycle | equity=$99,260.11 day=+144.15 dd=1157.39 | session=ext
+2026-07-30 20:31:33Z    SIGNAL v3 JPM bar=2026-07-30 20:00:00 p=0.529 sig_px=350.85 tgt=352.98 stop=349.43 qty=2
+2026-07-30 20:31:40Z    SIGNAL v4 MSFT bar=2026-07-30 20:15:00 p=0.286 sig_px=449.32 tgt=460.38 stop=446.55 qty=2
+2026-07-30 20:31:48Z  A/B cycle done | signals=2 open=14 pending=4 closed=219
+2026-07-30 20:46:03Z  A/B cycle | equity=$99,193.64 day=+77.68 dd=1223.86 | session=ext
+2026-07-30 20:46:03Z    FILLED mkt v3 JPM @ 350.73 (signal 350.85, slip -3.4 bps)
+2026-07-30 20:46:04Z    FILLED lmt v3 JPM @ 350.73 (signal 350.85, slip -3.4 bps)
+2026-07-30 20:46:04Z    FILLED mkt v4 MSFT @ 449.30 (signal 449.32, slip -0.4 bps)
+2026-07-30 20:46:05Z    FILLED lmt v4 MSFT @ 449.30 (signal 449.32, slip -0.4 bps)
+2026-07-30 20:46:42Z    SIGNAL v4 MSFT bar=2026-07-30 20:30:00 p=0.311 sig_px=449.73 tgt=460.76 stop=446.97 qty=2
+2026-07-30 20:46:43Z    SIGNAL v4 JPM bar=2026-07-30 20:30:00 p=0.317 sig_px=350.28 tgt=353.57 stop=349.46 qty=2
+2026-07-30 20:46:43Z    [skip v4 JPM: stale (reward) — signal 350.28, now 350.88: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-30 20:46:50Z  A/B cycle done | signals=2 open=18 pending=0 closed=219
+2026-07-30 21:01:03Z  A/B cycle | equity=$99,160.60 day=+44.64 dd=1256.90 | session=ext
+2026-07-30 21:01:24Z    SIGNAL v3 AAPL bar=2026-07-30 20:30:00 p=0.540 sig_px=320.00 tgt=323.78 stop=317.48 qty=3
+2026-07-30 21:01:24Z    [skip v3 AAPL: stale (stop) — signal 320.00, now 318.46: 61% of the stop distance already gone]
+2026-07-30 21:01:41Z    SIGNAL v4 AAPL bar=2026-07-30 20:45:00 p=0.324 sig_px=320.00 tgt=327.85 stop=318.04 qty=3
+2026-07-30 21:01:41Z    [skip v4 AAPL: stale (stop) — signal 320.00, now 318.46: 78% of the stop distance already gone]
+2026-07-30 21:01:41Z    SIGNAL v4 MSFT bar=2026-07-30 20:45:00 p=0.299 sig_px=448.80 tgt=459.39 stop=446.15 qty=2
+2026-07-30 21:01:48Z  A/B cycle done | signals=3 open=18 pending=0 closed=219
+2026-07-30 21:16:03Z  A/B cycle | equity=$99,165.43 day=+49.47 dd=1252.07 | session=ext
+2026-07-30 21:16:35Z    SIGNAL v3 JPM bar=2026-07-30 20:30:00 p=0.532 sig_px=350.23 tgt=352.22 stop=348.89 qty=2
+2026-07-30 21:16:36Z    [skip v3 JPM: stale (reward) — signal 350.23, now 350.88: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-30 21:16:42Z    SIGNAL v4 MSFT bar=2026-07-30 21:00:00 p=0.310 sig_px=448.04 tgt=458.22 stop=445.50 qty=2
+2026-07-30 21:16:49Z  A/B cycle done | signals=2 open=18 pending=0 closed=219
+2026-07-30 21:31:03Z  A/B cycle | equity=$99,016.71 day=-99.25 dd=1400.79 | session=ext
+2026-07-30 21:31:34Z    SIGNAL v3 JPM bar=2026-07-30 21:00:00 p=0.535 sig_px=350.15 tgt=352.11 stop=348.84 qty=2
+2026-07-30 21:31:35Z    [skip v3 JPM: stale (reward) — signal 350.15, now 350.88: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-30 21:31:41Z    SIGNAL v4 MSFT bar=2026-07-30 21:15:00 p=0.387 sig_px=446.02 tgt=455.98 stop=443.53 qty=2
+2026-07-30 21:31:41Z    [skip v4 MSFT: stale (reward) — signal 446.02, now 448.62: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-30 21:31:42Z    SIGNAL v4 JPM bar=2026-07-30 21:00:00 p=0.309 sig_px=350.15 tgt=353.25 stop=349.37 qty=2
+2026-07-30 21:31:42Z    [skip v4 JPM: stale (reward) — signal 350.15, now 350.88: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-30 21:31:48Z  A/B cycle done | signals=3 open=18 pending=0 closed=219
+2026-07-30 21:46:03Z  A/B cycle | equity=$99,035.89 day=-80.07 dd=1381.61 | session=ext
+2026-07-30 21:46:17Z    CLOSED mkt v4 MSFT STOP pnl=-6.06
+2026-07-30 21:46:18Z    CLOSED lmt v4 MSFT STOP pnl=-6.06
+2026-07-30 21:46:42Z    SIGNAL v4 MSFT bar=2026-07-30 21:30:00 p=0.386 sig_px=447.11 tgt=456.46 stop=444.77 qty=2
+2026-07-30 21:46:51Z  A/B cycle done | signals=1 open=16 pending=2 closed=221
+2026-07-30 22:01:09Z  A/B cycle | equity=$99,075.86 day=-40.10 dd=1341.64 | session=ext
+2026-07-30 22:01:09Z    FILLED mkt v4 MSFT @ 446.10 (signal 447.11, slip -22.6 bps)
+2026-07-30 22:01:10Z    FILLED lmt v4 MSFT @ 446.10 (signal 447.11, slip -22.6 bps)
+2026-07-30 22:01:49Z    SIGNAL v4 MSFT bar=2026-07-30 21:45:00 p=0.362 sig_px=446.70 tgt=456.13 stop=444.34 qty=2
+2026-07-30 22:01:49Z    [skip v4 MSFT: stale (reward) — signal 446.70, now 448.62: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-30 22:01:56Z  A/B cycle done | signals=1 open=18 pending=0 closed=221
+2026-07-30 22:16:03Z  A/B cycle | equity=$99,080.33 day=-35.63 dd=1337.17 | session=ext
+2026-07-30 22:16:44Z    SIGNAL v4 MSFT bar=2026-07-30 22:00:00 p=0.276 sig_px=447.17 tgt=455.83 stop=445.01 qty=2
+2026-07-30 22:16:44Z    [skip v4 MSFT: stale (reward) — signal 447.17, now 448.62: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-30 22:16:44Z    SIGNAL v4 JPM bar=2026-07-30 22:00:00 p=0.330 sig_px=351.40 tgt=354.43 stop=350.64 qty=2
+2026-07-30 22:16:45Z    [skip v4 JPM: stale (stop) — signal 351.40, now 350.88: 69% of the stop distance already gone]
+2026-07-30 22:16:52Z  A/B cycle done | signals=2 open=18 pending=0 closed=221
+2026-07-30 22:31:03Z  A/B cycle | equity=$99,065.60 day=-50.36 dd=1351.90 | session=ext
+2026-07-30 22:31:24Z    SIGNAL v3 AAPL bar=2026-07-30 22:00:00 p=0.556 sig_px=311.55 tgt=317.52 stop=307.57 qty=3
+2026-07-30 22:31:24Z    [skip v3 AAPL: stale (reward) — signal 311.55, now 318.46: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-30 22:31:35Z    SIGNAL v3 JPM bar=2026-07-30 22:00:00 p=0.533 sig_px=351.05 tgt=353.12 stop=349.67 qty=2
+2026-07-30 22:31:42Z    SIGNAL v4 MSFT bar=2026-07-30 22:15:00 p=0.288 sig_px=446.50 tgt=455.12 stop=444.34 qty=2
+2026-07-30 22:31:43Z    [skip v4 MSFT: stale (reward) — signal 446.50, now 448.62: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-30 22:31:43Z    SIGNAL v4 JPM bar=2026-07-30 22:15:00 p=0.308 sig_px=351.05 tgt=353.97 stop=350.32 qty=2
+2026-07-30 22:31:51Z  A/B cycle done | signals=4 open=18 pending=2 closed=221
+2026-07-30 22:46:03Z  A/B cycle | equity=$99,106.60 day=-9.36 dd=1310.90 | session=ext
+2026-07-30 22:46:04Z    MISSED lmt v4 JPM (limit 351.05 never filled)
+2026-07-30 22:46:51Z  A/B cycle done | signals=0 open=18 pending=1 closed=222
+2026-07-30 23:01:03Z  A/B cycle | equity=$99,120.03 day=+4.07 dd=1297.47 | session=ext
+2026-07-30 23:01:41Z    SIGNAL v4 MSFT bar=2026-07-30 22:45:00 p=0.281 sig_px=447.60 tgt=456.06 stop=445.48 qty=2
+2026-07-30 23:01:49Z  A/B cycle done | signals=1 open=18 pending=1 closed=222
+2026-07-30 23:16:03Z  A/B cycle | equity=$99,117.99 day=+2.03 dd=1299.51 | session=ext
+2026-07-30 23:16:04Z    MISSED mkt v4 JPM (limit 351.05 never filled)
+2026-07-30 23:16:43Z    SIGNAL v4 MSFT bar=2026-07-30 23:00:00 p=0.377 sig_px=448.58 tgt=457.22 stop=446.42 qty=2
+2026-07-30 23:16:50Z  A/B cycle done | signals=1 open=18 pending=0 closed=223
+2026-07-30 23:31:03Z  A/B cycle | equity=$99,115.15 day=-0.81 dd=1302.35 | session=ext
+2026-07-30 23:31:34Z    SIGNAL v3 JPM bar=2026-07-30 23:00:00 p=0.550 sig_px=351.17 tgt=353.22 stop=349.80 qty=2
+2026-07-30 23:31:41Z    SIGNAL v4 MSFT bar=2026-07-30 23:15:00 p=0.287 sig_px=447.52 tgt=456.17 stop=445.35 qty=2
+2026-07-30 23:31:42Z    SIGNAL v4 JPM bar=2026-07-30 23:15:00 p=0.313 sig_px=351.17 tgt=353.93 stop=350.48 qty=2
+2026-07-30 23:31:50Z  A/B cycle done | signals=3 open=18 pending=2 closed=223
+2026-07-30 23:46:05Z  A/B cycle | equity=$99,106.26 day=-9.70 dd=1311.24 | session=ext
+2026-07-30 23:46:05Z    FILLED mkt v4 JPM @ 351.50 (signal 351.17, slip +9.4 bps)
+2026-07-30 23:46:07Z    MISSED lmt v4 JPM (limit 351.17 never filled)
+2026-07-30 23:46:54Z    SIGNAL v4 MSFT bar=2026-07-30 23:30:00 p=0.317 sig_px=447.63 tgt=456.08 stop=445.51 qty=2
+2026-07-30 23:47:01Z  A/B cycle done | signals=1 open=19 pending=0 closed=224
+2026-07-31 00:01:03Z  A/B cycle | equity=$99,112.21 day=-3.75 dd=1305.29 | session=closed
+2026-07-31 00:16:03Z  A/B cycle | equity=$99,120.61 day=+4.65 dd=1296.89 | session=closed
+2026-07-31 08:01:08Z  A/B cycle | equity=$99,129.27 day=-228.57 dd=1288.23 | session=ext
+2026-07-31 08:01:35Z    SIGNAL v3 AAPL bar=2026-07-30 23:30:00 p=0.534 sig_px=312.33 tgt=318.49 stop=308.23 qty=3
+2026-07-31 08:01:35Z    [skip v3 AAPL: stale (reward) — signal 312.33, now 318.46: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-31 08:01:49Z    SIGNAL v3 JPM bar=2026-07-30 23:30:00 p=0.569 sig_px=350.80 tgt=352.84 stop=349.44 qty=2
+2026-07-31 08:02:03Z    SIGNAL v4 MSFT bar=2026-07-30 23:45:00 p=0.316 sig_px=448.47 tgt=456.89 stop=446.37 qty=2
+2026-07-31 08:02:06Z    SIGNAL v4 JPM bar=2026-07-30 23:45:00 p=0.302 sig_px=350.80 tgt=353.37 stop=350.16 qty=2
+2026-07-31 08:03:28Z  A/B cycle done | signals=4 open=19 pending=1 closed=224
+2026-07-31 08:16:03Z  A/B cycle | equity=$99,109.69 day=-248.15 dd=1307.81 | session=ext
+2026-07-31 08:16:04Z    MISSED lmt v4 JPM (limit 350.80 never filled)
+2026-07-31 08:16:45Z    SIGNAL v4 AAPL bar=2026-07-31 08:00:00 p=0.266 sig_px=309.29 tgt=325.11 stop=305.33 qty=3
+2026-07-31 08:16:45Z    [skip v4 AAPL: stale (reward) — signal 309.29, now 318.46: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-31 08:16:52Z  A/B cycle done | signals=1 open=19 pending=0 closed=225
+2026-07-31 08:31:03Z  A/B cycle | equity=$99,094.20 day=-263.64 dd=1323.30 | session=ext
+2026-07-31 08:31:49Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 08:46:03Z  A/B cycle | equity=$99,117.27 day=-240.57 dd=1300.23 | session=ext
+2026-07-31 08:46:50Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 09:01:03Z  A/B cycle | equity=$99,110.13 day=-247.71 dd=1307.37 | session=ext
+2026-07-31 09:01:48Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 09:16:03Z  A/B cycle | equity=$99,118.44 day=-239.40 dd=1299.06 | session=ext
+2026-07-31 09:16:49Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 09:31:03Z  A/B cycle | equity=$99,109.72 day=-248.12 dd=1307.78 | session=ext
+2026-07-31 09:31:48Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 09:46:03Z  A/B cycle | equity=$99,103.20 day=-254.64 dd=1314.30 | session=ext
+2026-07-31 09:46:51Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 10:01:03Z  A/B cycle | equity=$99,093.81 day=-264.03 dd=1323.69 | session=ext
+2026-07-31 10:01:43Z    SIGNAL v7 AAPL bar=2026-07-31 09:00:00 p=0.136 sig_px=309.25 tgt=362.34 stop=303.94 qty=3
+2026-07-31 10:01:44Z    [skip v7 AAPL: stale (reward) — signal 309.25, now 318.46: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-31 10:01:49Z  A/B cycle done | signals=1 open=19 pending=0 closed=225
+2026-07-31 10:16:03Z  A/B cycle | equity=$99,089.20 day=-268.64 dd=1328.30 | session=ext
+2026-07-31 10:16:51Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 10:31:03Z  A/B cycle | equity=$99,091.74 day=-266.10 dd=1325.76 | session=ext
+2026-07-31 10:31:48Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 10:46:03Z  A/B cycle | equity=$99,096.14 day=-261.70 dd=1321.36 | session=ext
+2026-07-31 10:46:49Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 11:01:03Z  A/B cycle | equity=$99,081.27 day=-276.57 dd=1336.23 | session=ext
+2026-07-31 11:01:43Z    SIGNAL v6 TLT bar=2026-07-31 10:00:00 p=0.292 sig_px=82.81 tgt=84.51 stop=82.57 qty=12
+2026-07-31 11:01:43Z    [skip v6 TLT: stale (stop) — signal 82.81, now 82.67: 58% of the stop distance already gone]
+2026-07-31 11:01:43Z    SIGNAL v7 AAPL bar=2026-07-31 10:00:00 p=0.153 sig_px=307.70 tgt=345.33 stop=303.94 qty=3
+2026-07-31 11:01:44Z    [skip v7 AAPL: stale (reward) — signal 307.70, now 318.46: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-07-31 11:01:49Z  A/B cycle done | signals=2 open=19 pending=0 closed=225
+2026-07-31 11:16:03Z  A/B cycle | equity=$99,058.79 day=-299.05 dd=1358.71 | session=ext
+2026-07-31 11:16:49Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 11:31:03Z  A/B cycle | equity=$99,063.64 day=-294.20 dd=1353.86 | session=ext
+2026-07-31 11:31:48Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 11:46:03Z  A/B cycle | equity=$99,082.32 day=-275.52 dd=1335.18 | session=ext
+2026-07-31 11:46:50Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 12:01:03Z  A/B cycle | equity=$99,081.79 day=-276.05 dd=1335.71 | session=ext
+2026-07-31 12:01:43Z    SIGNAL v7 AAPL bar=2026-07-31 11:00:00 p=0.163 sig_px=308.15 tgt=350.03 stop=303.96 qty=3
+2026-07-31 12:01:49Z  A/B cycle done | signals=1 open=19 pending=0 closed=225
+2026-07-31 12:16:03Z  A/B cycle | equity=$99,062.65 day=-295.19 dd=1354.85 | session=ext
+2026-07-31 12:16:50Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 12:31:03Z  A/B cycle | equity=$99,076.73 day=-281.11 dd=1340.77 | session=ext
+2026-07-31 12:31:49Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 12:46:03Z  A/B cycle | equity=$99,055.65 day=-302.19 dd=1361.85 | session=ext
+2026-07-31 12:46:50Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 13:01:03Z  A/B cycle | equity=$99,072.84 day=-285.00 dd=1344.66 | session=ext
+2026-07-31 13:01:44Z    SIGNAL v7 AAPL bar=2026-07-31 12:00:00 p=0.183 sig_px=306.83 tgt=335.50 stop=303.96 qty=3
+2026-07-31 13:01:50Z  A/B cycle done | signals=1 open=19 pending=0 closed=225
+2026-07-31 13:16:03Z  A/B cycle | equity=$99,074.90 day=-282.94 dd=1342.60 | session=ext
+2026-07-31 13:16:51Z  A/B cycle done | signals=0 open=19 pending=0 closed=225
+2026-07-31 13:31:03Z  A/B cycle | equity=$99,084.78 day=-273.06 dd=1332.72 | session=rth
+2026-07-31 13:31:16Z    CLOSED mkt v3 JPM TARGET pnl=+4.67
+2026-07-31 13:31:17Z    CLOSED lmt v3 JPM TARGET pnl=+4.67
+2026-07-31 13:32:00Z  A/B cycle done | signals=0 open=17 pending=0 closed=227
+2026-07-31 13:46:04Z  A/B cycle | equity=$99,049.46 day=-308.38 dd=1368.04 | session=rth
+2026-07-31 13:46:15Z    CLOSED mkt v7 TLT STOP pnl=-6.54
+2026-07-31 13:46:16Z    CLOSED lmt v7 TLT STOP pnl=-5.58
+2026-07-31 13:46:23Z    CLOSED mkt v4 MSFT TARGET pnl=+21.32
+2026-07-31 13:46:25Z    CLOSED lmt v4 MSFT TARGET pnl=+20.79
+2026-07-31 13:47:23Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 13:56:03Z  A/B cycle | equity=$99,077.47 day=-280.37 dd=1340.03 | session=rth
+2026-07-31 13:57:33Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:01:04Z  A/B cycle | equity=$99,040.55 day=-317.29 dd=1376.95 | session=rth
+2026-07-31 14:02:16Z    SIGNAL v7 AAPL bar=2026-07-31 13:00:00 p=0.141 sig_px=305.18 tgt=317.99 stop=303.90 qty=3
+2026-07-31 14:02:17Z    [skip v7 AAPL: stale (stop) — signal 305.18, now 302.41: 216% of the stop distance already gone]
+2026-07-31 14:02:36Z  A/B cycle done | signals=1 open=13 pending=0 closed=231
+2026-07-31 14:06:04Z  A/B cycle | equity=$99,013.93 day=-343.91 dd=1403.57 | session=rth
+2026-07-31 14:07:33Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:11:04Z  A/B cycle | equity=$98,999.02 day=-358.82 dd=1418.48 | session=rth
+2026-07-31 14:12:32Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:16:03Z  A/B cycle | equity=$98,983.68 day=-374.16 dd=1433.82 | session=rth
+2026-07-31 14:17:28Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:21:04Z  A/B cycle | equity=$98,998.11 day=-359.73 dd=1419.39 | session=rth
+2026-07-31 14:22:30Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:26:04Z  A/B cycle | equity=$99,000.46 day=-357.38 dd=1417.04 | session=rth
+2026-07-31 14:27:30Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:31:04Z  A/B cycle | equity=$98,992.00 day=-365.84 dd=1425.50 | session=rth
+2026-07-31 14:32:33Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:36:04Z  A/B cycle | equity=$98,991.39 day=-366.45 dd=1426.11 | session=rth
+2026-07-31 14:37:23Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:41:04Z  A/B cycle | equity=$99,008.14 day=-349.70 dd=1409.36 | session=rth
+2026-07-31 14:42:32Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:46:04Z  A/B cycle | equity=$99,010.48 day=-347.36 dd=1407.02 | session=rth
+2026-07-31 14:47:27Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:51:04Z  A/B cycle | equity=$99,012.48 day=-345.36 dd=1405.02 | session=rth
+2026-07-31 14:52:28Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 14:56:05Z  A/B cycle | equity=$98,992.61 day=-365.23 dd=1424.89 | session=rth
+2026-07-31 14:57:34Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 15:01:04Z  A/B cycle | equity=$98,998.32 day=-359.52 dd=1419.18 | session=rth
+2026-07-31 15:02:14Z    SIGNAL v7 TLT bar=2026-07-31 14:00:00 p=0.090 sig_px=82.20 tgt=84.17 stop=82.00 qty=12
+2026-07-31 15:02:15Z    [skip v7 TLT: stale (stop) — signal 82.20, now 82.08: 61% of the stop distance already gone]
+2026-07-31 15:02:32Z  A/B cycle done | signals=1 open=13 pending=0 closed=231
+2026-07-31 15:06:04Z  A/B cycle | equity=$99,006.77 day=-351.07 dd=1410.73 | session=rth
+2026-07-31 15:07:30Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 15:11:04Z  A/B cycle | equity=$99,005.54 day=-352.30 dd=1411.96 | session=rth
+2026-07-31 15:12:32Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 15:16:04Z  A/B cycle | equity=$99,019.60 day=-338.24 dd=1397.90 | session=rth
+2026-07-31 15:17:29Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 15:21:04Z  A/B cycle | equity=$99,031.54 day=-326.30 dd=1385.96 | session=rth
+2026-07-31 15:22:33Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 15:26:04Z  A/B cycle | equity=$99,010.42 day=-347.42 dd=1407.08 | session=rth
+2026-07-31 15:27:37Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 15:31:04Z  A/B cycle | equity=$98,994.08 day=-363.76 dd=1423.42 | session=rth
+2026-07-31 15:32:33Z  A/B cycle done | signals=0 open=13 pending=0 closed=231
+2026-07-31 15:36:04Z  A/B cycle | equity=$99,004.97 day=-352.87 dd=1412.53 | session=rth
+2026-07-31 15:37:09Z    SIGNAL v3 TLT bar=2026-07-31 15:00:00 p=0.504 sig_px=82.03 tgt=82.22 stop=81.91 qty=12
+2026-07-31 15:37:38Z  A/B cycle done | signals=1 open=13 pending=2 closed=231
+2026-07-31 15:41:04Z  A/B cycle | equity=$99,013.27 day=-344.57 dd=1404.23 | session=rth
+2026-07-31 15:41:04Z    FILLED mkt v3 TLT @ 82.07 (signal 82.03, slip +4.3 bps)
+2026-07-31 15:41:24Z    CLOSED mkt v4 JPM TARGET pnl=+5.42
+2026-07-31 15:42:24Z  A/B cycle done | signals=0 open=13 pending=1 closed=232
+2026-07-31 15:46:03Z  A/B cycle | equity=$99,015.83 day=-342.01 dd=1401.67 | session=rth
+2026-07-31 15:47:32Z  A/B cycle done | signals=0 open=13 pending=1 closed=232
+2026-07-31 15:51:04Z  A/B cycle | equity=$99,007.84 day=-350.00 dd=1409.66 | session=rth
+2026-07-31 15:52:34Z  A/B cycle done | signals=0 open=13 pending=1 closed=232
+2026-07-31 15:56:04Z  A/B cycle | equity=$99,023.10 day=-334.74 dd=1394.40 | session=rth
+2026-07-31 15:57:36Z  A/B cycle done | signals=0 open=13 pending=1 closed=232
+2026-07-31 16:01:04Z  A/B cycle | equity=$99,030.17 day=-327.67 dd=1387.33 | session=rth
+2026-07-31 16:01:05Z    MISSED lmt v3 TLT (limit 82.03 never filled)
+2026-07-31 16:02:10Z    SIGNAL v3 TLT bar=2026-07-31 15:30:00 p=0.487 sig_px=82.08 tgt=82.26 stop=81.95 qty=12
+2026-07-31 16:02:17Z    SIGNAL v7 AAPL bar=2026-07-31 15:00:00 p=0.234 sig_px=300.89 tgt=318.42 stop=299.13 qty=3
+2026-07-31 16:02:19Z    SIGNAL v7 TLT bar=2026-07-31 15:00:00 p=0.097 sig_px=82.08 tgt=82.90 stop=81.99 qty=12
+2026-07-31 16:02:31Z  A/B cycle done | signals=3 open=13 pending=3 closed=233
+2026-07-31 16:06:04Z  A/B cycle | equity=$99,023.75 day=-334.09 dd=1393.75 | session=rth
+2026-07-31 16:06:04Z    FILLED lmt v3 TLT @ 82.08 (signal 82.08, slip +0.6 bps)
+2026-07-31 16:06:05Z    FILLED mkt v7 TLT @ 82.08 (signal 82.08, slip +0.7 bps)
+2026-07-31 16:06:06Z    FILLED lmt v7 TLT @ 82.08 (signal 82.08, slip +0.6 bps)
+2026-07-31 16:07:30Z  A/B cycle done | signals=0 open=16 pending=0 closed=233
+2026-07-31 16:16:04Z  A/B cycle | equity=$99,032.32 day=-325.52 dd=1385.18 | session=rth
+2026-07-31 16:17:30Z  A/B cycle done | signals=0 open=16 pending=0 closed=233
+2026-07-31 16:31:04Z  A/B cycle | equity=$99,028.37 day=-329.47 dd=1389.13 | session=rth
+2026-07-31 16:32:03Z  A/B cycle done | signals=0 open=16 pending=0 closed=233
+2026-07-31 16:46:04Z  A/B cycle | equity=$99,023.60 day=-334.24 dd=1393.90 | session=rth
+2026-07-31 16:47:06Z  A/B cycle done | signals=0 open=16 pending=0 closed=233
+2026-07-31 17:01:05Z  A/B cycle | equity=$99,026.24 day=-331.60 dd=1391.26 | session=rth
+2026-07-31 17:01:53Z    SIGNAL v7 AAPL bar=2026-07-31 16:00:00 p=0.169 sig_px=300.78 tgt=317.26 stop=299.13 qty=3
+2026-07-31 17:01:55Z    SIGNAL v7 TLT bar=2026-07-31 16:00:00 p=0.112 sig_px=82.06 tgt=82.93 stop=81.97 qty=12
+2026-07-31 17:01:55Z    [skip v7 TLT: stale (stop) — signal 82.06, now 82.00: 57% of the stop distance already gone]
+2026-07-31 17:02:02Z  A/B cycle done | signals=2 open=16 pending=0 closed=233
+2026-07-31 17:16:04Z  A/B cycle | equity=$99,038.32 day=-319.52 dd=1379.18 | session=rth
+2026-07-31 17:16:21Z    CLOSED mkt v7 TLT STOP pnl=-1.21
+2026-07-31 17:16:22Z    CLOSED lmt v7 TLT STOP pnl=-1.20
+2026-07-31 17:16:53Z    SIGNAL v3 TLT bar=2026-07-31 16:30:00 p=0.514 sig_px=82.03 tgt=82.21 stop=81.91 qty=12
+2026-07-31 17:17:05Z  A/B cycle done | signals=1 open=14 pending=0 closed=235
+2026-07-31 17:31:04Z  A/B cycle | equity=$99,043.35 day=-314.49 dd=1374.15 | session=rth
+2026-07-31 17:31:46Z    SIGNAL v3 TLT bar=2026-07-31 17:00:00 p=0.529 sig_px=81.99 tgt=82.17 stop=81.87 qty=12
+2026-07-31 17:31:57Z  A/B cycle done | signals=1 open=14 pending=0 closed=235
+2026-07-31 17:46:03Z  A/B cycle | equity=$99,031.80 day=-326.04 dd=1385.70 | session=rth
+2026-07-31 17:46:17Z    CLOSED mkt v3 TLT STOP pnl=-1.91
+2026-07-31 17:46:19Z    CLOSED lmt v3 TLT STOP pnl=-1.56
+2026-07-31 17:47:02Z  A/B cycle done | signals=0 open=12 pending=0 closed=237
+2026-07-31 18:01:04Z  A/B cycle | equity=$99,024.15 day=-333.69 dd=1393.35 | session=rth
+2026-07-31 18:01:45Z    SIGNAL v3 TLT bar=2026-07-31 17:30:00 p=0.518 sig_px=81.91 tgt=82.08 stop=81.79 qty=12
+2026-07-31 18:01:58Z  A/B cycle done | signals=1 open=12 pending=2 closed=237
+2026-07-31 18:16:04Z  A/B cycle | equity=$99,039.02 day=-318.82 dd=1378.48 | session=rth
+2026-07-31 18:16:04Z    FILLED mkt v3 TLT @ 81.95 (signal 81.91, slip +5.5 bps)
+2026-07-31 18:16:53Z    SIGNAL v7 AAPL bar=2026-07-31 17:00:00 p=0.178 sig_px=300.64 tgt=318.97 stop=298.81 qty=3
+2026-07-31 18:17:01Z  A/B cycle done | signals=1 open=13 pending=1 closed=237
+2026-07-31 18:31:04Z  A/B cycle | equity=$99,048.59 day=-309.25 dd=1368.91 | session=rth
+2026-07-31 18:31:05Z    MISSED lmt v3 TLT (limit 81.91 never filled)
+2026-07-31 18:31:50Z    SIGNAL v3 TLT bar=2026-07-31 18:00:00 p=0.511 sig_px=81.95 tgt=82.13 stop=81.83 qty=12
+2026-07-31 18:32:02Z  A/B cycle done | signals=1 open=13 pending=1 closed=238
+2026-07-31 18:46:04Z  A/B cycle | equity=$99,049.66 day=-308.18 dd=1367.84 | session=rth
+2026-07-31 18:46:04Z    FILLED lmt v3 TLT @ 81.95 (signal 81.95, slip +0.0 bps)
+2026-07-31 18:47:02Z  A/B cycle done | signals=0 open=14 pending=0 closed=238
+2026-07-31 19:01:11Z  A/B cycle | equity=$99,059.06 day=-298.78 dd=1358.44 | session=rth
+2026-07-31 19:02:03Z    SIGNAL v3 TLT bar=2026-07-31 18:30:00 p=0.493 sig_px=82.00 tgt=82.18 stop=81.87 qty=12
+2026-07-31 19:02:15Z  A/B cycle done | signals=1 open=14 pending=0 closed=238
+2026-07-31 19:16:03Z  A/B cycle | equity=$99,082.43 day=-275.41 dd=1335.07 | session=rth
+2026-07-31 19:16:57Z    SIGNAL v7 TLT bar=2026-07-31 18:00:00 p=0.101 sig_px=81.97 tgt=83.21 stop=81.84 qty=12
+2026-07-31 19:17:06Z  A/B cycle done | signals=1 open=14 pending=2 closed=238
+2026-07-31 19:31:03Z  A/B cycle | equity=$99,089.56 day=-268.28 dd=1327.94 | session=rth
+2026-07-31 19:31:04Z    FILLED mkt v7 TLT @ 81.98 (signal 81.97, slip +1.8 bps)
+2026-07-31 19:32:06Z  A/B cycle done | signals=0 open=15 pending=1 closed=238
+2026-07-31 19:46:04Z  A/B cycle | equity=$99,120.73 day=-237.11 dd=1296.77 | session=rth
+2026-07-31 19:46:18Z    CLOSED mkt v3 TLT TARGET pnl=+1.56
+2026-07-31 19:46:19Z    CLOSED lmt v3 TLT TARGET pnl=+2.16
+2026-07-31 19:47:06Z  A/B cycle done | signals=0 open=13 pending=1 closed=240
+2026-07-31 20:01:04Z  A/B cycle | equity=$99,148.31 day=-209.53 dd=1269.19 | session=ext
+2026-07-31 20:01:04Z    MISSED lmt v7 TLT (limit 81.97 never filled)
+2026-07-31 20:02:00Z  A/B cycle done | signals=0 open=13 pending=0 closed=241

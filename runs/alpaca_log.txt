@@ -3495,3 +3495,16 @@
 2026-08-03 20:18:39Z  A/B cycle | equity=$98,924.11 day=-204.39 dd=1493.39 | session=ext | DRYRUN
 2026-08-03 20:19:05Z    SIGNAL v3 TLT bar=2026-08-03 19:30:00 p=0.493 sig_px=82.20 tgt=82.36 stop=82.09 qty=12 [DRYRUN]
 2026-08-03 20:19:12Z  A/B cycle done | signals=1 open=21 pending=0 closed=257
+2026-08-03 20:31:04Z  A/B cycle | equity=$98,915.79 day=-212.71 dd=1501.71 | session=ext
+2026-08-03 20:32:01Z    SIGNAL v4 XLE bar=2026-08-03 20:15:00 p=0.326 sig_px=58.78 tgt=59.32 stop=58.64 qty=17
+2026-08-03 20:32:12Z  A/B cycle done | signals=1 open=21 pending=2 closed=257
+2026-08-03 20:46:04Z  A/B cycle | equity=$98,925.77 day=-202.73 dd=1491.73 | session=ext
+2026-08-03 20:46:04Z    FILLED mkt v4 XLE @ 58.80 (signal 58.78, slip +3.4 bps)
+2026-08-03 20:46:05Z    MISSED lmt v4 XLE (limit 58.78 never filled)
+2026-08-03 20:46:59Z    SIGNAL v4 MSFT bar=2026-08-03 20:30:00 p=0.285 sig_px=486.50 tgt=494.95 stop=484.39 qty=2
+2026-08-03 20:47:11Z  A/B cycle done | signals=1 open=22 pending=0 closed=258
+2026-08-03 21:01:04Z  A/B cycle | equity=$98,928.02 day=-200.48 dd=1489.48 | session=ext
+2026-08-03 21:01:33Z    SIGNAL v3 AAPL bar=2026-08-03 20:30:00 p=0.530 sig_px=303.50 tgt=305.95 stop=301.88 qty=3
+2026-08-03 21:01:57Z    SIGNAL v4 MSFT bar=2026-08-03 20:45:00 p=0.304 sig_px=486.94 tgt=494.92 stop=484.95 qty=2
+2026-08-03 21:01:58Z    SIGNAL v4 XLE bar=2026-08-03 20:30:00 p=0.314 sig_px=58.77 tgt=59.29 stop=58.64 qty=17
+2026-08-03 21:02:08Z  A/B cycle done | signals=3 open=22 pending=3 closed=258

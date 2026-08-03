@@ -88,7 +88,15 @@ def gen_trades(tk):
             j += 1
         ex = min(j, n - 1)
         S1 = float(gp[i] if res == 1 else (sp[i] if res == 0 else c[ex]))
-        trades.append(dict(tk=tk, t0=pd.Timestamp(ts[i]), t1=pd.Timestamp(ts[ex]),
+        # LOOKAHEAD FIX (2026-08-03): prep() resamples with label='left', so ts[i]
+        # is the bar's START while c[i] is its CLOSE 60 minutes later. Transacting
+        # the option leg at ts[i] bought/sold ~55 min before the signal was even
+        # computable — and because the model is a trend model, signal bars are up
+        # bars, so that systematically bought cheap. Both legs now transact at the
+        # bar CLOSE, the same instant the stock leg uses.
+        bar = pd.Timedelta(minutes=60)
+        trades.append(dict(tk=tk, t0=pd.Timestamp(ts[i]) + bar,
+                           t1=pd.Timestamp(ts[ex]) + bar,
                            S0=float(c[i]), S1=S1,
                            stock_ret=(S1 - c[i]) / c[i] - EFF_COST))
         i = ex + 1
@@ -96,8 +104,8 @@ def gen_trades(tk):
 
 
 _CONS = {}
-def contracts_near(ul, day, klo, khi):
-    key = f"{ul}_{day}_{int(klo)}_{int(khi)}"
+def contracts_near(ul, day, klo, khi, cap=50):
+    key = f"{ul}_{day}_{int(klo)}_{int(khi)}" + ("" if cap == 50 else f"_c{cap}")
     cf = CACHE / f"cons_{key}.json"
     if key in _CONS:
         return _CONS[key]
@@ -109,7 +117,9 @@ def contracts_near(ul, day, klo, khi):
         url = "https://api.polygon.io/v3/reference/options/contracts"
         params = {"underlying_ticker": ul, "contract_type": "call",
                   "expiration_date.gte": str(day),
-                  "expiration_date.lte": str(day + dt.timedelta(days=50)),
+                  # was a hard 50-day cap, which silently collapsed any longer
+                  # bucket to a single DTE lattice point
+                  "expiration_date.lte": str(day + dt.timedelta(days=cap)),
                   "strike_price.gte": klo, "strike_price.lte": khi,
                   "expired": expired, "limit": 1000}
         while True:

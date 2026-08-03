@@ -151,6 +151,48 @@
   the interceptor's root). Do NOT use `sslVerify=false`. If the scheduled report's auto-push ever
   fails this way again, this is the remedy.
 
+## 10d. ⚠ LOOKAHEAD BUG IN THE OPTIONS REPLAYS (found + fixed 2026-08-03)
+**The most important methodological lesson in this project so far. Read before writing any
+backtest that mixes resampled bars with tick/minute data.**
+- `prep()` resamples with pandas default `label='left'`: a 60-min bar stamped 13:00 carries the
+  **13:55 close**. Verified directly.
+- Both `vc_options_real.py` and `v6_options_real.py` transacted the option leg at `ts[i]` — the
+  bar START — while the signal comes from `c[i]`, the bar CLOSE. That is a **55-minute lookahead
+  on every option entry**, and the mirror image on every exit. Because these are TREND models,
+  signal bars are up bars, so it systematically bought cheap and sold before the adverse move.
+- Impact, measured by re-running vC honestly: **+14.9%/trade → +10.1%/trade** (~32% of the
+  claimed edge was the bug). The edge survived; the number did not.
+- FIX: both legs now transact at `ts[...] + bar_duration`. Also fixed `contracts_near`'s hard
+  50-day expiry cap (`cap=` param) which had silently collapsed any "8-12w" bucket to DTE=50.
+- The LIVE bot never had this bug — it acts on completed bars in real time. Only the VALIDATION
+  was optimistic, which matters because the validation is what put vC-OPT-2W on the account.
+
+## 10e. v6 OPTIONS — REJECTED TWICE, DO NOT REBUILD
+- 9 structures (2-3w/4-6w/8-12w × ATM/3%ITM/7%ITM), all v6 tickers, real fills: **8 of 9 negative.**
+- The single positive cell (8-12w ATM +1.5%) was an artifact three ways: (a) the 50-day cap meant
+  it was one expiry date, not a range; (b) 48 of 58 fills were Thursdays (only weekday landing on
+  a Friday expiry at +50d); (c) top-3 fills = 188% of P&L. Running OTHER expiries on those same 58
+  signals did BETTER (+4.3%, +4.7%) — refuting the "long tenor = less theta" rationale outright.
+- v6 holds ~0.9 calendar days on average; buying 50-day options for that is incoherent anyway.
+- **v6 stays stock-only.** Do not re-test without a fundamentally different thesis.
+
+## 10f. v6 STOCK — NO DEMONSTRATED EDGE (2026-08-03, independent 4-window audit)
+- 1,246 trades over 4 years: **-3 bps/trade, t = -0.73** — indistinguishable from zero.
+  2023-24 positive on 5/5 seeds (+17…+30%); 2024-25 straddles zero; **2025-26 negative on 5/5
+  seeds** (-26% to -59%). The -84.5% figure was the WORST seed — do not quote it.
+- Structural cause: top-7% gated target-hit rate **12.2%** vs an unconditional base rate of
+  **~12%** — the ML gate adds no measurable selection lift, and cost-adjusted break-even is 14.5%.
+- v6's live +$224 lead rests on ONE MSFT winner across 22 closed trades. Treat as luck until
+  proven otherwise. DECISION PENDING with the user: keep watching vs remove from the stable.
+
+## 10g. vC-OPT-2W ROBUSTNESS (post-fix, `vc_options_robust.py`)
+- 152 fills: mean **+10.1%/trade**, median **-32%**, win 30%, **t = +1.11**,
+  bootstrap 95% CI **[-7.0%, +28.2%]**, P(mean>0) = 86.6%. 4/5 tickers positive (TLT negative).
+- Outlier dependence: top-3 = 78% of P&L (still positive without them); **top-5 = 119% — remove
+  them and it is NEGATIVE.** That is inherent to a convexity strategy, but it means the edge is
+  NOT statistically established. Downgrade language from "validated" to "positive point estimate,
+  unproven". Kept live as a paper experiment; the live book is -$687 over 6 trades.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

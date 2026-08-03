@@ -82,7 +82,11 @@ def gen_trades(tk):
             j += 1
         ex = min(j, n - 1)
         S1 = float(gp[i] if res == 1 else (sp[i] if res == 0 else c[ex]))
-        out.append(dict(tk=tk, t0=pd.Timestamp(ts[i]), t1=pd.Timestamp(ts[ex]),
+        # see vc_options_real: ts[] are bar STARTS (label='left'), the signal is
+        # the bar CLOSE — transact both option legs at the close, not 55 min early
+        bar = pd.Timedelta(minutes=MINS)
+        out.append(dict(tk=tk, t0=pd.Timestamp(ts[i]) + bar,
+                        t1=pd.Timestamp(ts[ex]) + bar,
                         S0=float(c[i]), S1=S1,
                         stock_ret=(S1 - c[i]) / c[i] - EFF_COST))
         i = ex + 1

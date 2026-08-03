@@ -25,8 +25,14 @@ import pandas as pd
 import alpaca_api as broker
 
 STOCK = ["v3", "v4", "v6", "v7", "vC", "vQ", "vQ2", "vA", "vP", "vR", "vS", "vM"]
-OPTS = ["vCO", "vMO"]
+OPTS = ["vC-OPT-2W", "vM-OPT-0DTE", "v6-OPT-6W"]
+LEGACY = {"vCO": "vC-OPT-2W", "vMO": "vM-OPT-0DTE"}
 START = 100_000.0
+
+
+def oname(x):
+    s = x.get("strat", "vCO")
+    return LEGACY.get(s, s)
 
 
 def main():
@@ -52,8 +58,10 @@ def main():
         w = sum(1 for x in cl if (x.get("pnl") or 0) > 0)
         rows.append([st, r, u, r + u, len(cl), w, len(op), tod, op])
     for on in OPTS:
-        oc = [x for x in led.get("opt_closed", []) if x.get("strat", "vCO") == on]
-        oo = [x for x in led.get("opt_open", []) if x.get("strat", "vCO") == on]
+        oc = [x for x in led.get("opt_closed", []) if oname(x) == on]
+        oo = [x for x in led.get("opt_open", []) if oname(x) == on]
+        if not (oc or oo):
+            continue
         r = sum(x.get("pnl") or 0 for x in oc)
         tod = sum(x.get("pnl") or 0 for x in oc if (x.get("xts") or "") >= today)
         u = sum(opl.get(x["occ"], 0.0) for x in oo)
@@ -62,7 +70,7 @@ def main():
 
     rows.sort(key=lambda z: -z[3])
     show_today = "--today" in sys.argv
-    hdr = (f"{'strat':>5} {'realized':>10} {'open':>10} {'TOTAL':>10} "
+    hdr = (f"{'strategy':>12} {'realized':>10} {'open':>10} {'TOTAL':>10} "
            f"{'closed':>7} {'win%':>6} {'open':>5}")
     if show_today:
         hdr += f" {'today':>9}"
@@ -72,13 +80,13 @@ def main():
     for st, r, u, t, n, w, no, tod, _ in rows:
         tr += r
         tu += u
-        line = (f"{st:>5} {r:>+10.2f} {u:>+10.2f} {t:>+10.2f} {n:>7} "
+        line = (f"{st:>12} {r:>+10.2f} {u:>+10.2f} {t:>+10.2f} {n:>7} "
                 f"{(f'{w / n * 100:.0f}%' if n else '-'):>6} {no:>5}")
         if show_today:
             line += f" {tod:>+9.2f}"
         print(line)
     print("-" * (len(hdr) + 2))
-    print(f"{'ALL':>5} {tr:>+10.2f} {tu:>+10.2f} {tr + tu:>+10.2f}")
+    print(f"{'ALL':>12} {tr:>+10.2f} {tu:>+10.2f} {tr + tu:>+10.2f}")
 
     print("\nopen positions by strategy:")
     any_open = False
@@ -86,13 +94,13 @@ def main():
         for x in op:
             any_open = True
             if "occ" in x:
-                print(f"  {st:>5}  {x['occ']} x{x['qty']} @ {x.get('fill')} "
+                print(f"  {st:>12}  {x['occ']} x{x['qty']} @ {x.get('fill')} "
                       f"mark {opl.get(x['occ'], 0):+.2f}")
             else:
                 sign = -1 if x.get("side") == "short" else 1
                 pl = sign * (spx.get(x["tk"], x["fill"]) - x["fill"]) * x["qty"]
                 side = "SHORT" if x.get("side") == "short" else "long "
-                print(f"  {st:>5}  {x['style']} {side} {x['tk']:>5} {x['qty']:>3}sh "
+                print(f"  {st:>12}  {x['style']} {side} {x['tk']:>5} {x['qty']:>3}sh "
                       f"@ {x['fill']:>8.2f}  {pl:>+8.2f}")
     if not any_open:
         print("  (none)")
@@ -115,3 +123,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

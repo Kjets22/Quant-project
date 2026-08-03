@@ -83,13 +83,24 @@ MODEL_BY_STRAT = {"vQ2": "histgb", "vP": "histgb", "vS": "histgb"}
 # Strategies are SEPARATE entities: each may hold its own position in a ticker even
 # when another strategy holds the same ticker (per-strategy one-per-ticker only).
 
-# ---- vCO: the OPTIONS strategy (vc_options_real.py: 1-2w ATM calls +14.9%/trade) ----
-# Fires on the same signals as vC but is its OWN strategy with its OWN book — tracked
-# and reported separately from vC stock so the two can be compared head-to-head.
-# Calls only — the stable is long-only (short side failed the fresh holdout).
-OPT_STRATS = {"vC"}                # signal sources that also trigger a vCO entry
+# ---- OPTIONS STRATEGIES ------------------------------------------------------
+# Each is its OWN strategy with its OWN book, named <parent>-OPT-<tenor> so the
+# instrument and holding period are readable at a glance:
+#
+#   vC-OPT-2W    vC signals  -> 1-2 week ATM CALLS, held to vC's 8-day clock.
+#                Validated: real-fill replay +14.9%/trade (vc_options_real.py).
+#   vM-OPT-0DTE  vM signals  -> SAME-DAY ATM calls (long) / PUTS (short), flat by
+#                noon. The only short-side exposure in the stable.
+#   v6-OPT-*     v6 signals  -> structure chosen by v6_options_real.py; only
+#                enabled if that replay came back positive.
+#
+# Legacy keys vCO/vMO map onto the new names for ledger history (OPT_ALIASES).
+OPT_NAME = {"vC": "vC-OPT-2W", "vM": "vM-OPT-0DTE", "v6": "v6-OPT-6W"}
+OPT_ALIASES = {"vCO": "vC-OPT-2W", "vMO": "vM-OPT-0DTE"}
+OPT_STRATS = {"vC"}                # stock strategies that also fire an options twin
 OPT_PREMIUM = 1_000.0              # target premium per signal
-OPT_DTE = (8, 16)                  # expiry window; must outlive vC's 8-day time exit
+OPT_DTE_BY = {"vC": (8, 16)}       # expiry window per parent (must outlive its clock)
+OPT_DTE = (8, 16)                  # default
 OPT_MAX_OPEN = 8
 OPT_MAX_CONTRACTS = 10
 
@@ -424,8 +435,9 @@ def pick_option(tk, spot, ctype, dte_lo, dte_hi):
     return cons[0]
 
 
-def pick_call(tk, spot):
-    return pick_option(tk, spot, "call", OPT_DTE[0], OPT_DTE[1])
+def pick_call(tk, spot, parent="vC"):
+    lo, hi = OPT_DTE_BY.get(parent, OPT_DTE)
+    return pick_option(tk, spot, "call", lo, hi)
 
 
 def vm_signal(tk):
@@ -485,7 +497,7 @@ def place_opt(led, strat, tk, sig_px, tgt, stop, bar_ts, stamp, ddl, now):
     if (len(led["opt_open"]) >= OPT_MAX_OPEN
             or any(x["tk"] == tk for x in led["opt_open"])):
         return
-    con = pick_call(tk, sig_px)
+    con = pick_call(tk, sig_px, parent=strat)
     if not con:
         return
     px = float(con.get("close_price") or 0) or None
@@ -493,7 +505,8 @@ def place_opt(led, strat, tk, sig_px, tgt, stop, bar_ts, stamp, ddl, now):
           if px else 1)
     o = broker.market_buy(con["symbol"], qo, f"opt-{strat}-{tk}-{stamp}")
     led["opt_open"].append(dict(
-        strat="vCO", src=strat, tk=tk, occ=con["symbol"], qty=qo,
+        strat=OPT_NAME.get(strat, f"{strat}-OPT"), src=strat, tk=tk,
+        occ=con["symbol"], qty=qo,
         order_id=o["id"], expiry=con["expiration_date"], sig_px=float(sig_px),
         tgt=float(tgt), stop=float(stop), bar=bar_ts, ets=str(now),
         deadline=str(now + pd.Timedelta(days=ddl)), est_px=px))
@@ -751,7 +764,7 @@ def cycle(dry=False):
                         ctype = "call" if sig["side"] == "long" else "put"
                         con = pick_option(tk, e, ctype, 0, 0)
                         if con and len(led["opt_open"]) < OPT_MAX_OPEN and not any(
-                                x["tk"] == tk and x["strat"] == "vMO"
+                                x["tk"] == tk and x["strat"] == OPT_NAME["vM"]
                                 for x in led["opt_open"]):
                             px = float(con.get("close_price") or 0) or None
                             qo = (max(1, min(OPT_MAX_CONTRACTS,
@@ -760,7 +773,8 @@ def cycle(dry=False):
                             oo = broker.market_buy(con["symbol"], qo,
                                                    f"vmo-{tk}-{stampv}")
                             led["opt_open"].append(dict(
-                                strat="vMO", src="vM", tk=tk, occ=con["symbol"],
+                                strat=OPT_NAME["vM"], src="vM", tk=tk,
+                            occ=con["symbol"],
                                 qty=qo, order_id=oo["id"],
                                 expiry=con["expiration_date"], sig_px=e,
                                 tgt=float(sig["tgt"]), stop=float(sig["stop"]),

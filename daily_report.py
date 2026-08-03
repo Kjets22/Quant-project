@@ -120,10 +120,17 @@ def main():
     ool, ocl = led.get("opt_open", []), led.get("opt_closed", [])
     if ool or ocl or opos:
         w("===== OPTIONS strategies (separate books) =====")
-        for oname, label in (("vCO", "vC signals, 1-2w ATM calls"),
-                             ("vMO", "vM signals, 0DTE ATM call/put")):
-            oo = [x for x in ool if x.get("strat", "vCO") == oname]
-            oc = [x for x in ocl if x.get("strat", "vCO") == oname]
+        LEG = {"vCO": "vC-OPT-2W", "vMO": "vM-OPT-0DTE"}
+
+        def onm(x):
+            s = x.get("strat", "vCO")
+            return LEG.get(s, s)
+
+        for oname, label in (("vC-OPT-2W", "vC signals -> 1-2w ATM calls"),
+                             ("vM-OPT-0DTE", "vM signals -> 0DTE calls/puts"),
+                             ("v6-OPT-6W", "v6 signals -> 4-6w calls")):
+            oo = [x for x in ool if onm(x) == oname]
+            oc = [x for x in ocl if onm(x) == oname]
             occs = {x["occ"] for x in oo}
             un = sum(float(p.get("unrealized_pl") or 0) for p in opos
                      if p["symbol"] in occs)
@@ -138,8 +145,9 @@ def main():
                   if x["strat"] == "vC" and x["style"] == "mkt"
                   and x["outcome"] != "MISSED"]
         vc_r = sum(x.get("pnl") or 0 for x in src_cl)
-        vco_r = sum(x.get("pnl") or 0 for x in ocl if x.get("strat", "vCO") == "vCO")
-        w(f"  head-to-head: vC stock (mkt) ${vc_r:+,.2f} vs vCO options ${vco_r:+,.2f}")
+        vco_r = sum(x.get("pnl") or 0 for x in ocl if onm(x) == "vC-OPT-2W")
+        w(f"  head-to-head: vC stock (mkt) ${vc_r:+,.2f} vs "
+          f"vC-OPT-2W ${vco_r:+,.2f}")
         for p in opos:
             w(f"    {p['symbol']} x{p['qty']} entry {float(p['avg_entry_price']):.2f} "
               f"now {float(p['current_price'] or 0):.2f} "

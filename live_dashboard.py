@@ -60,9 +60,10 @@ DESCS = {
     "vP":  "Evolution III P&L champion: QQQ $2 / $2 in 8h, HistGB, high volume (~280 trades/yr). Final year +4.18%.",
     "vR":  "Your spec — and the Evolution IV final WINNER: QQQ +0.4% / -0.2% (true 2:1) in 2h, top-3% gate. Best final year of the family (+7.00%).",
     "vS":  "Evolution IV evolved challenger: QQQ +0.5% / -0.4% in 8h, top-10% gate. Lost the final to vR (+6.18%) — runs live for comparison.",
-    "vCO": "OPTIONS strategy on vC signals — LIVE BOOK (real fills from the paper account): ~$1k of 1-2 week ATM calls per signal, sold when the underlying hits vC's target/stop, the 8-day limit, or near expiry. The 'conv' column shows the contract; open rows are marked at live broker prices.",
+    "vC-OPT-2W": "OPTIONS on vC signals — LIVE BOOK (real fills). Buys ~$1k of 1-2 WEEK at-the-money CALLS per vC signal and holds up to vC's 8-day clock; sells when the underlying hits vC's target/stop, the time limit, or expiry nears. The only options book validated on real fills (+14.9%/trade in replay). Lottery shape: ~3 losers per winner, winners are multiples.",
     "vM":  "MORNING two-sided opening-range breakout (separate simulation engine, no live orders): 25-min OR, break either side, target 2x risk, NR<=0.3 compression filter, entries 9:55-11:30, flat by noon. QQQ ladder-passed (final +6.57%); transfers to SPY/DIA/VTI/SCHX/OEF. LIVE on the Alpaca paper account from Jul 22 (both arms + shorts); rows here show the sim engine's forward days.",
-    "vMO": "OPTIONS twin of vM — LIVE BOOK (real fills): 0DTE ATM options on the morning signals, call on breaks up, PUT on breaks down (the stable's first short-side exposure), QQQ+SPY, flat by noon. The 'conv' column shows the contract.",
+    "vM-OPT-0DTE": "OPTIONS on vM signals — LIVE BOOK (real fills). Buys SAME-DAY (0DTE) at-the-money options on the morning breakout: a CALL when vM breaks up, a PUT when it breaks down (the stable's only short-side exposure). QQQ+SPY only, always flat by noon. Highest risk/reward of the three: no overnight, no time to recover.",
+    "v6-OPT-6W": "OPTIONS on v6 signals — LIVE BOOK (real fills). Buys 4-6 WEEK calls on v6's trend signals. The long tenor is deliberate: v6 grinds a modest target over ~8 days, so short-dated options bleed too much time value. Added at the user's request after the original SPY-only study rejected v6 options — this is the live re-test.",
 }
 MODELS_MEM = {}                      # (strat, tk) -> {"clf", "thr"} or None
 MODELS_DIR = Path("models")
@@ -258,8 +259,10 @@ def ledger_option_trades():
         pnl = x.get("pnl")
         if not closed and upl is not None:
             pnl = upl
+        _legacy = {"vCO": "vC-OPT-2W", "vMO": "vM-OPT-0DTE"}
+        _s = x.get("strat", "vCO")
         out.append(dict(
-            strat=x.get("strat", "vCO"), tk=x["tk"],
+            strat=_legacy.get(_s, _s), tk=x["tk"],
             entry_ts=int(pd.Timestamp(ets).timestamp()),
             exit_ts=(int(pd.Timestamp(x["xts"]).timestamp())
                      if x.get("xts") else None),
@@ -337,7 +340,8 @@ def refresh():
         tickers_out[tk] = {"candles": [],
                            "trades": [t for t in all_trades if t["tk"] == tk]}
     STATE.update(ok=True, msg="", tickers=tickers_out,
-                 strats=[cfg[0] for cfg in CONFIGS] + ["vCO", "vM", "vMO"],
+                 strats=([cfg[0] for cfg in CONFIGS]
+                         + ["vM", "vC-OPT-2W", "vM-OPT-0DTE", "v6-OPT-6W"]),
                  descs=DESCS, updated=time.strftime("%H:%M:%S"))
     Path("runs").mkdir(exist_ok=True)
     Path("runs/live_ledger.json").write_text(json.dumps(all_trades, indent=1))

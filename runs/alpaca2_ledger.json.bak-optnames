@@ -5957,7 +5957,7 @@
  },
  "opt_open": [
   {
-   "strat": "vC-OPT-2W",
+   "strat": "vCO",
    "src": "vC",
    "tk": "AAPL",
    "occ": "AAPL260812C00305000",
@@ -5976,7 +5976,7 @@
  ],
  "opt_closed": [
   {
-   "strat": "vC-OPT-2W",
+   "strat": "vCO",
    "src": "vC",
    "tk": "TLT",
    "occ": "TLT260727C00084500",
@@ -5995,7 +5995,7 @@
    "xts": "2026-07-17 14:46:12.128063"
   },
   {
-   "strat": "vC-OPT-2W",
+   "strat": "vCO",
    "src": "vC",
    "tk": "TLT",
    "occ": "TLT260727C00084500",
@@ -6014,7 +6014,7 @@
    "xts": "2026-07-17 15:31:14.236767"
   },
   {
-   "strat": "vC-OPT-2W",
+   "strat": "vCO",
    "src": "vC",
    "tk": "MSFT",
    "occ": "MSFT260731C00400000",
@@ -6036,7 +6036,7 @@
    "xts": "2026-07-22 14:01:19.594034"
   },
   {
-   "strat": "vM-OPT-0DTE",
+   "strat": "vMO",
    "src": "vM",
    "tk": "QQQ",
    "occ": "QQQ260722C00708000",
@@ -6059,7 +6059,7 @@
    "xts": "2026-07-22 14:21:20.295459"
   },
   {
-   "strat": "vM-OPT-0DTE",
+   "strat": "vMO",
    "src": "vM",
    "tk": "SPY",
    "occ": "SPY260722C00748000",
@@ -6082,7 +6082,7 @@
    "xts": "2026-07-22 14:21:20.295459"
   },
   {
-   "strat": "vC-OPT-2W",
+   "strat": "vCO",
    "src": "vC",
    "tk": "NVDA",
    "occ": "NVDA260731C00207500",
@@ -6104,7 +6104,7 @@
    "xts": "2026-07-27 14:01:13.785782"
   },
   {
-   "strat": "vC-OPT-2W",
+   "strat": "vCO",
    "src": "vC",
    "tk": "JPM",
    "occ": "JPM260731C00340000",
@@ -6126,7 +6126,7 @@
    "xts": "2026-07-29 14:11:13.068294"
   },
   {
-   "strat": "vC-OPT-2W",
+   "strat": "vCO",
    "src": "vC",
    "tk": "TLT",
    "occ": "TLT260805C00084000",

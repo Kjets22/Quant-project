@@ -3492,3 +3492,6 @@
 2026-08-03 20:01:03Z  A/B cycle | equity=$98,915.76 day=-212.74 dd=1501.74 | session=ext
 2026-08-03 20:01:51Z    SIGNAL v4 MSFT bar=2026-08-03 19:45:00 p=0.338 sig_px=488.22 tgt=497.87 stop=485.81 qty=2
 2026-08-03 20:02:02Z  A/B cycle done | signals=1 open=21 pending=0 closed=257
+2026-08-03 20:18:39Z  A/B cycle | equity=$98,924.11 day=-204.39 dd=1493.39 | session=ext | DRYRUN
+2026-08-03 20:19:05Z    SIGNAL v3 TLT bar=2026-08-03 19:30:00 p=0.493 sig_px=82.20 tgt=82.36 stop=82.09 qty=12 [DRYRUN]
+2026-08-03 20:19:12Z  A/B cycle done | signals=1 open=21 pending=0 closed=257

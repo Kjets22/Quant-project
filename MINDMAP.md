@@ -193,6 +193,51 @@ backtest that mixes resampled bars with tick/minute data.**
   NOT statistically established. Downgrade language from "validated" to "positive point estimate,
   unproven". Kept live as a paper experiment; the live book is -$687 over 6 trades.
 
+## 10h. THE GREAT AUDIT — 2026-08-12 (9-agent deep dive + manual passes; ALL FIXED)
+**Eleven bugs found and fixed in one session. The live system before this date was running
+without broker-side protection on multi-day positions. Read this section before touching
+execution code.**
+1. **DAY-TIF BRACKET LEGS (worst bug in project history):** alpaca_api brackets sent
+   time_in_force='day' while the docstring claimed GTC → every multi-day position lost its
+   stop AND target at entry-day close (Alpaca expires TP, OCO-cancels stop). 12/13 open
+   positions were naked; v6 MSFT sat below its stop, v6 XLE had touched its target unpaid.
+   FIX: GTC legs + manage_exits promotes expired/canceled-leg positions to synthetic
+   (bot-side bracket). First live cycle after the fix: XLE booked its owed TARGET +$58×2,
+   MSFT its overdue STOP. This is why v6/v7/vC only ever logged TIME exits.
+2. **STUB BARS:** feed is ~16-min delayed but prep() kept bars "completed by wall clock" —
+   models scored truncated bars (5/6 sampled signals wrong, e.g. sig_px 303.98 vs true
+   305.00). FIX: bar complete only when raw coverage reaches its end.
+3. **vM-OPT-0DTE NEVER ACTUALLY RAN:** the EXPIRY safety net (expiry<=today+1) is always
+   true for 0DTE and ran before tgt/stop/deadline → all 6 fills dumped within ~10 min
+   (−$476 of pure spread). FIX: net fires only when deadline outlives the contract;
+   past-expiry holdings settle at intrinsic (EXPIRED-UNSOLD) instead of looping.
+4. **--dryrun MUTATED THE LIVE LEDGER** (bookings weren't dry-gated; saves unconditional;
+   no lock) → 7/24 dry cycle booked a phantom QQQ exit with no broker order = THE true
+   origin of the QQQ orphan share (earlier partial-fill diagnosis was a real hole but NOT
+   this cause). FIX: dry deep-copies, never saves. Orphan sold 8/12 @ 725.18 (+$32.68,
+   booked as ledger adjustment; adjustments now shown in the daily report).
+5. **OPTIONS MARKET-ORDER OVERPAYING 14-160%** vs day VWAP on 9/18 entries (~$1.5-2.5k of
+   the options drawdown was execution). FIX: quote-pegged DAY limits both sides (entry
+   mid+20% of half-spread; exit mid−20%, reprice per cycle, 3rd try at bid), spread cap
+   25% of mid, sizing from live quote mid, budget hard-capped at 1.5× (user-confirmed).
+6. **PARTIAL FILLS:** expired entries with partial fills booked MISSED (orphan factory);
+   cancelled option sells with partials froze positions. FIX: partials become live
+   positions / book the sold slice.
+7. **EXIT CID COLLISIONS ACROSS DAYS** (HHMMSS only; noon vM cover hits the same second
+   daily; 2 cycle-crashes in task log). FIX: date in cids + failed time-exit orders no
+   longer book the exit (retry next cycle).
+8. **STALE IEX PRINTS:** latest_price returned prices frozen up to 14+ h off-hours — the
+   staleness guard vetoed 139 ext-session entries against dead prices (consuming rare
+   QQQ-family signals!) and passed a vM OEF entry already through its stop. FIX: prints
+   older than 10 min → None → all callers fail OPEN.
+9. **NETTED-ACCOUNT SIDE COLLISION:** vM short on QQQ/SPY would SELL other strategies'
+   longs (stranding their legs); longs would COVER vM shorts. FIX: both directions skip
+   when the other side is held.
+10. **ORPHAN AUTO-FIX NEVER FIRED** (gated on market-open; report runs 16:15). FIX:
+    extended-hours marketable limit path.
+11. **QQQ-family silence partly explained:** stub bars + stale-price vetoes were eating
+    their extended-hours signals (see 2, 8). Expect their live trade rate to rise.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

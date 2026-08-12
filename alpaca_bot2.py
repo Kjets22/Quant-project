@@ -750,6 +750,13 @@ def cycle(dry=False):
                     log(f"  [skip {strat} {tk}: stale ({why}) — signal {c[i]:.2f}, "
                         f"now {cur:.2f}: {detail}]")
                     continue
+                if any(x["tk"] == tk and x.get("side") == "short"
+                       for x in led["open"] + led["pending"]):
+                    # netted account: a BUY here would silently COVER vM's short
+                    # instead of opening this long — corrupting both books
+                    log(f"  [skip {strat} {tk}: vM holds {tk} SHORT — one netted "
+                        f"account cannot hold both sides]")
+                    continue
                 now = pd.Timestamp.utcnow().tz_localize(None)
                 base = dict(strat=strat, tk=tk, qty=qty, sig_px=float(c[i]),
                             tgt=float(tgt_px[i]), stop=float(stop_px[i]),
@@ -854,6 +861,15 @@ def cycle(dry=False):
                               "reward:risk is worse than validated")
                     log(f"  [skip vM {tk}: stale ({why}) — signal {e:.2f}, now "
                         f"{cur:.2f}: {detail} (15-min data lag)]")
+                    continue
+                if sig["side"] == "short" and any(
+                        x["tk"] == tk and x.get("side") != "short"
+                        for x in led["open"] + led["pending"]):
+                    # netted account: this SELL would close other strategies' longs
+                    # instead of opening a short, leaving their bracket legs aimed
+                    # at shares that no longer exist
+                    log(f"  [skip vM {tk} SHORT: other strategies hold {tk} long — "
+                        f"one netted account cannot hold both sides]")
                     continue
                 if qty < 1 or dry:
                     continue

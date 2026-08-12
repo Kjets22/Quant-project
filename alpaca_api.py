@@ -59,15 +59,25 @@ def _req(method, path, **kw):
 DATA_BASE = "https://data.alpaca.markets"
 
 
-def latest_price(symbol):
-    """REAL-TIME last trade (IEX feed, free on paper). The bot's bar data is
-    15-min delayed, so this is the only way to know where price is NOW."""
+def latest_price(symbol, max_age_min=10):
+    """REAL-TIME last trade (IEX feed, free on paper), or None if the print is
+    STALE. AUDIT 2026-08-12: IEX's last trade can be hours old off-hours or on
+    thin tickers — the staleness guard vetoed 139 extended-session entries against
+    a price frozen overnight (consuming rare QQQ-family signals) and waved through
+    a vM OEF entry already past its stop. A stale print now returns None so
+    callers fail OPEN (guard passes, sizing falls back), never on frozen data."""
     try:
         r = requests.get(f"{DATA_BASE}/v2/stocks/{symbol}/trades/latest",
                          headers=HDRS, timeout=20)
         if r.status_code != 200:
             return None
-        return float(r.json()["trade"]["p"])
+        tr = r.json()["trade"]
+        import pandas as _pd
+        age = (_pd.Timestamp.utcnow()
+               - _pd.Timestamp(tr["t"]).tz_convert("UTC")).total_seconds() / 60
+        if age > max_age_min:
+            return None
+        return float(tr["p"])
     except Exception:
         return None
 
@@ -136,10 +146,15 @@ def closed_orders(after_iso, symbols=None):
 
 
 def submit_bracket(symbol, qty, take_profit, stop_loss, client_id):
-    """Market BUY + bracket (sell-limit target / sell-stop). Whole shares, GTC legs."""
+    """Market BUY + bracket (sell-limit target / sell-stop), GTC legs.
+
+    AUDIT 2026-08-12: these were time_in_force='day' while the docstring claimed
+    GTC — every multi-day position lost its broker-side stop AND target at the
+    close of entry day (Alpaca expires the TP leg, then OCO-cancels the stop).
+    That is why v6/v7/vC never recorded STOP/TARGET exits after day one."""
     return _req("POST", "/v2/orders", json={
         "symbol": symbol, "qty": str(int(qty)), "side": "buy", "type": "market",
-        "time_in_force": "day", "order_class": "bracket",
+        "time_in_force": "gtc", "order_class": "bracket",
         "client_order_id": client_id,
         "take_profit": {"limit_price": str(round(take_profit, 2))},
         "stop_loss": {"stop_price": str(round(stop_loss, 2))},
@@ -155,7 +170,7 @@ def submit_bracket_short(symbol, qty, take_profit, stop_loss, client_id):
     """Market SELL-SHORT + bracket (buy-limit target below / buy-stop above)."""
     return _req("POST", "/v2/orders", json={
         "symbol": symbol, "qty": str(int(qty)), "side": "sell", "type": "market",
-        "time_in_force": "day", "order_class": "bracket",
+        "time_in_force": "gtc", "order_class": "bracket",
         "client_order_id": client_id,
         "take_profit": {"limit_price": str(round(take_profit, 2))},
         "stop_loss": {"stop_price": str(round(stop_loss, 2))},
@@ -167,7 +182,7 @@ def submit_limit_bracket_short(symbol, qty, limit_price, take_profit, stop_loss,
     """LIMIT SELL-SHORT at the signal price + bracket."""
     return _req("POST", "/v2/orders", json={
         "symbol": symbol, "qty": str(int(qty)), "side": "sell", "type": "limit",
-        "limit_price": str(round(limit_price, 2)), "time_in_force": "day",
+        "limit_price": str(round(limit_price, 2)), "time_in_force": "gtc",
         "order_class": "bracket", "client_order_id": client_id,
         "take_profit": {"limit_price": str(round(take_profit, 2))},
         "stop_loss": {"stop_price": str(round(stop_loss, 2))},
@@ -175,10 +190,11 @@ def submit_limit_bracket_short(symbol, qty, limit_price, take_profit, stop_loss,
 
 
 def submit_limit_bracket(symbol, qty, limit_price, take_profit, stop_loss, client_id):
-    """LIMIT BUY at the signal price + bracket. Day order: dies at close if unfilled."""
+    """LIMIT BUY at the signal price + bracket, GTC (the bot's own expiry field
+    cancels unfilled entries; legs must survive multi-day holds)."""
     return _req("POST", "/v2/orders", json={
         "symbol": symbol, "qty": str(int(qty)), "side": "buy", "type": "limit",
-        "limit_price": str(round(limit_price, 2)), "time_in_force": "day",
+        "limit_price": str(round(limit_price, 2)), "time_in_force": "gtc",
         "order_class": "bracket", "client_order_id": client_id,
         "take_profit": {"limit_price": str(round(take_profit, 2))},
         "stop_loss": {"stop_price": str(round(stop_loss, 2))},

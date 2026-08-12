@@ -174,11 +174,18 @@ def full_series(tk):
 
 
 def prep(tk, mins, featmode, mode):
-    d = full_series(tk).set_index("timestamp").resample(f"{mins}min").agg(
+    raw = full_series(tk)
+    d = raw.set_index("timestamp").resample(f"{mins}min").agg(
         high=("high", "max"), low=("low", "min"), close=("close", "last"),
         volume=("volume", "sum")).dropna().reset_index()
+    # AUDIT 2026-08-12: the feed is delayed ~16 min, so "completed by wall clock"
+    # bars can be STUBS (missing their final 5-min sub-bars) — the models were
+    # scoring truncated bars. A bar counts as complete only if the raw data
+    # actually covers it.
+    coverage = pd.Timestamp(raw["timestamp"].iloc[-1]) + pd.Timedelta(minutes=5)
     now = pd.Timestamp.utcnow().tz_localize(None)
-    d = d[d["timestamp"] + pd.Timedelta(minutes=mins) <= now].reset_index(drop=True)
+    cut = min(now, coverage)
+    d = d[d["timestamp"] + pd.Timedelta(minutes=mins) <= cut].reset_index(drop=True)
     ts = pd.to_datetime(d["timestamp"]).to_numpy()
     h, l, c, v = (d[x].to_numpy(float) for x in ("high", "low", "close", "volume"))
     A = atr_fixed(h, l, c)
@@ -396,12 +403,23 @@ def manage_exits(led, dry, sess):
         outcome = None
         exit_px = None
         try:
+            legs_dead = 0
             for leg_id, name in ((p.get("tp_leg"), "TARGET"), (p.get("sl_leg"), "STOP")):
                 if leg_id:
                     o = broker.get_order(leg_id)
                     if o["status"] == "filled":
                         outcome, exit_px = name, float(o["filled_avg_price"])
                         break
+                    if o["status"] in ("expired", "canceled", "rejected"):
+                        legs_dead += 1
+            if outcome is None and legs_dead and not p.get("synthetic"):
+                # AUDIT 2026-08-12: day-TIF bracket legs died at entry-day close,
+                # leaving multi-day positions UNPROTECTED at the broker. Promote to
+                # synthetic so the bot's own price-check bracket takes over.
+                p["synthetic"] = True
+                log(f"  LEGS DEAD {p['style']} {p['strat']} {p['tk']} — "
+                    f"bot-side bracket takes over (tgt {p['tgt']:.2f} / "
+                    f"stop {p['stop']:.2f})")
         except Exception as e:
             log(f"  [exit poll error {p['tk']}: {e}]")
         short = p.get("side") == "short"
@@ -422,7 +440,7 @@ def manage_exits(led, dry, sess):
                         if not dry:
                             _close_now(p, cur,
                                        f"sx-{p['strat']}-{p['style']}-{p['tk']}-"
-                                       f"{now:%H%M%S}", sess)
+                                       f"{now:%m%d%H%M%S}", sess)
                         outcome, exit_px = syn, cur
             except Exception as e:
                 log(f"  [syn exit error {p['tk']}: {e}]")
@@ -430,12 +448,21 @@ def manage_exits(led, dry, sess):
             pos = broker.position(p["tk"])
             cur = float(pos["current_price"]) if pos else p["fill"]
             if not dry:
-                for leg_id in (p.get("tp_leg"), p.get("sl_leg")):
-                    if leg_id:
-                        broker.cancel_order(leg_id)
-                _close_now(p, cur,
-                           f"tx-{p['strat']}-{p['style']}-{p['tk']}-{now:%H%M%S}",
-                           sess)
+                try:
+                    for leg_id in (p.get("tp_leg"), p.get("sl_leg")):
+                        if leg_id:
+                            broker.cancel_order(leg_id)
+                    _close_now(p, cur,
+                               f"tx-{p['strat']}-{p['style']}-{p['tk']}-"
+                               f"{now:%m%d%H%M%S}", sess)
+                except Exception as e:
+                    # close FAILED -> do NOT book the exit; retry next cycle.
+                    # (A booked exit with no broker order strands real shares —
+                    # the phantom-exit class of bug.)
+                    log(f"  [time-exit order failed {p['tk']}: {e} — retrying "
+                        f"next cycle]")
+                    keep.append(p)
+                    continue
             exit_px = cur
             outcome = "TIME"
         if outcome:
@@ -629,10 +656,33 @@ def manage_opts(led, dry, sess):
                     log(f"  OPT ENTRY CANCELLED {p['occ']} (unfilled "
                         f"{age_min:.0f} min — quote moved away)")
                 keep.append(p); continue
+            exp_day = pd.Timestamp(p["expiry"]).date()
+            dl = pd.Timestamp(p["deadline"])
+            if today > exp_day:
+                # contract is DEAD (sell never filled before expiry). Book the
+                # settlement so the position can't loop forever; exercise-created
+                # shares, if any, surface in the daily report's reconciliation.
+                K = float(p["occ"][-8:]) / 1000.0
+                cur = broker.latest_price(p["tk"]) or 0.0
+                intr = max(cur - K, 0.0) if "C" in p["occ"][-9:-8] else \
+                    max(K - cur, 0.0)
+                pnl = round((intr - (p.get("fill") or 0)) * 100 * p["qty"], 2)
+                p.update(exit=intr, pnl=pnl, xts=str(now),
+                         exit_reason="EXPIRED-UNSOLD", note="settled at intrinsic")
+                led["opt_closed"].append(p)
+                log(f"  OPT EXPIRED UNSOLD {p['occ']} settled ~{intr:.2f} "
+                    f"pnl={pnl:+.2f} — check reconciliation for exercise shares")
+                continue
             reason = None
-            if pd.Timestamp(p["deadline"]) <= now:
+            # EXPIRY is a safety net for multi-week books whose deadline outlives
+            # the contract. For 0DTE (deadline noon, expiry today) it used to fire
+            # on the FIRST cycle after the fill — every vM-OPT trade was dumped
+            # within ~10 minutes of purchase; the validated strategy never ran.
+            expiry_net = (exp_day <= today + pd.Timedelta(days=1)
+                          and dl.date() > exp_day)
+            if dl <= now:
                 reason = "TIME"
-            elif pd.Timestamp(p["expiry"]).date() <= today + pd.Timedelta(days=1):
+            elif expiry_net:
                 reason = "EXPIRY"
             elif p.get("tgt") and p.get("stop"):
                 d = full_series(p["tk"])
@@ -675,6 +725,12 @@ def manage_opts(led, dry, sess):
 
 def cycle(dry=False):
     led = load_ledger()
+    if dry:
+        # AUDIT 2026-08-12: dry cycles used to mutate and SAVE the live ledger
+        # (broker calls were gated on `not dry`, but outcome bookings were not) —
+        # a 7/24 DRYRUN booked a phantom QQQ exit with no broker order, stranding
+        # a real share for 20 days. Dry mode now works on a throwaway copy.
+        led = json.loads(json.dumps(led, default=str))
     acct = broker.account()
     equity = float(acct["equity"])
     day_pnl = equity - float(acct["last_equity"])
@@ -945,7 +1001,8 @@ def cycle(dry=False):
                 log(f"  [vM error {tk}: {e2}]")
     log(f"A/B cycle done | signals={n_sig} open={len(led['open'])} "
         f"pending={len(led['pending'])} closed={len(led['closed'])}")
-    save_ledger(led)
+    if not dry:
+        save_ledger(led)
 
 
 def status():

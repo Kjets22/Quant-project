@@ -72,6 +72,39 @@ def latest_price(symbol):
         return None
 
 
+def option_quote(symbol):
+    """Live NBBO for an option contract -> (bid, ask) or None. Free on paper.
+    Added 2026-08-12 after the fill audit: market orders on thin option books
+    paid 14-160% over fair value on half of all entries."""
+    try:
+        r = requests.get(f"{DATA_BASE}/v1beta1/options/quotes/latest",
+                         headers=HDRS, params={"symbols": symbol}, timeout=20)
+        if r.status_code != 200:
+            return None
+        q = (r.json().get("quotes") or {}).get(symbol)
+        if not q or not q.get("ap"):
+            return None
+        return float(q.get("bp") or 0), float(q["ap"])
+    except Exception:
+        return None
+
+
+def limit_buy(symbol, qty, limit_price, client_id):
+    """Plain DAY limit BUY (options-safe: no extended flag)."""
+    return _req("POST", "/v2/orders", json={
+        "symbol": symbol, "qty": str(int(qty)), "side": "buy", "type": "limit",
+        "limit_price": str(round(limit_price, 2)), "time_in_force": "day",
+        "client_order_id": client_id})
+
+
+def limit_sell_plain(symbol, qty, limit_price, client_id):
+    """Plain DAY limit SELL (options-safe: no extended flag)."""
+    return _req("POST", "/v2/orders", json={
+        "symbol": symbol, "qty": str(int(qty)), "side": "sell", "type": "limit",
+        "limit_price": str(round(limit_price, 2)), "time_in_force": "day",
+        "client_order_id": client_id})
+
+
 def account():
     return _req("GET", "/v2/account")
 

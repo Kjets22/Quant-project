@@ -492,25 +492,56 @@ def vm_signal(tk):
     return None
 
 
+OPT_MAX_SPREAD = 0.25              # skip contracts whose (ask-bid)/mid exceeds this
+OPT_ENTRY_PATIENCE_MIN = 35        # cancel unfilled entry limits after ~2 cycles
+
+
+def opt_entry_order(symbol, qty_budget, cid):
+    """Quote-pegged limit entry for an option. Returns (order, qty, limit) or None.
+
+    2026-08-12 fill audit: MARKET orders on thin option books paid 14-160% over
+    the day's VWAP on 9 of 18 entries (~$1.5-2.5k of the options drawdown was
+    execution, not edge). Entries are now DAY LIMIT at mid + 20% of the half-
+    spread, sized on the real quote, skipped entirely when the spread is
+    uninvestable or one contract blows the premium budget."""
+    q = broker.option_quote(symbol)
+    if q is None:
+        log(f"  [opt skip {symbol}: no live quote]")
+        return None
+    bid, ask = q
+    mid = (bid + ask) / 2
+    if bid <= 0 or mid <= 0.05 or (ask - bid) / mid > OPT_MAX_SPREAD:
+        log(f"  [opt skip {symbol}: spread uninvestable bid={bid} ask={ask}]")
+        return None
+    if mid * 100 > 1.5 * qty_budget:
+        log(f"  [opt skip {symbol}: one contract ${mid * 100:.0f} blows the "
+            f"${qty_budget:.0f} budget]")
+        return None
+    qo = max(1, min(OPT_MAX_CONTRACTS, int(qty_budget // (mid * 100))))
+    lim = round(mid + 0.2 * (ask - mid), 2)
+    o = broker.limit_buy(symbol, qo, lim, cid)
+    return o, qo, lim
+
+
 def place_opt(led, strat, tk, sig_px, tgt, stop, bar_ts, stamp, ddl, now):
-    """Buy the vCO call for a vC signal (RTH only — options have no extended hours)."""
+    """Buy the options twin for a stock signal (RTH only — no extended session)."""
     if (len(led["opt_open"]) >= OPT_MAX_OPEN
             or any(x["tk"] == tk for x in led["opt_open"])):
         return
     con = pick_call(tk, sig_px, parent=strat)
     if not con:
         return
-    px = float(con.get("close_price") or 0) or None
-    qo = (max(1, min(OPT_MAX_CONTRACTS, int(OPT_PREMIUM // (px * 100))))
-          if px else 1)
-    o = broker.market_buy(con["symbol"], qo, f"opt-{strat}-{tk}-{stamp}")
+    r = opt_entry_order(con["symbol"], OPT_PREMIUM, f"opt-{strat}-{tk}-{stamp}")
+    if r is None:
+        return
+    o, qo, lim = r
     led["opt_open"].append(dict(
         strat=OPT_NAME.get(strat, f"{strat}-OPT"), src=strat, tk=tk,
         occ=con["symbol"], qty=qo,
         order_id=o["id"], expiry=con["expiration_date"], sig_px=float(sig_px),
         tgt=float(tgt), stop=float(stop), bar=bar_ts, ets=str(now),
-        deadline=str(now + pd.Timedelta(days=ddl)), est_px=px))
-    log(f"  OPT BUY {con['symbol']} x{qo} (prev close ${px if px else '?'})")
+        deadline=str(now + pd.Timedelta(days=ddl)), est_px=lim))
+    log(f"  OPT BUY {con['symbol']} x{qo} limit {lim} (quote-pegged)")
 
 
 def manage_opts(led, dry, sess):
@@ -532,6 +563,14 @@ def manage_opts(led, dry, sess):
                     log(f"  OPT CLOSED {p['occ']} {p.get('exit_reason', '')} "
                         f"pnl={pnl:+.2f}")
                     continue
+                # quote-pegged sell not filled -> cancel and reprice next cycle;
+                # after 2 attempts the price goes straight to the bid
+                if o["status"] in ("new", "accepted", "partially_filled"):
+                    if not dry:
+                        broker.cancel_order(p["closing_id"])
+                if o["status"] not in ("partially_filled",):
+                    p["closing_id"] = None
+                    p["sell_tries"] = p.get("sell_tries", 0)
                 keep.append(p); continue
             o = broker.get_order(p["order_id"])
             if o["status"] in ("canceled", "expired", "rejected"):
@@ -540,6 +579,14 @@ def manage_opts(led, dry, sess):
             if o["status"] == "filled" and not p.get("fill"):
                 p["fill"] = float(o["filled_avg_price"])
                 log(f"  OPT FILLED {p['occ']} x{p['qty']} @ {p['fill']:.2f}")
+            if not p.get("fill"):
+                # entry limit still resting: give it OPT_ENTRY_PATIENCE_MIN, then pull
+                age_min = (now - pd.Timestamp(p["ets"])).total_seconds() / 60
+                if age_min > OPT_ENTRY_PATIENCE_MIN and not dry:
+                    broker.cancel_order(p["order_id"])
+                    log(f"  OPT ENTRY CANCELLED {p['occ']} (unfilled "
+                        f"{age_min:.0f} min — quote moved away)")
+                keep.append(p); continue
             reason = None
             if pd.Timestamp(p["deadline"]) <= now:
                 reason = "TIME"
@@ -559,11 +606,24 @@ def manage_opts(led, dry, sess):
                     elif float(seg["high"].max()) >= p["tgt"]:
                         reason = "TARGET"
             if reason and p.get("fill") and not dry and sess == "rth":
-                so = broker.market_sell(p["occ"], p["qty"],
-                                        f"optx-{p['tk']}-{now:%Y%m%d%H%M%S}")
+                # quote-pegged limit sell (market sells were donating the spread);
+                # tries 0-1: mid minus 20% of half-spread; tries >=2: AT the bid
+                q = broker.option_quote(p["occ"])
+                tries = p.get("sell_tries", 0)
+                if q is None:
+                    lim = round((p.get("fill") or 0.05) * 0.5, 2)  # desperate floor
+                else:
+                    bid, ask = q
+                    mid = (bid + ask) / 2
+                    lim = round(max(bid, mid - 0.2 * (mid - bid)), 2) if tries < 2 \
+                        else round(max(bid, 0.01), 2)
+                so = broker.limit_sell_plain(p["occ"], p["qty"], lim,
+                                             f"optx-{p['tk']}-{now:%H%M%S}")
                 p["closing_id"] = so["id"]
+                p["sell_tries"] = tries + 1
                 p["exit_reason"] = reason
-                log(f"  OPT SELL {p['occ']} x{p['qty']} ({reason})")
+                log(f"  OPT SELL {p['occ']} x{p['qty']} limit {lim} "
+                    f"({reason}, try {tries + 1})")
             keep.append(p)
         except Exception as e:
             log(f"  [opt manage error {p.get('occ')}: {e}]")
@@ -766,23 +826,22 @@ def cycle(dry=False):
                         if con and len(led["opt_open"]) < OPT_MAX_OPEN and not any(
                                 x["tk"] == tk and x["strat"] == OPT_NAME["vM"]
                                 for x in led["opt_open"]):
-                            px = float(con.get("close_price") or 0) or None
-                            qo = (max(1, min(OPT_MAX_CONTRACTS,
-                                             int(OPT_PREMIUM // (px * 100))))
-                                  if px else 1)
-                            oo = broker.market_buy(con["symbol"], qo,
-                                                   f"vmo-{tk}-{stampv}")
-                            led["opt_open"].append(dict(
-                                strat=OPT_NAME["vM"], src="vM", tk=tk,
-                            occ=con["symbol"],
-                                qty=qo, order_id=oo["id"],
-                                expiry=con["expiration_date"], sig_px=e,
-                                tgt=float(sig["tgt"]), stop=float(sig["stop"]),
-                                side=sig["side"], bar=sig["ref_bar"], ets=str(now2),
-                                deadline=noon_utc, est_px=px))
-                            log(f"  OPT BUY {con['symbol']} x{qo} [vMO {sig['side']}]")
+                            r0 = opt_entry_order(con["symbol"], OPT_PREMIUM,
+                                                 f"vmo-{tk}-{stampv}")
+                            if r0 is not None:
+                                oo, qo, lim = r0
+                                led["opt_open"].append(dict(
+                                    strat=OPT_NAME["vM"], src="vM", tk=tk,
+                                    occ=con["symbol"],
+                                    qty=qo, order_id=oo["id"],
+                                    expiry=con["expiration_date"], sig_px=e,
+                                    tgt=float(sig["tgt"]), stop=float(sig["stop"]),
+                                    side=sig["side"], bar=sig["ref_bar"],
+                                    ets=str(now2), deadline=noon_utc, est_px=lim))
+                                log(f"  OPT BUY {con['symbol']} x{qo} limit {lim} "
+                                    f"[vM-OPT {sig['side']}]")
                     except Exception as e3:
-                        log(f"  [vMO error {tk}: {e3}]")
+                        log(f"  [vM-OPT error {tk}: {e3}]")
                 base = dict(strat="vM", tk=tk, qty=qty, sig_px=e,
                             tgt=float(sig["tgt"]), stop=float(sig["stop"]),
                             bar=sig["ref_bar"], ddl_days=0, side=sig["side"],

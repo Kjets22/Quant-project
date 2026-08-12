@@ -299,12 +299,40 @@ def poll_pending(led, dry):
         elif pd.Timestamp(p["expiry"]) <= now and o["status"] in ("new", "accepted", "held", "partially_filled", "pending_new"):
             if not dry:
                 broker.cancel_order(p["order_id"])
-            p.update(outcome="MISSED", xts=str(now), pnl=0.0)
-            led["closed"].append(p)
-            log(f"  MISSED {p['style']} {p['strat']} {p['tk']} (limit {p['sig_px']:.2f} never filled)")
+            fq = int(float(o.get("filled_qty") or 0))
+            if fq > 0:
+                # PARTIAL FILL then cancel: we DO hold fq shares — booking MISSED
+                # here orphaned them at the broker (the QQQ +1-share mystery).
+                # Keep the position alive with the filled quantity.
+                tp_leg, sl_leg = _legs(o)
+                p.update(qty=fq, fill=float(o["filled_avg_price"]),
+                         tp_leg=tp_leg, sl_leg=sl_leg, ets=str(now),
+                         deadline=(p.get("deadline_ts")
+                                   or str(now + pd.Timedelta(days=p["ddl_days"]))),
+                         note="partial fill, remainder cancelled")
+                led["open"].append(p)
+                log(f"  PARTIAL {p['style']} {p['strat']} {p['tk']} kept {fq}sh "
+                    f"@ {p['fill']:.2f} (remainder cancelled)")
+            else:
+                p.update(outcome="MISSED", xts=str(now), pnl=0.0)
+                led["closed"].append(p)
+                log(f"  MISSED {p['style']} {p['strat']} {p['tk']} "
+                    f"(limit {p['sig_px']:.2f} never filled)")
         elif o["status"] in ("canceled", "expired", "rejected"):
-            p.update(outcome="MISSED", xts=str(now), pnl=0.0)
-            led["closed"].append(p)
+            fq = int(float(o.get("filled_qty") or 0))
+            if fq > 0:
+                tp_leg, sl_leg = _legs(o)
+                p.update(qty=fq, fill=float(o["filled_avg_price"]),
+                         tp_leg=tp_leg, sl_leg=sl_leg, ets=str(now),
+                         deadline=(p.get("deadline_ts")
+                                   or str(now + pd.Timedelta(days=p["ddl_days"]))),
+                         note="partial fill, order died")
+                led["open"].append(p)
+                log(f"  PARTIAL {p['style']} {p['strat']} {p['tk']} kept {fq}sh "
+                    f"@ {p['fill']:.2f} (order {o['status']})")
+            else:
+                p.update(outcome="MISSED", xts=str(now), pnl=0.0)
+                led["closed"].append(p)
         else:
             keep.append(p)
     led["pending"] = keep
@@ -565,12 +593,26 @@ def manage_opts(led, dry, sess):
                     continue
                 # quote-pegged sell not filled -> cancel and reprice next cycle;
                 # after 2 attempts the price goes straight to the bid
-                if o["status"] in ("new", "accepted", "partially_filled"):
-                    if not dry:
-                        broker.cancel_order(p["closing_id"])
-                if o["status"] not in ("partially_filled",):
+                fq = int(float(o.get("filled_qty") or 0))
+                if fq > 0 and o["status"] in ("canceled", "expired",
+                                              "partially_filled"):
+                    # partial sell: book the sold slice, keep the rest working
+                    px = float(o["filled_avg_price"])
+                    part = dict(p, qty=fq, exit=px, xts=str(now),
+                                pnl=round((px - (p.get("fill") or px)) * 100 * fq, 2),
+                                note="partial exit")
+                    led["opt_closed"].append(part)
+                    p["qty"] -= fq
+                    log(f"  OPT PARTIAL EXIT {p['occ']} {fq} @ {px:.2f} "
+                        f"({p['qty']} still working)")
+                    if p["qty"] <= 0:
+                        continue
+                if o["status"] in ("new", "accepted") and not dry:
+                    broker.cancel_order(p["closing_id"])
+                # ANY dead/cancelled closing order releases closing_id so the next
+                # cycle reprices — a cancelled id previously stuck the position
+                if o["status"] not in ("partially_filled",) or fq > 0:
                     p["closing_id"] = None
-                    p["sell_tries"] = p.get("sell_tries", 0)
                 keep.append(p); continue
             o = broker.get_order(p["order_id"])
             if o["status"] in ("canceled", "expired", "rejected"):

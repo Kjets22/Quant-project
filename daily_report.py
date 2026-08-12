@@ -289,6 +289,8 @@ def main():
     if backfill_err:
         flags.append(f"WARN: auto-backfill failed: {backfill_err}")
 
+    for a2 in led.get("adjustments", []):
+        w(f"  ADJUSTMENT: {a2['symbol']} x{a2['qty']} {a2['pnl']:+.2f} — {a2['note']}")
     w("===== FLAGS =====")
     if flags:
         for f in flags:

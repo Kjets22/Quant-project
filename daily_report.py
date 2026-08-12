@@ -194,12 +194,23 @@ def main():
         lo, hi = min(a, b), max(a, b)
         if not (lo <= bq <= hi):
             excess = bq - hi
-            if excess > 0 and clk["is_open"]:
+            if excess > 0:
+                # The report runs at 16:15 — AFTER the close — so the old
+                # clk["is_open"] gate meant this never fired (Aug 4-11 flags).
+                # Use an extended-hours marketable limit instead.
                 try:
-                    broker.market_sell(sym, excess,
-                                       f"fix-orphan-{sym}-{now:%H%M%S}")
-                    flags.append(f"FIXED: sold {excess} orphan {sym} share(s) — "
-                                 f"late fill after cancel; books restored.")
+                    cur = broker.latest_price(sym)
+                    if clk["is_open"]:
+                        broker.market_sell(sym, excess,
+                                           f"fix-orphan-{sym}-{now:%H%M%S}")
+                    elif cur:
+                        broker.limit_sell(sym, excess, cur * 0.997,
+                                          f"fix-orphan-{sym}-{now:%H%M%S}",
+                                          extended=True)
+                    else:
+                        raise RuntimeError("no live quote for orphan sell")
+                    flags.append(f"FIXED: selling {excess} orphan {sym} share(s) — "
+                                 f"late/partial fill after cancel; books restored.")
                 except Exception as e:
                     flags.append(f"FLAG: {sym} has {excess} orphan share(s), "
                                  f"auto-sell failed: {e}")

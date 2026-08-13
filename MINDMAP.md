@@ -251,6 +251,30 @@ bootstrap P(>0)>=90%, positive-without-top-5, >=60% tickers positive). Results:
 => Only vC (multi-day trend rides) has an options-compatible shape among the ATR family.
 Do NOT re-run these three without a fundamentally new thesis or intraday option quotes.
 
+## 10j. THE TWO NEW BOTS (user goal 2026-08-13): vPT geometric patterns + vOB order book
+**vPT — CHAMPION FOUND AND ONE-SHOT-TESTED.** vpt_geometric.py = ZigZag(k×ATR) pivots +
+grammars (HS/iHS, DT/DB, bull/bear flags, asc/desc triangles), causal confirmation-bar
+entries, invalidation stops, measured-move targets, any 1-60min interval, shorts allowed.
+vx_lab.py = the improvement loop (OPT 23-24 / VAL 24-25 / one-touch TEST 25-now, daily-P&L
+annualized Sharpe, persistent leaderboard, exploit-mutation).
+CHAMPION: **hourly, DB+iHS only, LONG only, k=2.0, tol=0.5%, H=48, 8 tickers** →
+OPT 1.65 / VAL 1.24 / **TEST (single touch) Sharpe 1.02, +45.7%, n=641, 58% win,
+maxDD $366 per $1k-trade unit, 10/14 months positive** (vpt_champion.py; curve in
+runs/vpt_champion_curve.csv). A REAL new edge on a new mechanism.
+Iteration ledger (all selected on OPT, confirmed on VAL — do NOT redo):
+  • 5/15/30-min patterns: killed by costs (15-min −248% OPT, 4.4k trades)
+  • bearish patterns/shorts: negative in every surviving config (long-only survives)
+  • DT/triangles/flags: inert; DB+iHS carry the whole edge
+  • volume confirmation: OPT mirage, VAL-negative — discarded
+  • breakeven stops: nil effect; vol-normalized sizing: hurts (NVDA is the earner)
+  • multi-timeframe stacking: impossible (only 60-min OPT-positive)
+Sharpe-3 target NOT reached — champion ceiling ≈1.0-1.3 OOS; honest.
+**vOB — VERDICT PENDING DATA.** vob_data.py backfills end-of-5-min-bar NBBO snapshots
+(threaded, ~25x faster, newest-first; features: spread/imbalance/microprice/quote-rate).
+Early evals (2.5 months): massive OPT-VAL overfit gap (OPT Sharpe 4-6.6 → VAL −5..−22)
+and book features NOT beating the price-only control. Needs the full Feb+ backfill;
+1-min book snapshots = future work. Do not conclude on vOB until ≥6 months of book data.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

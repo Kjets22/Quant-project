@@ -238,6 +238,19 @@ execution code.**
 11. **QQQ-family silence partly explained:** stub bars + stale-price vetoes were eating
     their extended-hours signals (see 2, 8). Expect their live trade rate to rise.
 
+## 10i. OPTIONS TWINS — FINAL VERDICTS (2026-08-12/13, lookahead-corrected, 6-gate screen)
+strat_options_test.py = the canonical instrument (bar-close legs, 40-fill minimum, t>=1.5,
+bootstrap P(>0)>=90%, positive-without-top-5, >=60% tickers positive). Results:
+- **v6: ✗✗✗ (third and FINAL rejection).** All 9 cells negative (means -4..-14%, t -1.9..-3.1,
+  P(edge) 0-3%). The old "8-12w winner" fully vanished with the lookahead fix. CLOSED FOREVER.
+- **v7: ✗.** Stock leg positive (+29.3%) and 3 cells positive-mean (best 2-4w ITM3 +3.7%,
+  P=87%) but EVERY cell is negative without its top-5 trades — 12%-win jackpot profile can't
+  be certified. Stays stock-only.
+- **v4: ✗.** 8/9 negative; ~85% of trades can't match contracts (15-min holds too fast for
+  options). Stays stock-only.
+=> Only vC (multi-day trend rides) has an options-compatible shape among the ATR family.
+Do NOT re-run these three without a fundamentally new thesis or intraday option quotes.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

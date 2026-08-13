@@ -275,6 +275,27 @@ Early evals (2.5 months): massive OPT-VAL overfit gap (OPT Sharpe 4-6.6 → VAL 
 and book features NOT beating the price-only control. Needs the full Feb+ backfill;
 1-min book snapshots = future work. Do not conclude on vOB until ≥6 months of book data.
 
+## 10k. THE SHARPE-3 LOOP (2026-08-13, 2h38m of a 4h budget) — TARGET REACHED
+**CHAMPION: "vPT32" — hourly DB+iHS chart patterns, 32-name universe, fairtrigger stop-entries,
+OOF-meta filter (Q=0.3, trained on OPT trades only), max 8 concurrent, $1k/trade, 5bps.**
+Evidence chain (each window a different role, TEST touched ONCE, by vpt_universe.py --final):
+  OPT 2023-01..2024-07: Sharpe 3.22 (n=1238) — searched
+  VAL 2024-07..2025-07: Sharpe 2.98, +261%, n=778, CI[1.20..3.17] — confirmed
+  TEST 2025-07..now   : **Sharpe 3.43, +291.5%, n=908, 58% win, CI[1.33..3.39], 12/14 months
+  positive** — one shot. Trades: runs/vpt32_test_trades.csv
+  TRANSFER: two independent fresh-universe passes (12 names VAL 1.70; 12 MORE names VAL 3.16)
+CAVEATS (stated, not hidden): entry-mode/maxconc choices saw VAL during rounds B/C (TEST never);
+point estimate sits at the top of its CI — forward expectation ≈ 2.3-2.8; costs modeled 5bps +
+2bp stop slippage; breadth Sharpe assumes concurrent capital for up to 8 positions.
+ROUND LEDGER (do not re-learn these): naive trigger-fills = lookahead (excluding failed breaks,
++3.5 fake Sharpe); FAIR stop entries standalone are -127% (confirmation close IS the signal);
+volume-confirm is an OPT mirage; breakeven stops nil; vol-sizing hurts; 15/30-min patterns die
+on costs; breadth is THE lever (Sharpe ~ sqrt(names) when transfer holds — it held twice).
+**vOB FINAL VERDICT: NO EDGE.** Full Feb-Aug book backfill (25,106 bars), 96-config grid:
+every config OPT Sharpe 10-23 → VAL negative; book features never beat the price-only control.
+L1 NBBO snapshots at 5-15-min horizons contain no post-cost signal — real book alpha is
+millisecond-scale with depth/queue info. Do not retry with bar-level book snapshots.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

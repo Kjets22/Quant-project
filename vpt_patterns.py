@@ -124,7 +124,7 @@ def regime_mask(ts, c):
     idx = pd.DatetimeIndex(ts).tz_localize("UTC").tz_convert("America/New_York")
     days = pd.Series(c, index=idx).groupby(idx.date).last()
     ma = days.rolling(200).mean()
-    ok_by_day = (days > ma).shift(1).fillna(False)
+    ok_by_day = (days > ma).astype(bool).shift(1, fill_value=False)
     return np.array([bool(ok_by_day.get(d, False)) for d in idx.date])
 
 

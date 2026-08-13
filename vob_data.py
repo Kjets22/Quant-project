@@ -93,30 +93,35 @@ def reduce(qs, end_ts):
 
 
 def main():
+    from concurrent.futures import ThreadPoolExecutor
+
     tk = sys.argv[1] if len(sys.argv) > 1 else "QQQ"
     start = sys.argv[2] if len(sys.argv) > 2 else "2026-02-01"
     end = sys.argv[3] if len(sys.argv) > 3 else str(pd.Timestamp.utcnow().date())
     days = [d for d in pd.date_range(start, end, freq="D") if d.dayofweek < 5]
-    print(f"vOB backfill {tk} {start}..{end}: {len(days)} weekdays", flush=True)
+    days = sorted(days, reverse=True)      # recent months first -> model can start
+    print(f"vOB backfill {tk} {start}..{end}: {len(days)} weekdays "
+          f"(threaded, newest first)", flush=True)
     for day in days:
         mo = f"{day:%Y-%m}"
         f = OUT / f"{tk}_{mo}.parquet"
         have = set()
         if f.exists():
             have = set(pd.read_parquet(f)["timestamp"].astype(str))
+        todo = [e for e in bar_grid(day.date())
+                if str(e - pd.Timedelta(minutes=5)) not in have
+                and e <= pd.Timestamp.utcnow().tz_localize(None)
+                - pd.Timedelta(minutes=17)]
+        if not todo:
+            continue
         rows = []
-        for end_ts in bar_grid(day.date()):
-            if str(end_ts - pd.Timedelta(minutes=5)) in have:
-                continue
-            if end_ts > pd.Timestamp.utcnow().tz_localize(None) - pd.Timedelta(minutes=17):
-                break
-            qs = fetch_bar(tk, end_ts)
-            time.sleep(PACE)
-            if qs is None:
-                continue
-            r = reduce(qs, end_ts)
-            if r:
-                rows.append(r)
+        with ThreadPoolExecutor(8) as ex:
+            for qs, end_ts in zip(ex.map(lambda e: fetch_bar(tk, e), todo), todo):
+                if qs is None:
+                    continue
+                r = reduce(qs, end_ts)
+                if r:
+                    rows.append(r)
         if rows:
             new = pd.DataFrame(rows)
             if f.exists():

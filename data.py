@@ -100,9 +100,15 @@ def fetch_alpaca(cfg: Config) -> pd.DataFrame:
              "limit": 10000, "adjustment": "raw", "feed": "sip", "sort": "asc"}
         if token:
             p["page_token"] = token
-        r = requests.get("https://data.alpaca.markets/v2/stocks/bars",
-                         headers=_al.HDRS, params=p, timeout=45)
-        if r.status_code != 200:
+        r = None
+        for attempt in range(7):
+            r = requests.get("https://data.alpaca.markets/v2/stocks/bars",
+                             headers=_al.HDRS, params=p, timeout=45)
+            if r.status_code == 429:          # quota shared with backfills
+                time.sleep(15 * (attempt + 1))
+                continue
+            break
+        if r is None or r.status_code != 200:
             raise RuntimeError(f"alpaca bars {r.status_code}: {r.text[:200]}")
         j = r.json()
         for x in (j.get("bars") or {}).get(d.ticker, []):

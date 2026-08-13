@@ -79,24 +79,41 @@ def _near(a, b, tol):
     return abs(a - b) / max(abs(b), 1e-9) <= tol
 
 
-def detect(df, k=2.0, tol=0.003, max_span=120, sides="both"):
-    """Scan pivots for the pattern grammar; return confirmed trade setups."""
+def detect(df, k=2.0, tol=0.003, max_span=120, sides="both", patterns=None,
+           vol_confirm=0.0):
+    """Scan pivots for the pattern grammar; return confirmed trade setups.
+    patterns: optional whitelist of pattern names (e.g. {"DB","iHS"}).
+    vol_confirm: if >0, the trigger bar's volume must exceed vol_confirm x the
+    20-bar average (classical breakout confirmation)."""
     h = df["high"].to_numpy(float)
     l = df["low"].to_numpy(float)
     c = df["close"].to_numpy(float)
+    v = df["volume"].to_numpy(float) if "volume" in df else None
+    vavg = pd.Series(v).rolling(20).mean().to_numpy() if v is not None else None
     A = atr(h, l, c)
     piv = zigzag(h, l, c, A, k)
     out = []
     n = len(c)
 
+    def _vol_ok(j):
+        if vol_confirm <= 0 or vavg is None or not np.isfinite(vavg[j]):
+            return True
+        return v[j] > vol_confirm * vavg[j]
+
     def emit(i_conf, side, entry_trigger, stop, tgt, name):
         """Find the first bar >= i_conf whose close crosses the trigger."""
+        if patterns is not None and name not in patterns:
+            return
         for j in range(i_conf, min(i_conf + 30, n)):
             if side == "long" and c[j] > entry_trigger:
-                out.append(dict(i=j, side="long", stop=stop, tgt=tgt, name=name))
+                if _vol_ok(j):
+                    out.append(dict(i=j, side="long", stop=stop, tgt=tgt,
+                                    name=name))
                 return
             if side == "short" and c[j] < entry_trigger:
-                out.append(dict(i=j, side="short", stop=stop, tgt=tgt, name=name))
+                if _vol_ok(j):
+                    out.append(dict(i=j, side="short", stop=stop, tgt=tgt,
+                                    name=name))
                 return
 
     for a in range(len(piv) - 4):
@@ -151,14 +168,16 @@ def detect(df, k=2.0, tol=0.003, max_span=120, sides="both"):
                 and -2 * A[i] < drift < 0.5 * A[i]:
             hi_flag = h[i - look:i + 1].max()
             lo_flag = l[i - look:i + 1].min()
-            if c[i] > hi_flag * 0.999 and (hi_flag - lo_flag) < 2.5 * A[i]:
+            if c[i] > hi_flag * 0.999 and (hi_flag - lo_flag) < 2.5 * A[i] \
+                    and (patterns is None or "BullFlag" in patterns) and _vol_ok(i):
                 out.append(dict(i=i, side="long", stop=lo_flag,
                                 tgt=c[i] + abs(pole), name="BullFlag"))
         if pole < 0 and sides in ("both", "short") \
                 and -0.5 * A[i] < drift < 2 * A[i]:
             hi_flag = h[i - look:i + 1].max()
             lo_flag = l[i - look:i + 1].min()
-            if c[i] < lo_flag * 1.001 and (hi_flag - lo_flag) < 2.5 * A[i]:
+            if c[i] < lo_flag * 1.001 and (hi_flag - lo_flag) < 2.5 * A[i] \
+                    and (patterns is None or "BearFlag" in patterns) and _vol_ok(i):
                 out.append(dict(i=i, side="short", stop=hi_flag,
                                 tgt=c[i] - abs(pole), name="BearFlag"))
     # TRIANGLES from pivot trendlines: flat highs + rising lows (asc) etc.
@@ -181,8 +200,10 @@ def detect(df, k=2.0, tol=0.003, max_span=120, sides="both"):
     return out
 
 
-def simulate(df, setups, H=48, cost=COST):
-    """Bracket-walk each setup; non-overlapping; returns per-trade net returns."""
+def simulate(df, setups, H=48, cost=COST, be_after=0.0):
+    """Bracket-walk each setup; non-overlapping; returns per-trade net returns.
+    be_after: if >0, once price moves be_after x risk in favour, the stop moves
+    to entry (breakeven) — classical pattern-trade management."""
     h = df["high"].to_numpy(float)
     l = df["low"].to_numpy(float)
     c = df["close"].to_numpy(float)
@@ -200,19 +221,25 @@ def simulate(df, setups, H=48, cost=COST):
             continue
         if t["side"] == "short" and not (tgt < e < stop):
             continue
+        risk = abs(e - stop)
+        arm = e + be_after * risk if t["side"] == "long" else e - be_after * risk
         res, j = None, i + 1
-        while j < min(i + H + 1, n):
+        cur_stop = stop
+        for j in range(i + 1, min(i + H + 1, n)):
             if t["side"] == "long":
-                if l[j] <= stop:
-                    res = -abs(e - stop) / e; break
+                if l[j] <= cur_stop:
+                    res = (cur_stop - e) / e; break
                 if h[j] >= tgt:
-                    res = abs(tgt - e) / e; break
+                    res = (tgt - e) / e; break
+                if be_after > 0 and h[j] >= arm:
+                    cur_stop = max(cur_stop, e)
             else:
-                if h[j] >= stop:
-                    res = -abs(stop - e) / e; break
+                if h[j] >= cur_stop:
+                    res = (e - cur_stop) / e; break
                 if l[j] <= tgt:
-                    res = abs(e - tgt) / e; break
-            j += 1
+                    res = (e - tgt) / e; break
+                if be_after > 0 and l[j] <= arm:
+                    cur_stop = min(cur_stop, e)
         ex = min(j, n - 1)
         if res is None:
             res = (c[ex] - e) / e * (1 if t["side"] == "long" else -1)

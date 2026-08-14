@@ -58,7 +58,7 @@ def fetch_day(tk, day):
         if r.status_code != 200:
             return None
         j = r.json()
-        qs.extend(j.get("quotes", []))
+        qs.extend(j.get("quotes") or [])       # API sends null on empty pages
         token = j.get("next_page_token")
         if not token:
             return qs

@@ -296,6 +296,28 @@ every config OPT Sharpe 10-23 → VAL negative; book features never beat the pri
 L1 NBBO snapshots at 5-15-min horizons contain no post-cost signal — real book alpha is
 millisecond-scale with depth/queue info. Do not retry with bar-level book snapshots.
 
+## 10l. THE 12-HOUR vOB LOOP (2026-08-14, clock in runs/vob_loop_clock.json, ends ~15:43Z)
+Goal: make an order-book trader profitable, "try all sorts of things, do research."
+INFRA BUILT: vob_ofi_data.py — TRUE Cont-Kukanov-Stoikov L1 OFI from COMPLETE SIP quote
+tapes (3.4M quotes/day QQQ), reduced per-minute: ofi/qimb/micro_dev/spread/nq/mid OHLC.
+Cache data_cache/vob_ofi/{TK}_{date}.parquet. QQQ May1-Aug13 = 72 days, 34,560 min. SPY too.
+ROUND LEDGER (all honest, do NOT redo):
+  R1 IC sanity: 1-min ICs +0.03..+0.04 (matches literature); qimb/micro persist +5-15m,
+     raw OFI mean-reverts by 5m; QQQ spread 0.38bp. Signal real but ~0.1bp-scale.
+  R2 LGBM (vob2_model.py) H=5/15/30 k=1.5: ALL NEGATIVE net AND ~0 gross (H=5 −1.24bp net,
+     Sharpe −6.2). ML can't convert micro-ICs into selection at minute horizons.
+  R3 rule extremes (trailing-10d p95 qimb15/micro15/qimb30/micro30, H=15/30, agreement,
+     high-activity conditioning): ALL 10 variants GROSS-negative (−0.7..−3.4bp). At 15-30m
+     the extremes lean the WRONG way (mean-reversion), consistent w/ R1 OFI decay.
+  R4A hybrid probe (book state at hourly QQQ pattern entries, n=38): MID-tercile book wins
+     across all 6 features (67-75% win) — "calm book breakouts" hypothesis; n too small.
+  R5 hybrid at 15/30m patterns (n=84, OPT48d/VAL24d): calm-qimb30 filter lifts VAL from
+     −29.3bp to +1.4bp (n=17) — filters garbage to breakeven; base stream has no edge to
+     amplify. A book filter cannot CREATE edge on a negative stream.
+NEXT IN QUEUE: seconds-horizon trader w/ maker-fill model (signal lives at 10-300s; passive
+entry earns the half-spread) — decay curve run 4B pending; hourly-champion book overlay
+needs multi-ticker tape backfill for n.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

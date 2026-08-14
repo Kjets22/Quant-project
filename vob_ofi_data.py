@@ -47,15 +47,20 @@ def fetch_day(tk, day):
         p = {"start": start, "end": end, "limit": 10000, "feed": "sip"}
         if token:
             p["page_token"] = token
+        r = None
         for attempt in range(7):
-            r = requests.get(
-                f"https://data.alpaca.markets/v2/stocks/{tk}/quotes",
-                headers=broker.HDRS, params=p, timeout=45)
-            if r.status_code == 429:
+            try:
+                r = requests.get(
+                    f"https://data.alpaca.markets/v2/stocks/{tk}/quotes",
+                    headers=broker.HDRS, params=p, timeout=45)
+            except requests.RequestException:
+                time.sleep(8 * (attempt + 1))
+                continue
+            if r.status_code in (429, 500, 502, 503, 504):
                 time.sleep(12 * (attempt + 1))
                 continue
             break
-        if r.status_code != 200:
+        if r is None or r.status_code != 200:
             return None
         j = r.json()
         qs.extend(j.get("quotes") or [])       # API sends null on empty pages
@@ -67,7 +72,10 @@ def fetch_day(tk, day):
 def reduce_day(qs):
     if not qs or len(qs) < 500:
         return None
-    t = pd.to_datetime([q["t"] for q in qs]).tz_convert(None)
+    # ISO8601: Alpaca trims trailing zeros, so precision varies per quote —
+    # format inference from the first element would crash on mixed precision
+    t = pd.to_datetime([q["t"] for q in qs],
+                       format="ISO8601", utc=True).tz_convert(None)
     bp = np.array([q["bp"] for q in qs], float)
     ap = np.array([q["ap"] for q in qs], float)
     bs = np.array([q["bs"] for q in qs], float)

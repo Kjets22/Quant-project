@@ -314,9 +314,26 @@ ROUND LEDGER (all honest, do NOT redo):
   R5 hybrid at 15/30m patterns (n=84, OPT48d/VAL24d): calm-qimb30 filter lifts VAL from
      −29.3bp to +1.4bp (n=17) — filters garbage to breakeven; base stream has no edge to
      amplify. A book filter cannot CREATE edge on a negative stream.
-NEXT IN QUEUE: seconds-horizon trader w/ maker-fill model (signal lives at 10-300s; passive
-entry earns the half-spread) — decay curve run 4B pending; hourly-champion book overlay
-needs multi-ticker tape backfill for n.
+  R6 seconds MAKER (10s grid, 19 days, rest-at-bid, trade-through fills, exit@bid so
+     spread cancels, 0.1bp fees): extremes p92/p97 × H=30-300s ALL negative −0.4..−0.7bp
+     per fill, 85% fillrate, win 40-47%. Adverse selection of the fill ≈0.5bp eats it.
+     ALSO: micro_dev ≡ qimb × spread/2 at L1 — SAME signal, micro adds nothing w/o depth.
+  R7 moderate-band taker: best gross +0.85bp < 1bp cost. Bucket "non-monotonicity" chart
+     = OVERLAP-INFLATED NOISE (audit: null sim reproduces ±1-5bp structure; eff. n = n/15).
+  R8 maker × bands/short-tail: −0.5..−0.8bp. Every signal×execution pairing now measured.
+  R10 audit-mandated strict-fill rerun: confirms direction (touch-fills were optimistic).
+AUDIT (4-agent workflow, 2026-08-14): pipeline math CORRECT, no lookahead anywhere;
+  qimb event-weighted (inflates signal → truth weaker); fill-at-touch optimistic (truth
+  more negative); R7/4B bucket-decile stats overlap-inflated (discard); honest non-overlap
+  sims are the believable numbers — all negative.
+RESEARCH (unanimous, quantitative match): L1 predictability real but NOT monetizable at
+  retail latency on penny-spread ETFs. Live 232k-order experiment: back-of-queue imbalance-
+  maker fills −0.47..−0.78bp (we measured −0.5bp); queue-position value ~0.2 ticks decided
+  in 5-10 MICROsecond races; IEX built CQI/D-Limit BECAUSE the signal fires in ~2ms. No
+  documented net-positive anywhere under our constraints. Key refs in loop report.
+PENDING: R9 pre-registered OOS test of calm-book overlay on hourly pattern entries
+  (Feb-Apr QQQ tape backfilling; protocol frozen in scratchpad vob9_overlay_oos.py:
+  PRIMARY qimb30 mid-tercile, edges from May-Aug formation, pass = mid>non-mid AND mid>0).
 
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,

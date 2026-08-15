@@ -331,9 +331,18 @@ RESEARCH (unanimous, quantitative match): L1 predictability real but NOT monetiz
   maker fills −0.47..−0.78bp (we measured −0.5bp); queue-position value ~0.2 ticks decided
   in 5-10 MICROsecond races; IEX built CQI/D-Limit BECAUSE the signal fires in ~2ms. No
   documented net-positive anywhere under our constraints. Key refs in loop report.
-PENDING: R9 pre-registered OOS test of calm-book overlay on hourly pattern entries
-  (Feb-Apr QQQ tape backfilling; protocol frozen in scratchpad vob9_overlay_oos.py:
-  PRIMARY qimb30 mid-tercile, edges from May-Aug formation, pass = mid>non-mid AND mid>0).
+  R11 cross-asset lead-lag (26-day QQQ/SPY overlap, non-overlap sims): QQQ book->SPY,
+     SPY book->QQQ, divergence pair — ALL gross-negative (−0.3..−1.6bp). Pair is arbed dead.
+  R9 pre-registered OOS overlay test (Feb-Apr tape, 62 days, one look): FAILED both
+     primary (qimb30) and secondary (micro30). Formation n=10 (hourly-only) → degenerate
+     tercile edges → OOS mid n=1-2. The R4A "calm-book wins" pattern = small-sample noise.
+**LOOP VERDICT (closed 2026-08-15Z): NO profitable order-book trader is achievable with
+L1 NBBO data at retail latency — structural, not implementational. Three independent
+proofs: 11 honest rounds all negative; 4-agent audit found remaining bugs all point
+OPTIMISTIC (truth worse); literature quantitatively matches our numbers (−0.5bp passive
+fills = published −0.47..−0.78bp) with zero documented counterexamples. The overlay
+path also failed its pre-registered test. Full write-up: VOB_ANALYSIS.md. DO NOT
+reopen vOB without L2 depth data + sub-ms execution — neither available on Alpaca.**
 
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,

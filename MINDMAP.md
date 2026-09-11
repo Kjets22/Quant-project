@@ -379,6 +379,53 @@ Evidence (do NOT redo):
 cycles, zero retraining (model files jump 20260824 → 20260907), no exit management.
 Root cause UNKNOWN — task shows Ready and cycles resumed 9/7 unaided. Watch for repeat.
 
+## 10n. WHY THE STRATEGIES AREN'T WORKING (2026-09-10, 4-agent diagnosis, 630k tokens)
+User asked: regime change? **ANSWER: NO. There was never a demonstrable edge in the
+strategies that made money, and the money they made came from a bracket BUG.**
+All four agents independently returned "strong" confidence and agree.
+  1. NO REGIME CHANGE where it matters. Breakout follow-through (P(hit tp*ATR before
+     sl*ATR), the strategies' own payoff terms) is at the 47th (v3) / 54th (v4) / 64th
+     (v6) percentile of 1,237 historical 20-session windows — dead normal. THE ANOMALY
+     WAS THE WINDOW THAT WORKED: Jul 10-Aug 13 was 99.9th pctile for v4 (z=+2.59),
+     94th for v6. We watched a lucky streak end, not a system break.
+     Also: raw breakout geometry has NEGATIVE expectancy in EVERY era incl. validation
+     (v3 -0.14 R, v4 -0.13 R dev-era) — buying a RANDOM bar beat buying a breakout.
+  2. NO EDGE, STATISTICALLY. 0 of 12 strategies has a bootstrap CI above zero. Only
+     strategy surviving BH-FDR correction is vM — and it LOSES (t=-3.09, -$1.24/trade).
+     Top 5 of 279 trades = 102.7% of all profit (remove them -> book is negative).
+     86% of the +$780 is pre-2026-08-12 multi-day trades that ran with NO working
+     bracket. The book "as specified" is n=209, +$106, t=+0.81.
+  3. THE SEARCH IS AN OVERFITTING ENGINE. 3,798 documented candidate evals. Rotating
+     hold-out: elite picked on 2 windows was OOS-NEGATIVE in 4 of 4 searches; only
+     16.2% of apparent in-sample advantage transferred. Pure-noise null with N=3,798
+     gives E[max z]=4.06 sd, and champions' claimed fitness (vR +7.0%, vM +6.6%,
+     vS +6.2%) sits AT OR BELOW each search's own pool max. Indistinguishable from noise.
+  4. MODELS ARE NOT DECAYING — calibration has IMPROVED yearly (v6 gap 0.502->0.125).
+     • v6 ("big winner"): 19 quarters honest walk-forward, paired edge +0.007 R (t=0.09);
+       model-gated bars (+0.056 R) do WORSE than random eligible bars (+0.077 R). Its
+       live P&L was being long 6 days, not the model. Matches MINDMAP 10f's -3bps/trade.
+     • vC is BROKEN: target-first hit rate 0.000 — 0 of 2,738 resolved bars. Its ~30-ATR
+       target is unreachable; E[R] -0.432 (t=-7.64); gate rate ran 4%->25% vs 7% design.
+       THIS IS THE PARENT SIGNAL OF THE -$2,883 vC-OPT-2W BOOK.
+     • v3/v4 + QQQ family DO have real, non-decaying edges (paired WF v4 +0.311 R t=9.03,
+       v3 +0.197 R t=7.74) — but 1R is only 17-43 bps of notional, so v4's edge is worth
+       +$0.83/trade and a 10bp round trip costs 0.42-0.59 R. EDGE < FRICTION.
+  5. **REAL BUG — thr is fit on TRAINING rows.** alpaca_bot2.py ~267-272: thr =
+     quantile(clf.predict_proba(X.iloc[tr]), 0.93) on rows LightGBM memorised.
+     In-sample vs OOS AUC: vC 1.000/0.311, v7 0.998/0.766, v6 0.918/0.473. So the
+     "top 7%" gate is meaningless — realized gate rates run 0.21% (vQ2) to 25% (vC).
+  6. VOL COMPRESSION IS REAL but acts as a COST problem, not a regime change: atrpct
+     PSI 1.94-2.39 vs training pool; stop distance fell 107-137bps -> 59bps (v7),
+     47->28 (v3). 1R is now below the round-trip cost budget.
+  7. OPTIONS: signals carry no directional edge AND the wrapper levers 27-178x onto an
+     instrument whose theta bill is 6-14x the move the signal produces. FRICTIONLESS
+     replay still loses -16.8% (vC) / -34.5% (vM) of premium. Execution is only ~10-13%
+     of the damage — the structure is the problem, not the fills.
+CONSEQUENCE: do NOT tune these strategies or hunt for a regime filter — there is no edge
+to recover. The only statistically real signals in the repo are v3/v4/QQQ-family (too
+small for the cost structure) and vPT32 (validated, undeployed). Fix the thr bug before
+ANY further model work, or every future search repeats this.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

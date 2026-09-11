@@ -344,6 +344,41 @@ fills = published −0.47..−0.78bp) with zero documented counterexamples. The 
 path also failed its pre-registered test. Full write-up: VOB_ANALYSIS.md. DO NOT
 reopen vOB without L2 depth data + sub-ms execution — neither available on Alpaca.**
 
+## 10m. THE HALT COUNTERFACTUAL (2026-09-10, 4-agent workflow, 722k tokens)
+DD_BREAKER ($3k) tripped 2026-08-13 15:32Z; zero new entries for 4 weeks; equity
+$96,044.84, 100% cash. User removed the breaker (DD_BREAKER=None, halted cleared,
+commit 2bbe04e). DAILY_LOSS_LIMIT ($400/day) is now the ONLY automatic brake.
+**ANSWER: had it kept trading, equity would be ~$92,300 (range $89k-$94.3k) — the
+breaker SAVED ~$3,800.** Stock arms ≈ −$300 (a wash); options twins ≈ −$3,415.
+If the bot had ALSO been up through the outage below, ≈ −$5,600 → ~$90,400.
+Evidence (do NOT redo):
+  • Stock replay, 432 orders, as-of-date models, no lookahead: raw −$381. Signal
+    re-derivation validated: 563 derived vs 556 the bot logged (+1.3%, r=0.977,
+    95.8% of 833 cycles exact). n_sig increments BEFORE the halt gate (line 788 vs
+    792) — that counter is the ground truth for halt-window signal counts; the vM
+    block is gated earlier (line 892) so vM is EXCLUDED from it.
+  • Options replay on REAL 5-min option trade bars: −$3,415 (vCO −$1,972, vMO
+    −$1,443, 19 trades). pick_contract reproduced 8/8 real OCC symbols; recovered
+    84% of realized P&L on the 6 real post-fix trades. Self-assessed ~16% optimistic
+    (no historical NBBO on this plan → cannot see wide-quote overpays).
+  • **AUDIT KILLED AN EARLIER +$405 STOCK FIGURE — era artifact.** A "+$2.28/trade
+    stop-happy engine" correction was calibrated on ALL real trades, but pre-2026-08-12
+    bias (−$1.97/trade) vs post-fix (−$0.41, 100% outcome agreement) differ because the
+    "LEGS DEAD → synthetic" fix only landed 8/12; before it multi-day positions ran with
+    NO working bracket. The counterfactual window is entirely post-fix → correction is
+    ~+$75, not +$786.
+  • **PROFIT CONCENTRATION (important):** the stock book's +$780 is +$670 TIME exits on
+    v6/v7/vC, and $348 of it (45% of everything) is ONE pre-fix trade — v6 MSFT 7/24
+    @381.5, stop 378.85, ran 8 days UNPROTECTED to 468. Median real trade is −$1.48.
+    Stock-book edge is far thinner than the headline; mean +$2.80/signal has 95% CI
+    [−0.84, +6.44] — not distinguishable from zero.
+  • Options books are −$4,720 of the −$4,373 total drawdown, i.e. MORE than the entire
+    account loss. The breaker never stopped the bleed (it only blocks NEW entries):
+    during the halt, 25 stock closes made +$177 while 6 option closes lost −$3,177.
+**OPERATIONAL: 13.9-DAY SCHEDULER DEATH, 2026-08-24 14:31Z → 09-07 11:01Z.** Zero
+cycles, zero retraining (model files jump 20260824 → 20260907), no exit management.
+Root cause UNKNOWN — task shows Ready and cycles resumed 9/7 unaided. Watch for repeat.
+
 ## 11. COMPLETED — NEVER REDO
 - Tournaments: Evo I–VI + quant_rth + probes (2to1, pct, vc_time, vc_target) — all concluded,
   results in §6/§7; the RTH question is CLOSED

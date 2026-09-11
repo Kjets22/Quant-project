@@ -1,43 +1,43 @@
-DAILY REPORT — 2026-09-10 19:29 local  (market closed)
-account equity $96,044.84   day P&L +0.00   cash $96,044.84
+DAILY REPORT — 2026-09-11 16:17 local  (market closed)
+account equity $95,810.48   day P&L -234.36   cash $91,409.27
 
 ===== MARKET arm =====
   strat  closed   win%  missed  realized$  open   unreal$  avg slip
-     v3      47    45%       2     +36.91     0     +0.00    +1.0bp
+     v3      48    44%       2     +35.14     0     +0.00    +0.8bp
      v4      40    32%       9     +40.24     0     +0.00    +0.6bp
-     v6      29    14%       1    +236.85     0     +0.00    +8.1bp
-     v7      23    13%       3     +74.08     0     +0.00    +3.9bp
-     vC      16     0%       0      +7.45     0     +0.00    -5.1bp
+     v6      29    14%       2    +236.85     1     +1.94    +8.7bp
+     v7      23    13%       4     +74.08     0     +0.00    +3.9bp
+     vC      16     0%       1      +7.45     1     -1.04    -7.9bp
      vQ       2    50%       0      +0.39     0     +0.00    +2.2bp
     vQ2       1   100%       0      +3.76     0     +0.00    -4.1bp
      vA       4    50%       0      -2.11     0     +0.00    +5.4bp
      vP       7    57%       1      -1.22     0     +0.00    -0.2bp
      vR       3    67%       0      +3.03     0     +0.00    +2.4bp
-     vS       7    43%       1      -1.62     0     +0.00    +2.1bp
-     vM      25     0%       0     -25.39     0     +0.00    +4.6bp
-  TOTAL     204    26%      17    +372.37     0     +0.00
+     vS       7    43%       1      -1.62     1     -1.57    +1.3bp
+     vM      27     0%       0     -27.00     0     +0.00    +3.7bp
+  TOTAL     207    26%      20    +368.99     3     -0.67
 
 ===== LIMIT arm =====
   strat  closed   win%  missed  realized$  open   unreal$  avg slip
-     v3      39    28%      32      -2.37     0     +0.00    -6.5bp
+     v3      40    28%      32      -4.15     0     +0.00    -6.5bp
      v4      33    33%      34     +55.97     0     +0.00    -9.2bp
-     v6      25    16%       6    +265.19     0     +0.00    -4.2bp
-     v7      22     9%       7     +75.66     0     +0.00    -3.9bp
-     vC      16     0%       2     +13.84     0     +0.00   -10.2bp
+     v6      25    16%       8    +265.19     0     +0.00    -4.2bp
+     v7      22     9%       8     +75.66     0     +0.00    -3.9bp
+     vC      16     0%       3     +13.84     1     -1.02   -12.7bp
      vQ       3    33%       0      -0.61     0     +0.00    -4.0bp
     vQ2       1   100%       0      +4.08     0     +0.00    -4.1bp
      vA       4    75%       1      +5.38     0     +0.00    -5.8bp
      vP       6    50%       4      -1.57     0     +0.00    -3.7bp
      vR       2    50%       2      +1.30     0     +0.00    -0.6bp
-     vS       8    38%       4      -2.71     0     +0.00    -3.3bp
-     vM      20     0%       5      -6.53     0     +0.00    +1.3bp
-  TOTAL     179    22%      97    +407.63     0     +0.00
+     vS       8    38%       4      -2.71     1     -1.56    -3.4bp
+     vM      22     0%       5      -8.08     0     +0.00    +0.4bp
+  TOTAL     182    22%     101    +404.30     2     -2.58
 
-A/B VERDICT SO FAR: LIMIT arm leads by $35.26 (mkt $+372.37 vs lmt $+407.63, incl. unrealized)
+A/B VERDICT SO FAR: LIMIT arm leads by $33.40 (mkt $+368.32 vs lmt $+401.72, incl. unrealized)
 
 ===== OPTIONS strategies (separate books) =====
-  vC-OPT-2W (vC signals -> 1-2w ATM calls): closed 15 | win% 20% | realized $-2,883.00 | open 0 | unreal $+0.00
-  vM-OPT-0DTE (vM signals -> 0DTE calls/puts): closed 8 | win% 12% | realized $-1,837.00 | open 0 | unreal $+0.00
+  vC-OPT-2W (vC signals -> 1-2w ATM calls): closed 16 | win% 19% | realized $-2,883.00 | open 0 | unreal $+0.00
+  vM-OPT-0DTE (vM signals -> 0DTE calls/puts): closed 9 | win% 11% | realized $-2,061.00 | open 0 | unreal $+0.00
   head-to-head: vC stock (mkt) $+7.45 vs vC-OPT-2W $-2,883.00
 
 ===== vM / vMO — MORNING engine (simulation-only, its own daily run) =====
@@ -68,8 +68,8 @@ A/B VERDICT SO FAR: LIMIT arm leads by $35.26 (mkt $+372.37 vs lmt $+407.63, inc
      vR   1    -1.78  STOP:1
      vS   7    -3.15  STOP:4 TARGET:3
   TOTAL  92  -102.89  (78 outage, 14 rule-block)
-  ADJUSTED balance (broker equity + recovered): $95,941.95
+  ADJUSTED balance (broker equity + recovered): $95,707.59
 
   ADJUSTMENT: QQQ x1 +32.68 — orphan share from 7/24 dryrun phantom exit, sold 8/12 @ 725.18 (order 8311bd16)
 ===== FLAGS =====
-  CRITICAL: drawdown breaker is HALTED — no new entries until reviewed.
+  none — all systems normal

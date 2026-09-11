@@ -48,7 +48,7 @@ NOTIONAL = 1_000.0
 MAX_POSITIONS = 24                 # per-arm backstop (~$24k); the real limiter is
                                    # one position per ticker PER STRATEGY
 DAILY_LOSS_LIMIT = 400.0           # shared (two arms trade in parallel)
-DD_BREAKER = 3_000.0
+DD_BREAKER = None                  # None = no drawdown halt (user, 2026-09-10)
 MIN_ATR_PCT = 0.0012
 SEL_Q = 0.93
 #          name  tickers  mins hbar  mode      tp    sl  features  selection      ddl
@@ -754,7 +754,8 @@ def cycle(dry=False):
                           pd.Timestamp.utcnow().tz_localize(None))
             except Exception as e:
                 log(f"  [opt queue error {s['tk']}: {e}]")
-    if drawdown >= DD_BREAKER and not led["state"]["halted"]:
+    if DD_BREAKER is not None and drawdown >= DD_BREAKER \
+            and not led["state"]["halted"]:
         led["state"]["halted"] = True
         log(f"!! DRAWDOWN BREAKER — HALTED (edit {LEDGER} to resume)")
     no_new = led["state"]["halted"] or day_pnl <= -DAILY_LOSS_LIMIT

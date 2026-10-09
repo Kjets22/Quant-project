@@ -13061,3 +13061,225 @@
 2026-10-08 20:01:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
 2026-10-08 20:01:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
 2026-10-08 20:02:16Z  A/B cycle done | signals=0 open=14 pending=0 closed=1119
+2026-10-08 20:31:03Z  A/B cycle | equity=$95,473.34 day=+1404.62 dd=4944.16 | session=ext
+2026-10-08 20:31:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 20:31:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 20:32:14Z    SIGNAL vC TLT bar=2026-10-08 19:00:00 p=0.000 sig_px=77.86 tgt=85.33 stop=77.11 qty=12
+2026-10-08 20:32:18Z  A/B cycle done | signals=1 open=14 pending=0 closed=1119
+2026-10-08 20:46:03Z  A/B cycle | equity=$95,475.58 day=+1406.86 dd=4941.92 | session=ext
+2026-10-08 20:46:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 20:46:09Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 20:47:12Z  A/B cycle done | signals=0 open=14 pending=0 closed=1119
+2026-10-08 21:01:03Z  A/B cycle | equity=$95,482.75 day=+1414.03 dd=4934.75 | session=ext
+2026-10-08 21:01:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 21:01:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 21:02:14Z  A/B cycle done | signals=0 open=14 pending=0 closed=1119
+2026-10-08 21:16:03Z  A/B cycle | equity=$95,480.83 day=+1412.11 dd=4936.67 | session=ext
+2026-10-08 21:16:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 21:16:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 21:17:11Z    SIGNAL vC TLT bar=2026-10-08 20:00:00 p=0.000 sig_px=77.89 tgt=85.25 stop=77.15 qty=12
+2026-10-08 21:17:16Z  A/B cycle done | signals=1 open=14 pending=0 closed=1119
+2026-10-08 21:31:03Z  A/B cycle | equity=$95,477.59 day=+1408.87 dd=4939.91 | session=ext
+2026-10-08 21:31:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 21:31:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 21:32:13Z  A/B cycle done | signals=0 open=14 pending=0 closed=1119
+2026-10-08 21:46:03Z  A/B cycle | equity=$95,479.45 day=+1410.73 dd=4938.05 | session=ext
+2026-10-08 21:46:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 21:46:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 21:47:12Z  A/B cycle done | signals=0 open=14 pending=0 closed=1119
+2026-10-08 22:01:04Z  A/B cycle | equity=$95,483.18 day=+1414.46 dd=4934.32 | session=ext
+2026-10-08 22:01:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 22:01:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 22:02:15Z  A/B cycle done | signals=0 open=14 pending=0 closed=1119
+2026-10-08 22:16:03Z  A/B cycle | equity=$95,486.47 day=+1417.75 dd=4931.03 | session=ext
+2026-10-08 22:16:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 22:16:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 22:17:10Z    SIGNAL vC TLT bar=2026-10-08 21:00:00 p=0.000 sig_px=77.85 tgt=84.93 stop=77.14 qty=12
+2026-10-08 22:17:14Z  A/B cycle done | signals=1 open=14 pending=0 closed=1119
+2026-10-08 22:31:03Z  A/B cycle | equity=$95,486.10 day=+1417.38 dd=4931.40 | session=ext
+2026-10-08 22:31:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 22:31:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 22:32:16Z  A/B cycle done | signals=0 open=14 pending=0 closed=1119
+2026-10-08 22:46:03Z  A/B cycle | equity=$95,481.78 day=+1413.06 dd=4935.72 | session=ext
+2026-10-08 22:46:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 22:46:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 22:47:07Z    SIGNAL v4 XLE bar=2026-10-08 22:15:00 p=0.312 sig_px=65.12 tgt=65.68 stop=64.98 qty=15
+2026-10-08 22:47:14Z  A/B cycle done | signals=1 open=14 pending=2 closed=1119
+2026-10-08 23:01:03Z  A/B cycle | equity=$95,473.88 day=+1405.16 dd=4943.62 | session=ext
+2026-10-08 23:01:04Z    MISSED lmt v4 XLE (limit 65.12 never filled)
+2026-10-08 23:01:09Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 23:01:10Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 23:02:13Z  A/B cycle done | signals=0 open=14 pending=1 closed=1120
+2026-10-08 23:16:03Z  A/B cycle | equity=$95,474.62 day=+1405.90 dd=4942.88 | session=ext
+2026-10-08 23:16:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 23:16:08Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-08 23:17:04Z    SIGNAL v4 QQQ bar=2026-10-08 22:45:00 p=0.273 sig_px=748.99 tgt=754.20 stop=747.69 qty=1
+2026-10-08 23:17:08Z    SIGNAL vC TLT bar=2026-10-08 22:00:00 p=0.000 sig_px=77.75 tgt=84.56 stop=77.07 qty=12
+2026-10-08 23:17:13Z  A/B cycle done | signals=2 open=14 pending=3 closed=1120
+2026-10-08 23:31:03Z  A/B cycle | equity=$95,471.25 day=+1402.53 dd=4946.25 | session=ext
+2026-10-08 23:31:03Z    FILLED mkt v4 XLE @ 65.17 (signal 65.12, slip +7.4 bps)
+2026-10-08 23:31:04Z    FILLED mkt v4 QQQ @ 748.84 (signal 748.99, slip -2.0 bps)
+2026-10-08 23:31:04Z    FILLED lmt v4 QQQ @ 748.84 (signal 748.99, slip -2.0 bps)
+2026-10-08 23:31:08Z    CLOSED mkt v7 QQQ STOP pnl=-3.98
+2026-10-08 23:31:09Z    CLOSED lmt v7 QQQ STOP pnl=-3.95
+2026-10-08 23:32:09Z    SIGNAL v4 QQQ bar=2026-10-08 23:00:00 p=0.278 sig_px=748.83 tgt=753.68 stop=747.62 qty=1
+2026-10-08 23:32:16Z  A/B cycle done | signals=1 open=15 pending=0 closed=1122
+2026-10-08 23:46:03Z  A/B cycle | equity=$95,469.83 day=+1401.11 dd=4947.67 | session=ext
+2026-10-08 23:47:02Z    SIGNAL v4 XLE bar=2026-10-08 23:15:00 p=0.303 sig_px=65.16 tgt=65.63 stop=65.04 qty=15
+2026-10-08 23:47:09Z  A/B cycle done | signals=1 open=15 pending=1 closed=1122
+2026-10-09 00:01:03Z  A/B cycle | equity=$95,479.51 day=+1410.79 dd=4937.99 | session=closed
+2026-10-09 00:16:03Z  A/B cycle | equity=$95,490.90 day=+1422.18 dd=4926.60 | session=closed
+2026-10-09 08:01:03Z  A/B cycle | equity=$95,494.64 day=-812.33 dd=4922.86 | session=ext
+2026-10-09 08:03:32Z  A/B cycle done | signals=1 open=15 pending=0 closed=1123
+2026-10-09 08:16:03Z  A/B cycle | equity=$95,470.36 day=-836.61 dd=4947.14 | session=ext
+2026-10-09 08:16:12Z    CLOSED mkt v4 XLE STOP pnl=-5.70
+2026-10-09 08:17:13Z  A/B cycle done | signals=0 open=14 pending=0 closed=1124
+2026-10-09 08:31:03Z  A/B cycle | equity=$95,474.15 day=-832.82 dd=4943.35 | session=ext
+2026-10-09 08:31:04Z    [time-exit order failed XLE: HTTPSConnectionPool(host='paper-api.alpaca.markets', port=443): Max retries exceeded with url: /v2/orders (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001F14836F1A0>: Failed to establish a new connection: [WinError 10055] An operation on a socket could not be performed because the system lacked sufficient buffer space or because a queue was full')) — retrying next cycle]
+2026-10-09 08:32:10Z  A/B cycle done | signals=1 open=14 pending=0 closed=1124
+2026-10-09 08:46:03Z  A/B cycle | equity=$95,475.93 day=-831.04 dd=4941.57 | session=ext
+2026-10-09 08:46:04Z    CLOSED lmt vC XLE TIME pnl=+58.08
+2026-10-09 08:46:13Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-09 08:46:13Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-09 08:47:12Z  A/B cycle done | signals=1 open=13 pending=0 closed=1125
+2026-10-09 09:01:03Z  A/B cycle | equity=$95,471.81 day=-835.16 dd=4945.69 | session=ext
+2026-10-09 09:01:12Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-09 09:01:12Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-09 09:02:12Z  A/B cycle done | signals=1 open=13 pending=0 closed=1125
+2026-10-09 09:16:03Z  A/B cycle | equity=$95,472.50 day=-834.47 dd=4945.00 | session=ext
+2026-10-09 09:17:09Z  A/B cycle done | signals=3 open=13 pending=0 closed=1125
+2026-10-09 09:31:03Z  A/B cycle | equity=$95,471.07 day=-835.90 dd=4946.43 | session=ext
+2026-10-09 09:31:10Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-09 09:31:11Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-09 09:32:11Z  A/B cycle done | signals=1 open=13 pending=0 closed=1125
+2026-10-09 09:46:03Z  A/B cycle | equity=$95,471.63 day=-835.34 dd=4945.87 | session=ext
+2026-10-09 09:47:09Z  A/B cycle done | signals=2 open=13 pending=0 closed=1125
+2026-10-09 10:01:03Z  A/B cycle | equity=$95,469.31 day=-837.66 dd=4948.19 | session=ext
+2026-10-09 10:02:10Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 10:16:03Z  A/B cycle | equity=$95,472.51 day=-834.46 dd=4944.99 | session=ext
+2026-10-09 10:17:11Z  A/B cycle done | signals=4 open=13 pending=0 closed=1125
+2026-10-09 10:31:03Z  A/B cycle | equity=$95,470.44 day=-836.53 dd=4947.06 | session=ext
+2026-10-09 10:32:10Z  A/B cycle done | signals=1 open=13 pending=0 closed=1125
+2026-10-09 10:46:03Z  A/B cycle | equity=$95,466.53 day=-840.44 dd=4950.97 | session=ext
+2026-10-09 10:47:07Z  A/B cycle done | signals=2 open=13 pending=0 closed=1125
+2026-10-09 11:01:03Z  A/B cycle | equity=$95,467.15 day=-839.82 dd=4950.35 | session=ext
+2026-10-09 11:02:14Z  A/B cycle done | signals=1 open=13 pending=0 closed=1125
+2026-10-09 11:16:03Z  A/B cycle | equity=$95,466.31 day=-840.66 dd=4951.19 | session=ext
+2026-10-09 11:17:11Z  A/B cycle done | signals=3 open=13 pending=0 closed=1125
+2026-10-09 11:31:03Z  A/B cycle | equity=$95,468.41 day=-838.56 dd=4949.09 | session=ext
+2026-10-09 11:32:08Z  A/B cycle done | signals=1 open=13 pending=0 closed=1125
+2026-10-09 11:46:03Z  A/B cycle | equity=$95,462.25 day=-844.72 dd=4955.25 | session=ext
+2026-10-09 11:47:12Z  A/B cycle done | signals=1 open=13 pending=0 closed=1125
+2026-10-09 12:01:03Z  A/B cycle | equity=$95,468.37 day=-838.60 dd=4949.13 | session=ext
+2026-10-09 12:01:12Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-09 12:01:12Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"2","held_for_orders":"2","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["30555afb-506f-4ee3-af50-1f2c2cdbc6ac","c8d49269-3d19-4cf8-9f91-598a3a161b5f"],"symbol":"QQQ"}]
+2026-10-09 12:02:13Z  A/B cycle done | signals=1 open=13 pending=0 closed=1125
+2026-10-09 12:16:03Z  A/B cycle | equity=$95,463.15 day=-843.82 dd=4954.35 | session=ext
+2026-10-09 12:17:13Z  A/B cycle done | signals=2 open=13 pending=0 closed=1125
+2026-10-09 12:31:03Z  A/B cycle | equity=$95,466.37 day=-840.60 dd=4951.13 | session=ext
+2026-10-09 12:32:12Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 12:46:03Z  A/B cycle | equity=$95,453.94 day=-853.03 dd=4963.56 | session=ext
+2026-10-09 12:47:10Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 13:01:03Z  A/B cycle | equity=$95,452.21 day=-854.76 dd=4965.29 | session=ext
+2026-10-09 13:02:13Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 13:16:06Z  A/B cycle | equity=$95,456.22 day=-850.75 dd=4961.28 | session=ext
+2026-10-09 13:17:19Z  A/B cycle done | signals=1 open=13 pending=0 closed=1125
+2026-10-09 13:31:03Z  A/B cycle | equity=$94,293.32 day=-2013.65 dd=6124.18 | session=rth
+2026-10-09 13:32:22Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 13:46:03Z  A/B cycle | equity=$94,415.77 day=-1891.20 dd=6001.73 | session=rth
+2026-10-09 13:47:20Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 13:56:03Z  A/B cycle | equity=$94,417.81 day=-1889.16 dd=5999.69 | session=rth
+2026-10-09 13:57:27Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 14:01:03Z  A/B cycle | equity=$94,317.26 day=-1989.71 dd=6100.24 | session=rth
+2026-10-09 14:02:38Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 14:06:03Z  A/B cycle | equity=$94,352.79 day=-1954.18 dd=6064.71 | session=rth
+2026-10-09 14:07:13Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 14:11:03Z  A/B cycle | equity=$94,355.45 day=-1951.52 dd=6062.05 | session=rth
+2026-10-09 14:12:16Z  A/B cycle done | signals=0 open=13 pending=0 closed=1125
+2026-10-09 14:16:03Z  A/B cycle | equity=$94,455.35 day=-1851.62 dd=5962.15 | session=rth
+2026-10-09 14:16:05Z    CLOSED mkt vC JPM TIME pnl=+15.09
+2026-10-09 14:16:07Z    CLOSED lmt vC JPM TIME pnl=+15.09
+2026-10-09 14:16:10Z    CLOSED mkt vC XLE TIME pnl=+60.98
+2026-10-09 14:16:17Z    OPT SELL JPM261009C00327500 x2 limit 4.09 (TIME, try 1)
+2026-10-09 14:17:25Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 14:21:03Z  A/B cycle | equity=$94,640.89 day=-1666.08 dd=5776.61 | session=rth
+2026-10-09 14:21:09Z    OPT CLOSED JPM261009C00327500 TIME pnl=+60.00
+2026-10-09 14:22:14Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 14:26:03Z  A/B cycle | equity=$95,143.23 day=-1163.74 dd=5274.27 | session=rth
+2026-10-09 14:27:11Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 14:31:03Z  A/B cycle | equity=$95,105.57 day=-1201.40 dd=5311.93 | session=rth
+2026-10-09 14:32:12Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 14:36:03Z  A/B cycle | equity=$95,113.97 day=-1193.00 dd=5303.53 | session=rth
+2026-10-09 14:37:13Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 14:41:03Z  A/B cycle | equity=$95,464.69 day=-842.28 dd=4952.81 | session=rth
+2026-10-09 14:42:15Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 14:46:03Z  A/B cycle | equity=$95,415.69 day=-891.28 dd=5001.81 | session=rth
+2026-10-09 14:47:15Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 14:51:03Z  A/B cycle | equity=$95,439.86 day=-867.11 dd=4977.64 | session=rth
+2026-10-09 14:52:12Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 14:56:03Z  A/B cycle | equity=$95,464.61 day=-842.36 dd=4952.89 | session=rth
+2026-10-09 14:57:12Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:01:03Z  A/B cycle | equity=$95,470.79 day=-836.18 dd=4946.71 | session=rth
+2026-10-09 15:02:15Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:06:03Z  A/B cycle | equity=$95,424.85 day=-882.12 dd=4992.65 | session=rth
+2026-10-09 15:07:13Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:11:03Z  A/B cycle | equity=$95,419.99 day=-886.98 dd=4997.51 | session=rth
+2026-10-09 15:12:16Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:16:03Z  A/B cycle | equity=$95,550.50 day=-756.47 dd=4867.00 | session=rth
+2026-10-09 15:17:29Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:21:03Z  A/B cycle | equity=$95,628.94 day=-678.03 dd=4788.56 | session=rth
+2026-10-09 15:22:19Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:26:03Z  A/B cycle | equity=$95,644.94 day=-662.03 dd=4772.56 | session=rth
+2026-10-09 15:27:19Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:31:03Z  A/B cycle | equity=$95,672.55 day=-634.42 dd=4744.95 | session=rth
+2026-10-09 15:32:20Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:36:03Z  A/B cycle | equity=$95,629.82 day=-677.15 dd=4787.68 | session=rth
+2026-10-09 15:37:11Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:41:03Z  A/B cycle | equity=$95,459.86 day=-847.11 dd=4957.64 | session=rth
+2026-10-09 15:42:16Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:46:03Z  A/B cycle | equity=$95,443.16 day=-863.81 dd=4974.34 | session=rth
+2026-10-09 15:47:24Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:51:03Z  A/B cycle | equity=$95,528.31 day=-778.66 dd=4889.19 | session=rth
+2026-10-09 15:52:27Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 15:56:03Z  A/B cycle | equity=$95,514.29 day=-792.68 dd=4903.21 | session=rth
+2026-10-09 15:57:24Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 16:01:03Z  A/B cycle | equity=$95,453.63 day=-853.34 dd=4963.87 | session=rth
+2026-10-09 16:02:17Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 16:06:03Z  A/B cycle | equity=$95,277.77 day=-1029.20 dd=5139.73 | session=rth
+2026-10-09 16:07:17Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 16:16:03Z  A/B cycle | equity=$95,369.31 day=-937.66 dd=5048.19 | session=rth
+2026-10-09 16:17:23Z  A/B cycle done | signals=3 open=10 pending=0 closed=1128
+2026-10-09 16:31:03Z  A/B cycle | equity=$95,416.93 day=-890.04 dd=5000.57 | session=rth
+2026-10-09 16:31:11Z    OPT SELL XLE261009C00062500 x10 limit 3.04 (TIME, try 1)
+2026-10-09 16:32:26Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 16:46:03Z  A/B cycle | equity=$95,283.94 day=-1023.03 dd=5133.56 | session=rth
+2026-10-09 16:47:18Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 17:01:03Z  A/B cycle | equity=$95,315.43 day=-991.54 dd=5102.07 | session=rth
+2026-10-09 17:01:10Z    OPT SELL XLE261009C00062500 x10 limit 2.91 (TIME, try 2)
+2026-10-09 17:02:39Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 17:16:03Z  A/B cycle | equity=$95,254.07 day=-1052.90 dd=5163.43 | session=rth
+2026-10-09 17:17:33Z  A/B cycle done | signals=2 open=10 pending=0 closed=1128
+2026-10-09 17:31:03Z  A/B cycle | equity=$95,230.01 day=-1076.96 dd=5187.49 | session=rth
+2026-10-09 17:31:10Z    OPT SELL XLE261009C00062500 x10 limit 2.61 (TIME, try 3)
+2026-10-09 17:32:30Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 17:46:03Z  A/B cycle | equity=$95,233.23 day=-1073.74 dd=5184.27 | session=rth
+2026-10-09 17:46:10Z    OPT CLOSED XLE261009C00062500 TIME pnl=+1690.00
+2026-10-09 17:47:45Z  A/B cycle done | signals=1 open=10 pending=0 closed=1128
+2026-10-09 18:01:03Z  A/B cycle | equity=$95,248.36 day=-1058.61 dd=5169.14 | session=rth
+2026-10-09 18:02:41Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 18:16:07Z  A/B cycle | equity=$95,279.00 day=-1027.97 dd=5138.50 | session=rth
+2026-10-09 18:17:37Z  A/B cycle done | signals=3 open=10 pending=0 closed=1128
+2026-10-09 18:31:03Z  A/B cycle | equity=$95,316.49 day=-990.48 dd=5101.01 | session=rth
+2026-10-09 18:32:56Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 18:46:03Z  A/B cycle | equity=$95,361.92 day=-945.05 dd=5055.58 | session=rth
+2026-10-09 18:47:57Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 19:01:03Z  A/B cycle | equity=$95,458.52 day=-848.45 dd=4958.98 | session=rth
+2026-10-09 19:02:39Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 19:16:03Z  A/B cycle | equity=$95,456.33 day=-850.64 dd=4961.17 | session=rth
+2026-10-09 19:17:11Z  A/B cycle done | signals=2 open=10 pending=0 closed=1128
+2026-10-09 19:31:03Z  A/B cycle | equity=$95,359.76 day=-947.21 dd=5057.74 | session=rth
+2026-10-09 19:32:24Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 19:46:03Z  A/B cycle | equity=$95,316.13 day=-990.84 dd=5101.37 | session=rth
+2026-10-09 19:47:12Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128
+2026-10-09 20:01:03Z  A/B cycle | equity=$95,372.12 day=-934.85 dd=5045.38 | session=ext
+2026-10-09 20:02:11Z  A/B cycle done | signals=0 open=10 pending=0 closed=1128

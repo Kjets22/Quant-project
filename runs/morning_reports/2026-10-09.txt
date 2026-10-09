@@ -1,0 +1,25 @@
+MORNING daily run  2026-10-09  (vM 6-ticker validated book + QQQ-wide exp + vMO 0DTE options QQQ/SPY)
+==================================================================
+data refresh: OK
+
+CHAMPION {"last_entry": 690, "nr": 0.3, "or_bars": 5, "rr": 2.0, "sides": "both", "volx": null}
+  QQQ ladder: arena_worst=+0.01%  gate=+4.78%  final=+7.37% (n=84)
+  QQQ stock forward since 2026-07-21: n=16 total=+0.80% win=62%
+  SPY stock forward since 2026-07-21: n=19 total=-1.29% win=47%
+  DIA stock forward since 2026-07-21: n=12 total=-0.95% win=50%
+    new fill 2026-10-09: +17.3bp
+  VTI stock forward since 2026-07-21: n=18 total=-1.46% win=44%
+  SCHX stock forward since 2026-07-21: n=19 total=-1.99% win=37%
+  OEF stock forward since 2026-07-21: n=18 total=-0.21% win=56%
+  QQQ WIDE nr<=0.4 (EXPERIMENTAL, not validated) forward: n=20 total=+1.65% win=60%
+  BOOK coverage since 2026-07-21: traded 33/58 days (57%) — goal ~50%
+
+vMO OPTIONS (0dte atm, 1%/side, fixed premium/trade)
+  QQQ vMO forward: n=16 total=+111.4% of premium win=56%
+  SPY vMO forward: n=19 total=-332.8% of premium win=42%
+
+CHALLENGER {"last_entry": 660, "nr": 0.3, "or_bars": 5, "rr": 3.0, "sides": "both", "volx": null}
+  forward since 2026-09-30: n=2 total=+0.13% vs champion +0.27% same span
+
+search: 20 new configs evaluated (1120 lifetime)
+  no config beat the champion's ladder today

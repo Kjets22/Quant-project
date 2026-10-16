@@ -14648,3 +14648,370 @@
 2026-10-15 19:47:14Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
 2026-10-15 20:01:03Z  A/B cycle | equity=$97,162.74 day=+1342.83 dd=3254.76 | session=ext
 2026-10-15 20:02:18Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
+2026-10-15 20:31:03Z  A/B cycle | equity=$97,111.24 day=+1291.33 dd=3306.26 | session=ext
+2026-10-15 20:32:17Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
+2026-10-15 20:46:03Z  A/B cycle | equity=$97,114.03 day=+1294.12 dd=3303.47 | session=ext
+2026-10-15 20:47:12Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
+2026-10-15 21:01:03Z  A/B cycle | equity=$97,120.05 day=+1300.14 dd=3297.45 | session=ext
+2026-10-15 21:01:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 21:02:07Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
+2026-10-15 21:16:03Z  A/B cycle | equity=$97,117.48 day=+1297.57 dd=3300.02 | session=ext
+2026-10-15 21:16:10Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 21:17:10Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
+2026-10-15 21:31:03Z  A/B cycle | equity=$97,120.70 day=+1300.79 dd=3296.80 | session=ext
+2026-10-15 21:31:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 21:32:11Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
+2026-10-15 21:46:02Z  A/B cycle | equity=$97,116.36 day=+1296.45 dd=3301.14 | session=ext
+2026-10-15 21:46:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 21:47:10Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
+2026-10-15 22:01:03Z  A/B cycle | equity=$97,115.12 day=+1295.21 dd=3302.38 | session=ext
+2026-10-15 22:01:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 22:02:05Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
+2026-10-15 22:16:03Z  A/B cycle | equity=$97,122.56 day=+1302.65 dd=3294.94 | session=ext
+2026-10-15 22:16:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 22:17:11Z  A/B cycle done | signals=0 open=16 pending=0 closed=1283
+2026-10-15 22:31:03Z  A/B cycle | equity=$97,123.24 day=+1303.33 dd=3294.26 | session=ext
+2026-10-15 22:31:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 22:32:06Z    SIGNAL v4 AAPL bar=2026-10-15 22:00:00 p=0.276 sig_px=341.72 tgt=344.73 stop=340.97 qty=2
+2026-10-15 22:32:14Z  A/B cycle done | signals=1 open=16 pending=2 closed=1283
+2026-10-15 22:46:03Z  A/B cycle | equity=$97,121.50 day=+1301.59 dd=3296.00 | session=ext
+2026-10-15 22:46:03Z    FILLED mkt v4 AAPL @ 341.70 (signal 341.72, slip -0.7 bps)
+2026-10-15 22:46:04Z    FILLED lmt v4 AAPL @ 341.70 (signal 341.72, slip -0.7 bps)
+2026-10-15 22:46:13Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 22:46:43Z    SIGNAL v3 AAPL bar=2026-10-15 22:00:00 p=0.526 sig_px=341.70 tgt=343.49 stop=340.51 qty=2
+2026-10-15 22:47:27Z    SIGNAL v4 AAPL bar=2026-10-15 22:15:00 p=0.277 sig_px=341.70 tgt=344.52 stop=341.00 qty=2
+2026-10-15 22:47:28Z    SIGNAL v4 MSFT bar=2026-10-15 22:15:00 p=0.288 sig_px=537.80 tgt=541.52 stop=536.87 qty=1
+2026-10-15 22:47:36Z    SIGNAL vS QQQ bar=2026-10-15 22:30:00 p=0.622 sig_px=726.65 tgt=730.28 stop=723.74 qty=1
+2026-10-15 22:47:38Z  A/B cycle done | signals=4 open=18 pending=5 closed=1283
+2026-10-15 23:01:02Z  A/B cycle | equity=$97,117.87 day=+1297.96 dd=3299.63 | session=ext
+2026-10-15 23:01:03Z    FILLED lmt v3 AAPL @ 341.50 (signal 341.70, slip -5.9 bps)
+2026-10-15 23:01:03Z    FILLED mkt v4 MSFT @ 537.69 (signal 537.80, slip -2.0 bps)
+2026-10-15 23:01:03Z    FILLED lmt v4 MSFT @ 537.69 (signal 537.80, slip -2.0 bps)
+2026-10-15 23:01:03Z    FILLED mkt vS QQQ @ 726.66 (signal 726.65, slip +0.1 bps)
+2026-10-15 23:01:04Z    FILLED lmt vS QQQ @ 726.65 (signal 726.65, slip +0.0 bps)
+2026-10-15 23:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 23:01:11Z    CLOSED lmt vQ2 QQQ TARGET pnl=+6.12
+2026-10-15 23:01:11Z    CLOSED lmt vQ QQQ TARGET pnl=+7.08
+2026-10-15 23:02:05Z    SIGNAL v4 AAPL bar=2026-10-15 22:30:00 p=0.264 sig_px=341.49 tgt=344.08 stop=340.84 qty=2
+2026-10-15 23:02:06Z    SIGNAL v4 MSFT bar=2026-10-15 22:30:00 p=0.266 sig_px=537.33 tgt=540.91 stop=536.43 qty=1
+2026-10-15 23:02:12Z    SIGNAL vS QQQ bar=2026-10-15 22:45:00 p=0.601 sig_px=726.46 tgt=730.09 stop=723.55 qty=1
+2026-10-15 23:02:13Z  A/B cycle done | signals=3 open=21 pending=0 closed=1285
+2026-10-15 23:16:03Z  A/B cycle | equity=$97,118.48 day=+1298.57 dd=3299.02 | session=ext
+2026-10-15 23:16:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 23:17:07Z  A/B cycle done | signals=0 open=21 pending=0 closed=1285
+2026-10-15 23:31:03Z  A/B cycle | equity=$97,111.32 day=+1291.41 dd=3306.18 | session=ext
+2026-10-15 23:31:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 23:31:10Z    CLOSED mkt v4 AAPL STOP pnl=-1.60
+2026-10-15 23:31:11Z    CLOSED lmt v4 AAPL STOP pnl=-1.60
+2026-10-15 23:31:12Z    CLOSED mkt v4 MSFT STOP pnl=-1.40
+2026-10-15 23:31:13Z    CLOSED lmt v4 MSFT STOP pnl=-1.40
+2026-10-15 23:32:02Z    SIGNAL v4 AAPL bar=2026-10-15 23:00:00 p=0.266 sig_px=341.40 tgt=343.87 stop=340.78 qty=2
+2026-10-15 23:32:11Z  A/B cycle done | signals=1 open=17 pending=2 closed=1289
+2026-10-15 23:46:03Z  A/B cycle | equity=$97,106.23 day=+1286.32 dd=3311.27 | session=ext
+2026-10-15 23:46:03Z    FILLED mkt v4 AAPL @ 340.94 (signal 341.40, slip -13.5 bps)
+2026-10-15 23:46:03Z    FILLED lmt v4 AAPL @ 340.94 (signal 341.40, slip -13.5 bps)
+2026-10-15 23:46:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-15 23:46:12Z    CLOSED mkt v4 AAPL STOP pnl=-0.50
+2026-10-15 23:46:12Z    CLOSED lmt v4 AAPL STOP pnl=-0.50
+2026-10-15 23:47:00Z    SIGNAL v4 AAPL bar=2026-10-15 23:15:00 p=0.306 sig_px=341.19 tgt=343.63 stop=340.58 qty=2
+2026-10-15 23:47:08Z  A/B cycle done | signals=1 open=17 pending=2 closed=1291
+2026-10-16 00:01:03Z  A/B cycle | equity=$97,105.88 day=+1285.97 dd=3311.62 | session=closed
+2026-10-16 00:16:02Z  A/B cycle | equity=$97,109.24 day=+1289.33 dd=3308.26 | session=closed
+2026-10-16 08:01:02Z  A/B cycle | equity=$97,107.79 day=-37.22 dd=3309.71 | session=ext
+2026-10-16 08:01:03Z    FILLED mkt v4 AAPL @ 340.78 (signal 341.19, slip -12.0 bps)
+2026-10-16 08:01:03Z    FILLED lmt v4 AAPL @ 340.78 (signal 341.19, slip -12.0 bps)
+2026-10-16 08:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 08:01:34Z    SIGNAL v3 AAPL bar=2026-10-15 23:30:00 p=0.542 sig_px=340.81 tgt=342.65 stop=339.59 qty=2
+2026-10-16 08:02:11Z    SIGNAL v4 QQQ bar=2026-10-15 23:45:00 p=0.268 sig_px=724.33 tgt=728.89 stop=723.19 qty=1
+2026-10-16 08:02:15Z    SIGNAL v4 AAPL bar=2026-10-15 23:45:00 p=0.303 sig_px=340.81 tgt=343.08 stop=340.24 qty=2
+2026-10-16 08:02:17Z    SIGNAL v4 MSFT bar=2026-10-15 23:45:00 p=0.282 sig_px=536.65 tgt=539.95 stop=535.83 qty=1
+2026-10-16 08:03:33Z  A/B cycle done | signals=4 open=19 pending=4 closed=1291
+2026-10-16 08:16:02Z  A/B cycle | equity=$97,107.89 day=-37.12 dd=3309.61 | session=ext
+2026-10-16 08:16:03Z    MISSED lmt v4 QQQ (limit 724.33 never filled)
+2026-10-16 08:16:05Z    MISSED lmt v4 MSFT (limit 536.65 never filled)
+2026-10-16 08:16:10Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 08:17:07Z  A/B cycle done | signals=0 open=19 pending=2 closed=1293
+2026-10-16 08:31:03Z  A/B cycle | equity=$97,108.84 day=-36.17 dd=3308.66 | session=ext
+2026-10-16 08:31:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 08:32:09Z  A/B cycle done | signals=0 open=19 pending=2 closed=1293
+2026-10-16 08:46:03Z  A/B cycle | equity=$97,106.19 day=-38.82 dd=3311.31 | session=ext
+2026-10-16 08:46:03Z    MISSED mkt v4 QQQ (limit 724.33 never filled)
+2026-10-16 08:46:04Z    MISSED mkt v4 MSFT (limit 536.65 never filled)
+2026-10-16 08:46:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 08:47:04Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 09:01:05Z  A/B cycle | equity=$97,103.55 day=-41.46 dd=3313.95 | session=ext
+2026-10-16 09:01:11Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 09:02:09Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 09:16:03Z  A/B cycle | equity=$97,107.69 day=-37.32 dd=3309.81 | session=ext
+2026-10-16 09:16:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 09:17:06Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 09:31:03Z  A/B cycle | equity=$97,107.99 day=-37.02 dd=3309.51 | session=ext
+2026-10-16 09:31:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 09:32:13Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 09:46:03Z  A/B cycle | equity=$97,104.33 day=-40.68 dd=3313.17 | session=ext
+2026-10-16 09:46:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 09:47:08Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 10:01:03Z  A/B cycle | equity=$97,102.47 day=-42.54 dd=3315.03 | session=ext
+2026-10-16 10:01:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 10:02:03Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 10:16:03Z  A/B cycle | equity=$97,114.70 day=-30.31 dd=3302.80 | session=ext
+2026-10-16 10:16:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 10:17:06Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 10:31:03Z  A/B cycle | equity=$97,115.81 day=-29.20 dd=3301.69 | session=ext
+2026-10-16 10:31:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 10:32:07Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 10:46:03Z  A/B cycle | equity=$97,111.29 day=-33.72 dd=3306.21 | session=ext
+2026-10-16 10:46:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 10:47:06Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 11:01:03Z  A/B cycle | equity=$97,115.58 day=-29.43 dd=3301.92 | session=ext
+2026-10-16 11:01:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 11:02:07Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 11:16:03Z  A/B cycle | equity=$97,124.39 day=-20.62 dd=3293.11 | session=ext
+2026-10-16 11:16:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 11:17:05Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 11:31:03Z  A/B cycle | equity=$97,118.11 day=-26.90 dd=3299.39 | session=ext
+2026-10-16 11:31:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 11:32:09Z  A/B cycle done | signals=0 open=19 pending=0 closed=1295
+2026-10-16 11:46:03Z  A/B cycle | equity=$97,125.00 day=-20.01 dd=3292.50 | session=ext
+2026-10-16 11:46:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 11:47:03Z    SIGNAL v3 TLT bar=2026-10-16 11:00:00 p=0.486 sig_px=79.78 tgt=79.99 stop=79.64 qty=12
+2026-10-16 11:47:12Z  A/B cycle done | signals=1 open=19 pending=2 closed=1295
+2026-10-16 12:01:02Z  A/B cycle | equity=$97,119.10 day=-25.91 dd=3298.40 | session=ext
+2026-10-16 12:01:03Z    FILLED mkt v3 TLT @ 79.75 (signal 79.78, slip -3.8 bps)
+2026-10-16 12:01:03Z    FILLED lmt v3 TLT @ 79.75 (signal 79.78, slip -3.8 bps)
+2026-10-16 12:01:10Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 12:02:08Z  A/B cycle done | signals=0 open=21 pending=0 closed=1295
+2026-10-16 12:16:03Z  A/B cycle | equity=$97,137.48 day=-7.53 dd=3280.02 | session=ext
+2026-10-16 12:16:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 12:16:11Z    CLOSED lmt v3 AAPL TARGET pnl=+6.40
+2026-10-16 12:16:12Z    CLOSED mkt v4 AAPL TARGET pnl=+8.00
+2026-10-16 12:16:13Z    CLOSED lmt v4 AAPL TARGET pnl=+8.04
+2026-10-16 12:17:03Z    SIGNAL v6 NVDA bar=2026-10-16 11:00:00 p=0.242 sig_px=217.10 tgt=228.91 stop=215.41 qty=4
+2026-10-16 12:17:09Z  A/B cycle done | signals=1 open=18 pending=2 closed=1298
+2026-10-16 12:31:03Z  A/B cycle | equity=$97,175.02 day=+30.01 dd=3242.48 | session=ext
+2026-10-16 12:31:03Z    FILLED mkt v6 NVDA @ 217.15 (signal 217.10, slip +2.3 bps)
+2026-10-16 12:31:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 12:32:05Z  A/B cycle done | signals=0 open=19 pending=1 closed=1298
+2026-10-16 12:46:03Z  A/B cycle | equity=$97,177.65 day=+32.64 dd=3239.85 | session=ext
+2026-10-16 12:46:03Z    FILLED lmt v6 NVDA @ 217.10 (signal 217.10, slip +0.0 bps)
+2026-10-16 12:46:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 12:47:07Z  A/B cycle done | signals=0 open=20 pending=0 closed=1298
+2026-10-16 13:01:03Z  A/B cycle | equity=$97,167.58 day=+22.57 dd=3249.92 | session=ext
+2026-10-16 13:01:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 13:02:03Z    SIGNAL vS QQQ bar=2026-10-16 12:45:00 p=0.598 sig_px=726.56 tgt=730.19 stop=723.65 qty=1
+2026-10-16 13:02:04Z  A/B cycle done | signals=1 open=20 pending=0 closed=1298
+2026-10-16 13:16:03Z  A/B cycle | equity=$97,151.03 day=+6.02 dd=3266.47 | session=ext
+2026-10-16 13:16:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 13:16:08Z    CLOSED mkt v7 NVDA STOP pnl=-3.56
+2026-10-16 13:16:09Z    CLOSED lmt v7 NVDA STOP pnl=-3.56
+2026-10-16 13:17:14Z  A/B cycle done | signals=0 open=18 pending=0 closed=1300
+2026-10-16 13:31:04Z  A/B cycle | equity=$96,792.01 day=-353.00 dd=3625.49 | session=rth
+2026-10-16 13:31:11Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 13:31:11Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 13:31:13Z    LEGS DEAD mkt v3 AAPL — bot-side bracket takes over (tgt 343.95 / stop 340.65)
+2026-10-16 13:31:14Z    CLOSED mkt v3 AAPL TARGET pnl=+8.56
+2026-10-16 13:32:24Z  A/B cycle done | signals=0 open=17 pending=0 closed=1301
+2026-10-16 13:46:08Z  A/B cycle | equity=$96,957.82 day=-187.19 dd=3459.68 | session=rth
+2026-10-16 13:46:14Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 13:46:15Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 13:48:11Z  A/B cycle done | signals=0 open=17 pending=0 closed=1301
+2026-10-16 13:56:03Z  A/B cycle | equity=$97,182.76 day=+37.75 dd=3234.74 | session=rth
+2026-10-16 13:56:10Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 13:56:11Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 13:56:13Z    CLOSED mkt v3 TLT TARGET pnl=+3.48
+2026-10-16 13:56:14Z    CLOSED lmt v3 TLT TARGET pnl=+3.48
+2026-10-16 13:57:37Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:01:03Z  A/B cycle | equity=$97,307.78 day=+162.77 dd=3109.72 | session=rth
+2026-10-16 14:01:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:02:37Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:06:03Z  A/B cycle | equity=$97,296.92 day=+151.91 dd=3120.58 | session=rth
+2026-10-16 14:06:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:06:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:07:25Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:11:03Z  A/B cycle | equity=$97,335.03 day=+190.02 dd=3082.47 | session=rth
+2026-10-16 14:11:07Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:11:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:12:30Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:16:03Z  A/B cycle | equity=$97,314.20 day=+169.19 dd=3103.30 | session=rth
+2026-10-16 14:16:09Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:16:10Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:17:31Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:21:03Z  A/B cycle | equity=$97,255.42 day=+110.41 dd=3162.08 | session=rth
+2026-10-16 14:21:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:21:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:22:26Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:26:03Z  A/B cycle | equity=$97,272.74 day=+127.73 dd=3144.76 | session=rth
+2026-10-16 14:26:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:26:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:27:32Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:31:03Z  A/B cycle | equity=$97,276.53 day=+131.52 dd=3140.97 | session=rth
+2026-10-16 14:31:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:31:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:32:24Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:36:03Z  A/B cycle | equity=$97,252.53 day=+107.52 dd=3164.97 | session=rth
+2026-10-16 14:36:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:36:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:37:26Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:41:03Z  A/B cycle | equity=$97,173.84 day=+28.83 dd=3243.66 | session=rth
+2026-10-16 14:41:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:41:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:42:22Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:46:03Z  A/B cycle | equity=$97,175.04 day=+30.03 dd=3242.46 | session=rth
+2026-10-16 14:46:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:46:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:47:23Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:51:03Z  A/B cycle | equity=$97,064.16 day=-80.85 dd=3353.34 | session=rth
+2026-10-16 14:51:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:51:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:52:23Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 14:56:03Z  A/B cycle | equity=$97,210.91 day=+65.90 dd=3206.59 | session=rth
+2026-10-16 14:56:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 14:56:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 14:57:24Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:01:03Z  A/B cycle | equity=$97,151.24 day=+6.23 dd=3266.26 | session=rth
+2026-10-16 15:01:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:02:39Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:06:04Z  A/B cycle | equity=$97,259.65 day=+114.64 dd=3157.85 | session=rth
+2026-10-16 15:06:10Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:06:11Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:07:49Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:11:04Z  A/B cycle | equity=$97,414.79 day=+269.78 dd=3002.71 | session=rth
+2026-10-16 15:11:11Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:11:12Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:12:57Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:16:03Z  A/B cycle | equity=$97,410.89 day=+265.88 dd=3006.61 | session=rth
+2026-10-16 15:16:10Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:16:11Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:17:57Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:21:04Z  A/B cycle | equity=$97,374.28 day=+229.27 dd=3043.22 | session=rth
+2026-10-16 15:21:11Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:21:12Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:22:48Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:26:03Z  A/B cycle | equity=$97,369.09 day=+224.08 dd=3048.41 | session=rth
+2026-10-16 15:26:10Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:26:11Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:27:51Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:31:04Z  A/B cycle | equity=$97,386.97 day=+241.96 dd=3030.53 | session=rth
+2026-10-16 15:31:11Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:31:12Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:32:58Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:36:04Z  A/B cycle | equity=$97,385.05 day=+240.04 dd=3032.45 | session=rth
+2026-10-16 15:36:11Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:36:12Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:38:01Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:41:03Z  A/B cycle | equity=$97,356.65 day=+211.64 dd=3060.85 | session=rth
+2026-10-16 15:41:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:41:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:42:46Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:46:03Z  A/B cycle | equity=$97,356.73 day=+211.72 dd=3060.77 | session=rth
+2026-10-16 15:46:11Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:46:12Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:48:12Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:51:03Z  A/B cycle | equity=$97,201.91 day=+56.90 dd=3215.59 | session=rth
+2026-10-16 15:51:11Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:51:12Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:53:06Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 15:56:03Z  A/B cycle | equity=$97,267.61 day=+122.60 dd=3149.89 | session=rth
+2026-10-16 15:56:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 15:56:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 15:57:35Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 16:01:03Z  A/B cycle | equity=$97,224.64 day=+79.63 dd=3192.86 | session=rth
+2026-10-16 16:01:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 16:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 16:03:04Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 16:06:03Z  A/B cycle | equity=$97,034.56 day=-110.45 dd=3382.94 | session=rth
+2026-10-16 16:06:12Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 16:06:13Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 16:08:10Z  A/B cycle done | signals=0 open=15 pending=0 closed=1303
+2026-10-16 16:16:03Z  A/B cycle | equity=$97,004.04 day=-140.97 dd=3413.46 | session=rth
+2026-10-16 16:16:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 16:16:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 16:17:50Z    SIGNAL v6 QQQ bar=2026-10-16 15:00:00 p=0.213 sig_px=716.64 tgt=743.59 stop=712.79 qty=1
+2026-10-16 16:17:53Z    SIGNAL v7 QQQ bar=2026-10-16 15:00:00 p=0.106 sig_px=716.64 tgt=738.32 stop=714.47 qty=1
+2026-10-16 16:18:04Z  A/B cycle done | signals=2 open=15 pending=4 closed=1303
+2026-10-16 16:31:04Z  A/B cycle | equity=$96,793.31 day=-351.70 dd=3624.19 | session=rth
+2026-10-16 16:31:04Z    FILLED mkt v6 QQQ @ 717.04 (signal 716.64, slip +5.6 bps)
+2026-10-16 16:31:05Z    FILLED lmt v6 QQQ @ 716.61 (signal 716.64, slip -0.4 bps)
+2026-10-16 16:31:05Z    FILLED mkt v7 QQQ @ 717.10 (signal 716.64, slip +6.4 bps)
+2026-10-16 16:31:06Z    FILLED lmt v7 QQQ @ 716.58 (signal 716.64, slip -0.8 bps)
+2026-10-16 16:31:14Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 16:31:15Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 16:31:17Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 16:31:18Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 16:31:20Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 16:31:21Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 16:33:18Z  A/B cycle done | signals=0 open=19 pending=0 closed=1303
+2026-10-16 16:46:03Z  A/B cycle | equity=$96,918.84 day=-226.17 dd=3498.66 | session=rth
+2026-10-16 16:46:09Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 16:46:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 16:46:10Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 16:46:11Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 16:46:12Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 16:46:12Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 16:48:00Z  A/B cycle done | signals=0 open=19 pending=0 closed=1303
+2026-10-16 17:01:03Z  A/B cycle | equity=$96,901.87 day=-243.14 dd=3515.63 | session=rth
+2026-10-16 17:01:09Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 17:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 17:01:10Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 17:01:11Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 17:01:12Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 17:01:13Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"4","held_for_orders":"4","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["66bdf370-dc8f-4cb8-a626-6a16c59af36d","238729e3-d02a-4b71-9eaf-a2734837cfa6","9754c7e9-4fb8-460e-8e0a-dcbb24137b72","cb11a39c-6f7]
+2026-10-16 17:03:26Z  A/B cycle done | signals=0 open=19 pending=0 closed=1303
+2026-10-16 17:16:03Z  A/B cycle | equity=$97,039.25 day=-105.76 dd=3378.25 | session=rth
+2026-10-16 17:16:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 17:16:13Z    CLOSED mkt v6 QQQ STOP pnl=-4.33
+2026-10-16 17:16:15Z    CLOSED lmt v6 QQQ STOP pnl=-3.89
+2026-10-16 17:16:15Z    CLOSED mkt v7 QQQ STOP pnl=-2.63
+2026-10-16 17:16:16Z    CLOSED lmt v7 QQQ STOP pnl=-2.12
+2026-10-16 17:17:57Z    SIGNAL v7 QQQ bar=2026-10-16 16:00:00 p=0.126 sig_px=715.51 tgt=725.65 stop=714.50 qty=1
+2026-10-16 17:17:57Z    [skip v7 QQQ: stale (stop) — signal 715.51, now 711.91: 355% of the stop distance already gone]
+2026-10-16 17:17:57Z    SIGNAL v7 MSFT bar=2026-10-16 16:00:00 p=0.082 sig_px=528.08 tgt=535.30 stop=527.35 qty=1
+2026-10-16 17:17:57Z    [skip v7 MSFT: stale (stop) — signal 528.08, now 524.80: 454% of the stop distance already gone]
+2026-10-16 17:18:05Z  A/B cycle done | signals=2 open=15 pending=0 closed=1307
+2026-10-16 17:31:03Z  A/B cycle | equity=$97,066.61 day=-78.40 dd=3350.89 | session=rth
+2026-10-16 17:31:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 17:31:12Z    OPT SELL TLT261016C00077500 x10 limit 2.42 (TIME, try 1)
+2026-10-16 17:33:08Z  A/B cycle done | signals=0 open=15 pending=0 closed=1307
+2026-10-16 17:46:03Z  A/B cycle | equity=$97,016.60 day=-128.41 dd=3400.90 | session=rth
+2026-10-16 17:46:05Z    CLOSED mkt vC TLT TIME pnl=+25.92
+2026-10-16 17:46:09Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 17:46:10Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 17:47:46Z  A/B cycle done | signals=0 open=14 pending=0 closed=1308
+2026-10-16 18:01:03Z  A/B cycle | equity=$97,042.97 day=-102.04 dd=3374.53 | session=rth
+2026-10-16 18:01:05Z    CLOSED lmt vC TLT TIME pnl=+26.64
+2026-10-16 18:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 18:01:13Z    OPT SELL TLT261016C00077500 x10 limit 2.45 (TIME, try 2)
+2026-10-16 18:02:54Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309
+2026-10-16 18:16:03Z  A/B cycle | equity=$97,044.06 day=-100.95 dd=3373.44 | session=rth
+2026-10-16 18:16:06Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 18:16:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 18:17:49Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309
+2026-10-16 18:31:03Z  A/B cycle | equity=$97,032.59 day=-112.42 dd=3384.91 | session=rth
+2026-10-16 18:31:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 18:31:11Z    OPT SELL TLT261016C00077500 x10 limit 2.32 (TIME, try 3)
+2026-10-16 18:32:57Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309
+2026-10-16 18:46:08Z  A/B cycle | equity=$97,034.74 day=-110.27 dd=3382.76 | session=rth
+2026-10-16 18:46:15Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 18:46:17Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 18:46:23Z    OPT CLOSED TLT261016C00077500 TIME pnl=+1510.00
+2026-10-16 18:48:10Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309
+2026-10-16 19:01:07Z  A/B cycle | equity=$97,040.45 day=-104.56 dd=3377.05 | session=rth
+2026-10-16 19:01:12Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 19:01:13Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 19:02:47Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309
+2026-10-16 19:16:03Z  A/B cycle | equity=$97,042.14 day=-102.87 dd=3375.36 | session=rth
+2026-10-16 19:16:06Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 19:16:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 19:18:02Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309
+2026-10-16 19:31:04Z  A/B cycle | equity=$97,041.68 day=-103.33 dd=3375.82 | session=rth
+2026-10-16 19:31:09Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 19:31:10Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 19:33:11Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309
+2026-10-16 19:46:03Z  A/B cycle | equity=$97,046.06 day=-98.95 dd=3371.44 | session=rth
+2026-10-16 19:46:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 19:48:01Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309
+2026-10-16 20:01:04Z  A/B cycle | equity=$97,045.69 day=-99.32 dd=3371.81 | session=ext
+2026-10-16 20:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 20:03:21Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309

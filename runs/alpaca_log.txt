@@ -15015,3 +15015,267 @@
 2026-10-16 20:01:04Z  A/B cycle | equity=$97,045.69 day=-99.32 dd=3371.81 | session=ext
 2026-10-16 20:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
 2026-10-16 20:03:21Z  A/B cycle done | signals=0 open=13 pending=0 closed=1309
+2026-10-16 20:31:03Z  A/B cycle | equity=$97,046.27 day=-98.74 dd=3371.23 | session=ext
+2026-10-16 20:31:09Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 20:31:10Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 20:32:53Z    SIGNAL v6 QQQ bar=2026-10-16 19:00:00 p=0.244 sig_px=709.86 tgt=737.71 stop=705.88 qty=1
+2026-10-16 20:32:56Z    SIGNAL v7 QQQ bar=2026-10-16 19:00:00 p=0.263 sig_px=709.86 tgt=735.11 stop=707.34 qty=1
+2026-10-16 20:33:06Z  A/B cycle done | signals=2 open=13 pending=4 closed=1309
+2026-10-16 20:46:04Z  A/B cycle | equity=$97,048.63 day=-96.38 dd=3368.87 | session=ext
+2026-10-16 20:46:05Z    FILLED mkt v6 QQQ @ 710.23 (signal 709.86, slip +5.2 bps)
+2026-10-16 20:46:06Z    FILLED lmt v6 QQQ @ 709.86 (signal 709.86, slip +0.0 bps)
+2026-10-16 20:46:06Z    FILLED mkt v7 QQQ @ 710.22 (signal 709.86, slip +5.1 bps)
+2026-10-16 20:46:07Z    FILLED lmt v7 QQQ @ 709.86 (signal 709.86, slip +0.0 bps)
+2026-10-16 20:46:13Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 20:46:14Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 20:46:15Z    CLOSED mkt vP QQQ STOP pnl=-9.29
+2026-10-16 20:46:17Z    CLOSED lmt vP QQQ STOP pnl=-9.36
+2026-10-16 20:46:18Z    CLOSED mkt vS QQQ STOP pnl=-16.53
+2026-10-16 20:46:19Z    CLOSED lmt vS QQQ STOP pnl=-16.52
+2026-10-16 20:48:01Z  A/B cycle done | signals=0 open=13 pending=0 closed=1313
+2026-10-16 21:01:03Z  A/B cycle | equity=$97,047.55 day=-97.46 dd=3369.95 | session=ext
+2026-10-16 21:01:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 21:01:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 21:02:59Z  A/B cycle done | signals=0 open=13 pending=0 closed=1313
+2026-10-16 21:16:04Z  A/B cycle | equity=$97,047.06 day=-97.95 dd=3370.44 | session=ext
+2026-10-16 21:16:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 21:16:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 21:17:53Z    SIGNAL v6 QQQ bar=2026-10-16 20:00:00 p=0.274 sig_px=710.15 tgt=734.99 stop=706.60 qty=1
+2026-10-16 21:18:04Z  A/B cycle done | signals=1 open=13 pending=0 closed=1313
+2026-10-16 21:31:04Z  A/B cycle | equity=$97,047.77 day=-97.24 dd=3369.73 | session=ext
+2026-10-16 21:31:09Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 21:31:11Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 21:33:02Z  A/B cycle done | signals=0 open=13 pending=0 closed=1313
+2026-10-16 21:46:03Z  A/B cycle | equity=$97,046.32 day=-98.69 dd=3371.18 | session=ext
+2026-10-16 21:46:07Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 21:46:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 21:47:15Z  A/B cycle done | signals=0 open=13 pending=0 closed=1313
+2026-10-16 22:01:04Z  A/B cycle | equity=$97,047.03 day=-97.98 dd=3370.47 | session=ext
+2026-10-16 22:01:10Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 22:01:11Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 22:02:58Z  A/B cycle done | signals=0 open=13 pending=0 closed=1313
+2026-10-16 22:16:03Z  A/B cycle | equity=$97,047.03 day=-97.98 dd=3370.47 | session=ext
+2026-10-16 22:16:06Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 22:16:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 22:17:07Z    SIGNAL v6 QQQ bar=2026-10-16 21:00:00 p=0.301 sig_px=709.75 tgt=733.08 stop=706.42 qty=1
+2026-10-16 22:17:08Z    SIGNAL v7 QQQ bar=2026-10-16 21:00:00 p=0.176 sig_px=709.75 tgt=743.28 stop=706.40 qty=1
+2026-10-16 22:17:09Z    SIGNAL v7 NVDA bar=2026-10-16 21:00:00 p=0.114 sig_px=214.30 tgt=227.93 stop=212.94 qty=4
+2026-10-16 22:17:15Z  A/B cycle done | signals=3 open=13 pending=2 closed=1313
+2026-10-16 22:31:03Z  A/B cycle | equity=$97,048.23 day=-96.78 dd=3369.27 | session=ext
+2026-10-16 22:31:03Z    FILLED mkt v7 NVDA @ 214.10 (signal 214.30, slip -9.3 bps)
+2026-10-16 22:31:03Z    FILLED lmt v7 NVDA @ 214.10 (signal 214.30, slip -9.3 bps)
+2026-10-16 22:31:07Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 22:31:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 22:31:09Z    CLOSED mkt v6 NVDA STOP pnl=-11.62
+2026-10-16 22:31:09Z    CLOSED lmt v6 NVDA STOP pnl=-11.42
+2026-10-16 22:32:18Z  A/B cycle done | signals=0 open=13 pending=0 closed=1315
+2026-10-16 22:46:03Z  A/B cycle | equity=$97,047.62 day=-97.39 dd=3369.88 | session=ext
+2026-10-16 22:46:06Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 22:46:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 22:47:13Z  A/B cycle done | signals=0 open=13 pending=0 closed=1315
+2026-10-16 23:01:03Z  A/B cycle | equity=$97,048.98 day=-96.03 dd=3368.52 | session=ext
+2026-10-16 23:01:06Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 23:01:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 23:02:12Z  A/B cycle done | signals=0 open=13 pending=0 closed=1315
+2026-10-16 23:16:03Z  A/B cycle | equity=$97,048.83 day=-96.18 dd=3368.67 | session=ext
+2026-10-16 23:16:07Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 23:16:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 23:16:41Z    SIGNAL v3 NVDA bar=2026-10-16 22:30:00 p=0.551 sig_px=213.77 tgt=215.45 stop=212.65 qty=4
+2026-10-16 23:17:06Z    SIGNAL v4 SPY bar=2026-10-16 22:45:00 p=0.258 sig_px=761.60 tgt=766.31 stop=760.42 qty=1
+2026-10-16 23:17:09Z    SIGNAL v6 QQQ bar=2026-10-16 22:00:00 p=0.209 sig_px=708.30 tgt=730.03 stop=705.20 qty=1
+2026-10-16 23:17:10Z    SIGNAL v7 QQQ bar=2026-10-16 22:00:00 p=0.090 sig_px=708.30 tgt=726.76 stop=706.45 qty=1
+2026-10-16 23:17:10Z    SIGNAL v7 NVDA bar=2026-10-16 22:00:00 p=0.285 sig_px=213.77 tgt=221.84 stop=212.96 qty=4
+2026-10-16 23:17:15Z    SIGNAL vS QQQ bar=2026-10-16 23:00:00 p=0.607 sig_px=708.38 tgt=711.93 stop=705.55 qty=1
+2026-10-16 23:17:17Z  A/B cycle done | signals=6 open=13 pending=6 closed=1315
+2026-10-16 23:31:03Z  A/B cycle | equity=$97,046.62 day=-98.39 dd=3370.88 | session=ext
+2026-10-16 23:31:03Z    FILLED mkt v3 NVDA @ 213.94 (signal 213.77, slip +8.0 bps)
+2026-10-16 23:31:03Z    FILLED lmt v3 NVDA @ 213.76 (signal 213.77, slip -0.5 bps)
+2026-10-16 23:31:04Z    FILLED mkt v4 SPY @ 761.30 (signal 761.60, slip -3.9 bps)
+2026-10-16 23:31:04Z    FILLED lmt v4 SPY @ 761.30 (signal 761.60, slip -3.9 bps)
+2026-10-16 23:31:04Z    FILLED mkt vS QQQ @ 708.40 (signal 708.38, slip +0.2 bps)
+2026-10-16 23:31:05Z    FILLED lmt vS QQQ @ 708.38 (signal 708.38, slip -0.1 bps)
+2026-10-16 23:31:09Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 23:31:10Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 23:32:08Z    SIGNAL v4 SPY bar=2026-10-16 23:00:00 p=0.250 sig_px=761.25 tgt=765.56 stop=760.17 qty=1
+2026-10-16 23:32:09Z    SIGNAL v4 XLE bar=2026-10-16 23:00:00 p=0.331 sig_px=68.22 tgt=68.61 stop=68.12 qty=14
+2026-10-16 23:32:16Z  A/B cycle done | signals=2 open=19 pending=2 closed=1315
+2026-10-16 23:46:03Z  A/B cycle | equity=$97,046.14 day=-98.87 dd=3371.36 | session=ext
+2026-10-16 23:46:03Z    FILLED mkt v4 XLE @ 68.27 (signal 68.22, slip +7.3 bps)
+2026-10-16 23:46:03Z    MISSED lmt v4 XLE (limit 68.22 never filled)
+2026-10-16 23:46:07Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-16 23:46:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-16 23:47:18Z    SIGNAL vS QQQ bar=2026-10-16 23:30:00 p=0.610 sig_px=707.95 tgt=711.49 stop=705.12 qty=1
+2026-10-16 23:47:18Z  A/B cycle done | signals=1 open=20 pending=0 closed=1316
+2026-10-17 00:01:03Z  A/B cycle | equity=$97,049.38 day=-95.63 dd=3368.12 | session=closed
+2026-10-17 00:16:03Z  A/B cycle | equity=$97,049.38 day=-95.63 dd=3368.12 | session=closed
+2026-10-19 08:01:08Z  A/B cycle | equity=$97,106.74 day=+49.28 dd=3310.76 | session=ext
+2026-10-19 08:01:12Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-19 08:01:13Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-19 08:01:16Z    CLOSED mkt v3 NVDA TARGET pnl=+13.92
+2026-10-19 08:01:16Z    CLOSED lmt v3 NVDA TARGET pnl=+14.64
+2026-10-19 08:01:17Z    CLOSED mkt v4 SPY TARGET pnl=+6.60
+2026-10-19 08:01:18Z    CLOSED lmt v4 SPY TARGET pnl=+6.60
+2026-10-19 08:01:19Z    CLOSED mkt vS QQQ TARGET pnl=+9.80
+2026-10-19 08:01:19Z    CLOSED lmt vS QQQ TARGET pnl=+9.82
+2026-10-19 08:01:20Z    CLOSED mkt v4 XLE STOP pnl=-4.76
+2026-10-19 08:02:49Z    SIGNAL v7 QQQ bar=2026-10-16 23:00:00 p=0.088 sig_px=707.87 tgt=721.75 stop=706.48 qty=1
+2026-10-19 08:02:53Z    SIGNAL v7 NVDA bar=2026-10-16 23:00:00 p=0.298 sig_px=213.75 tgt=221.48 stop=212.98 qty=4
+2026-10-19 08:04:05Z    SIGNAL vS QQQ bar=2026-10-16 23:55:00 p=0.614 sig_px=707.87 tgt=711.41 stop=705.04 qty=1
+2026-10-19 08:04:06Z  A/B cycle done | signals=3 open=13 pending=2 closed=1323
+2026-10-19 08:16:03Z  A/B cycle | equity=$97,092.39 day=+34.93 dd=3325.11 | session=ext
+2026-10-19 08:16:04Z    MISSED lmt vS QQQ (limit 707.87 never filled)
+2026-10-19 08:16:08Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-19 08:16:09Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-19 08:17:14Z  A/B cycle done | signals=0 open=13 pending=1 closed=1324
+2026-10-19 08:31:03Z  A/B cycle | equity=$97,093.45 day=+35.99 dd=3324.05 | session=ext
+2026-10-19 08:31:07Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-19 08:31:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-19 08:32:13Z  A/B cycle done | signals=0 open=13 pending=1 closed=1324
+2026-10-19 08:46:03Z  A/B cycle | equity=$97,085.90 day=+28.44 dd=3331.60 | session=ext
+2026-10-19 08:46:03Z    MISSED mkt vS QQQ (limit 707.87 never filled)
+2026-10-19 08:46:07Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-19 08:46:08Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-19 08:47:14Z  A/B cycle done | signals=0 open=13 pending=0 closed=1325
+2026-10-19 09:01:03Z  A/B cycle | equity=$97,087.64 day=+30.18 dd=3329.86 | session=ext
+2026-10-19 09:01:06Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-19 09:01:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-19 09:02:21Z  A/B cycle done | signals=0 open=13 pending=0 closed=1325
+2026-10-19 09:16:03Z  A/B cycle | equity=$97,087.32 day=+29.86 dd=3330.18 | session=ext
+2026-10-19 09:16:06Z    [syn exit error JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"}]
+2026-10-19 09:16:07Z    [time-exit order failed JPM: POST /v2/orders -> 403: {"available":"1","code":40310000,"existing_qty":"1","held_for_orders":"0","message":"insufficient qty available for order (requested: 3, available: 1)","symbol":"JPM"} — retrying next cycle]
+2026-10-19 09:17:05Z    SIGNAL v4 JPM bar=2026-10-19 08:30:00 p=0.330 sig_px=339.18 tgt=341.70 stop=338.55 qty=2
+2026-10-19 09:17:13Z  A/B cycle done | signals=1 open=13 pending=2 closed=1325
+2026-10-19 09:31:03Z  A/B cycle | equity=$97,088.66 day=+31.20 dd=3328.84 | session=ext
+2026-10-19 09:31:03Z    FILLED mkt v4 JPM @ 339.20 (signal 339.18, slip +0.6 bps)
+2026-10-19 09:31:04Z    MISSED lmt v4 JPM (limit 339.18 never filled)
+2026-10-19 09:31:07Z    CLOSED lmt v3 JPM TARGET pnl=+20.85
+2026-10-19 09:32:12Z  A/B cycle done | signals=0 open=13 pending=0 closed=1327
+2026-10-19 09:46:03Z  A/B cycle | equity=$97,091.82 day=+34.36 dd=3325.68 | session=ext
+2026-10-19 09:47:13Z  A/B cycle done | signals=0 open=13 pending=0 closed=1327
+2026-10-19 10:01:08Z  A/B cycle | equity=$97,089.98 day=+32.52 dd=3327.52 | session=ext
+2026-10-19 10:02:17Z  A/B cycle done | signals=0 open=13 pending=0 closed=1327
+2026-10-19 10:16:03Z  A/B cycle | equity=$97,091.68 day=+34.22 dd=3325.82 | session=ext
+2026-10-19 10:17:05Z    SIGNAL v4 AAPL bar=2026-10-19 09:45:00 p=0.268 sig_px=342.94 tgt=345.03 stop=342.42 qty=2
+2026-10-19 10:17:13Z  A/B cycle done | signals=1 open=13 pending=2 closed=1327
+2026-10-19 10:31:03Z  A/B cycle | equity=$97,092.69 day=+35.23 dd=3324.81 | session=ext
+2026-10-19 10:31:03Z    FILLED mkt v4 AAPL @ 342.97 (signal 342.94, slip +0.9 bps)
+2026-10-19 10:31:03Z    FILLED lmt v4 AAPL @ 342.94 (signal 342.94, slip +0.0 bps)
+2026-10-19 10:32:06Z    SIGNAL v4 AAPL bar=2026-10-19 10:00:00 p=0.262 sig_px=342.94 tgt=344.96 stop=342.44 qty=2
+2026-10-19 10:32:13Z  A/B cycle done | signals=1 open=15 pending=0 closed=1327
+2026-10-19 10:46:03Z  A/B cycle | equity=$97,084.16 day=+26.70 dd=3333.34 | session=ext
+2026-10-19 10:47:11Z  A/B cycle done | signals=0 open=15 pending=0 closed=1327
+2026-10-19 11:01:03Z  A/B cycle | equity=$97,081.53 day=+24.07 dd=3335.97 | session=ext
+2026-10-19 11:01:09Z    CLOSED mkt v4 AAPL STOP pnl=-1.34
+2026-10-19 11:01:10Z    CLOSED lmt v4 AAPL STOP pnl=-1.28
+2026-10-19 11:02:13Z  A/B cycle done | signals=0 open=13 pending=0 closed=1329
+2026-10-19 11:16:03Z  A/B cycle | equity=$97,083.28 day=+25.82 dd=3334.22 | session=ext
+2026-10-19 11:17:10Z  A/B cycle done | signals=0 open=13 pending=0 closed=1329
+2026-10-19 11:31:03Z  A/B cycle | equity=$97,082.98 day=+25.52 dd=3334.52 | session=ext
+2026-10-19 11:32:05Z    SIGNAL v4 JPM bar=2026-10-19 11:00:00 p=0.342 sig_px=338.13 tgt=340.15 stop=337.63 qty=2
+2026-10-19 11:32:13Z  A/B cycle done | signals=1 open=13 pending=1 closed=1329
+2026-10-19 11:46:03Z  A/B cycle | equity=$97,081.74 day=+24.28 dd=3335.76 | session=ext
+2026-10-19 11:46:04Z    MISSED lmt v4 JPM (limit 338.13 never filled)
+2026-10-19 11:47:18Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 12:01:03Z  A/B cycle | equity=$97,072.23 day=+14.77 dd=3345.27 | session=ext
+2026-10-19 12:02:09Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 12:16:07Z  A/B cycle | equity=$97,070.22 day=+12.76 dd=3347.28 | session=ext
+2026-10-19 12:17:45Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 12:31:04Z  A/B cycle | equity=$97,071.08 day=+13.62 dd=3346.42 | session=ext
+2026-10-19 12:32:47Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 12:46:03Z  A/B cycle | equity=$97,069.61 day=+12.15 dd=3347.89 | session=ext
+2026-10-19 12:47:54Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 13:01:04Z  A/B cycle | equity=$97,067.40 day=+9.94 dd=3350.10 | session=ext
+2026-10-19 13:03:21Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 13:16:03Z  A/B cycle | equity=$97,069.48 day=+12.02 dd=3348.02 | session=ext
+2026-10-19 13:17:59Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 13:31:03Z  A/B cycle | equity=$97,080.12 day=+22.66 dd=3337.38 | session=rth
+2026-10-19 13:33:12Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 13:46:03Z  A/B cycle | equity=$97,089.16 day=+31.70 dd=3328.34 | session=rth
+2026-10-19 13:47:40Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 13:56:02Z  A/B cycle | equity=$97,096.83 day=+39.37 dd=3320.67 | session=rth
+2026-10-19 13:57:27Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:01:03Z  A/B cycle | equity=$97,097.81 day=+40.35 dd=3319.69 | session=rth
+2026-10-19 14:02:40Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:06:03Z  A/B cycle | equity=$97,093.42 day=+35.96 dd=3324.08 | session=rth
+2026-10-19 14:07:32Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:11:03Z  A/B cycle | equity=$97,088.06 day=+30.60 dd=3329.44 | session=rth
+2026-10-19 14:12:33Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:16:03Z  A/B cycle | equity=$97,085.04 day=+27.58 dd=3332.46 | session=rth
+2026-10-19 14:17:40Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:21:03Z  A/B cycle | equity=$97,081.90 day=+24.44 dd=3335.60 | session=rth
+2026-10-19 14:22:29Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:26:03Z  A/B cycle | equity=$97,080.55 day=+23.09 dd=3336.95 | session=rth
+2026-10-19 14:27:21Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:31:03Z  A/B cycle | equity=$97,081.92 day=+24.46 dd=3335.58 | session=rth
+2026-10-19 14:32:40Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:36:03Z  A/B cycle | equity=$97,076.76 day=+19.30 dd=3340.74 | session=rth
+2026-10-19 14:37:24Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:41:03Z  A/B cycle | equity=$97,072.93 day=+15.47 dd=3344.57 | session=rth
+2026-10-19 14:42:23Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:46:03Z  A/B cycle | equity=$97,067.13 day=+9.67 dd=3350.37 | session=rth
+2026-10-19 14:47:38Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:51:03Z  A/B cycle | equity=$97,064.58 day=+7.12 dd=3352.92 | session=rth
+2026-10-19 14:52:31Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 14:56:03Z  A/B cycle | equity=$97,065.61 day=+8.15 dd=3351.89 | session=rth
+2026-10-19 14:57:27Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:01:03Z  A/B cycle | equity=$97,065.75 day=+8.29 dd=3351.75 | session=rth
+2026-10-19 15:02:38Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:06:03Z  A/B cycle | equity=$97,060.79 day=+3.33 dd=3356.71 | session=rth
+2026-10-19 15:07:46Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:11:03Z  A/B cycle | equity=$97,060.52 day=+3.06 dd=3356.98 | session=rth
+2026-10-19 15:12:43Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:16:03Z  A/B cycle | equity=$97,060.29 day=+2.83 dd=3357.21 | session=rth
+2026-10-19 15:18:19Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:21:03Z  A/B cycle | equity=$97,060.90 day=+3.44 dd=3356.60 | session=rth
+2026-10-19 15:22:52Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:26:03Z  A/B cycle | equity=$97,061.40 day=+3.94 dd=3356.10 | session=rth
+2026-10-19 15:27:48Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:31:03Z  A/B cycle | equity=$97,063.54 day=+6.08 dd=3353.96 | session=rth
+2026-10-19 15:32:30Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:36:04Z  A/B cycle | equity=$97,063.81 day=+6.35 dd=3353.69 | session=rth
+2026-10-19 15:37:22Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:41:05Z  A/B cycle | equity=$97,062.00 day=+4.54 dd=3355.50 | session=rth
+2026-10-19 15:42:22Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:46:03Z  A/B cycle | equity=$97,061.47 day=+4.01 dd=3356.03 | session=rth
+2026-10-19 15:47:21Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:51:03Z  A/B cycle | equity=$97,058.27 day=+0.81 dd=3359.23 | session=rth
+2026-10-19 15:52:19Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 15:56:03Z  A/B cycle | equity=$97,057.80 day=+0.34 dd=3359.70 | session=rth
+2026-10-19 15:57:19Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 16:01:03Z  A/B cycle | equity=$97,060.18 day=+2.72 dd=3357.32 | session=rth
+2026-10-19 16:02:35Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 16:06:03Z  A/B cycle | equity=$97,059.02 day=+1.56 dd=3358.48 | session=rth
+2026-10-19 16:07:20Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 16:16:03Z  A/B cycle | equity=$97,056.36 day=-1.10 dd=3361.14 | session=rth
+2026-10-19 16:17:22Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 16:31:03Z  A/B cycle | equity=$97,059.22 day=+1.76 dd=3358.28 | session=rth
+2026-10-19 16:32:28Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 16:46:03Z  A/B cycle | equity=$97,059.05 day=+1.59 dd=3358.45 | session=rth
+2026-10-19 16:47:35Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 17:01:03Z  A/B cycle | equity=$97,059.22 day=+1.76 dd=3358.28 | session=rth
+2026-10-19 17:02:36Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 17:16:03Z  A/B cycle | equity=$97,062.39 day=+4.93 dd=3355.11 | session=rth
+2026-10-19 17:17:21Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 17:31:03Z  A/B cycle | equity=$97,061.88 day=+4.42 dd=3355.62 | session=rth
+2026-10-19 17:32:32Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 17:46:03Z  A/B cycle | equity=$97,063.51 day=+6.05 dd=3353.99 | session=rth
+2026-10-19 17:47:16Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 18:01:03Z  A/B cycle | equity=$97,065.42 day=+7.96 dd=3352.08 | session=rth
+2026-10-19 18:02:44Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 18:16:03Z  A/B cycle | equity=$97,066.72 day=+9.26 dd=3350.78 | session=rth
+2026-10-19 18:17:26Z    SIGNAL v7 TLT bar=2026-10-19 17:00:00 p=0.136 sig_px=79.47 tgt=80.37 stop=79.38 qty=12
+2026-10-19 18:17:31Z  A/B cycle done | signals=1 open=13 pending=0 closed=1330
+2026-10-19 18:31:03Z  A/B cycle | equity=$97,064.82 day=+7.36 dd=3352.68 | session=rth
+2026-10-19 18:32:39Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 18:46:03Z  A/B cycle | equity=$97,065.08 day=+7.62 dd=3352.42 | session=rth
+2026-10-19 18:47:29Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 19:01:07Z  A/B cycle | equity=$97,065.82 day=+8.36 dd=3351.68 | session=rth
+2026-10-19 19:02:41Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 19:16:03Z  A/B cycle | equity=$97,062.92 day=+5.46 dd=3354.58 | session=rth
+2026-10-19 19:17:17Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 19:31:03Z  A/B cycle | equity=$97,059.10 day=+1.64 dd=3358.40 | session=rth
+2026-10-19 19:32:23Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 19:46:03Z  A/B cycle | equity=$97,061.32 day=+3.86 dd=3356.18 | session=rth
+2026-10-19 19:47:23Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330
+2026-10-19 20:01:03Z  A/B cycle | equity=$97,060.76 day=+3.30 dd=3356.74 | session=ext
+2026-10-19 20:02:29Z  A/B cycle done | signals=0 open=13 pending=0 closed=1330

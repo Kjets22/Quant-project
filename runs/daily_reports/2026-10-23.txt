@@ -1,0 +1,80 @@
+DAILY REPORT — 2026-10-23 16:16 local  (market closed)
+account equity $96,927.24   day P&L -585.16   cash $98,682.90
+
+===== MARKET arm =====
+  strat  closed   win%  missed  realized$  open   unreal$  avg slip
+     v3     120    45%      14     +64.50     1     +0.00    +0.8bp
+     v4     124    27%      25     -37.11     0     +0.00    -0.5bp
+     v6      72    10%       3    +118.82     0     +0.00    +4.2bp
+     v7      63     8%       7     -25.39     1     +0.00    +0.4bp
+     vC      39     0%       3    +159.03     2    +15.22    -6.0bp
+     vQ      11    55%       1      -1.95     0     +0.00    -0.2bp
+    vQ2       2    50%       1      -0.54     0     +0.00    -2.9bp
+     vA      19    63%       0      -5.69     0     +0.00    +3.3bp
+     vP      25    60%       2      +5.19     0     +0.00    -0.9bp
+     vR      13    38%       1      -6.93     0     +0.00    +0.0bp
+     vS      27    33%       3     -63.30     0     +0.00    -2.3bp
+     vM      51     0%       0     -23.55     0     +0.00    +1.1bp
+  TOTAL     566    26%      60    +183.08     4    +15.22
+
+===== LIMIT arm =====
+  strat  closed   win%  missed  realized$  open   unreal$  avg slip
+     v3      95    36%      95     +31.18     1     +0.00    -5.4bp
+     v4      94    27%     121     +30.60     0     +0.00    -7.2bp
+     v6      63    10%      20    +158.88     0     +0.00    -6.2bp
+     v7      54     4%      23     -37.68     1     +0.00    -6.2bp
+     vC      39     0%      18    +159.95     1     +8.02   -12.0bp
+     vQ      13    54%       6      +7.44     0     +0.00    -4.3bp
+    vQ2       2   100%       1     +10.20     0     +0.00    -3.0bp
+     vA      13    69%       9     +11.38     0     +0.00    -4.3bp
+     vP      21    48%      15      -6.03     0     +0.00    -4.7bp
+     vR      11    36%       9      -4.84     0     +0.00    -2.3bp
+     vS      27    41%       9     -48.77     0     +0.00    -4.1bp
+     vM      44     0%       7      -0.48     0     +0.00    -0.5bp
+  TOTAL     476    23%     333    +311.83     3     +8.02
+
+A/B VERDICT SO FAR: LIMIT arm leads by $121.55 (mkt $+198.30 vs lmt $+319.85, incl. unrealized)
+
+===== OPTIONS strategies (separate books) =====
+  vC-OPT-2W (vC signals -> 1-2w ATM calls): closed 43 | win% 21% | realized $-2,579.00 | open 2 | unreal $+49.00
+  vM-OPT-0DTE (vM signals -> 0DTE calls/puts): closed 16 | win% 25% | realized $-1,025.00 | open 0 | unreal $+0.00
+  head-to-head: vC stock (mkt) $+159.03 vs vC-OPT-2W $-2,579.00
+    AAPL261030C00345000 x1 entry 5.85 now 5.80 P&L -5.00
+    TLT261102C00080500 x9 entry 1.03 now 1.09 P&L +54.00
+
+===== vM / vMO — MORNING engine (simulation-only, its own daily run) =====
+  CHAMPION {"last_entry": 690, "nr": 0.3, "or_bars": 5, "rr": 2.0, "sides": "both", "volx": null}
+    QQQ ladder: arena_worst=+0.01%  gate=+4.78%  final=+7.11% (n=85)
+    QQQ stock forward since 2026-07-21: n=17 total=+0.54% win=59%
+    SPY stock forward since 2026-07-21: n=22 total=-1.12% win=50%
+    DIA stock forward since 2026-07-21: n=15 total=-1.01% win=53%
+    VTI stock forward since 2026-07-21: n=20 total=-1.13% win=50%
+    SCHX stock forward since 2026-07-21: n=21 total=-1.61% win=43%
+    OEF stock forward since 2026-07-21: n=21 total=-0.15% win=52%
+    QQQ WIDE nr<=0.4 (EXPERIMENTAL, not validated) forward: n=22 total=+1.58% win=59%
+    BOOK coverage since 2026-07-21: traded 38/67 days (57%) — goal ~50%
+  vMO OPTIONS (0dte atm, 1%/side, fixed premium/trade)
+    QQQ vMO forward: n=17 total=+28.9% of premium win=53%
+    SPY vMO forward: n=22 total=-277.2% of premium win=45%
+
+===== RECOVERED trades (missed via OUTAGE or the old cross-strategy block; simulated fills at signal px, 5bps) =====
+  strat   n     P&L$  outcomes
+     v3  20    -5.66  STOP:12 TARGET:7 TIME:1
+     v4  33   -28.71  STOP:26 TARGET:1 TIME:6
+     v6   4   -20.36  STOP:4
+     v7  10   -27.96  STOP:10
+     vC   2    -7.42  OPEN:1 STOP:1
+     vQ   4    -1.43  STOP:2 TARGET:2
+     vA   3    -3.57  STOP:2 TARGET:1
+     vP   8    -2.85  STOP:4 TARGET:4
+     vR   1    -1.78  STOP:1
+     vS   7    -3.15  STOP:4 TARGET:3
+  TOTAL  92  -102.89  (78 outage, 14 rule-block)
+  ADJUSTED balance (broker equity + recovered): $96,824.35
+
+  ADJUSTMENT: QQQ x1 +32.68 — orphan share from 7/24 dryrun phantom exit, sold 8/12 @ 725.18 (order 8311bd16)
+===== FLAGS =====
+  FLAG: NVDA broker qty 0 outside ledger range [16,16] (manual trade? partial fill? review)
+  FLAG: OEF broker qty -2 outside ledger range [0,0] (manual trade? partial fill? review)
+  FLAG: AAPL broker qty 2 outside ledger range [4,4] (manual trade? partial fill? review)
+  FLAG: QQQ broker qty -6 outside ledger range [0,0] (manual trade? partial fill? review)

@@ -16433,3 +16433,263 @@
 2026-10-26 19:47:11Z  A/B cycle done | signals=0 open=10 pending=0 closed=1468
 2026-10-26 20:01:04Z  A/B cycle | equity=$98,023.04 day=+1044.99 dd=3408.30 | session=ext
 2026-10-26 20:02:23Z  A/B cycle done | signals=0 open=10 pending=0 closed=1468
+2026-10-26 20:31:03Z  A/B cycle | equity=$97,977.18 day=+999.13 dd=3454.16 | session=ext
+2026-10-26 20:32:11Z    SIGNAL vC JPM bar=2026-10-26 19:00:00 p=0.000 sig_px=334.15 tgt=375.01 stop=330.06 qty=2
+2026-10-26 20:32:11Z    SIGNAL vC TLT bar=2026-10-26 19:00:00 p=0.000 sig_px=81.69 tgt=87.23 stop=81.14 qty=12
+2026-10-26 20:32:16Z  A/B cycle done | signals=2 open=10 pending=0 closed=1468
+2026-10-26 20:46:03Z  A/B cycle | equity=$97,976.84 day=+998.79 dd=3454.50 | session=ext
+2026-10-26 20:47:10Z  A/B cycle done | signals=0 open=10 pending=0 closed=1468
+2026-10-26 21:01:03Z  A/B cycle | equity=$97,975.91 day=+997.86 dd=3455.43 | session=ext
+2026-10-26 21:02:11Z  A/B cycle done | signals=0 open=10 pending=0 closed=1468
+2026-10-26 21:16:08Z  A/B cycle | equity=$97,978.14 day=+1000.09 dd=3453.20 | session=ext
+2026-10-26 21:17:08Z    SIGNAL v4 JPM bar=2026-10-26 20:30:00 p=0.339 sig_px=334.11 tgt=336.52 stop=333.51 qty=2
+2026-10-26 21:17:15Z  A/B cycle done | signals=1 open=10 pending=2 closed=1468
+2026-10-26 21:31:03Z  A/B cycle | equity=$97,976.70 day=+998.65 dd=3454.64 | session=ext
+2026-10-26 21:31:04Z    MISSED lmt v4 JPM (limit 334.11 never filled)
+2026-10-26 21:32:11Z  A/B cycle done | signals=0 open=10 pending=1 closed=1469
+2026-10-26 21:46:03Z  A/B cycle | equity=$97,967.96 day=+989.91 dd=3463.38 | session=ext
+2026-10-26 21:46:36Z    SIGNAL v3 QQQ bar=2026-10-26 21:00:00 p=0.529 sig_px=712.45 tgt=715.90 stop=710.15 qty=1
+2026-10-26 21:47:12Z  A/B cycle done | signals=1 open=10 pending=3 closed=1469
+2026-10-26 22:01:04Z  A/B cycle | equity=$97,968.66 day=+990.61 dd=3462.68 | session=ext
+2026-10-26 22:01:04Z    MISSED mkt v4 JPM (limit 334.11 never filled)
+2026-10-26 22:01:04Z    FILLED mkt v3 QQQ @ 712.74 (signal 712.45, slip +4.1 bps)
+2026-10-26 22:01:05Z    MISSED lmt v3 QQQ (limit 712.45 never filled)
+2026-10-26 22:02:14Z    SIGNAL vS QQQ bar=2026-10-26 21:45:00 p=0.607 sig_px=712.77 tgt=716.33 stop=709.92 qty=1
+2026-10-26 22:02:15Z  A/B cycle done | signals=1 open=11 pending=2 closed=1471
+2026-10-26 22:16:03Z  A/B cycle | equity=$97,964.91 day=+986.86 dd=3466.43 | session=ext
+2026-10-26 22:16:03Z    FILLED mkt vS QQQ @ 713.30 (signal 712.77, slip +7.4 bps)
+2026-10-26 22:16:04Z    MISSED lmt vS QQQ (limit 712.77 never filled)
+2026-10-26 22:17:06Z    SIGNAL v4 NVDA bar=2026-10-26 21:45:00 p=0.328 sig_px=216.48 tgt=218.18 stop=216.05 qty=4
+2026-10-26 22:17:08Z    SIGNAL v6 AAPL bar=2026-10-26 21:00:00 p=0.298 sig_px=343.50 tgt=356.40 stop=341.66 qty=2
+2026-10-26 22:17:09Z    SIGNAL v6 MSFT bar=2026-10-26 21:00:00 p=0.270 sig_px=531.67 tgt=549.12 stop=529.18 qty=1
+2026-10-26 22:17:11Z    SIGNAL vC TLT bar=2026-10-26 21:00:00 p=0.000 sig_px=81.60 tgt=86.27 stop=81.13 qty=12
+2026-10-26 22:17:15Z  A/B cycle done | signals=4 open=12 pending=4 closed=1472
+2026-10-26 22:31:04Z  A/B cycle | equity=$97,962.17 day=+984.12 dd=3469.17 | session=ext
+2026-10-26 22:31:04Z    FILLED mkt v4 NVDA @ 216.47 (signal 216.48, slip -0.5 bps)
+2026-10-26 22:31:04Z    FILLED lmt v4 NVDA @ 216.47 (signal 216.48, slip -0.5 bps)
+2026-10-26 22:31:04Z    FILLED mkt v6 AAPL @ 343.25 (signal 343.50, slip -7.3 bps)
+2026-10-26 22:31:05Z    FILLED lmt v6 AAPL @ 343.25 (signal 343.50, slip -7.3 bps)
+2026-10-26 22:32:18Z    SIGNAL v4 NVDA bar=2026-10-26 22:00:00 p=0.327 sig_px=216.48 tgt=218.14 stop=216.07 qty=4
+2026-10-26 22:32:26Z  A/B cycle done | signals=1 open=16 pending=0 closed=1472
+2026-10-26 22:46:03Z  A/B cycle | equity=$97,963.18 day=+985.13 dd=3468.16 | session=ext
+2026-10-26 22:47:05Z    SIGNAL v4 NVDA bar=2026-10-26 22:15:00 p=0.319 sig_px=216.45 tgt=218.06 stop=216.05 qty=4
+2026-10-26 22:47:12Z  A/B cycle done | signals=1 open=16 pending=0 closed=1472
+2026-10-26 23:01:03Z  A/B cycle | equity=$97,966.86 day=+988.81 dd=3464.48 | session=ext
+2026-10-26 23:02:06Z    SIGNAL v4 NVDA bar=2026-10-26 22:30:00 p=0.331 sig_px=216.64 tgt=218.20 stop=216.25 qty=4
+2026-10-26 23:02:08Z    SIGNAL vC JPM bar=2026-10-26 20:00:00 p=0.000 sig_px=334.04 tgt=373.91 stop=330.05 qty=2
+2026-10-26 23:02:13Z  A/B cycle done | signals=2 open=16 pending=0 closed=1472
+2026-10-26 23:16:03Z  A/B cycle | equity=$97,970.05 day=+992.00 dd=3461.29 | session=ext
+2026-10-26 23:16:09Z    CLOSED mkt v4 NVDA STOP pnl=-1.88
+2026-10-26 23:16:09Z    CLOSED lmt v4 NVDA STOP pnl=-1.88
+2026-10-26 23:17:09Z    SIGNAL v4 MSFT bar=2026-10-26 22:45:00 p=0.347 sig_px=532.01 tgt=535.58 stop=531.12 qty=1
+2026-10-26 23:17:11Z    SIGNAL v4 JPM bar=2026-10-26 22:30:00 p=0.292 sig_px=334.06 tgt=336.16 stop=333.53 qty=2
+2026-10-26 23:17:14Z    SIGNAL vC JPM bar=2026-10-26 22:00:00 p=0.000 sig_px=334.06 tgt=371.50 stop=330.32 qty=2
+2026-10-26 23:17:14Z    SIGNAL vC TLT bar=2026-10-26 22:00:00 p=0.000 sig_px=81.61 tgt=86.13 stop=81.16 qty=12
+2026-10-26 23:17:19Z  A/B cycle done | signals=4 open=14 pending=4 closed=1474
+2026-10-26 23:31:03Z  A/B cycle | equity=$97,970.71 day=+992.66 dd=3460.63 | session=ext
+2026-10-26 23:31:04Z    FILLED mkt v4 MSFT @ 531.30 (signal 532.01, slip -13.4 bps)
+2026-10-26 23:31:04Z    FILLED lmt v4 MSFT @ 531.30 (signal 532.01, slip -13.4 bps)
+2026-10-26 23:31:04Z    FILLED mkt v4 JPM @ 334.04 (signal 334.06, slip -0.6 bps)
+2026-10-26 23:31:04Z    FILLED lmt v4 JPM @ 334.04 (signal 334.06, slip -0.6 bps)
+2026-10-26 23:32:09Z    SIGNAL v4 JPM bar=2026-10-26 23:00:00 p=0.338 sig_px=334.04 tgt=335.97 stop=333.56 qty=2
+2026-10-26 23:32:16Z  A/B cycle done | signals=1 open=18 pending=0 closed=1474
+2026-10-26 23:46:03Z  A/B cycle | equity=$97,967.93 day=+989.88 dd=3463.41 | session=ext
+2026-10-26 23:47:04Z    SIGNAL v4 MSFT bar=2026-10-26 23:15:00 p=0.288 sig_px=532.10 tgt=535.69 stop=531.20 qty=1
+2026-10-26 23:47:05Z    SIGNAL v4 NVDA bar=2026-10-26 23:15:00 p=0.288 sig_px=216.25 tgt=217.70 stop=215.89 qty=4
+2026-10-26 23:47:13Z  A/B cycle done | signals=2 open=18 pending=2 closed=1474
+2026-10-27 00:01:03Z  A/B cycle | equity=$97,965.52 day=+987.47 dd=3465.82 | session=closed
+2026-10-27 00:16:04Z  A/B cycle | equity=$97,956.05 day=+978.00 dd=3475.29 | session=closed
+2026-10-27 08:01:03Z  A/B cycle | equity=$97,996.49 day=-59.92 dd=3434.85 | session=ext
+2026-10-27 08:01:11Z    CLOSED mkt v4 MSFT STOP pnl=-0.50
+2026-10-27 08:01:12Z    CLOSED lmt v4 MSFT STOP pnl=-0.21
+2026-10-27 08:02:21Z    SIGNAL v4 AAPL bar=2026-10-26 23:45:00 p=0.303 sig_px=343.56 tgt=345.57 stop=343.06 qty=2
+2026-10-27 08:02:24Z    SIGNAL v4 MSFT bar=2026-10-26 23:45:00 p=0.302 sig_px=532.44 tgt=535.87 stop=531.58 qty=1
+2026-10-27 08:02:25Z    [skip v4 MSFT: wash-trade guard — conflicts with another strategy's exit order on MSFT (netted account)]
+2026-10-27 08:02:26Z    SIGNAL v4 NVDA bar=2026-10-26 23:45:00 p=0.314 sig_px=216.50 tgt=217.85 stop=216.16 qty=4
+2026-10-27 08:02:34Z    SIGNAL v6 AAPL bar=2026-10-26 23:00:00 p=0.330 sig_px=343.56 tgt=355.80 stop=341.82 qty=2
+2026-10-27 08:02:56Z    SIGNAL vC TLT bar=2026-10-26 23:00:00 p=0.000 sig_px=81.68 tgt=86.13 stop=81.24 qty=12
+2026-10-27 08:03:44Z  A/B cycle done | signals=5 open=16 pending=4 closed=1478
+2026-10-27 08:16:08Z  A/B cycle | equity=$97,988.82 day=-67.59 dd=3442.52 | session=ext
+2026-10-27 08:16:09Z    FILLED mkt v4 AAPL @ 343.50 (signal 343.56, slip -1.9 bps)
+2026-10-27 08:16:09Z    FILLED lmt v4 AAPL @ 343.50 (signal 343.56, slip -1.9 bps)
+2026-10-27 08:16:09Z    FILLED mkt v4 NVDA @ 215.00 (signal 216.50, slip -69.3 bps)
+2026-10-27 08:16:10Z    FILLED lmt v4 NVDA @ 215.00 (signal 216.50, slip -69.3 bps)
+2026-10-27 08:16:18Z    CLOSED mkt v4 NVDA STOP pnl=+1.42
+2026-10-27 08:16:19Z    CLOSED lmt v4 NVDA STOP pnl=+1.42
+2026-10-27 08:17:18Z    SIGNAL vC JPM bar=2026-10-26 23:00:00 p=0.001 sig_px=334.40 tgt=366.37 stop=331.20 qty=2
+2026-10-27 08:17:23Z  A/B cycle done | signals=1 open=18 pending=0 closed=1480
+2026-10-27 08:31:03Z  A/B cycle | equity=$97,980.11 day=-76.30 dd=3451.23 | session=ext
+2026-10-27 08:31:10Z    CLOSED mkt v4 AAPL STOP pnl=-1.38
+2026-10-27 08:31:11Z    CLOSED lmt v4 AAPL STOP pnl=-1.38
+2026-10-27 08:32:15Z  A/B cycle done | signals=0 open=16 pending=0 closed=1482
+2026-10-27 08:46:03Z  A/B cycle | equity=$97,988.31 day=-68.10 dd=3443.03 | session=ext
+2026-10-27 08:47:11Z  A/B cycle done | signals=0 open=16 pending=0 closed=1482
+2026-10-27 09:01:03Z  A/B cycle | equity=$97,974.57 day=-81.84 dd=3456.77 | session=ext
+2026-10-27 09:02:15Z  A/B cycle done | signals=0 open=16 pending=0 closed=1482
+2026-10-27 09:16:03Z  A/B cycle | equity=$97,976.63 day=-79.78 dd=3454.71 | session=ext
+2026-10-27 09:17:09Z    SIGNAL vC TLT bar=2026-10-27 08:00:00 p=0.000 sig_px=81.64 tgt=86.33 stop=81.17 qty=12
+2026-10-27 09:17:14Z  A/B cycle done | signals=1 open=16 pending=0 closed=1482
+2026-10-27 09:31:03Z  A/B cycle | equity=$97,966.75 day=-89.66 dd=3464.59 | session=ext
+2026-10-27 09:32:15Z  A/B cycle done | signals=0 open=16 pending=0 closed=1482
+2026-10-27 09:46:03Z  A/B cycle | equity=$97,965.56 day=-90.85 dd=3465.78 | session=ext
+2026-10-27 09:46:48Z    SIGNAL v3 MSFT bar=2026-10-27 09:00:00 p=0.523 sig_px=529.12 tgt=532.21 stop=527.06 qty=1
+2026-10-27 09:47:17Z  A/B cycle done | signals=1 open=16 pending=2 closed=1482
+2026-10-27 10:01:03Z  A/B cycle | equity=$97,960.34 day=-96.07 dd=3471.00 | session=ext
+2026-10-27 10:01:03Z    FILLED mkt v3 MSFT @ 529.27 (signal 529.12, slip +2.8 bps)
+2026-10-27 10:01:04Z    FILLED lmt v3 MSFT @ 529.09 (signal 529.12, slip -0.6 bps)
+2026-10-27 10:02:17Z  A/B cycle done | signals=0 open=18 pending=0 closed=1482
+2026-10-27 10:16:03Z  A/B cycle | equity=$97,963.28 day=-93.13 dd=3468.06 | session=ext
+2026-10-27 10:17:09Z    SIGNAL vC NVDA bar=2026-10-27 09:00:00 p=0.007 sig_px=216.51 tgt=256.45 stop=212.52 qty=4
+2026-10-27 10:17:10Z    OPT QUEUED NVDA (options market closed; buying at next open)
+2026-10-27 10:17:10Z    SIGNAL vC TLT bar=2026-10-27 09:00:00 p=0.000 sig_px=81.66 tgt=86.35 stop=81.19 qty=12
+2026-10-27 10:17:15Z  A/B cycle done | signals=2 open=18 pending=2 closed=1482
+2026-10-27 10:31:03Z  A/B cycle | equity=$97,958.37 day=-98.04 dd=3472.97 | session=ext
+2026-10-27 10:31:03Z    FILLED mkt vC NVDA @ 216.00 (signal 216.51, slip -23.6 bps)
+2026-10-27 10:31:04Z    FILLED lmt vC NVDA @ 216.00 (signal 216.51, slip -23.6 bps)
+2026-10-27 10:32:09Z    SIGNAL v4 AAPL bar=2026-10-27 10:00:00 p=0.333 sig_px=342.29 tgt=343.94 stop=341.88 qty=2
+2026-10-27 10:32:11Z    SIGNAL v4 MSFT bar=2026-10-27 10:00:00 p=0.272 sig_px=528.02 tgt=531.09 stop=527.25 qty=1
+2026-10-27 10:32:20Z  A/B cycle done | signals=2 open=20 pending=4 closed=1482
+2026-10-27 10:46:03Z  A/B cycle | equity=$97,958.75 day=-97.66 dd=3472.59 | session=ext
+2026-10-27 10:46:03Z    FILLED mkt v4 AAPL @ 342.48 (signal 342.29, slip +5.6 bps)
+2026-10-27 10:46:04Z    FILLED lmt v4 AAPL @ 342.25 (signal 342.29, slip -1.2 bps)
+2026-10-27 10:46:05Z    MISSED lmt v4 MSFT (limit 528.02 never filled)
+2026-10-27 10:47:20Z  A/B cycle done | signals=0 open=22 pending=1 closed=1483
+2026-10-27 11:01:03Z  A/B cycle | equity=$97,952.28 day=-104.13 dd=3479.06 | session=ext
+2026-10-27 11:02:17Z  A/B cycle done | signals=0 open=22 pending=1 closed=1483
+2026-10-27 11:16:03Z  A/B cycle | equity=$97,962.19 day=-94.22 dd=3469.15 | session=ext
+2026-10-27 11:16:04Z    MISSED mkt v4 MSFT (limit 528.02 never filled)
+2026-10-27 11:17:10Z    SIGNAL v4 AAPL bar=2026-10-27 10:45:00 p=0.264 sig_px=342.35 tgt=344.31 stop=341.86 qty=2
+2026-10-27 11:17:13Z    SIGNAL vC NVDA bar=2026-10-27 10:00:00 p=0.040 sig_px=217.14 tgt=258.67 stop=212.99 qty=4
+2026-10-27 11:17:14Z    SIGNAL vC TLT bar=2026-10-27 10:00:00 p=0.000 sig_px=81.72 tgt=86.62 stop=81.23 qty=12
+2026-10-27 11:17:18Z  A/B cycle done | signals=3 open=22 pending=0 closed=1484
+2026-10-27 11:31:03Z  A/B cycle | equity=$97,884.27 day=-172.14 dd=3547.07 | session=ext
+2026-10-27 11:32:17Z  A/B cycle done | signals=0 open=22 pending=0 closed=1484
+2026-10-27 11:46:03Z  A/B cycle | equity=$97,884.24 day=-172.17 dd=3547.10 | session=ext
+2026-10-27 11:47:20Z  A/B cycle done | signals=0 open=22 pending=0 closed=1484
+2026-10-27 12:01:04Z  A/B cycle | equity=$97,839.13 day=-217.28 dd=3592.21 | session=ext
+2026-10-27 12:02:23Z  A/B cycle done | signals=0 open=22 pending=0 closed=1484
+2026-10-27 12:16:03Z  A/B cycle | equity=$97,842.51 day=-213.90 dd=3588.83 | session=ext
+2026-10-27 12:16:10Z    CLOSED mkt v4 JPM TARGET pnl=+4.38
+2026-10-27 12:16:10Z    CLOSED lmt v4 JPM TARGET pnl=+4.38
+2026-10-27 12:17:19Z    SIGNAL vC NVDA bar=2026-10-27 11:00:00 p=0.137 sig_px=217.50 tgt=258.13 stop=213.44 qty=4
+2026-10-27 12:17:20Z    SIGNAL vC TLT bar=2026-10-27 11:00:00 p=0.000 sig_px=81.76 tgt=86.53 stop=81.28 qty=12
+2026-10-27 12:17:24Z  A/B cycle done | signals=2 open=20 pending=0 closed=1486
+2026-10-27 12:31:03Z  A/B cycle | equity=$97,878.25 day=-178.16 dd=3553.09 | session=ext
+2026-10-27 12:31:08Z    CLOSED mkt v3 QQQ TARGET pnl=+3.58
+2026-10-27 12:32:16Z  A/B cycle done | signals=0 open=19 pending=0 closed=1487
+2026-10-27 12:46:03Z  A/B cycle | equity=$97,857.48 day=-198.93 dd=3573.86 | session=ext
+2026-10-27 12:47:13Z  A/B cycle done | signals=0 open=19 pending=0 closed=1487
+2026-10-27 13:01:03Z  A/B cycle | equity=$97,874.38 day=-182.03 dd=3556.96 | session=ext
+2026-10-27 13:02:20Z  A/B cycle done | signals=0 open=19 pending=0 closed=1487
+2026-10-27 13:16:03Z  A/B cycle | equity=$97,875.43 day=-180.98 dd=3555.91 | session=ext
+2026-10-27 13:17:13Z    SIGNAL vC NVDA bar=2026-10-27 12:00:00 p=0.008 sig_px=218.23 tgt=259.01 stop=214.15 qty=4
+2026-10-27 13:17:14Z    SIGNAL vC TLT bar=2026-10-27 12:00:00 p=0.000 sig_px=81.74 tgt=86.63 stop=81.25 qty=12
+2026-10-27 13:17:18Z  A/B cycle done | signals=2 open=19 pending=0 closed=1487
+2026-10-27 13:31:03Z  A/B cycle | equity=$98,035.32 day=-21.09 dd=3396.02 | session=rth
+2026-10-27 13:31:51Z    OPT BUY NVDA261104C00217500 x2 limit 4.91 (quote-pegged)
+2026-10-27 13:32:31Z  A/B cycle done | signals=0 open=19 pending=0 closed=1487
+2026-10-27 13:46:04Z  A/B cycle | equity=$97,787.41 day=-269.00 dd=3643.93 | session=rth
+2026-10-27 13:46:09Z    CLOSED mkt vS QQQ TARGET pnl=+3.62
+2026-10-27 13:46:45Z    OPT FILLED NVDA261104C00217500 x2 @ 4.90
+2026-10-27 13:47:29Z  A/B cycle done | signals=0 open=18 pending=0 closed=1488
+2026-10-27 13:56:03Z  A/B cycle | equity=$97,592.93 day=-463.48 dd=3838.41 | session=rth
+2026-10-27 13:57:38Z  A/B cycle done | signals=0 open=18 pending=0 closed=1488
+2026-10-27 14:01:04Z  A/B cycle | equity=$97,559.33 day=-497.08 dd=3872.01 | session=rth
+2026-10-27 14:03:09Z  A/B cycle done | signals=0 open=18 pending=0 closed=1488
+2026-10-27 14:06:04Z  A/B cycle | equity=$97,720.46 day=-335.95 dd=3710.88 | session=rth
+2026-10-27 14:08:10Z  A/B cycle done | signals=0 open=18 pending=0 closed=1488
+2026-10-27 14:11:03Z  A/B cycle | equity=$97,719.98 day=-336.43 dd=3711.36 | session=rth
+2026-10-27 14:11:10Z    CLOSED mkt v4 AAPL TARGET pnl=+3.62
+2026-10-27 14:11:11Z    CLOSED lmt v4 AAPL TARGET pnl=+4.08
+2026-10-27 14:12:32Z  A/B cycle done | signals=0 open=16 pending=0 closed=1490
+2026-10-27 14:16:04Z  A/B cycle | equity=$97,718.11 day=-338.30 dd=3713.23 | session=rth
+2026-10-27 14:18:16Z  A/B cycle done | signals=0 open=16 pending=0 closed=1490
+2026-10-27 14:21:04Z  A/B cycle | equity=$97,682.76 day=-373.65 dd=3748.58 | session=rth
+2026-10-27 14:22:32Z  A/B cycle done | signals=0 open=16 pending=0 closed=1490
+2026-10-27 14:26:03Z  A/B cycle | equity=$97,744.28 day=-312.13 dd=3687.06 | session=rth
+2026-10-27 14:27:33Z  A/B cycle done | signals=0 open=16 pending=0 closed=1490
+2026-10-27 14:31:04Z  A/B cycle | equity=$97,884.94 day=-171.47 dd=3546.40 | session=rth
+2026-10-27 14:33:00Z  A/B cycle done | signals=0 open=16 pending=0 closed=1490
+2026-10-27 14:36:03Z  A/B cycle | equity=$97,960.44 day=-95.97 dd=3470.90 | session=rth
+2026-10-27 14:37:35Z  A/B cycle done | signals=0 open=16 pending=0 closed=1490
+2026-10-27 14:41:04Z  A/B cycle | equity=$97,936.09 day=-120.32 dd=3495.25 | session=rth
+2026-10-27 14:41:12Z    CLOSED mkt v3 MSFT TARGET pnl=+3.65
+2026-10-27 14:41:13Z    CLOSED lmt v3 MSFT TARGET pnl=+3.83
+2026-10-27 14:42:58Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 14:46:04Z  A/B cycle | equity=$97,889.91 day=-166.50 dd=3541.43 | session=rth
+2026-10-27 14:47:58Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 14:51:04Z  A/B cycle | equity=$97,951.42 day=-104.99 dd=3479.92 | session=rth
+2026-10-27 14:52:53Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 14:56:04Z  A/B cycle | equity=$98,047.24 day=-9.17 dd=3384.10 | session=rth
+2026-10-27 14:57:59Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:01:04Z  A/B cycle | equity=$98,142.69 day=+86.28 dd=3288.65 | session=rth
+2026-10-27 15:03:04Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:06:03Z  A/B cycle | equity=$98,139.19 day=+82.78 dd=3292.15 | session=rth
+2026-10-27 15:07:52Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:11:03Z  A/B cycle | equity=$98,081.76 day=+25.35 dd=3349.58 | session=rth
+2026-10-27 15:12:52Z    SIGNAL vC TLT bar=2026-10-27 14:00:00 p=0.000 sig_px=81.67 tgt=86.75 stop=81.16 qty=12
+2026-10-27 15:13:03Z  A/B cycle done | signals=1 open=14 pending=0 closed=1492
+2026-10-27 15:16:03Z  A/B cycle | equity=$98,114.17 day=+57.76 dd=3317.17 | session=rth
+2026-10-27 15:18:13Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:21:04Z  A/B cycle | equity=$98,077.61 day=+21.20 dd=3353.73 | session=rth
+2026-10-27 15:23:05Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:26:04Z  A/B cycle | equity=$98,052.41 day=-4.00 dd=3378.93 | session=rth
+2026-10-27 15:27:54Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:31:04Z  A/B cycle | equity=$98,080.98 day=+24.57 dd=3350.36 | session=rth
+2026-10-27 15:33:07Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:36:03Z  A/B cycle | equity=$97,978.48 day=-77.93 dd=3452.86 | session=rth
+2026-10-27 15:37:54Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:41:03Z  A/B cycle | equity=$98,065.00 day=+8.59 dd=3366.34 | session=rth
+2026-10-27 15:43:11Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:46:03Z  A/B cycle | equity=$98,160.68 day=+104.27 dd=3270.66 | session=rth
+2026-10-27 15:47:29Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:51:04Z  A/B cycle | equity=$98,156.37 day=+99.96 dd=3274.97 | session=rth
+2026-10-27 15:53:06Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 15:56:04Z  A/B cycle | equity=$98,146.44 day=+90.03 dd=3284.90 | session=rth
+2026-10-27 15:57:56Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 16:01:04Z  A/B cycle | equity=$98,207.42 day=+151.01 dd=3223.92 | session=rth
+2026-10-27 16:03:00Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 16:06:03Z  A/B cycle | equity=$98,122.23 day=+65.82 dd=3309.11 | session=rth
+2026-10-27 16:07:20Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 16:16:04Z  A/B cycle | equity=$98,060.02 day=+3.61 dd=3371.32 | session=rth
+2026-10-27 16:18:04Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 16:31:04Z  A/B cycle | equity=$98,060.99 day=+4.58 dd=3370.35 | session=rth
+2026-10-27 16:32:30Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 16:46:04Z  A/B cycle | equity=$97,972.90 day=-83.51 dd=3458.44 | session=rth
+2026-10-27 16:48:06Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 17:01:04Z  A/B cycle | equity=$97,981.56 day=-74.85 dd=3449.78 | session=rth
+2026-10-27 17:02:27Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 17:16:08Z  A/B cycle | equity=$98,016.26 day=-40.15 dd=3415.08 | session=rth
+2026-10-27 17:18:22Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 17:32:39Z  A/B cycle | equity=$98,006.13 day=-50.28 dd=3425.21 | session=rth
+2026-10-27 17:34:04Z  A/B cycle done | signals=0 open=14 pending=0 closed=1492
+2026-10-27 17:46:04Z  A/B cycle | equity=$98,055.29 day=-1.12 dd=3376.05 | session=rth
+2026-10-27 17:47:21Z    SIGNAL v3 XLE bar=2026-10-27 17:00:00 p=0.547 sig_px=68.30 tgt=68.63 stop=68.07 qty=14
+2026-10-27 17:47:29Z  A/B cycle done | signals=1 open=14 pending=2 closed=1492
+2026-10-27 18:01:03Z  A/B cycle | equity=$97,911.93 day=-144.48 dd=3519.41 | session=rth
+2026-10-27 18:01:04Z    FILLED mkt v3 XLE @ 68.24 (signal 68.30, slip -8.1 bps)
+2026-10-27 18:01:04Z    FILLED lmt v3 XLE @ 68.24 (signal 68.30, slip -8.1 bps)
+2026-10-27 18:02:30Z  A/B cycle done | signals=0 open=16 pending=0 closed=1492
+2026-10-27 18:16:04Z  A/B cycle | equity=$97,947.73 day=-108.68 dd=3483.61 | session=rth
+2026-10-27 18:17:54Z    SIGNAL v3 XLE bar=2026-10-27 17:30:00 p=0.530 sig_px=68.36 tgt=68.69 stop=68.14 qty=14
+2026-10-27 18:17:57Z    SIGNAL vC NVDA bar=2026-10-27 17:00:00 p=0.013 sig_px=217.97 tgt=264.75 stop=213.30 qty=4
+2026-10-27 18:18:04Z  A/B cycle done | signals=2 open=16 pending=0 closed=1492
+2026-10-27 18:31:03Z  A/B cycle | equity=$97,957.62 day=-98.79 dd=3473.72 | session=rth
+2026-10-27 18:32:29Z  A/B cycle done | signals=0 open=16 pending=0 closed=1492
+2026-10-27 18:46:03Z  A/B cycle | equity=$97,949.10 day=-107.31 dd=3482.24 | session=rth
+2026-10-27 18:47:43Z    SIGNAL v3 XLE bar=2026-10-27 18:00:00 p=0.533 sig_px=68.31 tgt=68.64 stop=68.09 qty=14
+2026-10-27 18:47:55Z  A/B cycle done | signals=1 open=16 pending=0 closed=1492
+2026-10-27 19:01:07Z  A/B cycle | equity=$97,995.27 day=-61.14 dd=3436.07 | session=rth
+2026-10-27 19:03:09Z  A/B cycle done | signals=0 open=16 pending=0 closed=1492
+2026-10-27 19:16:04Z  A/B cycle | equity=$98,104.75 day=+48.34 dd=3326.59 | session=rth
+2026-10-27 19:16:11Z    CLOSED mkt v3 XLE STOP pnl=-2.38
+2026-10-27 19:16:12Z    CLOSED lmt v3 XLE STOP pnl=-2.30
+2026-10-27 19:17:20Z    SIGNAL v3 XLE bar=2026-10-27 18:30:00 p=0.588 sig_px=68.09 tgt=68.44 stop=67.86 qty=14
+2026-10-27 19:17:20Z    [skip v3 XLE: stale (reward) — signal 68.09, now 68.20: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-10-27 19:17:28Z  A/B cycle done | signals=1 open=14 pending=0 closed=1494
+2026-10-27 19:31:04Z  A/B cycle | equity=$98,071.63 day=+15.22 dd=3359.71 | session=rth
+2026-10-27 19:32:30Z  A/B cycle done | signals=0 open=14 pending=0 closed=1494
+2026-10-27 19:46:03Z  A/B cycle | equity=$98,134.60 day=+78.19 dd=3296.74 | session=rth
+2026-10-27 19:47:29Z  A/B cycle done | signals=0 open=14 pending=0 closed=1494
+2026-10-27 20:01:04Z  A/B cycle | equity=$97,952.78 day=-103.63 dd=3478.56 | session=ext
+2026-10-27 20:02:24Z  A/B cycle done | signals=0 open=14 pending=0 closed=1494

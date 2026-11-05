@@ -18245,3 +18245,420 @@
 2026-11-04 21:03:37Z    SIGNAL v4 MSFT bar=2026-11-04 20:30:00 p=0.358 sig_px=557.60 tgt=567.47 stop=555.13 qty=1
 2026-11-04 21:03:38Z    [skip v4 MSFT: stale (stop) — signal 557.60, now 556.07: 62% of the stop distance already gone]
 2026-11-04 21:03:48Z  A/B cycle done | signals=1 open=12 pending=0 closed=1663
+2026-11-04 21:31:07Z  A/B cycle | equity=$97,356.30 day=+177.83 dd=4075.04 | session=ext
+2026-11-04 21:33:36Z    SIGNAL v4 MSFT bar=2026-11-04 21:00:00 p=0.371 sig_px=555.77 tgt=564.85 stop=553.50 qty=1
+2026-11-04 21:33:50Z  A/B cycle done | signals=1 open=12 pending=2 closed=1663
+2026-11-04 21:46:03Z  A/B cycle | equity=$97,355.94 day=+177.47 dd=4075.40 | session=ext
+2026-11-04 21:46:04Z    FILLED mkt v4 MSFT @ 555.50 (signal 555.77, slip -4.8 bps)
+2026-11-04 21:46:04Z    FILLED lmt v4 MSFT @ 555.50 (signal 555.77, slip -4.8 bps)
+2026-11-04 21:48:29Z    SIGNAL v4 MSFT bar=2026-11-04 21:15:00 p=0.400 sig_px=555.70 tgt=564.52 stop=553.49 qty=1
+2026-11-04 21:48:41Z  A/B cycle done | signals=1 open=14 pending=0 closed=1663
+2026-11-04 22:01:04Z  A/B cycle | equity=$97,355.52 day=+177.05 dd=4075.82 | session=ext
+2026-11-04 22:03:28Z    SIGNAL v4 MSFT bar=2026-11-04 21:30:00 p=0.449 sig_px=555.15 tgt=563.48 stop=553.07 qty=1
+2026-11-04 22:03:40Z  A/B cycle done | signals=1 open=14 pending=0 closed=1663
+2026-11-04 22:16:03Z  A/B cycle | equity=$97,356.24 day=+177.77 dd=4075.10 | session=ext
+2026-11-04 22:18:10Z    SIGNAL v4 MSFT bar=2026-11-04 21:45:00 p=0.360 sig_px=554.73 tgt=562.76 stop=552.72 qty=1
+2026-11-04 22:18:21Z  A/B cycle done | signals=1 open=14 pending=0 closed=1663
+2026-11-04 22:31:04Z  A/B cycle | equity=$97,356.61 day=+178.14 dd=4074.73 | session=ext
+2026-11-04 22:33:06Z    SIGNAL v4 MSFT bar=2026-11-04 22:00:00 p=0.394 sig_px=554.97 tgt=562.61 stop=553.05 qty=1
+2026-11-04 22:33:17Z  A/B cycle done | signals=1 open=14 pending=0 closed=1663
+2026-11-04 22:46:03Z  A/B cycle | equity=$97,356.27 day=+177.80 dd=4075.07 | session=ext
+2026-11-04 22:46:04Z    CLOSED mkt v3 NVDA TIME pnl=+0.00
+2026-11-04 22:46:06Z    CLOSED lmt v3 NVDA TIME pnl=+0.00
+2026-11-04 22:46:14Z    SIGNAL v3 SPY bar=2026-11-04 22:00:00 p=0.539 sig_px=768.08 tgt=771.68 stop=765.68 qty=1
+2026-11-04 22:48:01Z    SIGNAL v4 MSFT bar=2026-11-04 22:15:00 p=0.375 sig_px=555.00 tgt=562.33 stop=553.17 qty=1
+2026-11-04 22:48:13Z  A/B cycle done | signals=2 open=12 pending=2 closed=1665
+2026-11-04 23:01:03Z  A/B cycle | equity=$97,356.72 day=+178.25 dd=4074.62 | session=ext
+2026-11-04 23:01:04Z    FILLED mkt v3 SPY @ 768.13 (signal 768.08, slip +0.7 bps)
+2026-11-04 23:01:04Z    FILLED lmt v3 SPY @ 768.08 (signal 768.08, slip +0.0 bps)
+2026-11-04 23:02:56Z    SIGNAL v4 MSFT bar=2026-11-04 22:30:00 p=0.364 sig_px=555.01 tgt=561.71 stop=553.34 qty=1
+2026-11-04 23:03:08Z  A/B cycle done | signals=1 open=14 pending=0 closed=1665
+2026-11-04 23:16:03Z  A/B cycle | equity=$97,353.31 day=+174.84 dd=4078.03 | session=ext
+2026-11-04 23:16:13Z    SIGNAL v3 SPY bar=2026-11-04 22:30:00 p=0.532 sig_px=768.20 tgt=771.70 stop=765.87 qty=1
+2026-11-04 23:18:09Z    SIGNAL v4 MSFT bar=2026-11-04 22:45:00 p=0.366 sig_px=555.08 tgt=561.53 stop=553.47 qty=1
+2026-11-04 23:18:12Z    SIGNAL v7 NVDA bar=2026-11-04 22:00:00 p=0.163 sig_px=201.67 tgt=228.06 stop=199.03 qty=4
+2026-11-04 23:18:21Z  A/B cycle done | signals=3 open=14 pending=0 closed=1665
+2026-11-04 23:31:04Z  A/B cycle | equity=$97,352.79 day=+174.32 dd=4078.55 | session=ext
+2026-11-04 23:33:25Z    SIGNAL v4 MSFT bar=2026-11-04 23:00:00 p=0.334 sig_px=554.94 tgt=561.25 stop=553.37 qty=1
+2026-11-04 23:33:38Z  A/B cycle done | signals=1 open=14 pending=0 closed=1665
+2026-11-04 23:46:03Z  A/B cycle | equity=$97,351.92 day=+173.45 dd=4079.42 | session=ext
+2026-11-04 23:46:11Z    SIGNAL v3 SPY bar=2026-11-04 23:00:00 p=0.553 sig_px=767.61 tgt=771.10 stop=765.29 qty=1
+2026-11-04 23:47:52Z    SIGNAL v4 MSFT bar=2026-11-04 23:15:00 p=0.284 sig_px=555.00 tgt=561.14 stop=553.47 qty=1
+2026-11-04 23:47:54Z    SIGNAL v4 XLE bar=2026-11-04 23:15:00 p=0.310 sig_px=63.46 tgt=64.19 stop=63.28 qty=15
+2026-11-04 23:48:07Z  A/B cycle done | signals=3 open=14 pending=2 closed=1665
+2026-11-05 00:01:03Z  A/B cycle | equity=$97,346.99 day=+168.52 dd=4084.35 | session=ext
+2026-11-05 00:01:05Z    MISSED lmt v4 XLE (limit 63.46 never filled)
+2026-11-05 00:03:20Z    SIGNAL v4 MSFT bar=2026-11-04 23:30:00 p=0.443 sig_px=555.10 tgt=560.92 stop=553.65 qty=1
+2026-11-05 00:03:31Z    SIGNAL v4 XLE bar=2026-11-04 23:30:00 p=0.307 sig_px=63.51 tgt=64.20 stop=63.34 qty=15
+2026-11-05 00:03:45Z    SIGNAL v6 NVDA bar=2026-11-04 22:00:00 p=0.245 sig_px=201.67 tgt=219.84 stop=199.07 qty=4
+2026-11-05 00:03:46Z    [error v6 NVDA: POST /v2/orders -> 403: {"code":40310000,"message":"cannot open a long buy while a short sell order is open"}]
+2026-11-05 00:05:56Z  A/B cycle done | signals=3 open=14 pending=2 closed=1666
+2026-11-05 00:16:03Z  A/B cycle | equity=$97,351.49 day=+173.02 dd=4079.85 | session=ext
+2026-11-05 00:16:05Z    MISSED lmt v4 XLE (limit 63.51 never filled)
+2026-11-05 00:16:15Z    SIGNAL v3 SPY bar=2026-11-04 23:30:00 p=0.531 sig_px=767.05 tgt=770.53 stop=764.73 qty=1
+2026-11-05 00:18:06Z    SIGNAL v4 MSFT bar=2026-11-04 23:45:00 p=0.273 sig_px=554.24 tgt=559.62 stop=552.89 qty=1
+2026-11-05 00:18:10Z    SIGNAL v7 NVDA bar=2026-11-04 23:00:00 p=0.152 sig_px=201.15 tgt=222.28 stop=199.04 qty=4
+2026-11-05 00:18:18Z  A/B cycle done | signals=3 open=14 pending=1 closed=1667
+2026-11-05 00:31:08Z  A/B cycle | equity=$97,344.01 day=+165.54 dd=4087.33 | session=ext
+2026-11-05 00:31:09Z    MISSED mkt v4 XLE (limit 63.46 never filled)
+2026-11-05 00:33:22Z  A/B cycle done | signals=0 open=14 pending=0 closed=1668
+2026-11-05 00:46:03Z  A/B cycle | equity=$97,348.52 day=+170.05 dd=4082.82 | session=ext
+2026-11-05 00:48:15Z  A/B cycle done | signals=0 open=14 pending=0 closed=1668
+2026-11-05 01:01:03Z  A/B cycle | equity=$97,347.57 day=+169.10 dd=4083.77 | session=closed
+2026-11-05 01:16:03Z  A/B cycle | equity=$97,336.83 day=+158.36 dd=4094.51 | session=closed
+2026-11-05 09:01:05Z  A/B cycle | equity=$97,344.77 day=-5.51 dd=4086.57 | session=ext
+2026-11-05 09:01:16Z    SIGNAL v3 QQQ bar=2026-11-05 00:30:00 p=0.618 sig_px=689.02 tgt=693.72 stop=685.89 qty=1
+2026-11-05 09:03:08Z    SIGNAL v4 QQQ bar=2026-11-05 00:45:00 p=0.279 sig_px=689.02 tgt=694.26 stop=687.71 qty=1
+2026-11-05 09:03:13Z    SIGNAL v7 NVDA bar=2026-11-05 00:00:00 p=0.147 sig_px=199.77 tgt=207.16 stop=199.03 qty=5
+2026-11-05 09:03:23Z  A/B cycle done | signals=3 open=14 pending=4 closed=1668
+2026-11-05 09:16:03Z  A/B cycle | equity=$97,339.20 day=-11.08 dd=4092.14 | session=ext
+2026-11-05 09:16:04Z    FILLED mkt v3 QQQ @ 686.08 (signal 689.02, slip -42.7 bps)
+2026-11-05 09:16:04Z    FILLED lmt v3 QQQ @ 686.08 (signal 689.02, slip -42.7 bps)
+2026-11-05 09:16:04Z    FILLED mkt v4 QQQ @ 685.79 (signal 689.02, slip -46.9 bps)
+2026-11-05 09:16:05Z    FILLED lmt v4 QQQ @ 685.80 (signal 689.02, slip -46.7 bps)
+2026-11-05 09:16:15Z    CLOSED mkt v3 QQQ STOP pnl=-0.36
+2026-11-05 09:16:17Z    CLOSED lmt v3 QQQ STOP pnl=-0.36
+2026-11-05 09:16:18Z    CLOSED mkt v4 QQQ STOP pnl=-0.07
+2026-11-05 09:16:20Z    CLOSED lmt v4 QQQ STOP pnl=-0.08
+2026-11-05 09:18:18Z  A/B cycle done | signals=0 open=14 pending=0 closed=1672
+2026-11-05 09:31:03Z  A/B cycle | equity=$97,336.95 day=-13.33 dd=4094.39 | session=ext
+2026-11-05 09:33:15Z  A/B cycle done | signals=0 open=14 pending=0 closed=1672
+2026-11-05 09:46:03Z  A/B cycle | equity=$97,342.71 day=-7.57 dd=4088.63 | session=ext
+2026-11-05 09:46:15Z    SIGNAL v3 QQQ bar=2026-11-05 09:00:00 p=0.562 sig_px=684.96 tgt=689.86 stop=681.69 qty=1
+2026-11-05 09:48:03Z  A/B cycle done | signals=1 open=14 pending=2 closed=1672
+2026-11-05 10:01:03Z  A/B cycle | equity=$97,347.39 day=-2.89 dd=4083.95 | session=ext
+2026-11-05 10:01:05Z    MISSED lmt v3 QQQ (limit 684.96 never filled)
+2026-11-05 10:03:10Z  A/B cycle done | signals=0 open=14 pending=1 closed=1673
+2026-11-05 10:16:03Z  A/B cycle | equity=$97,344.18 day=-6.10 dd=4087.16 | session=ext
+2026-11-05 10:18:13Z  A/B cycle done | signals=0 open=14 pending=1 closed=1673
+2026-11-05 10:31:03Z  A/B cycle | equity=$97,347.56 day=-2.72 dd=4083.78 | session=ext
+2026-11-05 10:31:05Z    MISSED mkt v3 QQQ (limit 684.96 never filled)
+2026-11-05 10:33:16Z  A/B cycle done | signals=0 open=14 pending=0 closed=1674
+2026-11-05 10:46:03Z  A/B cycle | equity=$97,349.54 day=-0.74 dd=4081.80 | session=ext
+2026-11-05 10:47:08Z    SIGNAL v3 NVDA bar=2026-11-05 10:00:00 p=0.535 sig_px=199.36 tgt=201.84 stop=197.71 qty=5
+2026-11-05 10:48:04Z  A/B cycle done | signals=1 open=14 pending=2 closed=1674
+2026-11-05 11:01:03Z  A/B cycle | equity=$97,352.16 day=+1.88 dd=4079.18 | session=ext
+2026-11-05 11:01:04Z    FILLED mkt v3 NVDA @ 199.55 (signal 199.36, slip +9.5 bps)
+2026-11-05 11:01:04Z    FILLED lmt v3 NVDA @ 199.30 (signal 199.36, slip -3.0 bps)
+2026-11-05 11:01:07Z    CLOSED mkt v7 NVDA STOP pnl=-14.20
+2026-11-05 11:01:08Z    CLOSED lmt v7 NVDA STOP pnl=-13.08
+2026-11-05 11:03:16Z  A/B cycle done | signals=0 open=14 pending=0 closed=1676
+2026-11-05 11:16:03Z  A/B cycle | equity=$97,349.90 day=-0.38 dd=4081.44 | session=ext
+2026-11-05 11:18:13Z  A/B cycle done | signals=0 open=14 pending=0 closed=1676
+2026-11-05 11:31:07Z  A/B cycle | equity=$97,348.91 day=-1.37 dd=4082.43 | session=ext
+2026-11-05 11:33:24Z  A/B cycle done | signals=0 open=14 pending=0 closed=1676
+2026-11-05 11:46:04Z  A/B cycle | equity=$97,349.62 day=-0.66 dd=4081.72 | session=ext
+2026-11-05 11:48:09Z  A/B cycle done | signals=0 open=14 pending=0 closed=1676
+2026-11-05 12:01:03Z  A/B cycle | equity=$97,352.92 day=+2.64 dd=4078.42 | session=ext
+2026-11-05 12:03:12Z  A/B cycle done | signals=0 open=14 pending=0 closed=1676
+2026-11-05 12:16:04Z  A/B cycle | equity=$97,354.00 day=+3.72 dd=4077.34 | session=ext
+2026-11-05 12:18:19Z  A/B cycle done | signals=0 open=14 pending=0 closed=1676
+2026-11-05 12:31:04Z  A/B cycle | equity=$97,342.15 day=-8.13 dd=4089.19 | session=ext
+2026-11-05 12:31:12Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 12:31:13Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 12:33:14Z  A/B cycle done | signals=0 open=14 pending=0 closed=1676
+2026-11-05 12:46:07Z  A/B cycle | equity=$97,339.78 day=-10.50 dd=4091.56 | session=ext
+2026-11-05 12:46:17Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 12:46:18Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 12:48:40Z  A/B cycle done | signals=0 open=14 pending=0 closed=1676
+2026-11-05 13:01:03Z  A/B cycle | equity=$97,342.09 day=-8.19 dd=4089.25 | session=ext
+2026-11-05 13:01:13Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 13:01:14Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 13:03:27Z  A/B cycle done | signals=0 open=14 pending=0 closed=1676
+2026-11-05 13:16:03Z  A/B cycle | equity=$97,342.96 day=-7.32 dd=4088.38 | session=ext
+2026-11-05 13:16:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 13:16:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 13:18:02Z    SIGNAL v6 NVDA bar=2026-11-05 12:00:00 p=0.370 sig_px=196.69 tgt=215.52 stop=194.01 qty=5
+2026-11-05 13:18:14Z  A/B cycle done | signals=1 open=14 pending=2 closed=1676
+2026-11-05 13:31:03Z  A/B cycle | equity=$97,345.13 day=-5.15 dd=4086.21 | session=ext
+2026-11-05 13:31:04Z    FILLED mkt v6 NVDA @ 196.89 (signal 196.69, slip +9.9 bps)
+2026-11-05 13:31:04Z    FILLED lmt v6 NVDA @ 196.70 (signal 196.69, slip +0.3 bps)
+2026-11-05 13:31:11Z    CLOSED mkt v3 NVDA STOP pnl=-16.00
+2026-11-05 13:31:12Z    CLOSED lmt v3 NVDA STOP pnl=-14.77
+2026-11-05 13:33:30Z  A/B cycle done | signals=0 open=14 pending=0 closed=1678
+2026-11-05 13:46:05Z  A/B cycle | equity=$97,345.75 day=-4.53 dd=4085.59 | session=ext
+2026-11-05 13:48:33Z  A/B cycle done | signals=0 open=14 pending=0 closed=1678
+2026-11-05 14:01:04Z  A/B cycle | equity=$97,335.05 day=-15.23 dd=4096.29 | session=ext
+2026-11-05 14:03:54Z  A/B cycle done | signals=0 open=14 pending=0 closed=1678
+2026-11-05 14:16:03Z  A/B cycle | equity=$97,330.88 day=-19.40 dd=4100.46 | session=ext
+2026-11-05 14:18:14Z    SIGNAL v6 NVDA bar=2026-11-05 13:00:00 p=0.337 sig_px=197.03 tgt=214.93 stop=194.47 qty=5
+2026-11-05 14:18:16Z    SIGNAL v7 NVDA bar=2026-11-05 13:00:00 p=0.140 sig_px=197.03 tgt=211.24 stop=195.61 qty=5
+2026-11-05 14:18:27Z  A/B cycle done | signals=2 open=14 pending=2 closed=1678
+2026-11-05 14:31:05Z  A/B cycle | equity=$97,302.72 day=-47.56 dd=4128.62 | session=rth
+2026-11-05 14:31:06Z    FILLED mkt v7 NVDA @ 196.80 (signal 197.03, slip -11.8 bps)
+2026-11-05 14:31:06Z    FILLED lmt v7 NVDA @ 196.80 (signal 197.03, slip -11.8 bps)
+2026-11-05 14:31:14Z    CLOSED mkt v3 SPY STOP pnl=-4.03
+2026-11-05 14:31:15Z    CLOSED lmt v3 SPY STOP pnl=-4.10
+2026-11-05 14:31:18Z    CLOSED mkt v7 NVDA STOP pnl=-8.62
+2026-11-05 14:31:19Z    CLOSED lmt v7 NVDA STOP pnl=-9.40
+2026-11-05 14:34:24Z  A/B cycle done | signals=0 open=12 pending=0 closed=1682
+2026-11-05 14:46:04Z  A/B cycle | equity=$97,250.04 day=-100.24 dd=4181.30 | session=rth
+2026-11-05 14:46:05Z    CLOSED mkt v6 QQQ STOP pnl=-12.65
+2026-11-05 14:46:07Z    [syn exit error QQQ: POST /v2/orders -> 403: {"available":"0","code":40310000,"existing_qty":"1","held_for_orders":"1","message":"insufficient qty available for order (requested: 1, available: 0)","related_orders":["cbdcc142-c7f0-4d75-be2c-992a2d4affe9"],"symbol":"QQQ"}]
+2026-11-05 14:46:08Z    CLOSED mkt v7 QQQ STOP pnl=-11.74
+2026-11-05 14:46:09Z    CLOSED lmt v7 QQQ STOP pnl=-10.54
+2026-11-05 14:46:12Z    CLOSED mkt v4 MSFT STOP pnl=-8.69
+2026-11-05 14:46:13Z    CLOSED lmt v4 MSFT STOP pnl=-8.89
+2026-11-05 14:46:15Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 14:46:16Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 14:46:22Z    SIGNAL v3 QQQ bar=2026-11-05 14:00:00 p=0.529 sig_px=683.13 tgt=686.61 stop=680.81 qty=1
+2026-11-05 14:46:22Z    [skip v3 QQQ: stale (stop) — signal 683.13, now 671.10: 518% of the stop distance already gone]
+2026-11-05 14:48:51Z  A/B cycle done | signals=1 open=7 pending=0 closed=1687
+2026-11-05 14:56:03Z  A/B cycle | equity=$97,252.73 day=-97.55 dd=4178.61 | session=rth
+2026-11-05 14:56:04Z    CLOSED lmt v6 QQQ STOP pnl=-16.75
+2026-11-05 14:56:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 14:56:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 14:59:06Z    SIGNAL v4 SPY bar=2026-11-05 14:30:00 p=0.289 sig_px=756.94 tgt=761.80 stop=755.72 qty=1
+2026-11-05 14:59:07Z    [skip v4 SPY: stale (stop) — signal 756.94, now 753.91: 249% of the stop distance already gone]
+2026-11-05 14:59:08Z    SIGNAL v4 QQQ bar=2026-11-05 14:30:00 p=0.338 sig_px=671.09 tgt=680.25 stop=668.80 qty=1
+2026-11-05 14:59:08Z    [skip v4 QQQ: stale (stop) — signal 671.09, now 666.37: 206% of the stop distance already gone]
+2026-11-05 14:59:28Z  A/B cycle done | signals=2 open=6 pending=0 closed=1688
+2026-11-05 15:01:05Z  A/B cycle | equity=$97,253.59 day=-96.69 dd=4177.75 | session=rth
+2026-11-05 15:01:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:01:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:04:40Z  A/B cycle done | signals=0 open=6 pending=0 closed=1688
+2026-11-05 15:06:03Z  A/B cycle | equity=$97,254.18 day=-96.10 dd=4177.16 | session=rth
+2026-11-05 15:06:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:06:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:09:35Z  A/B cycle done | signals=0 open=6 pending=0 closed=1688
+2026-11-05 15:11:04Z  A/B cycle | equity=$97,255.48 day=-94.80 dd=4175.86 | session=rth
+2026-11-05 15:11:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:11:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:14:00Z    SIGNAL v4 SPY bar=2026-11-05 14:45:00 p=0.276 sig_px=754.13 tgt=759.58 stop=752.77 qty=1
+2026-11-05 15:14:01Z    [skip v4 SPY: stale (stop) — signal 754.13, now 750.06: 299% of the stop distance already gone]
+2026-11-05 15:14:01Z    SIGNAL v4 QQQ bar=2026-11-05 14:45:00 p=0.334 sig_px=666.83 tgt=676.76 stop=664.35 qty=1
+2026-11-05 15:14:02Z    [skip v4 QQQ: stale (stop) — signal 666.83, now 661.77: 204% of the stop distance already gone]
+2026-11-05 15:14:21Z  A/B cycle done | signals=2 open=6 pending=0 closed=1688
+2026-11-05 15:16:03Z  A/B cycle | equity=$97,254.94 day=-95.34 dd=4176.40 | session=rth
+2026-11-05 15:16:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:16:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:19:23Z  A/B cycle done | signals=0 open=6 pending=0 closed=1688
+2026-11-05 15:21:03Z  A/B cycle | equity=$97,255.26 day=-95.02 dd=4176.08 | session=rth
+2026-11-05 15:21:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:21:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:24:05Z  A/B cycle done | signals=0 open=6 pending=0 closed=1688
+2026-11-05 15:26:03Z  A/B cycle | equity=$97,259.02 day=-91.26 dd=4172.32 | session=rth
+2026-11-05 15:26:06Z    CLOSED mkt v7 SPY STOP pnl=-4.26
+2026-11-05 15:26:07Z    CLOSED lmt v7 SPY STOP pnl=-4.28
+2026-11-05 15:26:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:26:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:28:51Z  A/B cycle done | signals=0 open=4 pending=0 closed=1690
+2026-11-05 15:31:03Z  A/B cycle | equity=$97,256.05 day=-94.23 dd=4175.29 | session=rth
+2026-11-05 15:31:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:31:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:34:10Z  A/B cycle done | signals=0 open=4 pending=0 closed=1690
+2026-11-05 15:36:03Z  A/B cycle | equity=$97,254.12 day=-96.16 dd=4177.22 | session=rth
+2026-11-05 15:36:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:36:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:38:52Z  A/B cycle done | signals=0 open=4 pending=0 closed=1690
+2026-11-05 15:41:04Z  A/B cycle | equity=$97,259.92 day=-90.36 dd=4171.42 | session=rth
+2026-11-05 15:41:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:41:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:44:18Z  A/B cycle done | signals=0 open=4 pending=0 closed=1690
+2026-11-05 15:46:03Z  A/B cycle | equity=$97,270.22 day=-80.06 dd=4161.12 | session=rth
+2026-11-05 15:46:04Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:46:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:48:55Z  A/B cycle done | signals=0 open=4 pending=0 closed=1690
+2026-11-05 15:51:03Z  A/B cycle | equity=$97,276.90 day=-73.38 dd=4154.44 | session=rth
+2026-11-05 15:51:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:51:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:53:36Z  A/B cycle done | signals=0 open=4 pending=0 closed=1690
+2026-11-05 15:56:03Z  A/B cycle | equity=$97,275.69 day=-74.59 dd=4155.65 | session=rth
+2026-11-05 15:56:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:56:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 15:57:54Z    SIGNAL v4 SPY bar=2026-11-05 15:30:00 p=0.278 sig_px=744.96 tgt=752.45 stop=743.09 qty=1
+2026-11-05 15:57:55Z    [skip v4 SPY: stale (stop) — signal 744.96, now 742.18: 148% of the stop distance already gone]
+2026-11-05 15:58:13Z  A/B cycle done | signals=1 open=4 pending=0 closed=1690
+2026-11-05 16:01:03Z  A/B cycle | equity=$97,277.93 day=-72.35 dd=4153.41 | session=rth
+2026-11-05 16:01:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:01:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:03:39Z  A/B cycle done | signals=0 open=4 pending=0 closed=1690
+2026-11-05 16:06:03Z  A/B cycle | equity=$97,282.86 day=-67.42 dd=4148.48 | session=rth
+2026-11-05 16:06:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:06:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:08:38Z  A/B cycle done | signals=0 open=4 pending=0 closed=1690
+2026-11-05 16:11:03Z  A/B cycle | equity=$97,269.43 day=-80.85 dd=4161.91 | session=rth
+2026-11-05 16:11:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:11:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:11:32Z    SIGNAL v3 AAPL bar=2026-11-05 15:30:00 p=0.557 sig_px=348.17 tgt=350.63 stop=346.53 qty=2
+2026-11-05 16:13:46Z  A/B cycle done | signals=1 open=4 pending=2 closed=1690
+2026-11-05 16:16:03Z  A/B cycle | equity=$97,258.81 day=-91.47 dd=4172.53 | session=rth
+2026-11-05 16:16:03Z    FILLED mkt v3 AAPL @ 348.19 (signal 348.17, slip +0.6 bps)
+2026-11-05 16:16:04Z    FILLED lmt v3 AAPL @ 348.08 (signal 348.17, slip -2.6 bps)
+2026-11-05 16:16:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:16:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:19:02Z  A/B cycle done | signals=0 open=6 pending=0 closed=1690
+2026-11-05 16:21:03Z  A/B cycle | equity=$97,246.09 day=-104.19 dd=4185.25 | session=rth
+2026-11-05 16:21:04Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:21:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:21:06Z    CLOSED mkt v3 AAPL STOP pnl=-3.33
+2026-11-05 16:21:07Z    CLOSED lmt v3 AAPL STOP pnl=-3.06
+2026-11-05 16:23:51Z  A/B cycle done | signals=0 open=4 pending=0 closed=1692
+2026-11-05 16:26:04Z  A/B cycle | equity=$97,243.44 day=-106.84 dd=4187.90 | session=rth
+2026-11-05 16:26:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:26:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:28:10Z    SIGNAL v4 SPY bar=2026-11-05 16:00:00 p=0.266 sig_px=744.38 tgt=753.88 stop=742.00 qty=1
+2026-11-05 16:28:12Z    SIGNAL v4 QQQ bar=2026-11-05 16:00:00 p=0.287 sig_px=658.11 tgt=673.27 stop=654.32 qty=1
+2026-11-05 16:28:13Z    [skip v4 QQQ: stale (reward) — signal 658.11, now 661.21: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-11-05 16:28:30Z  A/B cycle done | signals=2 open=4 pending=2 closed=1692
+2026-11-05 16:31:03Z  A/B cycle | equity=$97,244.84 day=-105.44 dd=4186.50 | session=rth
+2026-11-05 16:31:03Z    FILLED mkt v4 SPY @ 745.65 (signal 744.38, slip +17.1 bps)
+2026-11-05 16:31:05Z    MISSED lmt v4 SPY (limit 744.38 never filled)
+2026-11-05 16:31:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:31:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:33:56Z  A/B cycle done | signals=0 open=5 pending=0 closed=1693
+2026-11-05 16:36:05Z  A/B cycle | equity=$97,244.38 day=-105.90 dd=4186.96 | session=rth
+2026-11-05 16:36:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:36:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:38:30Z  A/B cycle done | signals=0 open=5 pending=0 closed=1693
+2026-11-05 16:41:04Z  A/B cycle | equity=$97,248.02 day=-102.26 dd=4183.32 | session=rth
+2026-11-05 16:41:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:41:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:43:07Z    SIGNAL v4 SPY bar=2026-11-05 16:15:00 p=0.252 sig_px=745.80 tgt=755.81 stop=743.30 qty=1
+2026-11-05 16:43:07Z    [skip v4 SPY: stale (stop) — signal 745.80, now 743.66: 85% of the stop distance already gone]
+2026-11-05 16:43:08Z    SIGNAL v4 QQQ bar=2026-11-05 16:15:00 p=0.291 sig_px=661.54 tgt=677.44 stop=657.57 qty=1
+2026-11-05 16:43:08Z    [error v4 QQQ: POST /v2/orders -> 422: {"code":42210000,"message":"bracket orders must be entry orders"}]
+2026-11-05 16:43:27Z  A/B cycle done | signals=2 open=5 pending=0 closed=1693
+2026-11-05 16:46:03Z  A/B cycle | equity=$97,252.36 day=-97.92 dd=4178.98 | session=rth
+2026-11-05 16:46:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:46:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:46:08Z    CLOSED mkt v4 SPY STOP pnl=-3.70
+2026-11-05 16:48:43Z  A/B cycle done | signals=0 open=4 pending=0 closed=1694
+2026-11-05 16:51:04Z  A/B cycle | equity=$97,250.56 day=-99.72 dd=4180.78 | session=rth
+2026-11-05 16:51:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:51:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:53:59Z  A/B cycle done | signals=0 open=4 pending=0 closed=1694
+2026-11-05 16:56:05Z  A/B cycle | equity=$97,252.82 day=-97.46 dd=4178.52 | session=rth
+2026-11-05 16:56:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:56:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 16:58:34Z    SIGNAL v4 SPY bar=2026-11-05 16:30:00 p=0.277 sig_px=742.45 tgt=753.06 stop=739.80 qty=1
+2026-11-05 16:58:55Z  A/B cycle done | signals=1 open=4 pending=2 closed=1694
+2026-11-05 17:01:15Z  A/B cycle | equity=$97,254.19 day=-96.09 dd=4177.15 | session=rth
+2026-11-05 17:01:16Z    FILLED mkt v4 SPY @ 742.36 (signal 742.45, slip -1.2 bps)
+2026-11-05 17:01:16Z    FILLED lmt v4 SPY @ 742.34 (signal 742.45, slip -1.5 bps)
+2026-11-05 17:01:19Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:01:20Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:03:52Z  A/B cycle done | signals=0 open=6 pending=0 closed=1694
+2026-11-05 17:06:03Z  A/B cycle | equity=$97,255.09 day=-95.19 dd=4176.25 | session=rth
+2026-11-05 17:06:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:06:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:08:38Z  A/B cycle done | signals=0 open=6 pending=0 closed=1694
+2026-11-05 17:16:04Z  A/B cycle | equity=$97,252.77 day=-97.51 dd=4178.57 | session=rth
+2026-11-05 17:16:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:16:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:16:08Z    CLOSED mkt v4 SPY STOP pnl=-2.60
+2026-11-05 17:16:09Z    CLOSED lmt v4 SPY STOP pnl=-2.58
+2026-11-05 17:18:16Z    SIGNAL v6 AAPL bar=2026-11-05 16:00:00 p=0.243 sig_px=345.38 tgt=366.60 stop=342.35 qty=2
+2026-11-05 17:18:28Z  A/B cycle done | signals=1 open=4 pending=2 closed=1696
+2026-11-05 17:31:03Z  A/B cycle | equity=$97,251.15 day=-99.13 dd=4180.19 | session=rth
+2026-11-05 17:31:04Z    FILLED mkt v6 AAPL @ 345.09 (signal 345.38, slip -8.4 bps)
+2026-11-05 17:31:04Z    FILLED lmt v6 AAPL @ 345.09 (signal 345.38, slip -8.4 bps)
+2026-11-05 17:31:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:31:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:33:31Z  A/B cycle done | signals=0 open=6 pending=0 closed=1696
+2026-11-05 17:46:05Z  A/B cycle | equity=$97,255.72 day=-94.56 dd=4175.62 | session=rth
+2026-11-05 17:46:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:46:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 17:48:24Z    SIGNAL v4 SPY bar=2026-11-05 17:15:00 p=0.353 sig_px=739.40 tgt=750.96 stop=736.51 qty=1
+2026-11-05 17:48:37Z  A/B cycle done | signals=1 open=6 pending=2 closed=1696
+2026-11-05 18:01:03Z  A/B cycle | equity=$97,252.13 day=-98.15 dd=4179.21 | session=rth
+2026-11-05 18:01:04Z    FILLED mkt v4 SPY @ 738.72 (signal 739.40, slip -9.2 bps)
+2026-11-05 18:01:04Z    FILLED lmt v4 SPY @ 738.70 (signal 739.40, slip -9.5 bps)
+2026-11-05 18:01:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 18:01:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 18:01:12Z    CLOSED mkt v4 SPY STOP pnl=-2.34
+2026-11-05 18:01:14Z    CLOSED lmt v4 SPY STOP pnl=-2.49
+2026-11-05 18:03:05Z    SIGNAL v4 SPY bar=2026-11-05 17:30:00 p=0.257 sig_px=737.89 tgt=749.87 stop=734.90 qty=1
+2026-11-05 18:03:06Z    [skip v4 SPY: stale (stop) — signal 737.89, now 734.63: 109% of the stop distance already gone]
+2026-11-05 18:03:18Z  A/B cycle done | signals=1 open=6 pending=0 closed=1698
+2026-11-05 18:16:07Z  A/B cycle | equity=$97,249.35 day=-100.93 dd=4181.99 | session=rth
+2026-11-05 18:16:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 18:16:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 18:16:44Z    SIGNAL v3 AAPL bar=2026-11-05 17:30:00 p=0.553 sig_px=343.89 tgt=346.48 stop=342.17 qty=2
+2026-11-05 18:18:29Z    SIGNAL v4 SPY bar=2026-11-05 17:45:00 p=0.255 sig_px=737.18 tgt=749.45 stop=734.11 qty=1
+2026-11-05 18:18:33Z    SIGNAL v6 AAPL bar=2026-11-05 17:00:00 p=0.273 sig_px=343.89 tgt=364.73 stop=340.91 qty=2
+2026-11-05 18:18:34Z    SIGNAL v7 SPY bar=2026-11-05 17:00:00 p=0.089 sig_px=737.18 tgt=748.34 stop=736.06 qty=1
+2026-11-05 18:18:35Z    [skip v7 SPY: stale (stop) — signal 737.18, now 736.06: 100% of the stop distance already gone]
+2026-11-05 18:18:44Z  A/B cycle done | signals=4 open=6 pending=4 closed=1698
+2026-11-05 18:31:03Z  A/B cycle | equity=$97,240.38 day=-109.90 dd=4190.96 | session=rth
+2026-11-05 18:31:04Z    FILLED mkt v3 AAPL @ 344.05 (signal 343.89, slip +4.5 bps)
+2026-11-05 18:31:05Z    FILLED lmt v3 AAPL @ 343.81 (signal 343.89, slip -2.3 bps)
+2026-11-05 18:31:05Z    FILLED mkt v4 SPY @ 736.24 (signal 737.18, slip -12.8 bps)
+2026-11-05 18:31:06Z    FILLED lmt v4 SPY @ 736.26 (signal 737.18, slip -12.5 bps)
+2026-11-05 18:31:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 18:31:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 18:31:12Z    CLOSED mkt v6 AAPL STOP pnl=-5.54
+2026-11-05 18:31:13Z    CLOSED lmt v6 AAPL STOP pnl=-5.54
+2026-11-05 18:33:28Z    SIGNAL v4 SPY bar=2026-11-05 18:00:00 p=0.260 sig_px=738.05 tgt=751.91 stop=734.58 qty=1
+2026-11-05 18:33:29Z    [skip v4 SPY: stale (stop) — signal 738.05, now 735.80: 65% of the stop distance already gone]
+2026-11-05 18:33:43Z  A/B cycle done | signals=1 open=8 pending=0 closed=1700
+2026-11-05 18:46:08Z  A/B cycle | equity=$97,239.67 day=-110.61 dd=4191.67 | session=rth
+2026-11-05 18:46:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 18:46:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 18:46:13Z    CLOSED mkt v3 AAPL STOP pnl=-3.81
+2026-11-05 18:46:14Z    CLOSED lmt v3 AAPL STOP pnl=-3.30
+2026-11-05 18:46:50Z    SIGNAL v3 AAPL bar=2026-11-05 18:00:00 p=0.544 sig_px=342.81 tgt=345.53 stop=341.01 qty=2
+2026-11-05 18:48:37Z    SIGNAL v4 SPY bar=2026-11-05 18:15:00 p=0.355 sig_px=736.60 tgt=750.86 stop=733.04 qty=1
+2026-11-05 18:48:50Z  A/B cycle done | signals=2 open=6 pending=2 closed=1702
+2026-11-05 19:01:04Z  A/B cycle | equity=$97,238.84 day=-111.44 dd=4192.50 | session=rth
+2026-11-05 19:01:05Z    FILLED mkt v3 AAPL @ 343.33 (signal 342.81, slip +15.2 bps)
+2026-11-05 19:01:06Z    MISSED lmt v3 AAPL (limit 342.81 never filled)
+2026-11-05 19:01:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 19:01:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 19:03:35Z    SIGNAL v4 SPY bar=2026-11-05 18:30:00 p=0.283 sig_px=735.78 tgt=750.22 stop=732.17 qty=1
+2026-11-05 19:03:48Z  A/B cycle done | signals=1 open=7 pending=0 closed=1703
+2026-11-05 19:16:03Z  A/B cycle | equity=$97,228.81 day=-121.47 dd=4202.53 | session=rth
+2026-11-05 19:16:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 19:16:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 19:16:08Z    CLOSED mkt v4 SPY STOP pnl=-2.21
+2026-11-05 19:16:10Z    CLOSED lmt v4 SPY STOP pnl=-2.25
+2026-11-05 19:18:24Z    SIGNAL v4 SPY bar=2026-11-05 18:45:00 p=0.306 sig_px=736.94 tgt=751.52 stop=733.30 qty=1
+2026-11-05 19:18:28Z    SIGNAL v6 AAPL bar=2026-11-05 18:00:00 p=0.318 sig_px=343.57 tgt=364.91 stop=340.52 qty=2
+2026-11-05 19:18:31Z    SIGNAL v7 XLE bar=2026-11-05 18:00:00 p=0.144 sig_px=62.84 tgt=66.04 stop=62.52 qty=15
+2026-11-05 19:18:41Z  A/B cycle done | signals=3 open=5 pending=6 closed=1705
+2026-11-05 19:31:04Z  A/B cycle | equity=$97,230.06 day=-120.22 dd=4201.28 | session=rth
+2026-11-05 19:31:04Z    FILLED mkt v4 SPY @ 738.24 (signal 736.94, slip +17.6 bps)
+2026-11-05 19:31:05Z    FILLED lmt v4 SPY @ 736.86 (signal 736.94, slip -1.1 bps)
+2026-11-05 19:31:06Z    FILLED mkt v6 AAPL @ 344.44 (signal 343.57, slip +25.3 bps)
+2026-11-05 19:31:06Z    FILLED lmt v6 AAPL @ 343.57 (signal 343.57, slip +0.0 bps)
+2026-11-05 19:31:07Z    FILLED mkt v7 XLE @ 62.76 (signal 62.84, slip -12.7 bps)
+2026-11-05 19:31:08Z    FILLED lmt v7 XLE @ 62.76 (signal 62.84, slip -12.7 bps)
+2026-11-05 19:31:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 19:31:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 19:33:38Z  A/B cycle done | signals=0 open=11 pending=0 closed=1705
+2026-11-05 19:46:07Z  A/B cycle | equity=$97,232.45 day=-117.83 dd=4198.89 | session=rth
+2026-11-05 19:46:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 19:46:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 19:46:50Z    SIGNAL v3 AAPL bar=2026-11-05 19:00:00 p=0.527 sig_px=343.80 tgt=346.75 stop=341.83 qty=2
+2026-11-05 19:46:51Z    [skip v3 AAPL: stale (reward) — signal 343.80, now 344.70: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-11-05 19:48:16Z    SIGNAL v4 SPY bar=2026-11-05 19:15:00 p=0.293 sig_px=735.49 tgt=751.13 stop=731.58 qty=1
+2026-11-05 19:48:17Z    [skip v4 SPY: stale (reward) — signal 735.49, now 739.44: price ran toward the target, so the remaining reward:risk is worse than validated]
+2026-11-05 19:48:29Z  A/B cycle done | signals=2 open=11 pending=0 closed=1705
+2026-11-05 20:01:03Z  A/B cycle | equity=$97,237.84 day=-112.44 dd=4193.50 | session=rth
+2026-11-05 20:01:04Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 20:01:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 20:01:05Z    CLOSED mkt v3 AAPL TARGET pnl=+4.39
+2026-11-05 20:03:49Z  A/B cycle done | signals=0 open=10 pending=0 closed=1706
+2026-11-05 20:16:03Z  A/B cycle | equity=$97,235.45 day=-114.83 dd=4195.89 | session=rth
+2026-11-05 20:16:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 20:16:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 20:16:14Z    CLOSED mkt v7 XLE STOP pnl=-3.60
+2026-11-05 20:16:16Z    CLOSED lmt v7 XLE STOP pnl=-3.60
+2026-11-05 20:18:28Z    SIGNAL v7 XLE bar=2026-11-05 19:00:00 p=0.280 sig_px=62.73 tgt=64.90 stop=62.52 qty=15
+2026-11-05 20:18:29Z    [skip v7 XLE: stale (stop) — signal 62.73, now 62.49: 111% of the stop distance already gone]
+2026-11-05 20:18:37Z  A/B cycle done | signals=1 open=8 pending=0 closed=1708
+2026-11-05 20:31:05Z  A/B cycle | equity=$97,238.22 day=-112.06 dd=4193.12 | session=rth
+2026-11-05 20:31:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 20:31:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 20:33:12Z    SIGNAL v4 SPY bar=2026-11-05 20:00:00 p=0.258 sig_px=735.91 tgt=752.87 stop=731.67 qty=1
+2026-11-05 20:33:26Z  A/B cycle done | signals=1 open=8 pending=0 closed=1708
+2026-11-05 20:46:03Z  A/B cycle | equity=$97,239.55 day=-110.73 dd=4191.79 | session=rth
+2026-11-05 20:46:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 20:46:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 20:48:32Z  A/B cycle done | signals=0 open=8 pending=0 closed=1708
+2026-11-05 21:01:03Z  A/B cycle | equity=$97,241.83 day=-108.45 dd=4189.51 | session=ext
+2026-11-05 21:01:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 21:01:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"2","code":40310000,"existing_qty":"2","held_for_orders":"0","message":"insufficient qty available for order (requested: 5, available: 2)","symbol":"NVDA"}]
+2026-11-05 21:01:08Z    CLOSED mkt v4 SPY STOP pnl=-4.75
+2026-11-05 21:01:10Z    CLOSED lmt v4 SPY STOP pnl=-3.40
+2026-11-05 21:03:11Z  A/B cycle done | signals=0 open=6 pending=0 closed=1710

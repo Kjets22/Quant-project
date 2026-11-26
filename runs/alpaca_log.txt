@@ -27594,3 +27594,450 @@
 2026-11-25 21:01:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
 2026-11-25 21:01:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
 2026-11-25 21:04:14Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 21:31:03Z  A/B cycle | equity=$98,196.21 day=+483.21 dd=3235.13 | session=ext
+2026-11-25 21:31:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 21:31:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 21:31:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 21:31:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 21:34:26Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 21:46:03Z  A/B cycle | equity=$98,197.34 day=+484.34 dd=3234.00 | session=ext
+2026-11-25 21:46:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 21:46:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 21:46:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 21:46:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 21:49:17Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 22:01:04Z  A/B cycle | equity=$98,195.46 day=+482.46 dd=3235.88 | session=ext
+2026-11-25 22:01:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 22:01:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 22:01:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 22:01:13Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 22:04:19Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 22:16:04Z  A/B cycle | equity=$98,195.14 day=+482.14 dd=3236.20 | session=ext
+2026-11-25 22:16:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 22:16:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 22:16:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 22:16:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 22:19:26Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 22:31:04Z  A/B cycle | equity=$98,197.76 day=+484.76 dd=3233.58 | session=ext
+2026-11-25 22:31:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 22:31:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 22:31:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 22:31:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 22:34:18Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 22:46:04Z  A/B cycle | equity=$98,199.49 day=+486.49 dd=3231.85 | session=ext
+2026-11-25 22:46:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 22:46:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 22:46:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 22:46:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 22:49:30Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 23:01:03Z  A/B cycle | equity=$98,198.30 day=+485.30 dd=3233.04 | session=ext
+2026-11-25 23:01:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 23:01:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 23:01:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 23:01:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 23:04:30Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 23:16:03Z  A/B cycle | equity=$98,199.71 day=+486.71 dd=3231.63 | session=ext
+2026-11-25 23:16:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 23:16:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 23:16:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 23:16:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 23:19:28Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 23:31:04Z  A/B cycle | equity=$98,200.36 day=+487.36 dd=3230.98 | session=ext
+2026-11-25 23:31:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 23:31:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 23:31:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 23:31:13Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 23:34:41Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-25 23:46:05Z  A/B cycle | equity=$98,198.60 day=+485.60 dd=3232.74 | session=ext
+2026-11-25 23:46:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 23:46:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 23:46:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-25 23:46:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-25 23:49:19Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-26 00:01:05Z  A/B cycle | equity=$98,200.33 day=+487.33 dd=3231.01 | session=ext
+2026-11-26 00:01:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 00:01:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 00:01:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 00:01:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 00:10:06Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-26 00:16:06Z  A/B cycle | equity=$98,203.09 day=+490.09 dd=3228.25 | session=ext
+2026-11-26 00:16:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 00:16:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 00:16:12Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 00:16:14Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 00:19:39Z  A/B cycle done | signals=0 open=12 pending=0 closed=2150
+2026-11-26 00:31:03Z  A/B cycle | equity=$98,206.17 day=+493.17 dd=3225.17 | session=ext
+2026-11-26 00:31:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 00:31:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 00:31:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 00:31:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 00:34:22Z    SIGNAL v4 SPY bar=2026-11-26 00:00:00 p=0.256 sig_px=719.28 tgt=726.29 stop=717.53 qty=1
+2026-11-26 00:34:43Z  A/B cycle done | signals=1 open=12 pending=2 closed=2150
+2026-11-26 00:46:05Z  A/B cycle | equity=$98,204.92 day=+491.92 dd=3226.42 | session=ext
+2026-11-26 00:46:06Z    FILLED mkt v4 SPY @ 719.97 (signal 719.28, slip +9.6 bps)
+2026-11-26 00:46:07Z    MISSED lmt v4 SPY (limit 719.28 never filled)
+2026-11-26 00:46:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 00:46:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 00:46:13Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 00:46:15Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 00:49:19Z    SIGNAL v3 TLT bar=2026-11-26 00:00:00 p=0.489 sig_px=82.02 tgt=82.25 stop=81.86 qty=12
+2026-11-26 00:49:38Z  A/B cycle done | signals=1 open=13 pending=2 closed=2151
+2026-11-26 01:01:03Z  A/B cycle | equity=$98,199.27 day=+486.27 dd=3232.07 | session=closed
+2026-11-26 01:16:03Z  A/B cycle | equity=$98,199.27 day=+486.27 dd=3232.07 | session=closed
+2026-11-26 09:01:18Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 09:01:18Z    FILLED mkt v3 TLT @ 82.03 (signal 82.02, slip +1.7 bps)
+2026-11-26 09:01:23Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 09:01:24Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 09:01:26Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 09:01:27Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 09:01:35Z    CLOSED mkt v4 SPY STOP pnl=-3.27
+2026-11-26 09:04:52Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 09:16:07Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 09:16:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 09:16:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 09:16:13Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 09:16:14Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 09:19:30Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 09:31:05Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 09:31:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 09:31:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 09:31:12Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 09:31:13Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 09:34:39Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 09:46:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 09:46:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 09:46:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 09:46:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 09:46:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 09:49:37Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 10:01:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 10:01:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 10:01:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 10:01:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 10:01:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 10:04:41Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 10:16:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 10:16:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 10:16:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 10:16:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 10:16:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 10:19:37Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 10:31:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 10:31:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 10:31:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 10:31:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 10:31:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 10:34:30Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 10:46:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 10:46:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 10:46:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 10:46:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 10:46:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 10:49:36Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 11:01:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 11:01:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 11:01:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 11:01:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 11:01:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 11:04:38Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 11:16:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 11:16:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 11:16:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 11:16:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 11:16:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 11:19:39Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 11:31:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 11:31:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 11:31:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 11:31:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 11:31:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 11:34:34Z  A/B cycle done | signals=0 open=13 pending=0 closed=2153
+2026-11-26 11:46:08Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 11:46:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 11:46:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 11:46:13Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 11:46:15Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 11:46:22Z    CLOSED lmt v4 MSFT TIME pnl=+0.00
+2026-11-26 11:49:36Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 12:01:06Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 12:01:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 12:01:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 12:01:12Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 12:01:13Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 12:04:38Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 12:16:07Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 12:16:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 12:16:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 12:16:13Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 12:16:15Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 12:19:44Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 12:31:06Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 12:31:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 12:31:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 12:31:13Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 12:31:15Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 12:34:35Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 12:46:11Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 12:46:14Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 12:46:15Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 12:46:17Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 12:46:18Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 12:49:49Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 13:01:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 13:01:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 13:01:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 13:01:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 13:01:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 13:04:44Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 13:16:07Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 13:16:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 13:16:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 13:16:14Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 13:16:15Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 13:19:46Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 13:31:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 13:31:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 13:31:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 13:31:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 13:31:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 13:34:37Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 13:46:08Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 13:46:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 13:46:13Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 13:46:14Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 13:46:16Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 13:49:35Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 14:01:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 14:01:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:01:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:01:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:01:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:04:45Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 14:16:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 14:16:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:16:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:16:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:16:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:19:30Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 14:31:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 14:31:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:31:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:31:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:31:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:34:28Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 14:46:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 14:46:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:46:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:46:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:46:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:49:31Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 14:56:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 14:56:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:56:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:56:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 14:56:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 14:59:50Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:01:05Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:01:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:01:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:01:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:01:13Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:04:51Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:06:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:06:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:06:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:06:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:06:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:09:45Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:11:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:11:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:11:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:11:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:11:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:15:01Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:16:05Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:16:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:16:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:16:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:16:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:19:45Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:21:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:21:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:21:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:21:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:21:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:24:52Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:26:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:26:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:26:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:26:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:26:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:30:06Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:31:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:31:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:31:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:31:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:31:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:34:46Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:36:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:36:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:36:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:36:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:36:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:39:41Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:41:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:41:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:41:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:41:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:41:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:44:40Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:46:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:46:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:46:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:46:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:46:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:49:45Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:51:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:51:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:51:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:51:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:51:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:54:50Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 15:56:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 15:56:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:56:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:56:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 15:56:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 15:59:53Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:01:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:01:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:01:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:01:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:01:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:04:48Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:06:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:06:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:06:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:06:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:06:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:09:43Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:11:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:11:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:11:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:11:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:11:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:14:50Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:16:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:16:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:16:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:16:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:16:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:19:49Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:21:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:21:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:21:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:21:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:21:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:24:40Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:26:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:26:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:26:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:26:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:26:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:29:36Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:31:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:31:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:31:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:31:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:31:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:34:45Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:36:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:36:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:36:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:36:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:36:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:39:55Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:41:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:41:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:41:08Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:41:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:41:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:44:50Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:46:05Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:46:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:46:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:46:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:46:13Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:49:46Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:51:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:51:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:51:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:51:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:51:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:54:45Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 16:56:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 16:56:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:56:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:56:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 16:56:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 16:59:48Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 17:01:12Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 17:01:15Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:01:16Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:01:18Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:01:20Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:04:50Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 17:06:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 17:06:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:06:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:06:08Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:06:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:09:43Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 17:16:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 17:16:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:16:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:16:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:16:11Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:19:38Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 17:31:07Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 17:31:23Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:31:25Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:31:27Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:31:29Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:35:02Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 17:46:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 17:46:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:46:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:46:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 17:46:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 17:50:00Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 18:01:05Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 18:01:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 18:01:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 18:01:11Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 18:01:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 18:04:36Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 18:16:03Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 18:16:06Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 18:16:07Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 18:16:09Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 18:16:10Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 18:19:33Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 18:31:04Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 18:31:07Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 18:31:09Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 18:31:10Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 18:31:12Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 18:34:35Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 20:46:35Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=rth
+2026-11-26 20:46:37Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 20:46:37Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 20:46:38Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 20:46:39Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 20:48:43Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154
+2026-11-26 21:01:02Z  A/B cycle | equity=$98,199.08 day=-272.00 dd=3232.26 | session=ext
+2026-11-26 21:01:04Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 21:01:05Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 21:01:05Z    [syn exit error NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"}]
+2026-11-26 21:01:06Z    [time-exit order failed NVDA: POST /v2/orders -> 403: {"available":"4","code":40310000,"existing_qty":"4","held_for_orders":"0","message":"insufficient qty available for order (requested: 6, available: 4)","symbol":"NVDA"} — retrying next cycle]
+2026-11-26 21:03:02Z  A/B cycle done | signals=0 open=12 pending=0 closed=2154

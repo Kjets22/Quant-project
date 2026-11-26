@@ -13729,6 +13729,146 @@
    "gate": 1.0035939650471555,
    "final": 1.3811984293574135,
    "final_n": 37
+  },
+  "{\"last_entry\": 690, \"nr\": 0.2, \"or_bars\": 2, \"rr\": 2.0, \"sides\": \"both\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -2.775224708681373,
+   "gate": 5.34984517715357,
+   "final": -0.4857282330435861,
+   "final_n": 99
+  },
+  "{\"last_entry\": 715, \"nr\": 0.2, \"or_bars\": 8, \"rr\": 3.0, \"sides\": \"short\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": -99.0,
+   "gate": -99.0,
+   "final": -99.0,
+   "final_n": 8
+  },
+  "{\"last_entry\": 690, \"nr\": 0.3, \"or_bars\": 8, \"rr\": null, \"sides\": \"short\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": -99.0,
+   "gate": -99.0,
+   "final": -99.0,
+   "final_n": 8
+  },
+  "{\"last_entry\": 630, \"nr\": 0.3, \"or_bars\": 5, \"rr\": null, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -0.5605201561688824,
+   "gate": 3.871870026585142,
+   "final": 3.277464826230235,
+   "final_n": 38
+  },
+  "{\"last_entry\": 630, \"nr\": 0.4, \"or_bars\": 3, \"rr\": 1.5, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": -99.0,
+   "gate": 3.4216771715228806,
+   "final": -2.5630165096393656,
+   "final_n": 25
+  },
+  "{\"last_entry\": 660, \"nr\": 0.4, \"or_bars\": 6, \"rr\": 3.0, \"sides\": \"short\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": -99.0,
+   "gate": -99.0,
+   "final": 1.7068732739191654,
+   "final_n": 11
+  },
+  "{\"last_entry\": 690, \"nr\": 0.5, \"or_bars\": 2, \"rr\": null, \"sides\": \"short\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": -99.0,
+   "gate": 5.777589617333384,
+   "final": 1.609025034969942,
+   "final_n": 24
+  },
+  "{\"last_entry\": 630, \"nr\": 0.5, \"or_bars\": 3, \"rr\": 3.0, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -1.5861156741490072,
+   "gate": 11.700942249748783,
+   "final": -4.9378904354245705,
+   "final_n": 94
+  },
+  "{\"last_entry\": 660, \"nr\": 0.4, \"or_bars\": 2, \"rr\": 1.5, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": 0.3935387323847366,
+   "gate": 2.5461460479584743,
+   "final": -4.1414688630934196,
+   "final_n": 27
+  },
+  "{\"last_entry\": 660, \"nr\": null, \"or_bars\": 6, \"rr\": 1.5, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -3.9027544569161634,
+   "gate": -1.016845476868982,
+   "final": 3.0788123900185824,
+   "final_n": 126
+  },
+  "{\"last_entry\": 715, \"nr\": 0.4, \"or_bars\": 4, \"rr\": 2.0, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -1.6003598513828654,
+   "gate": 4.452377675965514,
+   "final": 5.698534549349951,
+   "final_n": 75
+  },
+  "{\"last_entry\": 715, \"nr\": 0.2, \"or_bars\": 8, \"rr\": null, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -2.466762215633114,
+   "gate": 2.1321984968219776,
+   "final": 3.906089644958466,
+   "final_n": 44
+  },
+  "{\"last_entry\": 630, \"nr\": 0.5, \"or_bars\": 6, \"rr\": 2.0, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": -99.0,
+   "gate": -0.9565904660955219,
+   "final": 1.666859381902364,
+   "final_n": 25
+  },
+  "{\"last_entry\": 690, \"nr\": 0.3, \"or_bars\": 4, \"rr\": 3.0, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -1.5018701641954573,
+   "gate": 3.694536744334588,
+   "final": 4.769349664589876,
+   "final_n": 54
+  },
+  "{\"last_entry\": 715, \"nr\": 0.4, \"or_bars\": 6, \"rr\": 3.0, \"sides\": \"short\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": -99.0,
+   "gate": -99.0,
+   "final": 1.7068732739191654,
+   "final_n": 11
+  },
+  "{\"last_entry\": 660, \"nr\": 0.5, \"or_bars\": 6, \"rr\": 1.5, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -0.5294006547468555,
+   "gate": 7.173128868906105,
+   "final": 4.12629706848801,
+   "final_n": 76
+  },
+  "{\"last_entry\": 630, \"nr\": 0.3, \"or_bars\": 3, \"rr\": 1.5, \"sides\": \"short\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": -99.0,
+   "gate": -99.0,
+   "final": -2.8616125719938523,
+   "final_n": 11
+  },
+  "{\"last_entry\": 690, \"nr\": null, \"or_bars\": 8, \"rr\": 1.5, \"sides\": \"both\", \"volx\": 1.2}": {
+   "date": "2026-11-26",
+   "arena_worst": -5.214877862952161,
+   "gate": -0.038474516148289145,
+   "final": -1.2087383712806943,
+   "final_n": 64
+  },
+  "{\"last_entry\": 660, \"nr\": 0.5, \"or_bars\": 8, \"rr\": 3.0, \"sides\": \"short\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -2.084972668423583,
+   "gate": 5.297548644258283,
+   "final": 3.4588403316374015,
+   "final_n": 62
+  },
+  "{\"last_entry\": 660, \"nr\": 0.2, \"or_bars\": 4, \"rr\": null, \"sides\": \"both\", \"volx\": null}": {
+   "date": "2026-11-26",
+   "arena_worst": -0.5258594809950806,
+   "gate": 3.375199355905567,
+   "final": 3.266288977171335,
+   "final_n": 87
   }
  },
  "events": [
